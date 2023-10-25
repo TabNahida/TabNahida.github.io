@@ -5,66 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tab Nahida's Personal Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- 引入tabler的CSS文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Tab Nahida</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#work">Work</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#blog">Blog</a>
-                </li>
-            </ul>
-        </div>
-        <div class="dropdown d-lg-none">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                About
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Team</a>
-                <a class="dropdown-item" href="#">Mission</a>
-                <a class="dropdown-item" href="#">Vision</a>
+    <div class="d-lg-flex">
+        <!-- 侧边导航栏 -->
+        <nav class="col-lg-2 d-lg-block bg-light sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#work">Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <!-- 下拉菜单示例 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Item 1</a>
+                            <a class="dropdown-item" href="#">Item 2</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
     
-    <div class="container">
-        <section id="home" class="mt-5">
-            <h1>Home</h1>
-            <p>Welcome to my personal homepage.</p>
-        </section>
-        
-        <section id="about" class="mt-5">
-            <h1>About</h1>
-            <p>I am a passionate web developer with a strong background in front-end and back-end technologies.</p>
-        </section>
-        
-        <section id="work" class="mt-5">
-            <h1>Work</h1>
-            <p>Here are some of the projects I've worked on:</p>
-            <!-- List your work/projects here -->
-        </section>
-        
-        <section id="blog" class="mt-5">
-            <h1>Blog</h1>
-            <p>Check out my latest blog posts:</p>
-            <!-- List your blog posts here -->
-        </section>
+        <!-- 主内容区域 -->
+        <main class="col-lg-10">
+            <!-- 页面内容 -->
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
