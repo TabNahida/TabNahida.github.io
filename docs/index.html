@@ -1,150 +1,63 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tab Nahida's Personal Homepage</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
+    <title>Your Name - Personal Homepage</title>
+    <!-- 使用Bootswatch Morph主题的CSS链接 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/5.3.0/morph/bootstrap.min.css">
 </head>
 <body>
-    <div class="page">
-        <!-- Sidebar -->
-        <aside class="navbar navbar-vertical navbar-expand-sm navbar-dark">
-          <div class="container-fluid">
-            <button class="navbar-toggler" type="button">
-              <span class="navbar-toggler-icon"></span>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Your Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <h1 class="navbar-brand navbar-brand-autodark">
-              <a href="#">
-                <img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
-              </a>
-            </h1>
-            <div class="collapse navbar-collapse" id="sidebar-menu">
-              <ul class="navbar-nav pt-lg-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="./">
-                    <span class="nav-link-title">
-                      Home
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="nav-link-title">
-                      About
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="nav-link-title">
-                      Project
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="nav-link-title">
-                      Blog
-                    </span>
-                  </a>
-                </li>
-              </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#work">Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-        </aside>
-        <div class="page-wrapper">
-          <div class="page-header d-print-none">
-            <div class="container-xl">
-              <div class="row g-2 align-items-center">
-                <div class="col">
-                  <h2 class="page-title">
-                    Tab Nahida
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="page-body">
-            <div class="container-xl">
-              <div class="row row-deck row-cards">
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="row row-cards">
-                    <div class="col-12">
-                      <div class="card">
-                        <div class="card-body" style="height: 10rem"></div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="card">
-                        <div class="card-body" style="height: 10rem"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-8">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-8">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-    </div>
+    </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
+    <!-- 页头 -->
+    <header class="container mt-5">
+        <h1 class="display-4">Welcome to My Personal Homepage</h1>
+        <p class="lead">Web Developer | Designer | Blogger</p>
+    </header>
+
+    <!-- 关于我部分 -->
+    <section id="about" class="container mt-5">
+        <h2>About Me</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae turpis eget dolor ultricies dictum.</p>
+    </section>
+
+    <!-- 作品部分 -->
+    <section id="work" class="container mt-5">
+        <h2>My Work</h2>
+        <!-- 列出您的作品 -->
+    </section>
+
+    <!-- 博客部分 -->
+    <section id="blog" class="container mt-5">
+        <h2>My Blog</h2>
+        <!-- 列出您的博客帖子 -->
+    </section>
+
+    <!-- 使用Bootstrap和Bootswatch的JS链接，确保在body结束前引入 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
 
