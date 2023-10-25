@@ -9,7 +9,7 @@ function AboutREADME() {
       })
       .then(data => {
         // 在 fetch 成功后再进行 Markdown 解析
-        document.getElementById('About-MD').innerHTML = marked(data);
+        document.getElementById('About-MD').innerHTML = marked.parse(data);
       })
       .catch(error => {
         console.error('Fetch error:', error);
