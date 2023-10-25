@@ -1,4 +1,3 @@
-function AboutREADME()
 function AboutREADME() {
     path = 'https://raw.githubusercontent.com/TabNahida/TabNahida/main/README.md';
     fetch(path)
