@@ -24,7 +24,7 @@ function ImgMatchStyle(src,style)
 
   // 用特定值的 src 来添加样式
   imgTags.forEach(function(img) {
-    if (img.getAttribute('src') === src) {
+    if (img.getAttribute('src') == src) {
       img.setAttribute('style', style); 
     }
   });
