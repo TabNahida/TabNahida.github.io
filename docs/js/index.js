@@ -25,8 +25,7 @@ function ImgMatchStyle(src,style)
   // 用特定值的 src 来添加样式
   imgTags.forEach(function(img) {
     if (img.getAttribute('src') === src) {
-        img.style = style; // 以红色边框为例
-        // 添加其他样式或属性，根据需要
+      img.setAttribute('style', style); 
     }
   });
 }
