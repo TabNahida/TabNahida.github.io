@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Templates and Generic Programming | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Templates and Generic Programming</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutor
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #00a596">
+                    c-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                    modern-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
+                    cpp-unleash
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/02Hero/" style="color: #03a9f4">
+                    02Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-oop">Object-Oriented Programming</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Templates-and-Generic-Programming"><a href="#Templates-and-Generic-Programming" class="headerlink" title="Templates and Generic Programming"></a>Templates and Generic Programming</h1><p>Templates and generic programming are powerful features in C++ that allow you to write flexible and reusable code. Templates enable functions and classes to operate with generic types, making your programs more abstract and adaptable.</p>
+<p>In this chapter, we’ll cover:</p>
+<ul>
+<li>Function Templates</li>
+<li>Class Templates</li>
+<li>Template Specialization</li>
+<li>Variadic Templates</li>
+<li>Concepts (C++20)</li>
+</ul>
+<h2 id="Function-Templates"><a href="#Function-Templates" class="headerlink" title="Function Templates"></a>Function Templates</h2><p>Function templates allow you to write a single function that works with any data type.</p>
+<h3 id="Basic-Syntax"><a href="#Basic-Syntax" class="headerlink" title="Basic Syntax"></a>Basic Syntax</h3><pre><code class="cpp">template &lt;typename T&gt;
+ReturnType FunctionName(T parameter) &#123;
+    // Function body
+&#125;
+</code></pre>
+<ul>
+<li><strong><code>template &lt;typename T&gt;</code></strong>: Introduces a template parameter <code>T</code>.</li>
+<li><strong><code>T</code></strong>: Represents a generic data type.</li>
+</ul>
+<h3 id="Example-Generic-Swap-Function"><a href="#Example-Generic-Swap-Function" class="headerlink" title="Example: Generic Swap Function"></a>Example: Generic Swap Function</h3><pre><code class="cpp">template &lt;typename T&gt;
+void swapValues(T&amp; a, T&amp; b) &#123;
+    T temp = a;
+    a = b;
+    b = temp;
+&#125;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    int x = 10, y = 20;
+    swapValues(x, y);
+
+    double a = 1.5, b = 2.5;
+    swapValues(a, b);
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Function-Templates-with-Multiple-Parameters"><a href="#Function-Templates-with-Multiple-Parameters" class="headerlink" title="Function Templates with Multiple Parameters"></a>Function Templates with Multiple Parameters</h3><p>You can have multiple template parameters.</p>
+<pre><code class="cpp">template &lt;typename T1, typename T2&gt;
+auto add(T1 a, T2 b) -&gt; decltype(a + b) &#123;
+    return a + b;
+&#125;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    auto result = add(5, 3.2); // result is of type double
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Template-Argument-Deduction"><a href="#Template-Argument-Deduction" class="headerlink" title="Template Argument Deduction"></a>Template Argument Deduction</h3><p>The compiler automatically deduces the template arguments based on the function arguments.</p>
+<p><strong>Explicit Template Arguments:</strong></p>
+<pre><code class="cpp">swapValues&lt;int&gt;(x, y);
+</code></pre>
+<ul>
+<li>Usually not necessary unless deduction fails.</li>
+</ul>
+<h2 id="Class-Templates"><a href="#Class-Templates" class="headerlink" title="Class Templates"></a>Class Templates</h2><p>Class templates allow you to define a class with generic types.</p>
+<h3 id="Basic-Syntax-1"><a href="#Basic-Syntax-1" class="headerlink" title="Basic Syntax"></a>Basic Syntax</h3><pre><code class="cpp">template &lt;typename T&gt;
+class ClassName &#123;
+public:
+    // Member functions and variables using T
+&#125;;
+</code></pre>
+<h3 id="Example-Generic-Array-Class"><a href="#Example-Generic-Array-Class" class="headerlink" title="Example: Generic Array Class"></a>Example: Generic Array Class</h3><pre><code class="cpp">template &lt;typename T, size_t N&gt;
+class Array &#123;
+private:
+    T data[N];
+
+public:
+    void set(size_t index, const T&amp; value) &#123;
+        if (index &lt; N) &#123;
+            data[index] = value;
+        &#125;
+    &#125;
+
+    T&amp; get(size_t index) &#123;
+        if (index &lt; N) &#123;
+            return data[index];
+        &#125;
+        throw std::out_of_range(&quot;Index out of range&quot;);
+    &#125;
+
+    size_t size() const &#123;
+        return N;
+    &#125;
+&#125;;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    Array&lt;int, 5&gt; intArray;
+    intArray.set(0, 10);
+    intArray.set(1, 20);
+
+    std::cout &lt;&lt; intArray.get(0) &lt;&lt; std::endl; // Outputs 10
+    std::cout &lt;&lt; intArray.get(1) &lt;&lt; std::endl; // Outputs 20
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Member-Function-Definitions-Outside-the-Class"><a href="#Member-Function-Definitions-Outside-the-Class" class="headerlink" title="Member Function Definitions Outside the Class"></a>Member Function Definitions Outside the Class</h3><p>When defining member functions outside the class, include the template parameters.</p>
+<pre><code class="cpp">template &lt;typename T, size_t N&gt;
+void Array&lt;T, N&gt;::set(size_t index, const T&amp; value) &#123;
+    // Function body
+&#125;
+</code></pre>
+<h2 id="Template-Specialization"><a href="#Template-Specialization" class="headerlink" title="Template Specialization"></a>Template Specialization</h2><p>Template specialization allows you to define a custom implementation of a template for a specific type.</p>
+<h3 id="Full-Specialization"><a href="#Full-Specialization" class="headerlink" title="Full Specialization"></a>Full Specialization</h3><p>Providing a completely different implementation for a specific type.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">template &lt;typename T&gt;
+class TypeInfo &#123;
+public:
+    static std::string name() &#123;
+        return &quot;Unknown&quot;;
+    &#125;
+&#125;;
+
+// Specialization for int
+template &lt;&gt;
+class TypeInfo&lt;int&gt; &#123;
+public:
+    static std::string name() &#123;
+        return &quot;Integer&quot;;
+    &#125;
+&#125;;
+
+// Specialization for double
+template &lt;&gt;
+class TypeInfo&lt;double&gt; &#123;
+public:
+    static std::string name() &#123;
+        return &quot;Double&quot;;
+    &#125;
+&#125;;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    std::cout &lt;&lt; TypeInfo&lt;char&gt;::name() &lt;&lt; std::endl;    // Outputs &quot;Unknown&quot;
+    std::cout &lt;&lt; TypeInfo&lt;int&gt;::name() &lt;&lt; std::endl;     // Outputs &quot;Integer&quot;
+    std::cout &lt;&lt; TypeInfo&lt;double&gt;::name() &lt;&lt; std::endl;  // Outputs &quot;Double&quot;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Partial-Specialization"><a href="#Partial-Specialization" class="headerlink" title="Partial Specialization"></a>Partial Specialization</h3><p>Specializing a template for a subset of types.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">template &lt;typename T, typename U&gt;
+class Pair &#123;
+public:
+    T first;
+    U second;
+&#125;;
+
+// Partial specialization when both types are the same
+template &lt;typename T&gt;
+class Pair&lt;T, T&gt; &#123;
+public:
+    T first;
+    T second;
+
+    void display() &#123;
+        std::cout &lt;&lt; &quot;Pair of &quot; &lt;&lt; typeid(T).name() &lt;&lt; std::endl;
+    &#125;
+&#125;;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    Pair&lt;int, double&gt; p1;
+    Pair&lt;int, int&gt; p2;
+    p2.display(); // Uses the specialized version
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Variadic-Templates"><a href="#Variadic-Templates" class="headerlink" title="Variadic Templates"></a>Variadic Templates</h2><p>Variadic templates allow functions and classes to accept an arbitrary number of template parameters.</p>
+<h3 id="Function-Variadic-Templates"><a href="#Function-Variadic-Templates" class="headerlink" title="Function Variadic Templates"></a>Function Variadic Templates</h3><p><strong>Example: Print Function</strong></p>
+<pre><code class="cpp">void print() &#123;
+    std::cout &lt;&lt; std::endl;
+&#125;
+
+template &lt;typename T, typename... Args&gt;
+void print(T first, Args... args) &#123;
+    std::cout &lt;&lt; first &lt;&lt; &quot; &quot;;
+    print(args...);
+&#125;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    print(1, 2.5, &quot;Hello&quot;, &#39;A&#39;); // Outputs: 1 2.5 Hello A
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>print</code> function recursively unpacks the arguments.</li>
+<li>The base case is the <code>print()</code> function with no parameters.</li>
+</ul>
+<h3 id="Class-Variadic-Templates"><a href="#Class-Variadic-Templates" class="headerlink" title="Class Variadic Templates"></a>Class Variadic Templates</h3><p><strong>Example: Tuple Class</strong></p>
+<pre><code class="cpp">template &lt;typename... Types&gt;
+class Tuple &#123;
+    // Implementation
+&#125;;
+</code></pre>
+<p><strong>Using <code>std::tuple</code></strong></p>
+<p>The Standard Library provides <code>std::tuple</code>, a variadic template class.</p>
+<pre><code class="cpp">#include &lt;tuple&gt;
+
+int main() &#123;
+    std::tuple&lt;int, double, std::string&gt; t(1, 2.5, &quot;Hello&quot;);
+
+    int i = std::get&lt;0&gt;(t);
+    double d = std::get&lt;1&gt;(t);
+    std::string s = std::get&lt;2&gt;(t);
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Concepts-C-20"><a href="#Concepts-C-20" class="headerlink" title="Concepts (C++20)"></a>Concepts (C++20)</h2><p>Concepts provide a way to specify template requirements, improving readability and error messages.</p>
+<h3 id="Basic-Syntax-2"><a href="#Basic-Syntax-2" class="headerlink" title="Basic Syntax"></a>Basic Syntax</h3><pre><code class="cpp">template &lt;typename T&gt;
+concept ConceptName = requires(T a) &#123;
+    // Expressions and requirements
+&#125;;
+</code></pre>
+<h3 id="Example-Numeric-Concept"><a href="#Example-Numeric-Concept" class="headerlink" title="Example: Numeric Concept"></a>Example: Numeric Concept</h3><pre><code class="cpp">#include &lt;concepts&gt;
+
+template &lt;typename T&gt;
+concept Numeric = std::is_arithmetic_v&lt;T&gt;;
+
+template &lt;Numeric T&gt;
+T add(T a, T b) &#123;
+    return a + b;
+&#125;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    int result = add(5, 10);       // OK
+    // std::string s = add(&quot;a&quot;, &quot;b&quot;); // Error: std::string is not Numeric
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Using-requires-Clauses"><a href="#Using-requires-Clauses" class="headerlink" title="Using requires Clauses"></a>Using <code>requires</code> Clauses</h3><pre><code class="cpp">template &lt;typename T&gt;
+requires std::is_integral_v&lt;T&gt;
+T factorial(T n) &#123;
+    return (n &lt;= 1) ? 1 : n * factorial(n - 1);
+&#125;
+</code></pre>
+<h3 id="Standard-Library-Concepts"><a href="#Standard-Library-Concepts" class="headerlink" title="Standard Library Concepts"></a>Standard Library Concepts</h3><ul>
+<li><strong><code>std::integral</code></strong></li>
+<li><strong><code>std::floating_point</code></strong></li>
+<li><strong><code>std::signed_integral</code></strong></li>
+<li><strong><code>std::unsigned_integral</code></strong></li>
+<li><strong><code>std::default_initializable</code></strong></li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;concepts&gt;
+
+template &lt;std::integral T&gt;
+T gcd(T a, T b) &#123;
+    while (b != 0) &#123;
+        T temp = b;
+        b = a % b;
+        a = temp;
+    &#125;
+    return a;
+&#125;
+</code></pre>
+<h2 id="Practical-Example-Generic-Sorting-Function"><a href="#Practical-Example-Generic-Sorting-Function" class="headerlink" title="Practical Example: Generic Sorting Function"></a>Practical Example: Generic Sorting Function</h2><p>Let’s create a generic sorting function using templates.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+template &lt;typename T&gt;
+void sortVector(std::vector&lt;T&gt;&amp; vec) &#123;
+    std::sort(vec.begin(), vec.end());
+&#125;
+
+int main() &#123;
+    std::vector&lt;int&gt; intVec = &#123;5, 2, 9, 1, 5&#125;;
+    sortVector(intVec);
+
+    for (const auto&amp; val : intVec) &#123;
+        std::cout &lt;&lt; val &lt;&lt; &quot; &quot;; // Outputs: 1 2 5 5 9
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    std::vector&lt;std::string&gt; strVec = &#123;&quot;apple&quot;, &quot;orange&quot;, &quot;banana&quot;&#125;;
+    sortVector(strVec);
+
+    for (const auto&amp; val : strVec) &#123;
+        std::cout &lt;&lt; val &lt;&lt; &quot; &quot;; // Outputs: apple banana orange
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><ol>
+<li><p><strong>Generic Max Function</strong></p>
+<p>Write a function template <code>maxValue</code> that returns the maximum of two values.</p>
+<pre><code class="cpp">template &lt;typename T&gt;
+T maxValue(const T&amp; a, const T&amp; b) &#123;
+    return (a &gt; b) ? a : b;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Stack Class Template</strong></p>
+<p>Implement a simple stack class template.</p>
+<pre><code class="cpp">template &lt;typename T&gt;
+class Stack &#123;
+private:
+    std::vector&lt;T&gt; elements;
+
+public:
+    void push(const T&amp; item) &#123;
+        elements.push_back(item);
+    &#125;
+
+    void pop() &#123;
+        if (!elements.empty()) &#123;
+            elements.pop_back();
+        &#125;
+    &#125;
+
+    T&amp; top() &#123;
+        return elements.back();
+    &#125;
+
+    bool isEmpty() const &#123;
+        return elements.empty();
+    &#125;
+&#125;;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    Stack&lt;int&gt; intStack;
+    intStack.push(1);
+    intStack.push(2);
+    intStack.push(3);
+
+    while (!intStack.isEmpty()) &#123;
+        std::cout &lt;&lt; intStack.top() &lt;&lt; &quot; &quot;;
+        intStack.pop();
+    &#125;
+    // Outputs: 3 2 1
+
+    return 0;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Function Variadic Template</strong></p>
+<p>Create a variadic template function <code>sum</code> that calculates the sum of all its arguments.</p>
+<pre><code class="cpp">template &lt;typename T&gt;
+T sum(T value) &#123;
+    return value;
+&#125;
+
+template &lt;typename T, typename... Args&gt;
+T sum(T first, Args... args) &#123;
+    return first + sum(args...);
+&#125;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    auto result = sum(1, 2, 3, 4, 5); // result = 15
+
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; result &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve learned about:</p>
+<ul>
+<li><p><strong>Function Templates:</strong></p>
+<ul>
+<li>Writing generic functions that work with any data type.</li>
+<li>Template argument deduction and multiple template parameters.</li>
+</ul>
+</li>
+<li><p><strong>Class Templates:</strong></p>
+<ul>
+<li>Creating generic classes to handle data of any type.</li>
+<li>Implementing member functions inside and outside the class.</li>
+</ul>
+</li>
+<li><p><strong>Template Specialization:</strong></p>
+<ul>
+<li>Customizing templates for specific types using full and partial specialization.</li>
+</ul>
+</li>
+<li><p><strong>Variadic Templates:</strong></p>
+<ul>
+<li>Writing functions and classes that accept an arbitrary number of template arguments.</li>
+<li>Implementing recursive functions to process variadic arguments.</li>
+</ul>
+</li>
+<li><p><strong>Concepts (C++20):</strong></p>
+<ul>
+<li>Defining template requirements using concepts.</li>
+<li>Using standard library concepts and <code>requires</code> clauses for constraints.</li>
+</ul>
+</li>
+</ul>
+<p>Templates and generic programming enable you to write flexible and reusable code, reducing redundancy and improving maintainability. Mastery of these features allows you to create powerful abstractions and efficient libraries.</p>
+<hr>
+<p>In the next chapter, we’ll explore <strong>Modern C++ Features</strong>, including type deduction, range-based loops, and other enhancements that make C++ programming more expressive and safer.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-mdncppftr">Modern C++ Features</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

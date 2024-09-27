@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>about | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>about</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/21
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Hi-there-I’m-TabNahida-👋"><a href="#Hi-there-I’m-TabNahida-👋" class="headerlink" title="Hi there, I’m TabNahida 👋"></a>Hi there, I’m TabNahida 👋</h1><p>I’m a high school student from <strong>Chongqing</strong>, passionate about <strong>Aerospace Engineering</strong>, <strong>Physics</strong>, <strong>Astronomy</strong>, and <strong>Philosophy</strong>. I love hotpot, spicy food, and take inspiration from <strong>Werner Heisenberg</strong>, <strong>Hayao Miyazaki</strong>, and <strong>Les Misérables</strong>.</p>
+<h2 id="🚀-Skills-Technology-Stack"><a href="#🚀-Skills-Technology-Stack" class="headerlink" title="🚀 Skills &amp; Technology Stack:"></a>🚀 Skills &amp; Technology Stack:</h2><h3 id="Languages"><a href="#Languages" class="headerlink" title="Languages:"></a><strong>Languages:</strong></h3><p><img src="https://img.shields.io/badge/-C-A8B9CC?logo=c&logoColor=white&style=flat" alt="C"><img src="https://img.shields.io/badge/-C++-00599C?logo=c++&logoColor=white&style=flat" alt="C++"><img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat" alt="Python"><br><img src="https://img.shields.io/badge/-OpenCL-1A1A1A?logo=opencl&logoColor=white&style=flat" alt="OpenCL"><img src="https://img.shields.io/badge/-LLVM_IR-262D40?logo=llvm&logoColor=white&style=flat" alt="LLVM IR"><img src="https://img.shields.io/badge/-Assembly-525252?style=flat" alt="Assembly"><img src="https://img.shields.io/badge/-Lua-2C2D72?logo=lua&logoColor=white&style=flat" alt="Lua"></p>
+<h2 id="Frameworks"><a href="#Frameworks" class="headerlink" title="Frameworks:"></a><strong>Frameworks:</strong></h2><p><img src="https://img.shields.io/badge/-SFML-00599C?style=flat" alt="SFML"><img src="https://img.shields.io/badge/-Vulkan-AC162D?logo=vulkan&logoColor=white&style=flat" alt="Vulkan"><img src="https://img.shields.io/badge/-XMake-90EE99?style=flat" alt="XMake"><img src="https://img.shields.io/badge/-XRepo-90E090?style=flat" alt="XRepo"></p>
+<h3 id="Specialties"><a href="#Specialties" class="headerlink" title="Specialties:"></a><strong>Specialties:</strong></h3><p><img src="https://img.shields.io/badge/-Parallel%20Computing-2E3440?style=flat" alt="Parallel Computing"><img src="https://img.shields.io/badge/-Network%20Programming-00ADD8?style=flat" alt="Network Programming"><img src="https://img.shields.io/badge/-LLVM-262D40?style=flat" alt="LLVM"><img src="https://img.shields.io/badge/-XMake%20XRepo-85E0A0?style=flat" alt="XMake and XRepo"></p>
+<p><strong>Other Interests</strong>: Astronomy Research, Ground Floor Development</p>
+<h2 id="🛠-Currently-Learning"><a href="#🛠-Currently-Learning" class="headerlink" title="🛠 Currently Learning:"></a>🛠 Currently Learning:</h2><ul>
+<li><strong>LLVM</strong>: Low-Level Virtual Machine for optimizing compilers</li>
+<li><strong>Physics &amp; Astronomy</strong>: Deepening my understanding of the universe</li>
+<li><strong>C++ Network and System Programming</strong>: Building performant, low-level software</li>
+</ul>
+<h2 id="🎨-Recent-Projects"><a href="#🎨-Recent-Projects" class="headerlink" title="🎨 Recent Projects:"></a>🎨 Recent Projects:</h2><h3 id="OpenSumeru-Basic-Library-and-Tool-Organization"><a href="#OpenSumeru-Basic-Library-and-Tool-Organization" class="headerlink" title="OpenSumeru: Basic Library and Tool Organization"></a><strong>OpenSumeru: Basic Library and Tool Organization</strong></h3><ul>
+<li>A foundational library project aiming to create a cohesive toolset for developers.  </li>
+<li><strong>Tech Stack</strong>: C++, XMake  </li>
+<li><img src="https://img.shields.io/badge/-OpenSumeru-green?style=flat&logo=github" alt="GitHub Repo"></li>
+</ul>
+<h3 id="Pin1Yin1-A-Pinyin-Based-Programming-Language"><a href="#Pin1Yin1-A-Pinyin-Based-Programming-Language" class="headerlink" title="Pin1Yin1: A Pinyin-Based Programming Language"></a><strong>Pin1Yin1: A Pinyin-Based Programming Language</strong></h3><ul>
+<li>Developing a programming language that integrates Pinyin for simplified coding.</li>
+<li><strong>Tech Stack</strong>: C++, LLVM, XMake  </li>
+<li><img src="https://img.shields.io/badge/-Pin1Yin1-orange?style=flat&logo=github" alt="GitHub Repo"></li>
+</ul>
+<h2 id="📫-How-to-Reach-Me"><a href="#📫-How-to-Reach-Me" class="headerlink" title="📫 How to Reach Me:"></a>📫 How to Reach Me:</h2><ul>
+<li><strong>Email</strong>: <a href="mailto:&#116;&#97;&#x62;&#64;&#x74;&#x61;&#98;&#121;&#101;&#x2e;&#116;&#x6f;&#x70;">&#116;&#97;&#x62;&#64;&#x74;&#x61;&#98;&#121;&#101;&#x2e;&#116;&#x6f;&#x70;</a></li>
+<li><strong>QQ</strong>: 1517725261</li>
+</ul>
+<h2 id="📊-GitHub-Stats"><a href="#📊-GitHub-Stats" class="headerlink" title="📊 GitHub Stats:"></a>📊 GitHub Stats:</h2><p><a target="_blank" rel="noopener" href="https://github.com/anuraghazra/github-readme-stats"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TabNahida&layout=compact" alt="Top Langs"></a><br><a target="_blank" rel="noopener" href="https://github.com/anuraghazra/github-readme-stats"><img src="https://github-readme-stats.vercel.app/api?username=TabNahida&show_icons=true" alt="TabNahida’s GitHub Stats"></a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

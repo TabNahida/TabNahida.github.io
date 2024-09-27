@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Advanced Template Programming | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Advanced Template Programming</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutor
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                    c-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                    modern-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                    cpp-unleash
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/02Hero/" style="color: #ffa2c4">
+                    02Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-concurrency">Concurrency and Multithreading</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Advanced-Template-Programming"><a href="#Advanced-Template-Programming" class="headerlink" title="Advanced Template Programming"></a>Advanced Template Programming</h1><p>Templates are one of the most powerful features of C++, enabling developers to write generic and reusable code. Advanced template programming delves deeper into the capabilities of templates, allowing for more sophisticated and efficient code designs. This chapter explores advanced concepts such as template metaprogramming, type traits, SFINAE (Substitution Failure Is Not An Error), the Curiously Recurring Template Pattern (CRTP), and variadic templates with parameter packs.</p>
+<h2 id="Table-of-Contents-for-This-Chapter"><a href="#Table-of-Contents-for-This-Chapter" class="headerlink" title="Table of Contents for This Chapter"></a>Table of Contents for This Chapter</h2><ol>
+<li><a href="#introduction-to-advanced-templates">Introduction to Advanced Templates</a></li>
+<li><a href="#template-metaprogramming">Template Metaprogramming</a></li>
+<li><a href="#type-traits-and-stdtype_traits">Type Traits and <code>std::type_traits</code></a></li>
+<li><a href="#sfinae-and-stdenable_if">SFINAE and <code>std::enable_if</code></a></li>
+<li><a href="#curiously-recurring-template-pattern-crtp">Curiously Recurring Template Pattern (CRTP)</a></li>
+<li><a href="#variadic-templates-and-parameter-packs">Variadic Templates and Parameter Packs</a></li>
+<li><a href="#best-practices-in-advanced-template-programming">Best Practices in Advanced Template Programming</a></li>
+<li><a href="#practical-examples">Practical Examples</a></li>
+</ol>
+<hr>
+<h2 id="Introduction-to-Advanced-Templates"><a href="#Introduction-to-Advanced-Templates" class="headerlink" title="Introduction to Advanced Templates"></a>Introduction to Advanced Templates</h2><h3 id="What-Are-Advanced-Templates"><a href="#What-Are-Advanced-Templates" class="headerlink" title="What Are Advanced Templates?"></a>What Are Advanced Templates?</h3><p>While basic templates allow functions and classes to operate with generic types, advanced template programming pushes these capabilities further. It enables compile-time computations, type introspection, and the creation of highly flexible and optimized code structures. Advanced templates are essential for developing libraries and frameworks that require high performance and adaptability.</p>
+<h3 id="Why-Use-Advanced-Templates"><a href="#Why-Use-Advanced-Templates" class="headerlink" title="Why Use Advanced Templates?"></a>Why Use Advanced Templates?</h3><ul>
+<li><strong>Code Reusability</strong>: Write once, use with any data type.</li>
+<li><strong>Type Safety</strong>: Perform operations on types only when certain conditions are met.</li>
+<li><strong>Compile-Time Optimizations</strong>: Reduce runtime overhead by performing computations during compilation.</li>
+<li><strong>Expressiveness</strong>: Create complex abstractions that are both powerful and efficient.</li>
+</ul>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>Before diving into advanced templates, ensure you have a solid understanding of:</p>
+<ul>
+<li>Basic function and class templates</li>
+<li>Template instantiation and specialization</li>
+<li>Fundamental C++ programming concepts</li>
+</ul>
+<hr>
+<h2 id="Template-Metaprogramming"><a href="#Template-Metaprogramming" class="headerlink" title="Template Metaprogramming"></a>Template Metaprogramming</h2><h3 id="What-Is-Template-Metaprogramming"><a href="#What-Is-Template-Metaprogramming" class="headerlink" title="What Is Template Metaprogramming?"></a>What Is Template Metaprogramming?</h3><p>Template metaprogramming is a technique where templates are used to perform computations at compile time. By leveraging the C++ template system, developers can create programs that generate optimized code based on type information and compile-time constants.</p>
+<h3 id="Benefits-of-Template-Metaprogramming"><a href="#Benefits-of-Template-Metaprogramming" class="headerlink" title="Benefits of Template Metaprogramming"></a>Benefits of Template Metaprogramming</h3><ul>
+<li><strong>Performance</strong>: Eliminates runtime overhead by resolving computations during compilation.</li>
+<li><strong>Type Safety</strong>: Ensures correctness through compile-time checks.</li>
+<li><strong>Flexibility</strong>: Generates specialized code tailored to specific types and conditions.</li>
+</ul>
+<h3 id="Example-Compile-Time-Factorial"><a href="#Example-Compile-Time-Factorial" class="headerlink" title="Example: Compile-Time Factorial"></a>Example: Compile-Time Factorial</h3><p>Let’s implement a factorial computation using template metaprogramming.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+// Template to compute factorial at compile time
+template&lt;int N&gt;
+struct Factorial &#123;
+    static const int value = N * Factorial&lt;N - 1&gt;::value;
+&#125;;
+
+// Specialization for N = 0
+template&lt;&gt;
+struct Factorial&lt;0&gt; &#123;
+    static const int value = 1;
+&#125;;
+
+int main() &#123;
+    std::cout &lt;&lt; &quot;Factorial of 5: &quot; &lt;&lt; Factorial&lt;5&gt;::value &lt;&lt; std::endl; // Outputs: 120
+    std::cout &lt;&lt; &quot;Factorial of 0: &quot; &lt;&lt; Factorial&lt;0&gt;::value &lt;&lt; std::endl; // Outputs: 1
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Factorial of 5: 120
+Factorial of 0: 1
+</code></pre>
+<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li><strong>Recursive Templates</strong>: <code>Factorial&lt;N&gt;</code> recursively computes <code>N * Factorial&lt;N - 1&gt;::value</code>.</li>
+<li><strong>Base Case</strong>: The specialization <code>Factorial&lt;0&gt;</code> provides the termination condition with <code>value = 1</code>.</li>
+<li><strong>Compile-Time Evaluation</strong>: The factorial is computed during compilation, resulting in optimized runtime performance.</li>
+</ul>
+<h3 id="Practical-Use-Cases"><a href="#Practical-Use-Cases" class="headerlink" title="Practical Use Cases"></a>Practical Use Cases</h3><ul>
+<li><strong>Static Assertions</strong>: Validate conditions at compile time.</li>
+<li><strong>Type Selection</strong>: Choose types based on compile-time conditions.</li>
+<li><strong>Optimized Data Structures</strong>: Generate efficient code for specific scenarios.</li>
+</ul>
+<hr>
+<h2 id="Type-Traits-and-std-type-traits"><a href="#Type-Traits-and-std-type-traits" class="headerlink" title="Type Traits and std::type_traits"></a>Type Traits and <code>std::type_traits</code></h2><h3 id="What-Are-Type-Traits"><a href="#What-Are-Type-Traits" class="headerlink" title="What Are Type Traits?"></a>What Are Type Traits?</h3><p>Type traits are a set of templates that provide compile-time information about types. They enable type introspection, allowing programs to make decisions based on type properties without instantiating objects.</p>
+<h3 id="The-std-type-traits-Library"><a href="#The-std-type-traits-Library" class="headerlink" title="The std::type_traits Library"></a>The <code>std::type_traits</code> Library</h3><p>The <code>&lt;type_traits&gt;</code> header in the C++ Standard Library offers a comprehensive set of type traits that can be used to query and modify type information.</p>
+<h3 id="Common-Type-Traits"><a href="#Common-Type-Traits" class="headerlink" title="Common Type Traits"></a>Common Type Traits</h3><ul>
+<li><strong><code>std::is_integral&lt;T&gt;</code></strong>: Checks if <code>T</code> is an integral type.</li>
+<li><strong><code>std::is_floating_point&lt;T&gt;</code></strong>: Checks if <code>T</code> is a floating-point type.</li>
+<li><strong><code>std::is_same&lt;T, U&gt;</code></strong>: Checks if <code>T</code> and <code>U</code> are the same type.</li>
+<li><strong><code>std::remove_const&lt;T&gt;</code></strong>: Removes the <code>const</code> qualifier from <code>T</code>.</li>
+<li><strong><code>std::enable_if&lt;Condition, T&gt;</code></strong>: Enables a type or function based on a condition.</li>
+</ul>
+<h3 id="Example-Type-Traits-in-Action"><a href="#Example-Type-Traits-in-Action" class="headerlink" title="Example: Type Traits in Action"></a>Example: Type Traits in Action</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;type_traits&gt;
+
+// Function enabled only for integral types
+template&lt;typename T&gt;
+typename std::enable_if&lt;std::is_integral&lt;T&gt;::value, void&gt;::type
+printType(const T&amp; value) &#123;
+    std::cout &lt;&lt; value &lt;&lt; &quot; is an integral type.&quot; &lt;&lt; std::endl;
+&#125;
+
+// Function enabled only for floating-point types
+template&lt;typename T&gt;
+typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, void&gt;::type
+printType(const T&amp; value) &#123;
+    std::cout &lt;&lt; value &lt;&lt; &quot; is a floating-point type.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    int a = 10;
+    double b = 3.14;
+    
+    printType(a); // Outputs: 10 is an integral type.
+    printType(b); // Outputs: 3.14 is a floating-point type.
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>10 is an integral type.
+3.14 is a floating-point type.
+</code></pre>
+<h3 id="Explanation-1"><a href="#Explanation-1" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li><strong><code>std::enable_if</code></strong>: Enables the <code>printType</code> function only if the condition is met.</li>
+<li><strong>Function Overloading</strong>: Two versions of <code>printType</code> are provided, each enabled for different type categories.</li>
+<li><strong>Type Safety</strong>: Ensures that functions are called with appropriate types, preventing misuse.</li>
+</ul>
+<h3 id="Advanced-Type-Traits"><a href="#Advanced-Type-Traits" class="headerlink" title="Advanced Type Traits"></a>Advanced Type Traits</h3><ul>
+<li><strong><code>std::conditional&lt;Condition, T, F&gt;</code></strong>: Selects <code>T</code> if <code>Condition</code> is true, otherwise selects <code>F</code>.</li>
+<li><strong><code>std::decay&lt;T&gt;</code></strong>: Removes references and cv-qualifiers, and decays array and function types.</li>
+<li><strong><code>std::remove_reference&lt;T&gt;</code></strong>: Removes reference qualifiers from <code>T</code>.</li>
+</ul>
+<hr>
+<h2 id="SFINAE-and-std-enable-if"><a href="#SFINAE-and-std-enable-if" class="headerlink" title="SFINAE and std::enable_if"></a>SFINAE and <code>std::enable_if</code></h2><h3 id="What-Is-SFINAE"><a href="#What-Is-SFINAE" class="headerlink" title="What Is SFINAE?"></a>What Is SFINAE?</h3><p>SFINAE stands for “Substitution Failure Is Not An Error.” It’s a principle in C++ template metaprogramming where the compiler silently discards template specializations that fail to instantiate, without generating a compilation error. This allows for the creation of templates that are conditionally included based on type properties.</p>
+<h3 id="How-SFINAE-Works"><a href="#How-SFINAE-Works" class="headerlink" title="How SFINAE Works"></a>How SFINAE Works</h3><p>When the compiler substitutes template parameters with actual types, if a substitution leads to an invalid type or expression, the compiler ignores that specialization and continues searching for other viable candidates.</p>
+<h3 id="Using-std-enable-if-with-SFINAE"><a href="#Using-std-enable-if-with-SFINAE" class="headerlink" title="Using std::enable_if with SFINAE"></a>Using <code>std::enable_if</code> with SFINAE</h3><p><code>std::enable_if</code> is a utility that leverages SFINAE to conditionally enable or disable template functions or classes based on compile-time conditions.</p>
+<h3 id="Example-Function-Overloading-with-SFINAE"><a href="#Example-Function-Overloading-with-SFINAE" class="headerlink" title="Example: Function Overloading with SFINAE"></a>Example: Function Overloading with SFINAE</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;type_traits&gt;
+
+// Function enabled only for integral types
+template&lt;typename T&gt;
+typename std::enable_if&lt;std::is_integral&lt;T&gt;::value, void&gt;::type
+process(const T&amp; value) &#123;
+    std::cout &lt;&lt; value &lt;&lt; &quot; is an integral type.&quot; &lt;&lt; std::endl;
+&#125;
+
+// Function enabled only for floating-point types
+template&lt;typename T&gt;
+typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, void&gt;::type
+process(const T&amp; value) &#123;
+    std::cout &lt;&lt; value &lt;&lt; &quot; is a floating-point type.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    int a = 5;
+    double b = 2.718;
+    
+    process(a); // Outputs: 5 is an integral type.
+    process(b); // Outputs: 2.718 is a floating-point type.
+    
+    // process(&quot;Hello&quot;); // Compilation error: no matching function
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>5 is an integral type.
+2.718 is a floating-point type.
+</code></pre>
+<h3 id="Explanation-2"><a href="#Explanation-2" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li><strong>Template Substitution</strong>: When <code>process(a)</code> is called, <code>T</code> is <code>int</code>, satisfying <code>std::is_integral&lt;T&gt;::value</code>.</li>
+<li><strong>SFINAE Mechanism</strong>: If <code>T</code> doesn’t satisfy the condition, the corresponding function template is discarded without causing a compilation error.</li>
+<li><strong>Type Safety</strong>: Only appropriate overloads are considered, preventing misuse.</li>
+</ul>
+<h3 id="Advanced-SFINAE-Techniques"><a href="#Advanced-SFINAE-Techniques" class="headerlink" title="Advanced SFINAE Techniques"></a>Advanced SFINAE Techniques</h3><ul>
+<li><p><strong>Using <code>std::void_t</code></strong>: Simplifies SFINAE expressions by abstracting away the complexity of conditionally checking type properties.</p>
+<p><strong>Example: Checking for a Member Function</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;type_traits&gt;
+
+// Primary template: assumes T does not have a member function `foo`
+template&lt;typename, typename = std::void_t&lt;&gt;&gt;
+struct has_foo : std::false_type &#123;&#125;;
+
+// Specialization: T has a member function `foo`
+template&lt;typename T&gt;
+struct has_foo&lt;T, std::void_t&lt;decltype(std::declval&lt;T&gt;().foo())&gt;&gt; : std::true_type &#123;&#125;;
+
+class WithFoo &#123;
+public:
+    void foo() &#123;&#125;
+&#125;;
+
+class WithoutFoo &#123;&#125;;
+
+int main() &#123;
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; &quot;WithFoo has foo(): &quot; &lt;&lt; has_foo&lt;WithFoo&gt;::value &lt;&lt; std::endl;       // true
+    std::cout &lt;&lt; &quot;WithoutFoo has foo(): &quot; &lt;&lt; has_foo&lt;WithoutFoo&gt;::value &lt;&lt; std::endl; // false
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>WithFoo has foo(): true
+WithoutFoo has foo(): false
+</code></pre>
+</li>
+<li><p><strong>Combining Multiple Conditions</strong>: Use logical operators to combine multiple type traits for more complex conditions.</p>
+</li>
+</ul>
+<hr>
+<h2 id="Curiously-Recurring-Template-Pattern-CRTP"><a href="#Curiously-Recurring-Template-Pattern-CRTP" class="headerlink" title="Curiously Recurring Template Pattern (CRTP)"></a>Curiously Recurring Template Pattern (CRTP)</h2><h3 id="What-Is-CRTP"><a href="#What-Is-CRTP" class="headerlink" title="What Is CRTP?"></a>What Is CRTP?</h3><p>The Curiously Recurring Template Pattern (CRTP) is a C++ idiom where a class <code>Derived</code> inherits from a template class <code>Base</code> instantiated with <code>Derived</code> itself. This pattern enables static polymorphism, allowing compile-time method binding and optimization.</p>
+<h3 id="Why-Use-CRTP"><a href="#Why-Use-CRTP" class="headerlink" title="Why Use CRTP?"></a>Why Use CRTP?</h3><ul>
+<li><strong>Static Polymorphism</strong>: Achieve polymorphic behavior without the overhead of virtual functions.</li>
+<li><strong>Code Reuse</strong>: Share common functionality across derived classes.</li>
+<li><strong>Compile-Time Checks</strong>: Enforce certain interfaces or behaviors at compile time.</li>
+</ul>
+<h3 id="Syntax-of-CRTP"><a href="#Syntax-of-CRTP" class="headerlink" title="Syntax of CRTP"></a>Syntax of CRTP</h3><pre><code class="cpp">template&lt;typename Derived&gt;
+class Base &#123;
+public:
+    void interface() &#123;
+        // Calls implementation provided by Derived
+        static_cast&lt;Derived*&gt;(this)-&gt;implementation();
+    &#125;
+    
+    // Optionally provide a default implementation
+    void implementation() &#123;
+        // Default behavior
+    &#125;
+&#125;;
+
+class Derived : public Base&lt;Derived&gt; &#123;
+public:
+    void implementation() &#123;
+        // Derived-specific behavior
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="Example-Static-Polymorphism-with-CRTP"><a href="#Example-Static-Polymorphism-with-CRTP" class="headerlink" title="Example: Static Polymorphism with CRTP"></a>Example: Static Polymorphism with CRTP</h3><pre><code class="cpp">#include &lt;iostream&gt;
+
+// CRTP Base Class
+template&lt;typename Derived&gt;
+class Shape &#123;
+public:
+    void draw() const &#123;
+        // Calls the derived class&#39;s drawImpl method
+        static_cast&lt;const Derived*&gt;(this)-&gt;drawImpl();
+    &#125;
+    
+    // Optional default implementation
+    void drawImpl() const &#123;
+        std::cout &lt;&lt; &quot;Drawing a generic shape.&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;;
+
+// Derived Class: Circle
+class Circle : public Shape&lt;Circle&gt; &#123;
+public:
+    void drawImpl() const &#123;
+        std::cout &lt;&lt; &quot;Drawing a circle.&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;;
+
+// Derived Class: Square
+class Square : public Shape&lt;Square&gt; &#123;
+public:
+    void drawImpl() const &#123;
+        std::cout &lt;&lt; &quot;Drawing a square.&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;;
+
+int main() &#123;
+    Circle c;
+    Square s;
+    
+    c.draw(); // Outputs: Drawing a circle.
+    s.draw(); // Outputs: Drawing a square.
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Drawing a circle.
+Drawing a square.
+</code></pre>
+<h3 id="Advantages-of-CRTP"><a href="#Advantages-of-CRTP" class="headerlink" title="Advantages of CRTP"></a>Advantages of CRTP</h3><ul>
+<li><strong>No Runtime Overhead</strong>: Achieves polymorphic behavior without virtual function calls.</li>
+<li><strong>Enhanced Compile-Time Optimization</strong>: The compiler can inline functions, leading to better performance.</li>
+<li><strong>Flexibility</strong>: Allows derived classes to provide specific implementations while reusing base class functionality.</li>
+</ul>
+<h3 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h3><ul>
+<li><strong>Static Interfaces</strong>: Enforce that derived classes implement certain methods.</li>
+<li><strong>Mixin Classes</strong>: Add functionalities to classes without using multiple inheritance.</li>
+<li><strong>Policy-Based Design</strong>: Customize behavior based on policy classes.</li>
+</ul>
+<hr>
+<h2 id="Variadic-Templates-and-Parameter-Packs"><a href="#Variadic-Templates-and-Parameter-Packs" class="headerlink" title="Variadic Templates and Parameter Packs"></a>Variadic Templates and Parameter Packs</h2><h3 id="What-Are-Variadic-Templates"><a href="#What-Are-Variadic-Templates" class="headerlink" title="What Are Variadic Templates?"></a>What Are Variadic Templates?</h3><p>Variadic templates allow functions and classes to accept an arbitrary number of template parameters. They enable the creation of flexible and generic code structures capable of handling varying input sizes and types.</p>
+<h3 id="Syntax-of-Variadic-Templates"><a href="#Syntax-of-Variadic-Templates" class="headerlink" title="Syntax of Variadic Templates"></a>Syntax of Variadic Templates</h3><pre><code class="cpp">// Function template with variadic parameters
+template&lt;typename... Args&gt;
+void function(Args... args);
+
+// Class template with variadic parameters
+template&lt;typename... Args&gt;
+class ClassName &#123;&#125;;
+</code></pre>
+<h3 id="Understanding-Parameter-Packs"><a href="#Understanding-Parameter-Packs" class="headerlink" title="Understanding Parameter Packs"></a>Understanding Parameter Packs</h3><p>A parameter pack is a template parameter that represents zero or more template arguments. It can be expanded into individual types or values using pack expansion syntax.</p>
+<h3 id="Example-Variadic-Function-to-Print-Multiple-Arguments"><a href="#Example-Variadic-Function-to-Print-Multiple-Arguments" class="headerlink" title="Example: Variadic Function to Print Multiple Arguments"></a>Example: Variadic Function to Print Multiple Arguments</h3><pre><code class="cpp">#include &lt;iostream&gt;
+
+// Base case: no arguments
+void print() &#123;
+    std::cout &lt;&lt; std::endl;
+&#125;
+
+// Recursive variadic template function
+template&lt;typename T, typename... Args&gt;
+void print(const T&amp; first, const Args&amp;... rest) &#123;
+    std::cout &lt;&lt; first &lt;&lt; &quot; &quot;;
+    print(rest...); // Recursive call with the remaining arguments
+&#125;
+
+int main() &#123;
+    print(1, 2.5, &quot;Hello&quot;, &#39;A&#39;); // Outputs: 1 2.5 Hello A 
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>1 2.5 Hello A 
+</code></pre>
+<h3 id="Example-Variadic-Class-Template-for-Tuple-Implementation"><a href="#Example-Variadic-Class-Template-for-Tuple-Implementation" class="headerlink" title="Example: Variadic Class Template for Tuple Implementation"></a>Example: Variadic Class Template for Tuple Implementation</h3><p>Implementing a simple <code>MyTuple</code> class using variadic templates.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+// Base case: empty tuple
+template&lt;typename...&gt;
+class MyTuple &#123;&#125;;
+
+// Recursive case: tuple with at least one element
+template&lt;typename T, typename... Rest&gt;
+class MyTuple&lt;T, Rest...&gt; : private MyTuple&lt;Rest...&gt; &#123;
+public:
+    MyTuple() &#123;&#125;
+    
+    MyTuple(const T&amp; first, const Rest&amp;... rest)
+        : MyTuple&lt;Rest...&gt;(rest...), first_(first) &#123;&#125;
+    
+    T&amp; getFirst() &#123; return first_; &#125;
+    const T&amp; getFirst() const &#123; return first_; &#125;
+    
+private:
+    T first_;
+&#125;;
+
+int main() &#123;
+    MyTuple&lt;int, double, std::string&gt; tuple(42, 3.14, &quot;World&quot;);
+    
+    std::cout &lt;&lt; &quot;First: &quot; &lt;&lt; tuple.getFirst() &lt;&lt; std::endl; // Outputs: 42
+    // To access other elements, further get functions would be needed
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>First: 42
+</code></pre>
+<h3 id="Variadic-Template-Utilities"><a href="#Variadic-Template-Utilities" class="headerlink" title="Variadic Template Utilities"></a>Variadic Template Utilities</h3><ul>
+<li><p><strong>Pack Expansion</strong>: Expands a parameter pack into individual arguments.</p>
+<p><strong>Example: Initializing a Container with Variadic Arguments</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+template&lt;typename T&gt;
+std::vector&lt;T&gt; makeVector(T first) &#123;
+    return &#123; first &#125;;
+&#125;
+
+template&lt;typename T, typename... Args&gt;
+std::vector&lt;T&gt; makeVector(T first, Args... args) &#123;
+    std::vector&lt;T&gt; vec = makeVector(args...);
+    vec.insert(vec.begin(), first);
+    return vec;
+&#125;
+
+int main() &#123;
+    std::vector&lt;int&gt; vec = makeVector(1, 2, 3, 4, 5);
+    
+    for(auto num : vec) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5 
+    &#125;
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>1 2 3 4 5 
+</code></pre>
+</li>
+<li><p><strong>Fold Expressions (C++17)</strong>: Simplify the expansion of parameter packs with concise syntax.</p>
+<p><strong>Example: Summing Multiple Numbers with Fold Expressions</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+template&lt;typename... Args&gt;
+auto sum(Args... args) -&gt; decltype((args + ...)) &#123;
+    return (args + ...);
+&#125;
+
+int main() &#123;
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum(1, 2, 3, 4, 5) &lt;&lt; std::endl; // Outputs: 15
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Sum: 15
+</code></pre>
+</li>
+</ul>
+<h3 id="Practical-Use-Cases-1"><a href="#Practical-Use-Cases-1" class="headerlink" title="Practical Use Cases"></a>Practical Use Cases</h3><ul>
+<li><strong>Function Forwarding</strong>: Perfect forwarding of arguments to other functions.</li>
+<li><strong>Variadic Containers</strong>: Implementing containers like tuples and parameter packs.</li>
+<li><strong>Generic Programming</strong>: Writing functions and classes that operate on any number of types.</li>
+</ul>
+<hr>
+<h2 id="Best-Practices-in-Advanced-Template-Programming"><a href="#Best-Practices-in-Advanced-Template-Programming" class="headerlink" title="Best Practices in Advanced Template Programming"></a>Best Practices in Advanced Template Programming</h2><ol>
+<li><strong>Understand Template Instantiation</strong>: Be aware of how and when templates are instantiated to manage compile times effectively.</li>
+<li><strong>Use <code>constexpr</code> Where Applicable</strong>: Combine <code>constexpr</code> with templates for compile-time computations.</li>
+<li><strong>Leverage <code>auto</code> and Type Deduction</strong>: Simplify complex type declarations in template code.</li>
+<li><strong>Prefer Type Traits Over Manual Checks</strong>: Utilize <code>&lt;type_traits&gt;</code> for reliable and standardized type introspection.</li>
+<li><strong>Minimize Template Complexity</strong>: Strive for readability and maintainability by avoiding overly complex template constructs.</li>
+<li><strong>Use SFINAE Carefully</strong>: Ensure that SFINAE conditions are clear and do not inadvertently exclude valid types.</li>
+<li><strong>Document Template Code</strong>: Provide clear documentation for template functions and classes to aid understanding and usage.</li>
+<li><strong>Test Extensively</strong>: Template code can be challenging to debug; thorough testing ensures correctness across various type scenarios.</li>
+</ol>
+<hr>
+<h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><h3 id="Example-1-Compile-Time-Type-Checking-with-static-assert"><a href="#Example-1-Compile-Time-Type-Checking-with-static-assert" class="headerlink" title="Example 1: Compile-Time Type Checking with static_assert"></a>Example 1: Compile-Time Type Checking with <code>static_assert</code></h3><p>Using <code>static_assert</code> to enforce type constraints during compilation.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;type_traits&gt;
+
+// Function that only accepts integral types
+template&lt;typename T&gt;
+void processIntegral(T value) &#123;
+    static_assert(std::is_integral&lt;T&gt;::value, &quot;T must be an integral type.&quot;);
+    std::cout &lt;&lt; &quot;Processing integral value: &quot; &lt;&lt; value &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    processIntegral(10);     // Valid
+    // processIntegral(3.14); // Compilation error: T must be an integral type.
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Processing integral value: 10
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>static_assert</code></strong>: Ensures that <code>T</code> is an integral type at compile time.</li>
+<li><strong>Compile-Time Safety</strong>: Prevents misuse by triggering a compilation error for invalid types.</li>
+</ul>
+<h3 id="Example-2-Implementing-a-Simple-Static-Logger-with-CRTP"><a href="#Example-2-Implementing-a-Simple-Static-Logger-with-CRTP" class="headerlink" title="Example 2: Implementing a Simple Static Logger with CRTP"></a>Example 2: Implementing a Simple Static Logger with CRTP</h3><p>Using CRTP to create a static logger that can be customized by derived classes.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+// CRTP Base Class
+template&lt;typename Derived&gt;
+class Logger &#123;
+public:
+    void log(const std::string&amp; message) const &#123;
+        // Call the derived class&#39;s logImplementation method
+        static_cast&lt;const Derived*&gt;(this)-&gt;logImplementation(message);
+    &#125;
+&#125;;
+
+// Derived Class: ConsoleLogger
+class ConsoleLogger : public Logger&lt;ConsoleLogger&gt; &#123;
+public:
+    void logImplementation(const std::string&amp; message) const &#123;
+        std::cout &lt;&lt; &quot;[Console] &quot; &lt;&lt; message &lt;&lt; std::endl;
+    &#125;
+&#125;;
+
+// Derived Class: FileLogger (Simulation)
+class FileLogger : public Logger&lt;FileLogger&gt; &#123;
+public:
+    void logImplementation(const std::string&amp; message) const &#123;
+        // Simulate logging to a file
+        std::cout &lt;&lt; &quot;[File] &quot; &lt;&lt; message &lt;&lt; std::endl;
+    &#125;
+&#125;;
+
+int main() &#123;
+    ConsoleLogger console;
+    FileLogger file;
+    
+    console.log(&quot;Hello, Console!&quot;);
+    file.log(&quot;Hello, File!&quot;);
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>[Console] Hello, Console!
+[File] Hello, File!
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>CRTP</strong>: <code>Logger</code> is a template base class that calls a method defined in the derived class.</li>
+<li><strong>Customization</strong>: Different logging implementations (<code>ConsoleLogger</code>, <code>FileLogger</code>) provide their specific <code>logImplementation</code> methods.</li>
+</ul>
+<h3 id="Example-3-Variadic-Template-Function-to-Create-a-Tuple-like-Structure"><a href="#Example-3-Variadic-Template-Function-to-Create-a-Tuple-like-Structure" class="headerlink" title="Example 3: Variadic Template Function to Create a Tuple-like Structure"></a>Example 3: Variadic Template Function to Create a Tuple-like Structure</h3><p>Creating a simple <code>MyTuple</code> class that can hold an arbitrary number of elements of different types.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;utility&gt;
+
+// Base case: empty tuple
+template&lt;typename...&gt;
+class MyTuple &#123;&#125;;
+
+// Recursive case: tuple with at least one element
+template&lt;typename T, typename... Rest&gt;
+class MyTuple&lt;T, Rest...&gt; : private MyTuple&lt;Rest...&gt; &#123;
+public:
+    MyTuple() &#123;&#125;
+    
+    MyTuple(const T&amp; first, const Rest&amp;... rest)
+        : MyTuple&lt;Rest...&gt;(rest...), first_(first) &#123;&#125;
+    
+    T&amp; getFirst() &#123; return first_; &#125;
+    const T&amp; getFirst() const &#123; return first_; &#125;
+    
+    // Access to the rest of the tuple
+    MyTuple&lt;Rest...&gt;&amp; getRest() &#123; return *this; &#125;
+    const MyTuple&lt;Rest...&gt;&amp; getRest() const &#123; return *this; &#125;
+    
+private:
+    T first_;
+&#125;;
+
+// Helper function to create a MyTuple
+template&lt;typename... Args&gt;
+MyTuple&lt;Args...&gt; makeMyTuple(Args... args) &#123;
+    return MyTuple&lt;Args...&gt;(args...);
+&#125;
+
+int main() &#123;
+    auto tuple = makeMyTuple(42, 3.14, std::string(&quot;Hello&quot;));
+    
+    std::cout &lt;&lt; &quot;First: &quot; &lt;&lt; tuple.getFirst() &lt;&lt; std::endl; // Outputs: 42
+    std::cout &lt;&lt; &quot;Second: &quot; &lt;&lt; tuple.getRest().getFirst() &lt;&lt; std::endl; // Outputs: 3.14
+    std::cout &lt;&lt; &quot;Third: &quot; &lt;&lt; tuple.getRest().getRest().getFirst() &lt;&lt; std::endl; // Outputs: Hello
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>First: 42
+Second: 3.14
+Third: Hello
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Recursive Inheritance</strong>: <code>MyTuple&lt;T, Rest...&gt;</code> inherits from <code>MyTuple&lt;Rest...&gt;</code>, allowing storage of multiple elements.</li>
+<li><strong>Accessing Elements</strong>: Accessors are provided to retrieve each element in the tuple.</li>
+</ul>
+<h3 id="Example-4-Implementing-a-Simple-Static-Assert-with-Type-Traits"><a href="#Example-4-Implementing-a-Simple-Static-Assert-with-Type-Traits" class="headerlink" title="Example 4: Implementing a Simple Static Assert with Type Traits"></a>Example 4: Implementing a Simple Static Assert with Type Traits</h3><p>Using type traits to enforce type constraints within a class template.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;type_traits&gt;
+
+// Class template that only accepts floating-point types
+template&lt;typename T&gt;
+class Calculator &#123;
+public:
+    Calculator() &#123;
+        static_assert(std::is_floating_point&lt;T&gt;::value, &quot;Calculator requires a floating-point type.&quot;);
+    &#125;
+    
+    T add(T a, T b) const &#123;
+        return a + b;
+    &#125;
+&#125;;
+
+int main() &#123;
+    Calculator&lt;double&gt; calc1;
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; calc1.add(1.5, 2.5) &lt;&lt; std::endl; // Outputs: 4.0
+    
+    // Calculator&lt;int&gt; calc2; // Compilation error: Calculator requires a floating-point type.
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Sum: 4
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>static_assert</code></strong>: Ensures that <code>T</code> is a floating-point type during template instantiation.</li>
+<li><strong>Type Safety</strong>: Prevents instantiation of <code>Calculator</code> with non-floating-point types.</li>
+</ul>
+<hr>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve delved into the advanced aspects of template programming in C++:</p>
+<ul>
+<li><strong>Template Metaprogramming</strong>: Explored compile-time computations and recursive templates for efficient code generation.</li>
+<li><strong>Type Traits and <code>std::type_traits</code></strong>: Learned how to introspect and manipulate type information at compile time.</li>
+<li><strong>SFINAE and <code>std::enable_if</code></strong>: Utilized SFINAE to create conditional templates that adapt based on type properties.</li>
+<li><strong>Curiously Recurring Template Pattern (CRTP)</strong>: Implemented static polymorphism for optimized and flexible class hierarchies.</li>
+<li><strong>Variadic Templates and Parameter Packs</strong>: Crafted generic functions and classes capable of handling an arbitrary number of parameters.</li>
+</ul>
+<p>Mastering these advanced template techniques empowers you to write highly generic, efficient, and reusable code. These skills are indispensable for developing robust C++ libraries and frameworks that can adapt to a wide range of use cases and type scenarios.</p>
+<hr>
+<p>Now you’re ready to move on to <strong>C++20 Features</strong>, where you’ll explore the latest additions to the C++ language, enhancing your ability to write modern and efficient code.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-cpp20">C++20 Features</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

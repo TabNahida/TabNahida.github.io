@@ -1,0 +1,785 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Concurrency and Multithreading | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Concurrency and Multithreading</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutor
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                    c-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                    modern-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                    cpp-unleash
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/02Hero/" style="color: #03a9f4">
+                    02Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-excpt">Error Handling and Exceptions</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Concurrency-and-Multithreading"><a href="#Concurrency-and-Multithreading" class="headerlink" title="Concurrency and Multithreading"></a>Concurrency and Multithreading</h1><p>Concurrency and multithreading are essential concepts in modern C++ programming, enabling developers to build applications that can perform multiple operations simultaneously. This chapter delves into the fundamentals of concurrency, explores the C++ Standard Library’s threading facilities, and provides practical examples to illustrate how to implement and manage concurrent operations effectively.</p>
+<h2 id="Table-of-Contents-for-This-Chapter"><a href="#Table-of-Contents-for-This-Chapter" class="headerlink" title="Table of Contents for This Chapter"></a>Table of Contents for This Chapter</h2><ol>
+<li><a href="#introduction-to-concurrency">Introduction to Concurrency</a></li>
+<li><a href="#threads-and-stdthread">Threads and <code>std::thread</code></a></li>
+<li><a href="#mutexes-and-locks-stdmutex-stdlock_guard">Mutexes and Locks (<code>std::mutex</code>, <code>std::lock_guard</code>)</a></li>
+<li><a href="#condition-variables-stdcondition_variable">Condition Variables (<code>std::condition_variable</code>)</a></li>
+<li><a href="#atomic-operations-stdatomic">Atomic Operations (<code>std::atomic</code>)</a></li>
+<li><a href="#futures-and-promises-stdfuture-stdpromise">Futures and Promises (<code>std::future</code>, <code>std::promise</code>)</a></li>
+<li><a href="#asynchronous-programming-stdasync">Asynchronous Programming (<code>std::async</code>)</a></li>
+</ol>
+<hr>
+<h2 id="Introduction-to-Concurrency"><a href="#Introduction-to-Concurrency" class="headerlink" title="Introduction to Concurrency"></a>Introduction to Concurrency</h2><h3 id="What-is-Concurrency"><a href="#What-is-Concurrency" class="headerlink" title="What is Concurrency?"></a>What is Concurrency?</h3><p>Concurrency refers to the ability of a system to handle multiple tasks simultaneously. In programming, it allows different parts of a program to execute out of order or in partial order without affecting the final outcome. This is particularly useful for improving the performance and responsiveness of applications, especially those that perform I&#x2F;O operations or require parallel processing.</p>
+<h3 id="Why-Use-Concurrency"><a href="#Why-Use-Concurrency" class="headerlink" title="Why Use Concurrency?"></a>Why Use Concurrency?</h3><ul>
+<li><strong>Performance Improvement</strong>: Utilize multiple CPU cores to perform tasks in parallel, reducing overall execution time.</li>
+<li><strong>Responsiveness</strong>: Keep applications responsive by performing time-consuming tasks in the background.</li>
+<li><strong>Resource Optimization</strong>: Efficiently manage system resources by overlapping I&#x2F;O and computation.</li>
+</ul>
+<h3 id="Challenges-in-Concurrent-Programming"><a href="#Challenges-in-Concurrent-Programming" class="headerlink" title="Challenges in Concurrent Programming"></a>Challenges in Concurrent Programming</h3><ul>
+<li><strong>Data Races</strong>: Occur when two or more threads access shared data simultaneously, and at least one thread modifies the data.</li>
+<li><strong>Deadlocks</strong>: Happen when two or more threads are waiting indefinitely for resources held by each other.</li>
+<li><strong>Complexity</strong>: Managing multiple threads and ensuring thread-safe operations can make the code more complex and harder to debug.</li>
+</ul>
+<hr>
+<h2 id="Threads-and-std-thread"><a href="#Threads-and-std-thread" class="headerlink" title="Threads and std::thread"></a>Threads and <code>std::thread</code></h2><h3 id="Understanding-Threads"><a href="#Understanding-Threads" class="headerlink" title="Understanding Threads"></a>Understanding Threads</h3><p>A thread is the smallest unit of processing that can be scheduled by an operating system. In C++, the <code>&lt;thread&gt;</code> library provides facilities to create and manage threads, allowing concurrent execution of code.</p>
+<h3 id="Creating-and-Managing-Threads"><a href="#Creating-and-Managing-Threads" class="headerlink" title="Creating and Managing Threads"></a>Creating and Managing Threads</h3><p>To create a thread in C++, instantiate a <code>std::thread</code> object, passing a callable entity (function, lambda, or functor) as its argument.</p>
+<p><strong>Example: Creating a Simple Thread</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+// Function to be executed by the thread
+void greet() &#123;
+    std::cout &lt;&lt; &quot;Hello from thread!&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    // Create a thread that runs the greet function
+    std::thread t(greet);
+    
+    // Wait for the thread to finish execution
+    t.join();
+    
+    std::cout &lt;&lt; &quot;Thread has finished execution.&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Hello from thread!
+Thread has finished execution.
+</code></pre>
+<h3 id="Passing-Arguments-to-Threads"><a href="#Passing-Arguments-to-Threads" class="headerlink" title="Passing Arguments to Threads"></a>Passing Arguments to Threads</h3><p>Threads can accept arguments by passing them to the constructor of <code>std::thread</code>.</p>
+<p><strong>Example: Passing Arguments</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+// Function that takes two integers and prints their sum
+void add(int a, int b) &#123;
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; (a + b) &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    // Create a thread that runs the add function with arguments 5 and 10
+    std::thread t(add, 5, 10);
+    
+    // Wait for the thread to finish execution
+    t.join();
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Sum: 15
+</code></pre>
+<h3 id="Detaching-Threads"><a href="#Detaching-Threads" class="headerlink" title="Detaching Threads"></a>Detaching Threads</h3><p>A thread can be detached from the main thread, allowing it to run independently. However, once detached, it cannot be joined, and its resources are released automatically upon completion.</p>
+<p><strong>Example: Detaching a Thread</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;chrono&gt;
+
+void backgroundTask() &#123;
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::cout &lt;&lt; &quot;Background task completed.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    // Create and detach the thread
+    std::thread t(backgroundTask);
+    t.detach();
+    
+    std::cout &lt;&lt; &quot;Main thread continues execution.&quot; &lt;&lt; std::endl;
+    
+    // Wait to observe the detached thread&#39;s output
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Main thread continues execution.
+Background task completed.
+</code></pre>
+<p><strong>Caution:</strong> Detached threads should be used carefully to avoid issues such as accessing invalidated resources.</p>
+<h3 id="Lambda-Expressions-with-Threads"><a href="#Lambda-Expressions-with-Threads" class="headerlink" title="Lambda Expressions with Threads"></a>Lambda Expressions with Threads</h3><p>Lambda expressions provide a concise way to define inline functions, making them ideal for thread creation.</p>
+<p><strong>Example: Using Lambda with <code>std::thread</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+int main() &#123;
+    int count = 0;
+    
+    // Create a thread using a lambda expression
+    std::thread t([&amp;count]() &#123;
+        for(int i = 0; i &lt; 5; ++i) &#123;
+            ++count;
+            std::cout &lt;&lt; &quot;Thread count: &quot; &lt;&lt; count &lt;&lt; std::endl;
+        &#125;
+    &#125;);
+    
+    // Wait for the thread to finish execution
+    t.join();
+    
+    std::cout &lt;&lt; &quot;Final count: &quot; &lt;&lt; count &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Thread count: 1
+Thread count: 2
+Thread count: 3
+Thread count: 4
+Thread count: 5
+Final count: 5
+</code></pre>
+<hr>
+<h2 id="Mutexes-and-Locks-std-mutex-std-lock-guard"><a href="#Mutexes-and-Locks-std-mutex-std-lock-guard" class="headerlink" title="Mutexes and Locks (std::mutex, std::lock_guard)"></a>Mutexes and Locks (<code>std::mutex</code>, <code>std::lock_guard</code>)</h2><h3 id="Ensuring-Thread-Safety"><a href="#Ensuring-Thread-Safety" class="headerlink" title="Ensuring Thread Safety"></a>Ensuring Thread Safety</h3><p>When multiple threads access shared data, it’s crucial to synchronize access to prevent data races. Mutexes (mutual exclusions) are synchronization primitives that protect shared data by allowing only one thread to access the data at a time.</p>
+<h3 id="Using-std-mutex"><a href="#Using-std-mutex" class="headerlink" title="Using std::mutex"></a>Using <code>std::mutex</code></h3><p>A <code>std::mutex</code> object can be locked and unlocked to control access to shared resources.</p>
+<p><strong>Example: Protecting Shared Data with <code>std::mutex</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+
+std::mutex mtx; // Mutex to protect shared data
+int sharedCounter = 0;
+
+void increment() &#123;
+    mtx.lock(); // Lock the mutex
+    ++sharedCounter;
+    std::cout &lt;&lt; &quot;Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
+    mtx.unlock(); // Unlock the mutex
+&#125;
+
+int main() &#123;
+    std::thread t1(increment);
+    std::thread t2(increment);
+    
+    t1.join();
+    t2.join();
+    
+    std::cout &lt;&lt; &quot;Final Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Shared Counter: 1
+Shared Counter: 2
+Final Shared Counter: 2
+</code></pre>
+<h3 id="Using-std-lock-guard"><a href="#Using-std-lock-guard" class="headerlink" title="Using std::lock_guard"></a>Using <code>std::lock_guard</code></h3><p>Manually locking and unlocking mutexes can be error-prone, especially in the presence of exceptions. <code>std::lock_guard</code> is a RAII (Resource Acquisition Is Initialization) wrapper that automatically manages mutex locking and unlocking.</p>
+<p><strong>Example: Using <code>std::lock_guard</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+
+std::mutex mtx; // Mutex to protect shared data
+int sharedCounter = 0;
+
+void increment() &#123;
+    std::lock_guard&lt;std::mutex&gt; lock(mtx); // Lock the mutex automatically
+    ++sharedCounter;
+    std::cout &lt;&lt; &quot;Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
+    // Mutex is automatically unlocked when lock goes out of scope
+&#125;
+
+int main() &#123;
+    std::thread t1(increment);
+    std::thread t2(increment);
+    
+    t1.join();
+    t2.join();
+    
+    std::cout &lt;&lt; &quot;Final Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Shared Counter: 1
+Shared Counter: 2
+Final Shared Counter: 2
+</code></pre>
+<h3 id="Best-Practices-with-Mutexes"><a href="#Best-Practices-with-Mutexes" class="headerlink" title="Best Practices with Mutexes"></a>Best Practices with Mutexes</h3><ol>
+<li><strong>Use RAII Wrappers</strong>: Prefer <code>std::lock_guard</code> or <code>std::unique_lock</code> to manage mutexes automatically.</li>
+<li><strong>Minimize Lock Scope</strong>: Keep the locked section as short as possible to reduce contention.</li>
+<li><strong>Avoid Deadlocks</strong>: Be consistent in the order of locking multiple mutexes and avoid nested locks when possible.</li>
+<li><strong>Prefer Mutexes Over Atomic Variables for Complex Data</strong>: While <code>std::atomic</code> is suitable for simple data types, mutexes are better for protecting complex data structures.</li>
+</ol>
+<hr>
+<h2 id="Condition-Variables-std-condition-variable"><a href="#Condition-Variables-std-condition-variable" class="headerlink" title="Condition Variables (std::condition_variable)"></a>Condition Variables (<code>std::condition_variable</code>)</h2><h3 id="Synchronizing-Threads"><a href="#Synchronizing-Threads" class="headerlink" title="Synchronizing Threads"></a>Synchronizing Threads</h3><p>Condition variables allow threads to wait for certain conditions to be met before proceeding. They are used in conjunction with mutexes to synchronize thread execution based on shared data states.</p>
+<h3 id="Using-std-condition-variable"><a href="#Using-std-condition-variable" class="headerlink" title="Using std::condition_variable"></a>Using <code>std::condition_variable</code></h3><p>A <code>std::condition_variable</code> object can block a thread until notified by another thread that a condition has been met.</p>
+<p><strong>Example: Producer-Consumer Problem Using <code>std::condition_variable</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;condition_variable&gt;
+#include &lt;queue&gt;
+
+std::mutex mtx;
+std::condition_variable cv;
+std::queue&lt;int&gt; dataQueue;
+bool finished = false;
+
+// Producer thread function
+void producer(int items) &#123;
+    for(int i = 1; i &lt;= items; ++i) &#123;
+        &#123;
+            std::lock_guard&lt;std::mutex&gt; lock(mtx);
+            dataQueue.push(i);
+            std::cout &lt;&lt; &quot;Produced: &quot; &lt;&lt; i &lt;&lt; std::endl;
+        &#125;
+        cv.notify_one(); // Notify consumer
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    &#125;
+    &#123;
+        std::lock_guard&lt;std::mutex&gt; lock(mtx);
+        finished = true;
+    &#125;
+    cv.notify_all(); // Notify all consumers that production is finished
+&#125;
+
+// Consumer thread function
+void consumer(int id) &#123;
+    while(true) &#123;
+        std::unique_lock&lt;std::mutex&gt; lock(mtx);
+        cv.wait(lock, []&#123; return !dataQueue.empty() || finished; &#125;); // Wait for data or finish
+        
+        while(!dataQueue.empty()) &#123;
+            int value = dataQueue.front();
+            dataQueue.pop();
+            lock.unlock(); // Unlock before processing
+            std::cout &lt;&lt; &quot;Consumer &quot; &lt;&lt; id &lt;&lt; &quot; consumed: &quot; &lt;&lt; value &lt;&lt; std::endl;
+            lock.lock(); // Lock again to check the queue
+        &#125;
+        
+        if(finished) break;
+    &#125;
+    std::cout &lt;&lt; &quot;Consumer &quot; &lt;&lt; id &lt;&lt; &quot; finished.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    std::thread prod(producer, 5);
+    std::thread cons1(consumer, 1);
+    std::thread cons2(consumer, 2);
+    
+    prod.join();
+    cons1.join();
+    cons2.join();
+    
+    std::cout &lt;&lt; &quot;All threads have finished.&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Produced: 1
+Consumer 1 consumed: 1
+Produced: 2
+Consumer 2 consumed: 2
+Produced: 3
+Consumer 1 consumed: 3
+Produced: 4
+Consumer 2 consumed: 4
+Produced: 5
+Consumer 1 consumed: 5
+Consumer 2 finished.
+Consumer 1 finished.
+All threads have finished.
+</code></pre>
+<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li><strong>Producer</strong>: Generates items and adds them to the <code>dataQueue</code>, notifying consumers after each addition.</li>
+<li><strong>Consumers</strong>: Wait for items to be available in the <code>dataQueue</code> and consume them. They exit once the producer signals that production is finished.</li>
+<li><strong>Synchronization</strong>: <code>std::mutex</code> protects access to the shared <code>dataQueue</code>, and <code>std::condition_variable</code> synchronizes the producer and consumers.</li>
+</ul>
+<h3 id="Best-Practices-with-Condition-Variables"><a href="#Best-Practices-with-Condition-Variables" class="headerlink" title="Best Practices with Condition Variables"></a>Best Practices with Condition Variables</h3><ol>
+<li><strong>Always Use a Predicate</strong>: When calling <code>wait</code>, use a predicate to prevent spurious wake-ups.</li>
+<li><strong>Avoid Holding Locks While Processing</strong>: Unlock the mutex before performing time-consuming operations to allow other threads to proceed.</li>
+<li><strong>Ensure Proper Notification</strong>: Use <code>notify_one</code> or <code>notify_all</code> appropriately to wake up waiting threads.</li>
+</ol>
+<hr>
+<h2 id="Atomic-Operations-std-atomic"><a href="#Atomic-Operations-std-atomic" class="headerlink" title="Atomic Operations (std::atomic)"></a>Atomic Operations (<code>std::atomic</code>)</h2><h3 id="Understanding-Atomicity"><a href="#Understanding-Atomicity" class="headerlink" title="Understanding Atomicity"></a>Understanding Atomicity</h3><p>Atomic operations are indivisible operations that complete without the possibility of interference from other threads. They are essential for ensuring data integrity when multiple threads access shared variables without using mutexes.</p>
+<h3 id="Using-std-atomic"><a href="#Using-std-atomic" class="headerlink" title="Using std::atomic"></a>Using <code>std::atomic</code></h3><p>The <code>&lt;atomic&gt;</code> library provides atomic types that can be used safely across multiple threads without additional synchronization.</p>
+<p><strong>Example: Using <code>std::atomic&lt;int&gt;</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;atomic&gt;
+
+std::atomic&lt;int&gt; atomicCounter(0);
+
+void increment() &#123;
+    for(int i = 0; i &lt; 1000; ++i) &#123;
+        ++atomicCounter; // Atomic increment
+    &#125;
+&#125;
+
+int main() &#123;
+    std::thread t1(increment);
+    std::thread t2(increment);
+    
+    t1.join();
+    t2.join();
+    
+    std::cout &lt;&lt; &quot;Final Atomic Counter: &quot; &lt;&lt; atomicCounter.load() &lt;&lt; std::endl; // Outputs: 2000
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Final Atomic Counter: 2000
+</code></pre>
+<h3 id="Atomic-Operations-on-Complex-Types"><a href="#Atomic-Operations-on-Complex-Types" class="headerlink" title="Atomic Operations on Complex Types"></a>Atomic Operations on Complex Types</h3><p>While <code>std::atomic</code> is primarily used with fundamental types, it can also be used with user-defined types if they meet certain requirements (trivially copyable).</p>
+<p><strong>Example: Using <code>std::atomic&lt;bool&gt;</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;atomic&gt;
+
+std::atomic&lt;bool&gt; flag(false);
+
+void setFlag() &#123;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    flag.store(true);
+    std::cout &lt;&lt; &quot;Flag set to true.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    std::thread t(setFlag);
+    
+    while(!flag.load()) &#123;
+        std::cout &lt;&lt; &quot;Waiting for flag...&quot; &lt;&lt; std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+    &#125;
+    
+    t.join();
+    std::cout &lt;&lt; &quot;Flag detected as true.&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Waiting for flag...
+Waiting for flag...
+Waiting for flag...
+Flag set to true.
+Flag detected as true.
+</code></pre>
+<h3 id="Best-Practices-with-Atomic-Operations"><a href="#Best-Practices-with-Atomic-Operations" class="headerlink" title="Best Practices with Atomic Operations"></a>Best Practices with Atomic Operations</h3><ol>
+<li><strong>Use Atomics for Simple Flags and Counters</strong>: For simple synchronization needs, atomics can be more efficient than mutexes.</li>
+<li><strong>Avoid Complex Operations</strong>: For complex data structures or multiple related operations, prefer mutexes to ensure consistency.</li>
+<li><strong>Understand Memory Order</strong>: By default, <code>std::atomic</code> operations use sequential consistency, but understanding and utilizing different memory orders can optimize performance.</li>
+</ol>
+<hr>
+<h2 id="Futures-and-Promises-std-future-std-promise"><a href="#Futures-and-Promises-std-future-std-promise" class="headerlink" title="Futures and Promises (std::future, std::promise)"></a>Futures and Promises (<code>std::future</code>, <code>std::promise</code>)</h2><h3 id="Asynchronous-Result-Retrieval"><a href="#Asynchronous-Result-Retrieval" class="headerlink" title="Asynchronous Result Retrieval"></a>Asynchronous Result Retrieval</h3><p>Futures and promises facilitate communication between threads, allowing one thread to set a value (promise) that another thread can retrieve (future) once it’s ready.</p>
+<h3 id="Using-std-promise-and-std-future"><a href="#Using-std-promise-and-std-future" class="headerlink" title="Using std::promise and std::future"></a>Using <code>std::promise</code> and <code>std::future</code></h3><p><strong>Example: Using <code>std::promise</code> and <code>std::future</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;future&gt;
+
+// Function that sets a value after some processing
+void compute(std::promise&lt;int&gt; prom) &#123;
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    prom.set_value(42);
+    std::cout &lt;&lt; &quot;Value set to promise.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    std::promise&lt;int&gt; prom; // Create a promise
+    std::future&lt;int&gt; fut = prom.get_future(); // Get the future associated with the promise
+    
+    std::thread t(compute, std::move(prom)); // Start the thread and pass the promise
+    
+    std::cout &lt;&lt; &quot;Waiting for value...&quot; &lt;&lt; std::endl;
+    int result = fut.get(); // Wait for the value to be set
+    std::cout &lt;&lt; &quot;Received value: &quot; &lt;&lt; result &lt;&lt; std::endl;
+    
+    t.join();
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Waiting for value...
+Value set to promise.
+Received value: 42
+</code></pre>
+<h3 id="Using-std-future-with-std-async"><a href="#Using-std-future-with-std-async" class="headerlink" title="Using std::future with std::async"></a>Using <code>std::future</code> with <code>std::async</code></h3><p><code>std::async</code> provides a higher-level abstraction for asynchronous operations, returning a <code>std::future</code> that can be used to retrieve the result.</p>
+<p><strong>Example: Using <code>std::async</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;future&gt;
+
+// Function to perform a computation
+int computeSum(int a, int b) &#123;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    return a + b;
+&#125;
+
+int main() &#123;
+    // Launch computeSum asynchronously
+    std::future&lt;int&gt; fut = std::async(std::launch::async, computeSum, 10, 20);
+    
+    std::cout &lt;&lt; &quot;Doing other work...&quot; &lt;&lt; std::endl;
+    
+    // Retrieve the result
+    int sum = fut.get();
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl;
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Doing other work...
+Sum: 30
+</code></pre>
+<h3 id="Best-Practices-with-Futures-and-Promises"><a href="#Best-Practices-with-Futures-and-Promises" class="headerlink" title="Best Practices with Futures and Promises"></a>Best Practices with Futures and Promises</h3><ol>
+<li><strong>Avoid Blocking Operations</strong>: Calling <code>get()</code> on a <code>std::future</code> blocks the calling thread until the result is ready. Use this judiciously to prevent performance bottlenecks.</li>
+<li><strong>Handle Exceptions</strong>: If the asynchronous operation throws an exception, it will be rethrown when <code>get()</code> is called. Ensure proper exception handling.</li>
+<li><strong>Use <code>std::async</code> for Simplicity</strong>: For simple asynchronous tasks, <code>std::async</code> provides a straightforward way to launch tasks without managing threads manually.</li>
+</ol>
+<hr>
+<h2 id="Asynchronous-Programming-std-async"><a href="#Asynchronous-Programming-std-async" class="headerlink" title="Asynchronous Programming (std::async)"></a>Asynchronous Programming (<code>std::async</code>)</h2><h3 id="Leveraging-Asynchronous-Tasks"><a href="#Leveraging-Asynchronous-Tasks" class="headerlink" title="Leveraging Asynchronous Tasks"></a>Leveraging Asynchronous Tasks</h3><p>Asynchronous programming allows tasks to run independently of the main program flow, improving performance and responsiveness. C++ provides the <code>std::async</code> facility to execute functions asynchronously.</p>
+<h3 id="Using-std-async"><a href="#Using-std-async" class="headerlink" title="Using std::async"></a>Using <code>std::async</code></h3><p><code>std::async</code> launches a function asynchronously (potentially in a new thread) and returns a <code>std::future</code> to retrieve the result.</p>
+<p><strong>Example: Parallel Execution with <code>std::async</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;future&gt;
+
+// Function to perform a task
+int heavyComputation(int n) &#123;
+    std::cout &lt;&lt; &quot;Starting heavy computation for n = &quot; &lt;&lt; n &lt;&lt; std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3)); // Simulate heavy work
+    std::cout &lt;&lt; &quot;Finished heavy computation for n = &quot; &lt;&lt; n &lt;&lt; std::endl;
+    return n * n;
+&#125;
+
+int main() &#123;
+    // Launch two asynchronous tasks
+    std::future&lt;int&gt; fut1 = std::async(std::launch::async, heavyComputation, 5);
+    std::future&lt;int&gt; fut2 = std::async(std::launch::async, heavyComputation, 10);
+    
+    std::cout &lt;&lt; &quot;Doing other work while computations are running...&quot; &lt;&lt; std::endl;
+    
+    // Retrieve the results
+    int result1 = fut1.get();
+    int result2 = fut2.get();
+    
+    std::cout &lt;&lt; &quot;Result of first computation: &quot; &lt;&lt; result1 &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Result of second computation: &quot; &lt;&lt; result2 &lt;&lt; std::endl;
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Starting heavy computation for n = 5
+Starting heavy computation for n = 10
+Doing other work while computations are running...
+Finished heavy computation for n = 5
+Finished heavy computation for n = 10
+Result of first computation: 25
+Result of second computation: 100
+</code></pre>
+<h3 id="Deferred-Execution"><a href="#Deferred-Execution" class="headerlink" title="Deferred Execution"></a>Deferred Execution</h3><p><code>std::async</code> can also launch tasks with deferred execution, meaning the task starts only when the result is requested via <code>get()</code> or <code>wait()</code>.</p>
+<p><strong>Example: Deferred Execution</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;future&gt;
+
+// Function to perform a task
+int compute(int a, int b) &#123;
+    std::cout &lt;&lt; &quot;Computing &quot; &lt;&lt; a &lt;&lt; &quot; + &quot; &lt;&lt; b &lt;&lt; std::endl;
+    return a + b;
+&#125;
+
+int main() &#123;
+    // Launch asynchronously with deferred execution
+    std::future&lt;int&gt; fut = std::async(std::launch::deferred, compute, 3, 4);
+    
+    std::cout &lt;&lt; &quot;Before calling get()&quot; &lt;&lt; std::endl;
+    
+    // Task is not executed yet
+    std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; fut.get() &lt;&lt; std::endl; // Task is executed here
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Before calling get()
+Computing 3 + 4
+Result: 7
+</code></pre>
+<h3 id="Best-Practices-with-std-async"><a href="#Best-Practices-with-std-async" class="headerlink" title="Best Practices with std::async"></a>Best Practices with <code>std::async</code></h3><ol>
+<li><strong>Specify Launch Policy</strong>: Use <code>std::launch::async</code> to ensure the task runs on a new thread or <code>std::launch::deferred</code> for deferred execution.</li>
+<li><strong>Manage Dependencies</strong>: Ensure that dependencies between asynchronous tasks are well-defined to prevent race conditions.</li>
+<li><strong>Handle Exceptions</strong>: Be prepared to handle exceptions that may be thrown by asynchronous tasks when calling <code>get()</code>.</li>
+</ol>
+<hr>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve explored the foundational aspects of <strong>Concurrency and Multithreading</strong> in C++:</p>
+<ul>
+<li><strong>Introduction to Concurrency</strong>: Understood the importance of concurrency, its benefits, and the challenges it presents.</li>
+<li><strong>Threads and <code>std::thread</code></strong>: Learned how to create and manage threads, pass arguments, detach threads, and use lambda expressions for thread functions.</li>
+<li><strong>Mutexes and Locks (<code>std::mutex</code>, <code>std::lock_guard</code>)</strong>: Explored how to protect shared data using mutexes and RAII-based lock guards to ensure thread safety.</li>
+<li><strong>Condition Variables (<code>std::condition_variable</code>)</strong>: Delved into synchronizing threads based on specific conditions, implementing producer-consumer scenarios.</li>
+<li><strong>Atomic Operations (<code>std::atomic</code>)</strong>: Utilized atomic types to perform thread-safe operations without explicit locking, enhancing performance for simple tasks.</li>
+<li><strong>Futures and Promises (<code>std::future</code>, <code>std::promise</code>)</strong>: Facilitated communication between threads by passing results asynchronously using futures and promises.</li>
+<li><strong>Asynchronous Programming (<code>std::async</code>)</strong>: Leveraged <code>std::async</code> to execute tasks asynchronously, improving application responsiveness and performance.</li>
+</ul>
+<p>Mastering these concurrency and multithreading concepts is crucial for building efficient, high-performance C++ applications that can handle multiple tasks simultaneously. As you continue your programming journey, these skills will enable you to design robust systems capable of leveraging modern multi-core processors effectively.</p>
+<hr>
+<p>Now you’re ready to move on to <strong>Advanced Template Programming</strong>, where you’ll delve deeper into the powerful features of C++ templates for creating highly flexible and reusable code.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-advtemplate">Advanced Template Programming</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

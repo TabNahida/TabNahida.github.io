@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Control Structures | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Control Structures</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/26
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutor
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                    c-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #00a596">
+                    modern-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                    cpp-unleash
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/02Hero/" style="color: #ff7d73">
+                    02Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/26/cpp-unleash/02h-getstart">Getting Start</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Control-Structures"><a href="#Control-Structures" class="headerlink" title="Control Structures"></a>Control Structures</h1><p>Control structures are fundamental to programming as they dictate the flow of execution within your programs. In C++, control structures allow you to make decisions, repeat actions, and alter the flow based on certain conditions. This chapter covers conditional statements, loops, and jump statements, including the use of <code>goto</code>.</p>
+<h2 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h2><p>Conditional statements allow your program to execute different sections of code based on whether a condition is true or false. The primary conditional statements in C++ are <code>if</code> and <code>switch</code>.</p>
+<h3 id="if-Statement"><a href="#if-Statement" class="headerlink" title="if Statement"></a><code>if</code> Statement</h3><p>The <code>if</code> statement executes a block of code if a specified condition is true. You can also include <code>else if</code> and <code>else</code> clauses to handle additional conditions.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">if (condition) &#123;
+    // Code to execute if condition is true
+&#125; else if (another_condition) &#123;
+    // Code to execute if another_condition is true
+&#125; else &#123;
+    // Code to execute if none of the above conditions are true
+&#125;
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    int number;
+    std::cout &lt;&lt; &quot;Enter a number: &quot;;
+    std::cin &gt;&gt; number;
+
+    if (number &gt; 0) &#123;
+        std::cout &lt;&lt; &quot;Positive number.&quot; &lt;&lt; std::endl;
+    &#125; else if (number &lt; 0) &#123;
+        std::cout &lt;&lt; &quot;Negative number.&quot; &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;Zero.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="switch-Statement"><a href="#switch-Statement" class="headerlink" title="switch Statement"></a><code>switch</code> Statement</h3><p>The <code>switch</code> statement allows multi-way branching based on the value of an integral or enumeration type.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">switch (expression) &#123;
+    case value1:
+        // Code to execute if expression == value1
+        break;
+    case value2:
+        // Code to execute if expression == value2
+        break;
+    // More cases...
+    default:
+        // Code to execute if none of the cases match
+&#125;
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    char grade;
+    std::cout &lt;&lt; &quot;Enter your grade (A, B, C, D, F): &quot;;
+    std::cin &gt;&gt; grade;
+
+    switch (grade) &#123;
+        case &#39;A&#39;:
+            std::cout &lt;&lt; &quot;Excellent!&quot; &lt;&lt; std::endl;
+            break;
+        case &#39;B&#39;:
+            std::cout &lt;&lt; &quot;Good job!&quot; &lt;&lt; std::endl;
+            break;
+        case &#39;C&#39;:
+            std::cout &lt;&lt; &quot;Fair.&quot; &lt;&lt; std::endl;
+            break;
+        case &#39;D&#39;:
+            std::cout &lt;&lt; &quot;Needs improvement.&quot; &lt;&lt; std::endl;
+            break;
+        case &#39;F&#39;:
+            std::cout &lt;&lt; &quot;Fail.&quot; &lt;&lt; std::endl;
+            break;
+        default:
+            std::cout &lt;&lt; &quot;Invalid grade.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><p>Loops allow you to execute a block of code multiple times. C++ provides several types of loops: <code>for</code>, <code>while</code>, and <code>do-while</code>.</p>
+<h3 id="for-Loop"><a href="#for-Loop" class="headerlink" title="for Loop"></a><code>for</code> Loop</h3><p>The <code>for</code> loop is typically used when the number of iterations is known beforehand.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">for (initialization; condition; increment) &#123;
+    // Code to execute each iteration
+&#125;
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    for (int i = 1; i &lt;= 5; ++i) &#123;
+        std::cout &lt;&lt; &quot;Iteration &quot; &lt;&lt; i &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="while-Loop"><a href="#while-Loop" class="headerlink" title="while Loop"></a><code>while</code> Loop</h3><p>The <code>while</code> loop continues to execute as long as the specified condition remains true. It’s useful when the number of iterations is not known in advance.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">while (condition) &#123;
+    // Code to execute each iteration
+&#125;
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    int count = 1;
+    while (count &lt;= 5) &#123;
+        std::cout &lt;&lt; &quot;Count: &quot; &lt;&lt; count &lt;&lt; std::endl;
+        ++count;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="do-while-Loop"><a href="#do-while-Loop" class="headerlink" title="do-while Loop"></a><code>do-while</code> Loop</h3><p>The <code>do-while</code> loop is similar to the <code>while</code> loop, but it guarantees that the loop body is executed at least once, as the condition is checked after the execution of the loop body.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">do &#123;
+    // Code to execute each iteration
+&#125; while (condition);
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    int number;
+    do &#123;
+        std::cout &lt;&lt; &quot;Enter a positive number (0 to exit): &quot;;
+        std::cin &gt;&gt; number;
+        std::cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; number &lt;&lt; std::endl;
+    &#125; while (number != 0);
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Jump-Statements"><a href="#Jump-Statements" class="headerlink" title="Jump Statements"></a>Jump Statements</h2><p>Jump statements allow you to alter the flow of control by jumping to a different part of the program. The primary jump statements in C++ are <code>break</code>, <code>continue</code>, <code>return</code>, and <code>goto</code>.</p>
+<h3 id="break"><a href="#break" class="headerlink" title="break"></a><code>break</code></h3><p>The <code>break</code> statement exits the nearest enclosing loop or <code>switch</code> statement.</p>
+<p><strong>Example: Exiting a Loop Early</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    for (int i = 1; i &lt;= 10; ++i) &#123;
+        if (i == 5) &#123;
+            break; // Exit the loop when i is 5
+        &#125;
+        std::cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+    &#125;
+    // Output: 1 2 3 4
+    return 0;
+&#125;
+</code></pre>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a><code>continue</code></h3><p>The <code>continue</code> statement skips the rest of the current loop iteration and proceeds to the next iteration.</p>
+<p><strong>Example: Skipping Odd Numbers</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    for (int i = 1; i &lt;= 5; ++i) &#123;
+        if (i % 2 != 0) &#123;
+            continue; // Skip odd numbers
+        &#125;
+        std::cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+    &#125;
+    // Output: 2 4
+    return 0;
+&#125;
+</code></pre>
+<h3 id="return"><a href="#return" class="headerlink" title="return"></a><code>return</code></h3><p>The <code>return</code> statement exits a function and optionally returns a value to the caller.</p>
+<p><strong>Example: Exiting a Function Early</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int divide(int a, int b) &#123;
+    if (b == 0) &#123;
+        std::cerr &lt;&lt; &quot;Error: Division by zero!&quot; &lt;&lt; std::endl;
+        return 0; // Exit the function early
+    &#125;
+    return a / b;
+&#125;
+
+int main() &#123;
+    int result = divide(10, 2);
+    std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; result &lt;&lt; std::endl; // Output: Result: 5
+
+    result = divide(10, 0); // Triggers error message and returns 0
+    std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; result &lt;&lt; std::endl; // Output: Result: 0
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h3><p>The <code>goto</code> statement allows you to jump to a labeled statement within the same function. While <code>goto</code> can be used for error handling or breaking out of deeply nested loops, its use is generally discouraged as it can lead to spaghetti code, making programs harder to read and maintain.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">goto label;
+
+// ...
+
+label:
+    // Code to jump to
+</code></pre>
+<p><strong>Example: Using <code>goto</code> for Error Handling</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    int num;
+    std::cout &lt;&lt; &quot;Enter a positive number: &quot;;
+    std::cin &gt;&gt; num;
+
+    if (num &lt;= 0) &#123;
+        std::cerr &lt;&lt; &quot;Invalid input. Number must be positive.&quot; &lt;&lt; std::endl;
+        goto end; // Jump to the end label
+    &#125;
+
+    std::cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; num &lt;&lt; std::endl;
+
+    end:
+        std::cout &lt;&lt; &quot;Program ended.&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><strong>Avoid Using <code>goto</code> When Possible</strong>: Prefer structured control flow constructs (<code>if</code>, <code>for</code>, <code>while</code>, etc.) to maintain code readability.</li>
+<li><strong>Use Sparingly and Carefully</strong>: If you must use <code>goto</code>, ensure it’s used in a controlled and understandable manner, such as for error handling in C-style code.</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve learned about the fundamental control structures in C++ that dictate the flow of your programs:</p>
+<ul>
+<li><strong>Conditional Statements</strong>: <code>if</code> and <code>switch</code> allow you to execute code based on conditions.</li>
+<li><strong>Loops</strong>: <code>for</code>, <code>while</code>, and <code>do-while</code> enable you to repeat actions.</li>
+<li><strong>Jump Statements</strong>: <code>break</code>, <code>continue</code>, <code>return</code>, and <code>goto</code> allow you to alter the flow of execution within loops and functions.</li>
+</ul>
+<p>Understanding and effectively utilizing these control structures is essential for writing dynamic and efficient C++ programs. As you continue, you’ll apply these concepts in more complex scenarios, building robust and responsive applications.</p>
+<hr>
+<p>Now you’re ready to move on to <strong>Functions</strong>, where you’ll learn how to create reusable blocks of code to perform specific tasks within your programs.</p>
+<p>Next chapter: <a href="/2024/09/26/cpp-unleash/02h-func">Functions</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

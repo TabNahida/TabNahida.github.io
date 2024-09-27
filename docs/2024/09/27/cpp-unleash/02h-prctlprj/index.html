@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Practical Projects | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Practical Projects</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutor
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                    c-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                    modern-cpp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                    cpp-unleash
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/02Hero/" style="color: #ffa2c4">
+                    02Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-xmakeprj">Using xmake to Build Projects</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Practical-Projects"><a href="#Practical-Projects" class="headerlink" title="Practical Projects"></a>Practical Projects</h1><p>In this chapter, we’ll apply the concepts you’ve learned throughout this tutorial to practical programming projects. Engaging in hands-on projects will help solidify your understanding of C++ and enable you to tackle real-world challenges. We’ll cover various project ideas, best practices for coding, and how to document your work effectively.</p>
+<h2 id="Project-Ideas"><a href="#Project-Ideas" class="headerlink" title="Project Ideas"></a>Project Ideas</h2><h3 id="1-Command-Line-Calculator"><a href="#1-Command-Line-Calculator" class="headerlink" title="1. Command-Line Calculator"></a>1. Command-Line Calculator</h3><p>Create a simple command-line calculator that can perform basic arithmetic operations (addition, subtraction, multiplication, and division). This project will help you practice:</p>
+<ul>
+<li>Using control structures to handle user input.</li>
+<li>Implementing functions for each arithmetic operation.</li>
+<li>Error handling for invalid inputs (e.g., division by zero).</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li>Functions</li>
+<li>Control Structures</li>
+<li>Error Handling</li>
+</ul>
+<h3 id="2-To-Do-List-Application"><a href="#2-To-Do-List-Application" class="headerlink" title="2. To-Do List Application"></a>2. To-Do List Application</h3><p>Develop a console-based to-do list application where users can add, remove, and view tasks. This project will enhance your skills in:</p>
+<ul>
+<li>Working with arrays and strings for task management.</li>
+<li>Using classes and objects to represent tasks.</li>
+<li>Implementing file I&#x2F;O to save and load tasks.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li>Object-Oriented Programming</li>
+<li>File Handling</li>
+<li>Arrays and Strings</li>
+</ul>
+<h3 id="3-Personal-Finance-Tracker"><a href="#3-Personal-Finance-Tracker" class="headerlink" title="3. Personal Finance Tracker"></a>3. Personal Finance Tracker</h3><p>Create an application that helps users track their income and expenses. Users should be able to input transactions, categorize them, and view a summary of their finances. This project will involve:</p>
+<ul>
+<li>Using data structures (e.g., <code>std::vector</code> or <code>std::map</code>) for storing transactions.</li>
+<li>Implementing templates for handling different types of data (e.g., expenses, income).</li>
+<li>Generating reports based on user input.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li>STL (Standard Template Library)</li>
+<li>Templates and Generic Programming</li>
+<li>File Handling</li>
+</ul>
+<h3 id="4-Simple-Game-Tic-Tac-Toe"><a href="#4-Simple-Game-Tic-Tac-Toe" class="headerlink" title="4. Simple Game: Tic-Tac-Toe"></a>4. Simple Game: Tic-Tac-Toe</h3><p>Build a console-based Tic-Tac-Toe game that allows two players to play against each other. This project will help you practice:</p>
+<ul>
+<li>Implementing game logic using control structures and functions.</li>
+<li>Using arrays to represent the game board.</li>
+<li>Handling user input and displaying the game state.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li>Control Structures</li>
+<li>Arrays</li>
+<li>Functions</li>
+</ul>
+<h3 id="5-Web-Scraper"><a href="#5-Web-Scraper" class="headerlink" title="5. Web Scraper"></a>5. Web Scraper</h3><p>Create a basic web scraper that retrieves and displays information from a website. This project can be done using libraries such as <code>libcurl</code> for making HTTP requests. You’ll learn about:</p>
+<ul>
+<li>Networking and HTTP requests.</li>
+<li>Parsing HTML data.</li>
+<li>Managing dependencies with xmake.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li>External Libraries</li>
+<li>Networking</li>
+<li>File I&#x2F;O</li>
+</ul>
+<h2 id="Best-Practices-for-Coding"><a href="#Best-Practices-for-Coding" class="headerlink" title="Best Practices for Coding"></a>Best Practices for Coding</h2><ol>
+<li><p><strong>Write Clean Code</strong>: Follow coding conventions and keep your code organized. Use meaningful variable names and modular functions to enhance readability.</p>
+</li>
+<li><p><strong>Comment Your Code</strong>: Provide comments to explain complex logic and document the purpose of functions and classes. This will help both you and others understand your code better.</p>
+</li>
+<li><p><strong>Use Version Control</strong>: Consider using Git for version control to track changes in your projects and collaborate with others.</p>
+</li>
+<li><p><strong>Test Your Code</strong>: Write test cases to ensure that your code works as expected. This is especially important for larger projects.</p>
+</li>
+<li><p><strong>Optimize Performance</strong>: Keep performance in mind while coding. Use efficient algorithms and data structures to improve your application’s speed and responsiveness.</p>
+</li>
+</ol>
+<h2 id="Documenting-Your-Work"><a href="#Documenting-Your-Work" class="headerlink" title="Documenting Your Work"></a>Documenting Your Work</h2><p>Good documentation is essential for any project. It helps others understand your work and serves as a reference for future enhancements.</p>
+<ol>
+<li><p><strong>README File</strong>: Create a <code>README.md</code> file that explains the purpose of your project, how to install it, and how to use it.</p>
+</li>
+<li><p><strong>Code Documentation</strong>: Use inline comments and documentation comments (like <code>///</code> in C++) to describe the functionality of your code.</p>
+</li>
+<li><p><strong>Project Structure</strong>: Organize your project files logically. For example, separate source files, header files, and documentation.</p>
+</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, we explored practical project ideas that leverage the concepts learned throughout this tutorial. By engaging in hands-on projects, you will reinforce your understanding of C++ and develop essential programming skills. Remember to follow best practices for coding and document your work effectively.</p>
+<p>In the next chapter, we will conclude our tutorial with <strong>Best Practices in C++</strong>, where we will summarize key takeaways and suggest further learning resources.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-clsnnext">Conclusion and Next Steps</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
