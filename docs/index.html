@@ -213,378 +213,6 @@
 <li><strong>Deploys the generated static files</strong> to the <code>docs</code> folder of a separate GitHub Pages repository, enabling continuous updates to your website.</li>
 </ol>
 <p>By the end of this guide, you’ll have a fully automated CI&#x2F;CD pipeline for your Hexo blog, ensuring your website remains up-to-date with your latest content without manual intervention.</p>
-<hr>
-<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ol>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#generating-a-personal-access-token-pat">Generating a Personal Access Token (PAT)</a></li>
-<li><a href="#adding-the-pat-to-github-secrets">Adding the PAT to GitHub Secrets</a></li>
-<li><a href="#setting-up-the-github-actions-workflow">Setting Up the GitHub Actions Workflow</a></li>
-<li><a href="#configuring-github-pages-in-the-target-repository">Configuring GitHub Pages in the Target Repository</a></li>
-<li><a href="#testing-the-workflow">Testing the Workflow</a></li>
-<li><a href="#troubleshooting-common-issues">Troubleshooting Common Issues</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-</ol>
-<hr>
-<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before you begin, ensure you have the following:</p>
-<ul>
-<li><p><strong>Two GitHub Repositories</strong>:</p>
-<ul>
-<li><strong>Source Repository</strong>: Your primary repository containing the Hexo blog source code (e.g., <code>YourUsername/YourBlog</code>).</li>
-<li><strong>Target Repository</strong>: Your GitHub Pages repository where the static site will be deployed (e.g., <code>YourUsername/YourBlog.github.io</code>).</li>
-</ul>
-</li>
-<li><p><strong>Hexo Installed and Configured</strong>: Ensure your Hexo blog is properly set up and can generate static files locally using <code>hexo generate</code>.</p>
-</li>
-<li><p><strong>Basic Knowledge of GitHub Actions</strong>: Familiarity with creating and editing YAML files within GitHub repositories will be beneficial.</p>
-</li>
-</ul>
-<hr>
-<h2 id="Generating-a-Personal-Access-Token-PAT"><a href="#Generating-a-Personal-Access-Token-PAT" class="headerlink" title="Generating a Personal Access Token (PAT)"></a>Generating a Personal Access Token (PAT)</h2><p>To allow GitHub Actions to push changes to your target repository, you need a Personal Access Token (PAT) with the appropriate permissions.</p>
-<h3 id="Steps-to-Generate-a-PAT"><a href="#Steps-to-Generate-a-PAT" class="headerlink" title="Steps to Generate a PAT:"></a>Steps to Generate a PAT:</h3><ol>
-<li><p><strong>Log in to GitHub</strong>:</p>
-<ul>
-<li>Navigate to <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a> and sign in to your account.</li>
-</ul>
-</li>
-<li><p><strong>Access Developer Settings</strong>:</p>
-<ul>
-<li>Click on your profile picture in the top-right corner.</li>
-<li>Select <strong>Settings</strong> from the dropdown menu.</li>
-<li>In the left sidebar, click on <strong>Developer settings</strong>.</li>
-</ul>
-</li>
-<li><p><strong>Create a New Token</strong>:</p>
-<ul>
-<li>Click on <strong>Personal access tokens</strong>.</li>
-<li>Click the <strong>Generate new token</strong> button.</li>
-</ul>
-</li>
-<li><p><strong>Configure the Token</strong>:</p>
-<ul>
-<li><strong>Note</strong>: Enter a descriptive name, e.g., <code>GitHub Actions Deploy Token</code>.</li>
-<li><strong>Expiration</strong>: Choose an appropriate expiration date. For security reasons, it’s recommended <strong>not</strong> to set it to never expire.</li>
-<li><strong>Scopes</strong>: <ul>
-<li>Expand the <strong>repo</strong> section.</li>
-<li>Select <strong>repo</strong> (all sub-scopes under repo will be automatically selected), ensuring the token has full control of private repositories.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Generate and Copy the Token</strong>:</p>
-<ul>
-<li>Click <strong>Generate token</strong>.</li>
-<li><strong>Important</strong>: Copy the generated token immediately. You won’t be able to view it again.</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Adding-the-PAT-to-GitHub-Secrets"><a href="#Adding-the-PAT-to-GitHub-Secrets" class="headerlink" title="Adding the PAT to GitHub Secrets"></a>Adding the PAT to GitHub Secrets</h2><p>To securely use your PAT within GitHub Actions, store it as a secret in your source repository.</p>
-<h3 id="Steps-to-Add-the-PAT-as-a-Secret"><a href="#Steps-to-Add-the-PAT-as-a-Secret" class="headerlink" title="Steps to Add the PAT as a Secret:"></a>Steps to Add the PAT as a Secret:</h3><ol>
-<li><p><strong>Navigate to Your Source Repository</strong>:</p>
-<ul>
-<li>Go to <code>YourUsername/YourBlog</code> on GitHub.</li>
-</ul>
-</li>
-<li><p><strong>Access Repository Settings</strong>:</p>
-<ul>
-<li>Click on the <strong>Settings</strong> tab.</li>
-<li>In the left sidebar, select <strong>Secrets and variables</strong> &gt; <strong>Actions</strong>.</li>
-</ul>
-</li>
-<li><p><strong>Add a New Secret</strong>:</p>
-<ul>
-<li>Click on the <strong>New repository secret</strong> button.</li>
-<li><strong>Name</strong>: <code>TARGET_REPO_TOKEN</code></li>
-<li><strong>Value</strong>: Paste the PAT you generated earlier.</li>
-<li>Click <strong>Add secret</strong> to save.</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Setting-Up-the-GitHub-Actions-Workflow"><a href="#Setting-Up-the-GitHub-Actions-Workflow" class="headerlink" title="Setting Up the GitHub Actions Workflow"></a>Setting Up the GitHub Actions Workflow</h2><p>With the PAT in place, you can now create a GitHub Actions workflow that automates the Hexo build and deployment process.</p>
-<h3 id="Steps-to-Create-the-Workflow"><a href="#Steps-to-Create-the-Workflow" class="headerlink" title="Steps to Create the Workflow:"></a>Steps to Create the Workflow:</h3><ol>
-<li><p><strong>Create the Workflow File</strong>:</p>
-<ul>
-<li>In your source repository (<code>YourUsername/YourBlog</code>), navigate to the <code>.github/workflows/</code> directory. If it doesn’t exist, create it.</li>
-<li>Inside the <code>workflows</code> folder, create a new file named <code>deploy.yml</code>.</li>
-</ul>
-<pre><code>YourBlog/
-└── .github/
-    └── workflows/
-        └── deploy.yml
-</code></pre>
-</li>
-<li><p><strong>Define the Workflow Configuration</strong>:</p>
-<ul>
-<li>Open <code>deploy.yml</code> and add the following content:</li>
-</ul>
-<pre><code class="yaml">name: Deploy Hexo to GitHub Pages
-
-on:
-  push:
-    branches:
-      - main  # Change this if your default branch is different
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Step 1: Checkout the Source Code
-      - name: Checkout Source Code
-        uses: actions/checkout@v3
-
-      # Step 2: Set Up Node.js Environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: &#39;16&#39;  # Specify your Node.js version
-
-      # Step 3: Install Dependencies
-      - name: Install Dependencies
-        run: npm install
-
-      # Step 4: Generate Hexo Static Files
-      - name: Generate Hexo Site
-        run: |
-          npx hexo clean
-          npx hexo generate
-
-      # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: $&#123;&#123; secrets.TARGET_REPO_TOKEN &#125;&#125;
-          publish_dir: ./public
-          destination_dir: docs
-          publish_repo: YourUsername/YourBlog.github.io
-          publish_branch: main
-          allow_empty_commit: true
-</code></pre>
-</li>
-</ol>
-<h3 id="Breakdown-of-the-Workflow"><a href="#Breakdown-of-the-Workflow" class="headerlink" title="Breakdown of the Workflow:"></a>Breakdown of the Workflow:</h3><ul>
-<li><p><strong>name</strong>: Assigns a name to the workflow (<code>Deploy Hexo to GitHub Pages</code>).</p>
-</li>
-<li><p><strong>on</strong>:</p>
-<ul>
-<li><strong>push</strong>: Specifies that the workflow runs on <code>push</code> events.</li>
-<li><strong>branches</strong>: The workflow triggers when there’s a push to the <code>main</code> branch. Adjust this if your default branch is different (e.g., <code>master</code>).</li>
-</ul>
-</li>
-<li><p><strong>jobs</strong>:</p>
-<ul>
-<li><strong>build-and-deploy</strong>: The single job that builds and deploys the site.<ul>
-<li><p><strong>runs-on</strong>: Specifies the virtual environment (<code>ubuntu-latest</code>).</p>
-</li>
-<li><p><strong>steps</strong>:</p>
-<ol>
-<li><p><strong>Checkout Source Code</strong>:</p>
-<ul>
-<li>Uses <code>actions/checkout@v3</code> to clone the repository.</li>
-</ul>
-</li>
-<li><p><strong>Setup Node.js</strong>:</p>
-<ul>
-<li>Uses <code>actions/setup-node@v3</code> to set up the Node.js environment. Adjust the <code>node-version</code> if your project requires a different version.</li>
-</ul>
-</li>
-<li><p><strong>Install Dependencies</strong>:</p>
-<ul>
-<li>Runs <code>npm install</code> to install Hexo and other project dependencies.</li>
-</ul>
-</li>
-<li><p><strong>Generate Hexo Site</strong>:</p>
-<ul>
-<li>Executes <code>hexo clean</code> to clear previous builds.</li>
-<li>Runs <code>hexo generate</code> to build the static files, typically output to the <code>public</code> directory.</li>
-</ul>
-</li>
-<li><p><strong>Deploy to GitHub Pages</strong>:</p>
-<ul>
-<li>Utilizes <code>peaceiris/actions-gh-pages@v4</code>, a robust action for deploying static sites.</li>
-<li><strong>github_token</strong>: References the secret <code>TARGET_REPO_TOKEN</code> for authentication.</li>
-<li><strong>publish_dir</strong>: Points to the directory containing the generated static files (<code>./public</code>).</li>
-<li><strong>destination_dir</strong>: Specifies the target directory in the repository (<code>docs</code>).</li>
-<li><strong>publish_repo</strong>: The target repository where the site will be deployed (<code>YourUsername/YourBlog.github.io</code>).</li>
-<li><strong>publish_branch</strong>: The branch to which the files will be pushed (<code>main</code>).</li>
-<li><strong>allow_empty_commit</strong>: Allows the workflow to run even if there are no changes to commit, preventing failures in such cases.</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li><strong>Commit and Push the Workflow</strong>:<ul>
-<li><p>Save the <code>deploy.yml</code> file.</p>
-</li>
-<li><p>Commit the new workflow to your repository:</p>
-<pre><code class="bash">git add .github/workflows/deploy.yml
-git commit -m &quot;Add GitHub Actions workflow for Hexo deployment&quot;
-git push origin main
-</code></pre>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Configuring-GitHub-Pages-in-the-Target-Repository"><a href="#Configuring-GitHub-Pages-in-the-Target-Repository" class="headerlink" title="Configuring GitHub Pages in the Target Repository"></a>Configuring GitHub Pages in the Target Repository</h2><p>To ensure that GitHub Pages serves your site from the <code>docs</code> folder, you need to configure the settings in your target repository (<code>YourUsername/YourBlog.github.io</code>).</p>
-<h3 id="Steps-to-Configure-GitHub-Pages"><a href="#Steps-to-Configure-GitHub-Pages" class="headerlink" title="Steps to Configure GitHub Pages:"></a>Steps to Configure GitHub Pages:</h3><ol>
-<li><p><strong>Navigate to the Target Repository</strong>:</p>
-<ul>
-<li>Go to <code>YourUsername/YourBlog.github.io</code> on GitHub.</li>
-</ul>
-</li>
-<li><p><strong>Access Repository Settings</strong>:</p>
-<ul>
-<li>Click on the <strong>Settings</strong> tab.</li>
-<li>In the left sidebar, select <strong>Pages</strong>.</li>
-</ul>
-</li>
-<li><p><strong>Set the Source for GitHub Pages</strong>:</p>
-<ul>
-<li><strong>Source</strong>: <ul>
-<li><strong>Branch</strong>: Select <code>main</code>.</li>
-<li><strong>Folder</strong>: Choose <code>/docs</code>.</li>
-</ul>
-</li>
-<li>Click <strong>Save</strong> to apply the changes.</li>
-</ul>
-</li>
-<li><p><strong>Verify the Configuration</strong>:</p>
-<ul>
-<li>After saving, GitHub will provide a URL where your site is published, typically <code>https://YourUsername.github.io</code>.</li>
-<li>It may take a few minutes for the site to become available.</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Testing-the-Workflow"><a href="#Testing-the-Workflow" class="headerlink" title="Testing the Workflow"></a>Testing the Workflow</h2><p>With everything set up, it’s time to test the automated deployment process.</p>
-<h3 id="Steps-to-Test"><a href="#Steps-to-Test" class="headerlink" title="Steps to Test:"></a>Steps to Test:</h3><ol>
-<li><p><strong>Make a Change to Your Blog</strong>:</p>
-<ul>
-<li>Add a new post or update existing content in your Hexo source repository (<code>YourUsername/YourBlog</code>).</li>
-</ul>
-</li>
-<li><p><strong>Push the Changes to GitHub</strong>:</p>
-<pre><code class="bash">git add .
-git commit -m &quot;Test deployment with a new post&quot;
-git push origin main
-</code></pre>
-</li>
-<li><p><strong>Monitor the GitHub Actions Workflow</strong>:</p>
-<ul>
-<li>Navigate to your source repository (<code>YourUsername/YourBlog</code>) on GitHub.</li>
-<li>Click on the <strong>Actions</strong> tab.</li>
-<li>You should see a workflow run named <code>Deploy Hexo to GitHub Pages</code> triggered by your push.</li>
-<li>Click on the workflow run to monitor its progress. Ensure all steps complete successfully.</li>
-</ul>
-</li>
-<li><p><strong>Verify the Deployment</strong>:</p>
-<ul>
-<li>After the workflow completes, visit your GitHub Pages site at <code>https://YourUsername.github.io</code>.</li>
-<li>Confirm that the changes reflect as expected.</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="Troubleshooting-Common-Issues"><a href="#Troubleshooting-Common-Issues" class="headerlink" title="Troubleshooting Common Issues"></a>Troubleshooting Common Issues</h2><p>Despite following the steps carefully, you might encounter some common issues. Here’s how to address them:</p>
-<h3 id="1-Permission-Denied-403-Error"><a href="#1-Permission-Denied-403-Error" class="headerlink" title="1. Permission Denied (403 Error)"></a>1. <strong>Permission Denied (403 Error)</strong></h3><p><strong>Error Message:</strong></p>
-<pre><code>remote: Permission to YourUsername/YourBlog.github.io.git denied to github-actions[bot].
-fatal: unable to access &#39;https://github.com/YourUsername/YourBlog.github.io.git/&#39;: The requested URL returned error: 403
-</code></pre>
-<p><strong>Solution:</strong></p>
-<ul>
-<li><p><strong>Ensure PAT Has Correct Permissions</strong>:</p>
-<ul>
-<li>The PAT must have <code>repo</code> scope to allow push access.</li>
-<li>If unsure, regenerate the PAT with <code>repo</code> scope and update the secret <code>TARGET_REPO_TOKEN</code>.</li>
-</ul>
-</li>
-<li><p><strong>Verify the Secret</strong>:</p>
-<ul>
-<li>Double-check that the <code>TARGET_REPO_TOKEN</code> in your source repository’s secrets is the correct PAT.</li>
-<li>Ensure there are no extra spaces or hidden characters.</li>
-</ul>
-</li>
-<li><p><strong>Check Repository Access</strong>:</p>
-<ul>
-<li>Confirm that the PAT owner has write access to the target repository (<code>YourUsername/YourBlog.github.io</code>).</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-Unexpected-Input-Parameters"><a href="#2-Unexpected-Input-Parameters" class="headerlink" title="2. Unexpected Input Parameters"></a>2. <strong>Unexpected Input Parameters</strong></h3><p><strong>Error Message:</strong></p>
-<pre><code>Warning: Unexpected input(s) &#39;folder&#39;, &#39;target-folder&#39;, valid inputs are [&#39;github_token&#39;, &#39;repository&#39;, &#39;branch&#39;, &#39;force&#39;, &#39;tags&#39;, &#39;directory&#39;]
-</code></pre>
-<p><strong>Solution:</strong></p>
-<ul>
-<li><strong>Use Supported Inputs</strong>:<ul>
-<li>Ensure you’re using the correct input parameters for the GitHub Action. In this tutorial, we’re using <code>peaceiris/actions-gh-pages@v4</code>, which supports the necessary parameters.</li>
-<li>If using a different action, refer to its documentation to confirm supported inputs.</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-Empty-Commit-Errors"><a href="#3-Empty-Commit-Errors" class="headerlink" title="3. Empty Commit Errors"></a>3. <strong>Empty Commit Errors</strong></h3><p><strong>Issue:</strong><br>Sometimes, the workflow might fail if there are no changes to commit.</p>
-<p><strong>Solution:</strong></p>
-<ul>
-<li><strong>Allow Empty Commits</strong>:<ul>
-<li>The <code>allow_empty_commit: true</code> parameter in the workflow prevents failures when there are no changes to deploy.</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-Incorrect-Directory-Paths"><a href="#4-Incorrect-Directory-Paths" class="headerlink" title="4. Incorrect Directory Paths"></a>4. <strong>Incorrect Directory Paths</strong></h3><p><strong>Issue:</strong><br>Files are not being copied to the correct directory in the target repository.</p>
-<p><strong>Solution:</strong></p>
-<ul>
-<li><strong>Verify <code>publish_dir</code> and <code>destination_dir</code></strong>:<ul>
-<li>Ensure <code>publish_dir</code> points to Hexo’s output directory (<code>./public</code>).</li>
-<li>Ensure <code>destination_dir</code> points to the correct folder in the target repository (<code>docs</code>).</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-Delayed-Deployment"><a href="#5-Delayed-Deployment" class="headerlink" title="5. Delayed Deployment"></a>5. <strong>Delayed Deployment</strong></h3><p><strong>Issue:</strong><br>Changes take longer to appear on GitHub Pages.</p>
-<p><strong>Solution:</strong></p>
-<ul>
-<li><strong>Wait for GitHub Pages to Update</strong>:<ul>
-<li>GitHub Pages might take a few minutes to reflect the latest changes.</li>
-<li>If delays persist, check the workflow logs for any deployment issues.</li>
-</ul>
-</li>
-</ul>
-<h3 id="6-Authentication-Issues-with-Actions"><a href="#6-Authentication-Issues-with-Actions" class="headerlink" title="6. Authentication Issues with Actions"></a>6. <strong>Authentication Issues with Actions</strong></h3><p><strong>Issue:</strong><br>The GitHub Action fails to authenticate with the target repository.</p>
-<p><strong>Solution:</strong></p>
-<ul>
-<li><p><strong>Check PAT Validity</strong>:</p>
-<ul>
-<li>Ensure the PAT hasn’t expired and is correctly stored in the repository secrets.</li>
-</ul>
-</li>
-<li><p><strong>Verify Repository Names</strong>:</p>
-<ul>
-<li>Double-check that the <code>publish_repo</code> field in your workflow matches the exact name of your target repository (<code>YourUsername/YourBlog.github.io</code>).</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>By following this comprehensive guide, you’ve set up an automated GitHub Actions workflow that:</p>
-<ul>
-<li><strong>Generates your Hexo site</strong> every time you push updates to your source repository.</li>
-<li><strong>Deploys the generated static files</strong> to the <code>docs</code> folder of your GitHub Pages repository.</li>
-</ul>
-<p>This automation ensures your blog remains up-to-date without manual intervention, allowing you to focus on creating content. Additionally, using trusted actions like <code>peaceiris/actions-gh-pages</code> simplifies the deployment process and enhances reliability.</p>
-<p>If you encounter any issues beyond the common ones discussed, refer to the <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">GitHub Actions Documentation</a> or seek assistance from the GitHub community.</p>
-<p>Happy blogging!</p>
-<hr>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">GitHub Actions Documentation</a></li>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/">Hexo Official Documentation</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages">peaceiris&#x2F;actions-gh-pages GitHub Repository</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">Managing GitHub Secrets</a></li>
-</ul>
-
             
         </div>
     </div>
@@ -598,22 +226,22 @@ fatal: unable to access &#39;https://github.com/YourUsername/YourBlog.github.io.
         
         <span class="tag">
             
-            <a href="/tags/setup/" style="color: #ffa2c4">setup</a>
+            <a href="/tags/github-act/" style="color: #ff7d73">github-act</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/github-act/" style="color: #00a596">github-act</a>
+            <a href="/tags/hexo/" style="color: #ffa2c4">hexo</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/hexo/" style="color: #03a9f4">hexo</a>
+            <a href="/tags/web/" style="color: #00a596">web</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/web/" style="color: #ff7d73">web</a>
+            <a href="/tags/setup/" style="color: #03a9f4">setup</a>
         </span>
         
     </div>
@@ -647,10 +275,10 @@ fatal: unable to access &#39;https://github.com/YourUsername/YourBlog.github.io.
     <div class="description">
         <div class="content" v-pre>
             
-            <p>Ahhhhh! I’ve written almost 50,000 words! Even though I used AI and borrowed some from others, the workload is still massive. I have to review it so many times each day, tweaking things here and there. This tutorial is both frustrating and so much fun!</p>
+            <p>Ahhhhh! I’ve written almost 50,000 words for the book <a href="/2024/09/26/cpp-unleash/02h-menu"><em>C++ Unleashed: From Zero to Hero</em></a>! Even though I used AI and borrowed some from others, the workload is still massive. I have to review it so many times each day, tweaking things here and there. This tutorial is both frustrating and so much fun!</p>
 <p>I initially decided to write it in English because I felt that the final result would be better (my Chinese isn’t that good). Sure enough, when I tried to translate it, the whole thing almost twisted my brain into knots with the Chinese vocabulary.</p>
 <p>Thanks to AI technology (O1’s understanding saved me a lot of time), otherwise, writing in English would’ve been torture. But the sense of accomplishment from this is huge—48k words in three days is pretty impressive!</p>
-<p>I’ve been wanting to write this book <em>C++ Unleashed: From Zero to Hero</em> for a long time, and I finally got around to it. I’ve already realized a lot of my ambitions, and this is the first step in my MCGA (Make C++ Great Again) plan. Onward and upward!</p>
+<p>I’ve been wanting to write this book <a href="/2024/09/26/cpp-unleash/02h-menu"><em>C++ Unleashed: From Zero to Hero</em></a> for a long time, and I finally got around to it. I’ve already realized a lot of my ambitions, and this is the first step in my MCGA (Make C++ Great Again) plan. Onward and upward!</p>
 <p>Right now, the book is riddled with bugs, but I’ll just have to fix them bit by bit.</p>
 <p>To be honest, there are a lot of parts I’m not satisfied with, but it will have to do for now.</p>
 <p><strong>TODO</strong>:</p>
@@ -674,7 +302,7 @@ fatal: unable to access &#39;https://github.com/YourUsername/YourBlog.github.io.
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #03a9f4">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">cpp-unleash</a>
         </span>
         
         <span class="tag">
@@ -1937,22 +1565,22 @@ index % time    self              calls   self  children    called
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #00a596">c-cpp</a>
+            <a href="/tags/c-cpp/" style="color: #03a9f4">c-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #ffa2c4">modern-cpp</a>
+            <a href="/tags/modern-cpp/" style="color: #00bcd4">modern-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00bcd4">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #ff7d73">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #00bcd4">02Hero</a>
         </span>
         
     </div>
@@ -3244,12 +2872,12 @@ Processed: Delta
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ffa2c4">c-cpp</a>
+            <a href="/tags/c-cpp/" style="color: #ff7d73">c-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00bcd4">modern-cpp</a>
+            <a href="/tags/modern-cpp/" style="color: #00a596">modern-cpp</a>
         </span>
         
         <span class="tag">
@@ -3984,22 +3612,22 @@ Directory copy completed successfully.
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ffa2c4">c-cpp</a>
+            <a href="/tags/c-cpp/" style="color: #ff7d73">c-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #03a9f4">modern-cpp</a>
+            <a href="/tags/modern-cpp/" style="color: #00bcd4">modern-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #ff7d73">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #00a596">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #00bcd4">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #ffa2c4">02Hero</a>
         </span>
         
     </div>
@@ -5265,17 +4893,17 @@ r3 &gt; r2: true
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00bcd4">modern-cpp</a>
+            <a href="/tags/modern-cpp/" style="color: #03a9f4">modern-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #03a9f4">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #00bcd4">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #00a596">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #ff7d73">02Hero</a>
         </span>
         
     </div>
@@ -5923,17 +5551,17 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00bcd4">modern-cpp</a>
+            <a href="/tags/modern-cpp/" style="color: #ff7d73">modern-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00a596">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #03a9f4">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #ff7d73">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #ffa2c4">02Hero</a>
         </span>
         
     </div>
@@ -6501,22 +6129,22 @@ Result: 7
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">c-cpp</a>
+            <a href="/tags/c-cpp/" style="color: #ffa2c4">c-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #03a9f4">modern-cpp</a>
+            <a href="/tags/modern-cpp/" style="color: #00bcd4">modern-cpp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00a596">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #03a9f4">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #00bcd4">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #00a596">02Hero</a>
         </span>
         
     </div>
@@ -6612,12 +6240,12 @@ Result: 7
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00a596">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #00bcd4">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #00a596">02Hero</a>
         </span>
         
     </div>
@@ -6763,12 +6391,12 @@ Result: 7
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00bcd4">cpp-unleash</a>
+            <a href="/tags/cpp-unleash/" style="color: #00a596">cpp-unleash</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/02Hero/" style="color: #ff7d73">02Hero</a>
+            <a href="/tags/02Hero/" style="color: #00bcd4">02Hero</a>
         </span>
         
     </div>
