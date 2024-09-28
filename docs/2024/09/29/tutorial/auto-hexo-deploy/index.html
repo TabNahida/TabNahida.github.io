@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Automate Hexo Deployment to GitHub Pages with GitHub Actions | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Automate Hexo Deployment to GitHub Pages with GitHub Actions</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/29
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutor
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/github-act/" style="color: #03a9f4">
+                    github-act
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/hexo/" style="color: #00a596">
+                    hexo
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/web/" style="color: #03a9f4">
+                    web
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/setup/" style="color: #00a596">
+                    setup
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Automate-Hexo-Deployment-to-GitHub-Pages-with-GitHub-Actions"><a href="#Automate-Hexo-Deployment-to-GitHub-Pages-with-GitHub-Actions" class="headerlink" title="Automate Hexo Deployment to GitHub Pages with GitHub Actions"></a>Automate Hexo Deployment to GitHub Pages with GitHub Actions</h1><p>Deploying a static website generated by Hexo to GitHub Pages can be streamlined using GitHub Actions. This guide will walk you through setting up an automated workflow that:</p>
+<ol>
+<li><strong>Generates your Hexo site</strong> every time you push changes to your repository.</li>
+<li><strong>Deploys the generated static files</strong> to the <code>docs</code> folder of your <code>TabNahida/TabNahida.github.io</code> repository, enabling seamless updates to your GitHub Pages site.</li>
+</ol>
+<p>By the end of this tutorial, you’ll have a fully automated CI&#x2F;CD pipeline for your Hexo blog, ensuring your website is always up-to-date with your latest content.</p>
+<hr>
+<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ol>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#generating-a-personal-access-token-pat">Generating a Personal Access Token (PAT)</a></li>
+<li><a href="#adding-the-pat-to-github-secrets">Adding the PAT to GitHub Secrets</a></li>
+<li><a href="#setting-up-the-github-actions-workflow">Setting Up the GitHub Actions Workflow</a></li>
+<li><a href="#configuring-github-pages-in-the-target-repository">Configuring GitHub Pages in the Target Repository</a></li>
+<li><a href="#testing-the-workflow">Testing the Workflow</a></li>
+<li><a href="#troubleshooting-common-issues">Troubleshooting Common Issues</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<hr>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before you begin, ensure you have the following:</p>
+<ul>
+<li><p><strong>Two GitHub Repositories</strong>:</p>
+<ul>
+<li><strong>Source Repository</strong>: Your main repository containing the Hexo blog source code (e.g., <code>TabNahida/TabNahida</code>).</li>
+<li><strong>Target Repository</strong>: Your GitHub Pages repository where the static site will be deployed (e.g., <code>TabNahida/TabNahida.github.io</code>).</li>
+</ul>
+</li>
+<li><p><strong>Hexo Installed and Configured</strong>: Ensure your Hexo blog is properly set up and can generate static files locally using <code>hexo generate</code>.</p>
+</li>
+<li><p><strong>Basic Knowledge of GitHub Actions</strong>: Familiarity with creating and editing YAML files within GitHub repositories.</p>
+</li>
+</ul>
+<hr>
+<h2 id="Generating-a-Personal-Access-Token-PAT"><a href="#Generating-a-Personal-Access-Token-PAT" class="headerlink" title="Generating a Personal Access Token (PAT)"></a>Generating a Personal Access Token (PAT)</h2><p>To allow GitHub Actions to push changes to your target repository, you need a Personal Access Token (PAT) with the appropriate permissions.</p>
+<h3 id="Steps-to-Generate-a-PAT"><a href="#Steps-to-Generate-a-PAT" class="headerlink" title="Steps to Generate a PAT:"></a>Steps to Generate a PAT:</h3><ol>
+<li><p><strong>Log in to GitHub</strong>:<br>Navigate to <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a> and sign in to your account.</p>
+</li>
+<li><p><strong>Access Developer Settings</strong>:</p>
+<ul>
+<li>Click on your profile picture in the top-right corner.</li>
+<li>Select <strong>Settings</strong> from the dropdown menu.</li>
+<li>In the left sidebar, click on <strong>Developer settings</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Create a New Token</strong>:</p>
+<ul>
+<li>Click on <strong>Personal access tokens</strong>.</li>
+<li>Click the <strong>Generate new token</strong> button.</li>
+</ul>
+</li>
+<li><p><strong>Configure the Token</strong>:</p>
+<ul>
+<li><strong>Note</strong>: Enter a descriptive name, e.g., <code>GitHub Actions Deploy Token</code>.</li>
+<li><strong>Expiration</strong>: Choose an appropriate expiration date. For security reasons, it’s recommended not to set it to never expire.</li>
+<li><strong>Scopes</strong>: <ul>
+<li>Expand the <strong>repo</strong> section.</li>
+<li>Select <strong>repo</strong> (all sub-scopes under repo will be automatically selected), ensuring the token has full control of private repositories.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Generate and Copy the Token</strong>:</p>
+<ul>
+<li>Click <strong>Generate token</strong>.</li>
+<li><strong>Important</strong>: Copy the generated token immediately. You won’t be able to view it again.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Adding-the-PAT-to-GitHub-Secrets"><a href="#Adding-the-PAT-to-GitHub-Secrets" class="headerlink" title="Adding the PAT to GitHub Secrets"></a>Adding the PAT to GitHub Secrets</h2><p>To securely use your PAT within GitHub Actions, store it as a secret in your source repository.</p>
+<h3 id="Steps-to-Add-the-PAT-as-a-Secret"><a href="#Steps-to-Add-the-PAT-as-a-Secret" class="headerlink" title="Steps to Add the PAT as a Secret:"></a>Steps to Add the PAT as a Secret:</h3><ol>
+<li><p><strong>Navigate to Your Source Repository</strong>:<br>Go to <code>TabNahida/TabNahida</code> on GitHub.</p>
+</li>
+<li><p><strong>Access Repository Settings</strong>:</p>
+<ul>
+<li>Click on the <strong>Settings</strong> tab.</li>
+<li>In the left sidebar, select <strong>Secrets and variables</strong> &gt; <strong>Actions</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Add a New Secret</strong>:</p>
+<ul>
+<li>Click on the <strong>New repository secret</strong> button.</li>
+<li><strong>Name</strong>: <code>TARGET_REPO_TOKEN</code></li>
+<li><strong>Value</strong>: Paste the PAT you generated earlier.</li>
+<li>Click <strong>Add secret</strong> to save.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Setting-Up-the-GitHub-Actions-Workflow"><a href="#Setting-Up-the-GitHub-Actions-Workflow" class="headerlink" title="Setting Up the GitHub Actions Workflow"></a>Setting Up the GitHub Actions Workflow</h2><p>With the PAT in place, you can now create a GitHub Actions workflow that automates the Hexo build and deployment process.</p>
+<h3 id="Steps-to-Create-the-Workflow"><a href="#Steps-to-Create-the-Workflow" class="headerlink" title="Steps to Create the Workflow:"></a>Steps to Create the Workflow:</h3><ol>
+<li><p><strong>Create the Workflow File</strong>:</p>
+<ul>
+<li>In your source repository (<code>TabNahida/TabNahida</code>), navigate to the <code>.github/workflows/</code> directory. If it doesn’t exist, create it.</li>
+<li>Inside the <code>workflows</code> folder, create a new file named <code>deploy.yml</code>.</li>
+</ul>
+</li>
+<li><p><strong>Define the Workflow Configuration</strong>:<br>Open <code>deploy.yml</code> and add the following content:</p>
+<pre><code class="yaml">name: Deploy Hexo to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Change this if your default branch is different
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the Source Code
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up Node.js Environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: &#39;16&#39;  # Specify your Node.js version
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Generate Hexo Static Files
+      - name: Generate Hexo Site
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: $&#123;&#123; secrets.TARGET_REPO_TOKEN &#125;&#125;
+          publish_dir: ./public
+          destination_dir: docs
+          publish_repo: TabNahida/TabNahida.github.io
+          publish_branch: main
+          allow_empty_commit: true
+</code></pre>
+</li>
+</ol>
+<h3 id="Breakdown-of-the-Workflow"><a href="#Breakdown-of-the-Workflow" class="headerlink" title="Breakdown of the Workflow:"></a>Breakdown of the Workflow:</h3><ul>
+<li><p><strong>name</strong>: Assigns a name to the workflow (<code>Deploy Hexo to GitHub Pages</code>).</p>
+</li>
+<li><p><strong>on</strong>:</p>
+<ul>
+<li><strong>push</strong>: Specifies that the workflow runs on <code>push</code> events.</li>
+<li><strong>branches</strong>: The workflow triggers when there’s a push to the <code>main</code> branch.</li>
+</ul>
+</li>
+<li><p><strong>jobs</strong>:</p>
+<ul>
+<li><strong>build-and-deploy</strong>: The single job that builds and deploys the site.<ul>
+<li><p><strong>runs-on</strong>: Specifies the virtual environment (<code>ubuntu-latest</code>).</p>
+</li>
+<li><p><strong>steps</strong>:</p>
+<ol>
+<li><p><strong>Checkout Source Code</strong>:</p>
+<ul>
+<li>Uses <code>actions/checkout@v3</code> to clone the repository.</li>
+</ul>
+</li>
+<li><p><strong>Setup Node.js</strong>:</p>
+<ul>
+<li>Uses <code>actions/setup-node@v3</code> to set up the Node.js environment. Adjust the <code>node-version</code> if your project requires a different version.</li>
+</ul>
+</li>
+<li><p><strong>Install Dependencies</strong>:</p>
+<ul>
+<li>Runs <code>npm install</code> to install Hexo and other project dependencies.</li>
+</ul>
+</li>
+<li><p><strong>Generate Hexo Site</strong>:</p>
+<ul>
+<li>Executes <code>hexo clean</code> to clear previous builds.</li>
+<li>Runs <code>hexo generate</code> to build the static files, typically output to the <code>public</code> directory.</li>
+</ul>
+</li>
+<li><p><strong>Deploy to GitHub Pages</strong>:</p>
+<ul>
+<li>Utilizes <code>peaceiris/actions-gh-pages@v4</code>, a robust action for deploying static sites.</li>
+<li><strong>github_token</strong>: References the secret <code>TARGET_REPO_TOKEN</code> for authentication.</li>
+<li><strong>publish_dir</strong>: Points to the directory containing the generated static files (<code>./public</code>).</li>
+<li><strong>destination_dir</strong>: Specifies the target directory in the repository (<code>docs</code>).</li>
+<li><strong>publish_repo</strong>: The target repository where the site will be deployed (<code>TabNahida/TabNahida.github.io</code>).</li>
+<li><strong>publish_branch</strong>: The branch to which the files will be pushed (<code>main</code>).</li>
+<li><strong>allow_empty_commit</strong>: Allows the workflow to run even if there are no changes to commit, preventing failures in such cases.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>Commit and Push the Workflow</strong>:<ul>
+<li>Save the <code>deploy.yml</code> file.</li>
+<li>Commit the new workflow to your repository:<pre><code class="bash">git add .github/workflows/deploy.yml
+git commit -m &quot;Add GitHub Actions workflow for Hexo deployment&quot;
+git push origin main
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Configuring-GitHub-Pages-in-the-Target-Repository"><a href="#Configuring-GitHub-Pages-in-the-Target-Repository" class="headerlink" title="Configuring GitHub Pages in the Target Repository"></a>Configuring GitHub Pages in the Target Repository</h2><p>To ensure that GitHub Pages serves your site from the <code>docs</code> folder, you need to configure the settings in your target repository (<code>TabNahida/TabNahida.github.io</code>).</p>
+<h3 id="Steps-to-Configure-GitHub-Pages"><a href="#Steps-to-Configure-GitHub-Pages" class="headerlink" title="Steps to Configure GitHub Pages:"></a>Steps to Configure GitHub Pages:</h3><ol>
+<li><p><strong>Navigate to the Target Repository</strong>:<br>Go to <code>TabNahida/TabNahida.github.io</code> on GitHub.</p>
+</li>
+<li><p><strong>Access Repository Settings</strong>:</p>
+<ul>
+<li>Click on the <strong>Settings</strong> tab.</li>
+<li>In the left sidebar, select <strong>Pages</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Set the Source for GitHub Pages</strong>:</p>
+<ul>
+<li><strong>Source</strong>: <ul>
+<li><strong>Branch</strong>: Select <code>main</code>.</li>
+<li><strong>Folder</strong>: Choose <code>/docs</code>.</li>
+</ul>
+</li>
+<li>Click <strong>Save</strong> to apply the changes.</li>
+</ul>
+</li>
+<li><p><strong>Verify the Configuration</strong>:</p>
+<ul>
+<li>After saving, GitHub will provide a URL where your site is published, typically <code>https://TabNahida.github.io</code>.</li>
+<li>It may take a few minutes for the site to become available.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Testing-the-Workflow"><a href="#Testing-the-Workflow" class="headerlink" title="Testing the Workflow"></a>Testing the Workflow</h2><p>With everything set up, it’s time to test the automated deployment process.</p>
+<h3 id="Steps-to-Test"><a href="#Steps-to-Test" class="headerlink" title="Steps to Test:"></a>Steps to Test:</h3><ol>
+<li><p><strong>Make a Change to Your Blog</strong>:</p>
+<ul>
+<li>Add a new post or update existing content in your Hexo source repository.</li>
+</ul>
+</li>
+<li><p><strong>Push the Changes to GitHub</strong>:</p>
+<pre><code class="bash">git add .
+git commit -m &quot;Test deployment with a new post&quot;
+git push origin main
+</code></pre>
+</li>
+<li><p><strong>Monitor the GitHub Actions Workflow</strong>:</p>
+<ul>
+<li>Navigate to your source repository (<code>TabNahida/TabNahida</code>) on GitHub.</li>
+<li>Click on the <strong>Actions</strong> tab.</li>
+<li>You should see a workflow run named <code>Deploy Hexo to GitHub Pages</code> triggered by your push.</li>
+<li>Click on the workflow run to monitor its progress. Ensure all steps complete successfully.</li>
+</ul>
+</li>
+<li><p><strong>Verify the Deployment</strong>:</p>
+<ul>
+<li>After the workflow completes, visit your GitHub Pages site at <code>https://TabNahida.github.io</code>.</li>
+<li>Confirm that the changes reflect as expected.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Troubleshooting-Common-Issues"><a href="#Troubleshooting-Common-Issues" class="headerlink" title="Troubleshooting Common Issues"></a>Troubleshooting Common Issues</h2><p>Despite following the steps carefully, you might encounter some common issues. Here’s how to address them:</p>
+<h3 id="1-Permission-Denied-403-Error"><a href="#1-Permission-Denied-403-Error" class="headerlink" title="1. Permission Denied (403 Error)"></a>1. <strong>Permission Denied (403 Error)</strong></h3><p><strong>Error Message:</strong></p>
+<pre><code>remote: Permission to TabNahida/TabNahida.github.io.git denied to github-actions[bot].
+fatal: unable to access &#39;https://github.com/TabNahida/TabNahida.github.io.git/&#39;: The requested URL returned error: 403
+</code></pre>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><p><strong>Ensure PAT Has Correct Permissions</strong>:</p>
+<ul>
+<li>The PAT must have <code>repo</code> scope to allow push access.</li>
+<li>If unsure, regenerate the PAT with <code>repo</code> scope and update the secret <code>TARGET_REPO_TOKEN</code>.</li>
+</ul>
+</li>
+<li><p><strong>Verify the Secret</strong>:</p>
+<ul>
+<li>Double-check that the <code>TARGET_REPO_TOKEN</code> in your source repository’s secrets is the correct PAT.</li>
+<li>Ensure there are no extra spaces or hidden characters.</li>
+</ul>
+</li>
+<li><p><strong>Check Repository Access</strong>:</p>
+<ul>
+<li>Confirm that the PAT owner has write access to the target repository (<code>TabNahida/TabNahida.github.io</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Unexpected-Input-Parameters"><a href="#2-Unexpected-Input-Parameters" class="headerlink" title="2. Unexpected Input Parameters"></a>2. <strong>Unexpected Input Parameters</strong></h3><p><strong>Error Message:</strong></p>
+<pre><code>Warning: Unexpected input(s) &#39;folder&#39;, &#39;target-folder&#39;, valid inputs are [&#39;github_token&#39;, &#39;repository&#39;, &#39;branch&#39;, &#39;force&#39;, &#39;tags&#39;, &#39;directory&#39;]
+</code></pre>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Use Supported Inputs</strong>:<ul>
+<li>If using an action that doesn’t support certain input parameters, adjust your workflow accordingly.</li>
+<li>In this guide, we use <code>peaceiris/actions-gh-pages@v4</code>, which supports the necessary parameters.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Empty-Commit-Errors"><a href="#3-Empty-Commit-Errors" class="headerlink" title="3. Empty Commit Errors"></a>3. <strong>Empty Commit Errors</strong></h3><p><strong>Issue:</strong><br>Sometimes, the workflow might fail if there are no changes to commit.</p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Allow Empty Commits</strong>:<ul>
+<li>The <code>allow_empty_commit: true</code> parameter in the workflow prevents failures when there are no changes to deploy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Incorrect-Directory-Paths"><a href="#4-Incorrect-Directory-Paths" class="headerlink" title="4. Incorrect Directory Paths"></a>4. <strong>Incorrect Directory Paths</strong></h3><p><strong>Issue:</strong><br>Files are not being copied to the correct directory in the target repository.</p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Verify <code>publish_dir</code> and <code>destination_dir</code></strong>:<ul>
+<li>Ensure <code>publish_dir</code> points to Hexo’s output directory (<code>./public</code>).</li>
+<li>Ensure <code>destination_dir</code> points to the correct folder in the target repository (<code>docs</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Delayed-Deployment"><a href="#5-Delayed-Deployment" class="headerlink" title="5. Delayed Deployment"></a>5. <strong>Delayed Deployment</strong></h3><p><strong>Issue:</strong><br>Changes take longer to appear on GitHub Pages.</p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li><strong>Wait for GitHub Pages to Update</strong>:<ul>
+<li>GitHub Pages might take a few minutes to reflect the latest changes.</li>
+<li>If delays persist, check the workflow logs for any deployment issues.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>By following this comprehensive guide, you’ve set up an automated GitHub Actions workflow that:</p>
+<ul>
+<li><strong>Generates your Hexo site</strong> every time you push updates to your repository.</li>
+<li><strong>Deploys the generated static files</strong> to the <code>docs</code> folder of your GitHub Pages repository.</li>
+</ul>
+<p>This automation ensures your blog remains up-to-date without manual intervention, allowing you to focus on creating content. Additionally, using trusted actions like <code>peaceiris/actions-gh-pages</code> simplifies the deployment process and enhances reliability.</p>
+<p>If you encounter any issues beyond the common ones discussed, refer to the <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">GitHub Actions Documentation</a> or seek assistance from the GitHub community.</p>
+<p>Happy blogging!</p>
+<hr>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/actions">GitHub Actions Documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/">Hexo Official Documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages">peaceiris&#x2F;actions-gh-pages GitHub Repository</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">Managing GitHub Secrets</a></li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
