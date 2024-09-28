@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Modern C++ Features | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Modern C++ Features</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-tplgenpgm">Templates and Generic Programming</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Modern-C-Features"><a href="#Modern-C-Features" class="headerlink" title="Modern C++ Features"></a>Modern C++ Features</h1><p>Modern C++ (C++11 and later) introduced a range of features that enhance the language’s expressiveness, performance, and safety. This chapter will cover some of the most important features that you should know to write effective C++ code today.</p>
+<p>In this chapter, we’ll discuss:</p>
+<ul>
+<li>Type Inference with <code>auto</code></li>
+<li>Range-Based for Loops</li>
+<li>Smart Pointers</li>
+<li>Lambda Expressions</li>
+<li><code>nullptr</code></li>
+<li><code>constexpr</code></li>
+<li>Move Semantics</li>
+<li>The <code>std::optional</code> Class</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="Type-Inference-with-auto"><a href="#Type-Inference-with-auto" class="headerlink" title="Type Inference with auto"></a>Type Inference with <code>auto</code></h2><p>The <code>auto</code> keyword allows the compiler to automatically deduce the type of a variable at compile time, simplifying code and improving readability.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    auto x = 42; // x is int
+    auto y = 3.14; // y is double
+    auto str = &quot;Hello, World!&quot;; // str is const char*
+
+    std::vector&lt;int&gt; vec = &#123;1, 2, 3, 4, 5&#125;;
+    auto it = vec.begin(); // it is std::vector&lt;int&gt;::iterator
+
+    std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; &quot;, y: &quot; &lt;&lt; y &lt;&lt; &quot;, str: &quot; &lt;&lt; str &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Range-Based-for-Loops"><a href="#Range-Based-for-Loops" class="headerlink" title="Range-Based for Loops"></a>Range-Based for Loops</h2><p>Range-based for loops provide a more readable way to iterate through containers, eliminating the need for iterators and index-based loops.</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+
+    for (const auto&amp; num : numbers) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Smart-Pointers"><a href="#Smart-Pointers" class="headerlink" title="Smart Pointers"></a>Smart Pointers</h2><p>Smart pointers manage the memory of dynamically allocated objects, reducing the risk of memory leaks and dangling pointers. The three main types are:</p>
+<ul>
+<li><code>std::unique_ptr</code></li>
+<li><code>std::shared_ptr</code></li>
+<li><code>std::weak_ptr</code></li>
+</ul>
+<h3 id="Example-std-unique-ptr"><a href="#Example-std-unique-ptr" class="headerlink" title="Example: std::unique_ptr"></a>Example: <code>std::unique_ptr</code></h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+class MyClass &#123;
+public:
+    MyClass() &#123; std::cout &lt;&lt; &quot;Constructor&quot; &lt;&lt; std::endl; &#125;
+    ~MyClass() &#123; std::cout &lt;&lt; &quot;Destructor&quot; &lt;&lt; std::endl; &#125;
+&#125;;
+
+int main() &#123;
+    std::unique_ptr&lt;MyClass&gt; ptr = std::make_unique&lt;MyClass&gt;();
+    // No need to manually delete; memory is automatically managed
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Example-std-shared-ptr"><a href="#Example-std-shared-ptr" class="headerlink" title="Example: std::shared_ptr"></a>Example: <code>std::shared_ptr</code></h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+class MyClass &#123;
+public:
+    MyClass() &#123; std::cout &lt;&lt; &quot;Constructor&quot; &lt;&lt; std::endl; &#125;
+    ~MyClass() &#123; std::cout &lt;&lt; &quot;Destructor&quot; &lt;&lt; std::endl; &#125;
+&#125;;
+
+int main() &#123;
+    std::shared_ptr&lt;MyClass&gt; ptr1 = std::make_shared&lt;MyClass&gt;();
+    &#123;
+        std::shared_ptr&lt;MyClass&gt; ptr2 = ptr1; // Both share ownership
+    &#125; // Destructor called when ptr2 goes out of scope
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Lambda-Expressions"><a href="#Lambda-Expressions" class="headerlink" title="Lambda Expressions"></a>Lambda Expressions</h2><p>Lambda expressions provide a concise way to define anonymous functions directly within your code, enabling inline function definitions.</p>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax:"></a>Syntax:</h3><pre><code class="cpp">[capture](parameters) -&gt; return_type &#123;
+    // Function body
+&#125;
+</code></pre>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+
+    // Lambda to print each number
+    std::for_each(numbers.begin(), numbers.end(), [](int n) &#123;
+        std::cout &lt;&lt; n &lt;&lt; &quot; &quot;;
+    &#125;);
+    std::cout &lt;&lt; std::endl;
+
+    // Lambda to filter even numbers
+    auto is_even = [](int n) &#123; return n % 2 == 0; &#125;;
+    auto count = std::count_if(numbers.begin(), numbers.end(), is_even);
+    std::cout &lt;&lt; &quot;Count of even numbers: &quot; &lt;&lt; count &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a><code>nullptr</code></h2><p><code>nullptr</code> is a null pointer constant introduced in C++11, replacing the old <code>NULL</code> macro. It provides a type-safe way to represent null pointers.</p>
+<h3 id="Example-3"><a href="#Example-3" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+
+void func(int* ptr) &#123;
+    if (ptr == nullptr) &#123;
+        std::cout &lt;&lt; &quot;Pointer is null.&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;
+
+int main() &#123;
+    int* p = nullptr; // Safe null pointer
+    func(p);
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a><code>constexpr</code></h2><p>The <code>constexpr</code> keyword allows you to define functions and variables that can be evaluated at compile time, improving performance and enabling more powerful compile-time computations.</p>
+<h3 id="Example-4"><a href="#Example-4" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+
+constexpr int square(int x) &#123;
+    return x * x;
+&#125;
+
+int main() &#123;
+    constexpr int result = square(5); // Computed at compile time
+    std::cout &lt;&lt; &quot;Square of 5 is: &quot; &lt;&lt; result &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Move-Semantics"><a href="#Move-Semantics" class="headerlink" title="Move Semantics"></a>Move Semantics</h2><p>Move semantics allow the resources of temporary objects to be transferred rather than copied, enhancing performance. This is particularly useful for objects with dynamic memory allocation.</p>
+<h3 id="Example-5"><a href="#Example-5" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+class MyVector &#123;
+private:
+    std::vector&lt;int&gt; data;
+
+public:
+    MyVector(std::initializer_list&lt;int&gt; init) : data(init) &#123;&#125;
+
+    // Move constructor
+    MyVector(MyVector&amp;&amp; other) noexcept : data(std::move(other.data)) &#123;&#125;
+
+    void display() const &#123;
+        for (const auto&amp; val : data) &#123;
+            std::cout &lt;&lt; val &lt;&lt; &quot; &quot;;
+        &#125;
+        std::cout &lt;&lt; std::endl;
+    &#125;
+&#125;;
+
+int main() &#123;
+    MyVector v1 = &#123;1, 2, 3, 4, 5&#125;;
+    MyVector v2 = std::move(v1); // Move v1 into v2
+
+    v2.display(); // Outputs: 1 2 3 4 5
+    return 0;
+&#125;
+</code></pre>
+<h2 id="The-std-optional-Class"><a href="#The-std-optional-Class" class="headerlink" title="The std::optional Class"></a>The <code>std::optional</code> Class</h2><p><code>std::optional</code> is a utility that represents an optional value that may or may not be present, offering a safer alternative to using pointers or other methods to signify optionality.</p>
+<h3 id="Example-6"><a href="#Example-6" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;optional&gt;
+
+std::optional&lt;int&gt; findValue(bool shouldFind) &#123;
+    if (shouldFind) &#123;
+        return 42; // Optional value is present
+    &#125;
+    return std::nullopt; // No value present
+&#125;
+
+int main() &#123;
+    auto value = findValue(true);
+    if (value) &#123;
+        std::cout &lt;&lt; &quot;Found value: &quot; &lt;&lt; *value &lt;&lt; std::endl; // Dereference
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;No value found.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you learned about important features introduced in modern C++:</p>
+<ul>
+<li><strong>Type Inference with <code>auto</code>:</strong> Automatically deducing variable types.</li>
+<li><strong>Range-Based for Loops:</strong> Simplifying iterations over containers.</li>
+<li><strong>Smart Pointers:</strong> Managing memory safely and efficiently.</li>
+<li><strong>Lambda Expressions:</strong> Defining anonymous functions inline.</li>
+<li><strong><code>nullptr</code>:</strong> A type-safe null pointer constant.</li>
+<li><strong><code>constexpr</code>:</strong> Enabling compile-time computation for functions and variables.</li>
+<li><strong>Move Semantics:</strong> Optimizing resource management for temporary objects.</li>
+<li><strong><code>std::optional</code>:</strong> Representing values that may or may not be present.</li>
+</ul>
+<p>These features make modern C++ more powerful, expressive, and safer, helping you write better code with less risk of errors. In the next chapter, we will delve into <strong>Standard Template Library (STL)</strong>, exploring its containers, algorithms, and iterators.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-stl">Standard Template Library (STL)</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

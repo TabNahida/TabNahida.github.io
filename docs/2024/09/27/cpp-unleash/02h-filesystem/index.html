@@ -1,0 +1,965 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Filesystem | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Filesystem</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #00a596">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-cpp20">C++20 Features</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Filesystem"><a href="#Filesystem" class="headerlink" title="Filesystem"></a>Filesystem</h1><p>The <strong>Filesystem</strong> library, introduced in C++17 and further enhanced in C++20, provides a standardized and portable way to perform file and directory operations. It abstracts away the underlying operating system’s file handling mechanisms, allowing developers to interact with the filesystem using a consistent and intuitive API. This chapter delves into the capabilities of <code>std::filesystem</code>, enabling you to manage files and directories efficiently in your C++ applications.</p>
+<span id="more"></span>
+
+<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ol>
+<li><a href="#introduction-to-stdfilesystem">Introduction to <code>std::filesystem</code></a></li>
+<li><a href="#getting-started-with-stdfilesystem">Getting Started with <code>std::filesystem</code></a></li>
+<li><a href="#path-manipulation">Path Manipulation</a></li>
+<li><a href="#file-operations">File Operations</a></li>
+<li><a href="#directory-operations">Directory Operations</a></li>
+<li><a href="#iterating-through-directories">Iterating Through Directories</a></li>
+<li><a href="#querying-file-properties">Querying File Properties</a></li>
+<li><a href="#error-handling-in-filesystem-operations">Error Handling in Filesystem Operations</a></li>
+<li><a href="#best-practices-with-stdfilesystem">Best Practices with <code>std::filesystem</code></a></li>
+<li><a href="#practical-examples">Practical Examples</a></li>
+<li><a href="#summary">Summary</a></li>
+</ol>
+<hr>
+<h2 id="Introduction-to-std-filesystem"><a href="#Introduction-to-std-filesystem" class="headerlink" title="Introduction to std::filesystem"></a>Introduction to <code>std::filesystem</code></h2><h3 id="What-is-std-filesystem"><a href="#What-is-std-filesystem" class="headerlink" title="What is std::filesystem?"></a>What is <code>std::filesystem</code>?</h3><p><code>std::filesystem</code> is a library in the C++ Standard Library that provides facilities to perform operations on files and directories, such as creation, deletion, modification, and querying of file metadata. It offers a modern, type-safe, and cross-platform interface for interacting with the filesystem, eliminating the need to rely on platform-specific APIs or workarounds.</p>
+<h3 id="Why-Use-std-filesystem"><a href="#Why-Use-std-filesystem" class="headerlink" title="Why Use std::filesystem?"></a>Why Use <code>std::filesystem</code>?</h3><ul>
+<li><strong>Portability</strong>: Write code that works seamlessly across different operating systems (Windows, Linux, macOS).</li>
+<li><strong>Type Safety</strong>: Utilize strong type abstractions like <code>std::filesystem::path</code> to manage filesystem paths.</li>
+<li><strong>Rich Functionality</strong>: Access a wide range of filesystem operations, from simple file manipulations to complex directory traversals.</li>
+<li><strong>Modern API</strong>: Leverage modern C++ features such as exceptions, smart pointers, and RAII (Resource Acquisition Is Initialization) for robust code.</li>
+</ul>
+<h3 id="Including-std-filesystem"><a href="#Including-std-filesystem" class="headerlink" title="Including std::filesystem"></a>Including <code>std::filesystem</code></h3><p>To use <code>std::filesystem</code>, include the <code>&lt;filesystem&gt;</code> header and use the <code>std::filesystem</code> namespace or create an alias for convenience.</p>
+<pre><code class="cpp">#include &lt;filesystem&gt;
+namespace fs = std::filesystem;
+</code></pre>
+<p><strong>Note:</strong> Ensure that your compiler supports C++17 or later standards and that you enable the appropriate language flags (e.g., <code>-std=c++17</code> for GCC and Clang).</p>
+<hr>
+<h2 id="Getting-Started-with-std-filesystem"><a href="#Getting-Started-with-std-filesystem" class="headerlink" title="Getting Started with std::filesystem"></a>Getting Started with <code>std::filesystem</code></h2><p>Before diving into specific operations, it’s essential to understand the primary components of the <code>std::filesystem</code> library.</p>
+<h3 id="Key-Components"><a href="#Key-Components" class="headerlink" title="Key Components"></a>Key Components</h3><ol>
+<li><strong><code>std::filesystem::path</code></strong>: Represents filesystem paths, handling differences in path syntax across operating systems.</li>
+<li><strong><code>std::filesystem::directory_entry</code></strong>: Represents an entry within a directory, providing access to file metadata.</li>
+<li><strong><code>std::filesystem::directory_iterator</code> &amp; <code>std::filesystem::recursive_directory_iterator</code></strong>: Facilitate iteration over directory contents.</li>
+</ol>
+<h3 id="Basic-Example-Creating-and-Removing-a-Directory"><a href="#Basic-Example-Creating-and-Removing-a-Directory" class="headerlink" title="Basic Example: Creating and Removing a Directory"></a>Basic Example: Creating and Removing a Directory</h3><pre><code class="cpp">#include &lt;filesystem&gt;
+#include &lt;iostream&gt;
+
+namespace fs = std::filesystem;
+
+int main() &#123;
+    fs::path dir = &quot;example_dir&quot;;
+
+    // Create a directory
+    try &#123;
+        if(fs::create_directory(dir)) &#123;
+            std::cout &lt;&lt; &quot;Directory created: &quot; &lt;&lt; dir &lt;&lt; std::endl;
+        &#125; else &#123;
+            std::cout &lt;&lt; &quot;Directory already exists: &quot; &lt;&lt; dir &lt;&lt; std::endl;
+        &#125;
+    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Error creating directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+
+    // Remove the directory
+    try &#123;
+        if(fs::remove(dir)) &#123;
+            std::cout &lt;&lt; &quot;Directory removed: &quot; &lt;&lt; dir &lt;&lt; std::endl;
+        &#125; else &#123;
+            std::cout &lt;&lt; &quot;Directory does not exist: &quot; &lt;&lt; dir &lt;&lt; std::endl;
+        &#125;
+    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Error removing directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Directory created: &quot;example_dir&quot;
+Directory removed: &quot;example_dir&quot;
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Creating a Directory</strong>: Uses <code>fs::create_directory</code> to create a new directory. If the directory already exists, it returns <code>false</code>.</li>
+<li><strong>Removing a Directory</strong>: Uses <code>fs::remove</code> to delete the directory. It only removes empty directories; to remove non-empty directories, use <code>fs::remove_all</code>.</li>
+</ul>
+<hr>
+<h2 id="Path-Manipulation"><a href="#Path-Manipulation" class="headerlink" title="Path Manipulation"></a>Path Manipulation</h2><p>Managing filesystem paths is a fundamental aspect of interacting with the filesystem. <code>std::filesystem::path</code> provides a robust way to handle paths, abstracting away platform-specific nuances.</p>
+<h3 id="Creating-Paths"><a href="#Creating-Paths" class="headerlink" title="Creating Paths"></a>Creating Paths</h3><pre><code class="cpp">fs::path p1 = &quot;folder/subfolder/file.txt&quot;;
+fs::path p2 = &quot;/absolute/path/to/file.txt&quot;;
+fs::path p3(&quot;C:\\Program Files\\Application\\app.exe&quot;); // Windows-style path
+</code></pre>
+<h3 id="Concatenating-Paths"><a href="#Concatenating-Paths" class="headerlink" title="Concatenating Paths"></a>Concatenating Paths</h3><p>Use the <code>/</code> operator to concatenate paths, ensuring correct separators are used based on the operating system.</p>
+<pre><code class="cpp">fs::path base = &quot;/home/user&quot;;
+fs::path file = &quot;document.txt&quot;;
+fs::path fullPath = base / file; // &quot;/home/user/document.txt&quot;
+
+std::cout &lt;&lt; &quot;Full Path: &quot; &lt;&lt; fullPath &lt;&lt; std::endl;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Full Path: &quot;/home/user/document.txt&quot;
+</code></pre>
+<h3 id="Extracting-Components"><a href="#Extracting-Components" class="headerlink" title="Extracting Components"></a>Extracting Components</h3><p><code>std::filesystem::path</code> allows easy extraction of various components of a path.</p>
+<pre><code class="cpp">fs::path p = &quot;/home/user/document.txt&quot;;
+
+std::cout &lt;&lt; &quot;Root Name: &quot; &lt;&lt; p.root_name() &lt;&lt; std::endl;       // &quot;/&quot;
+std::cout &lt;&lt; &quot;Root Directory: &quot; &lt;&lt; p.root_directory() &lt;&lt; std::endl; // &quot;/&quot;
+std::cout &lt;&lt; &quot;Parent Path: &quot; &lt;&lt; p.parent_path() &lt;&lt; std::endl;   // &quot;/home/user&quot;
+std::cout &lt;&lt; &quot;Filename: &quot; &lt;&lt; p.filename() &lt;&lt; std::endl;         // &quot;document.txt&quot;
+std::cout &lt;&lt; &quot;Stem: &quot; &lt;&lt; p.stem() &lt;&lt; std::endl;                 // &quot;document&quot;
+std::cout &lt;&lt; &quot;Extension: &quot; &lt;&lt; p.extension() &lt;&lt; std::endl;       // &quot;.txt&quot;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Root Name: &quot;/&quot;
+Root Directory: &quot;/&quot;
+Parent Path: &quot;/home/user&quot;
+Filename: &quot;document.txt&quot;
+Stem: &quot;document&quot;
+Extension: &quot;.txt&quot;
+</code></pre>
+<h3 id="Normalizing-Paths"><a href="#Normalizing-Paths" class="headerlink" title="Normalizing Paths"></a>Normalizing Paths</h3><p>Use <code>fs::canonical</code> to resolve a path to its absolute, normalized form, eliminating redundant elements like <code>.</code> and <code>..</code>.</p>
+<pre><code class="cpp">fs::path relativePath = &quot;./folder/../file.txt&quot;;
+try &#123;
+    fs::path absolutePath = fs::canonical(relativePath);
+    std::cout &lt;&lt; &quot;Absolute Path: &quot; &lt;&lt; absolutePath &lt;&lt; std::endl;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Absolute Path: &quot;/current/working/directory/file.txt&quot;
+</code></pre>
+<p><strong>Note:</strong> <code>fs::canonical</code> requires that the path exists; otherwise, it throws an exception.</p>
+<hr>
+<h2 id="File-Operations"><a href="#File-Operations" class="headerlink" title="File Operations"></a>File Operations</h2><p>Performing operations on files is a common requirement. <code>std::filesystem</code> provides various functions to create, copy, move, and delete files.</p>
+<h3 id="Creating-a-File"><a href="#Creating-a-File" class="headerlink" title="Creating a File"></a>Creating a File</h3><p>While <code>std::filesystem</code> doesn’t directly create files, you can use standard I&#x2F;O streams in conjunction with it.</p>
+<pre><code class="cpp">#include &lt;filesystem&gt;
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+
+namespace fs = std::filesystem;
+
+int main() &#123;
+    fs::path filePath = &quot;example_dir/sample.txt&quot;;
+
+    // Ensure the directory exists
+    fs::create_directories(filePath.parent_path());
+
+    // Create and write to the file
+    std::ofstream ofs(filePath);
+    if(ofs) &#123;
+        ofs &lt;&lt; &quot;Hello, Filesystem!&quot;;
+        ofs.close();
+        std::cout &lt;&lt; &quot;File created: &quot; &lt;&lt; filePath &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cerr &lt;&lt; &quot;Failed to create file: &quot; &lt;&lt; filePath &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>File created: &quot;example_dir&quot;/sample.txt
+</code></pre>
+<h3 id="Copying-Files"><a href="#Copying-Files" class="headerlink" title="Copying Files"></a>Copying Files</h3><p>Use <code>fs::copy</code> to duplicate files.</p>
+<pre><code class="cpp">fs::path source = &quot;example_dir/sample.txt&quot;;
+fs::path destination = &quot;example_dir/sample_copy.txt&quot;;
+
+try &#123;
+    fs::copy(source, destination, fs::copy_options::overwrite_existing);
+    std::cout &lt;&lt; &quot;File copied to: &quot; &lt;&lt; destination &lt;&lt; std::endl;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error copying file: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>File copied to: &quot;example_dir&quot;/sample_copy.txt
+</code></pre>
+<h3 id="Moving-and-Renaming-Files"><a href="#Moving-and-Renaming-Files" class="headerlink" title="Moving and Renaming Files"></a>Moving and Renaming Files</h3><p>Use <code>fs::rename</code> or <code>fs::copy</code> followed by <code>fs::remove</code> to move or rename files.</p>
+<pre><code class="cpp">fs::path oldPath = &quot;example_dir/sample_copy.txt&quot;;
+fs::path newPath = &quot;example_dir/renamed_sample.txt&quot;;
+
+try &#123;
+    fs::rename(oldPath, newPath);
+    std::cout &lt;&lt; &quot;File moved/renamed to: &quot; &lt;&lt; newPath &lt;&lt; std::endl;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error moving/renaming file: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>File moved/renamed to: &quot;example_dir&quot;/renamed_sample.txt
+</code></pre>
+<h3 id="Deleting-Files"><a href="#Deleting-Files" class="headerlink" title="Deleting Files"></a>Deleting Files</h3><p>Use <code>fs::remove</code> to delete files.</p>
+<pre><code class="cpp">fs::path fileToDelete = &quot;example_dir/renamed_sample.txt&quot;;
+
+try &#123;
+    if(fs::remove(fileToDelete)) &#123;
+        std::cout &lt;&lt; &quot;File deleted: &quot; &lt;&lt; fileToDelete &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;File not found: &quot; &lt;&lt; fileToDelete &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error deleting file: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>File deleted: &quot;example_dir&quot;/renamed_sample.txt
+</code></pre>
+<hr>
+<h2 id="Directory-Operations"><a href="#Directory-Operations" class="headerlink" title="Directory Operations"></a>Directory Operations</h2><p>Managing directories is another critical aspect of filesystem interaction. <code>std::filesystem</code> offers functions to create, remove, rename, and query directories.</p>
+<h3 id="Creating-Directories"><a href="#Creating-Directories" class="headerlink" title="Creating Directories"></a>Creating Directories</h3><p>Use <code>fs::create_directory</code> to create a single directory or <code>fs::create_directories</code> to create nested directories.</p>
+<pre><code class="cpp">fs::path dirPath = &quot;parent_dir/child_dir&quot;;
+
+try &#123;
+    if(fs::create_directories(dirPath)) &#123;
+        std::cout &lt;&lt; &quot;Directories created: &quot; &lt;&lt; dirPath &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;Directories already exist: &quot; &lt;&lt; dirPath &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error creating directories: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Directories created: &quot;parent_dir&quot;/child_dir
+</code></pre>
+<h3 id="Removing-Directories"><a href="#Removing-Directories" class="headerlink" title="Removing Directories"></a>Removing Directories</h3><ul>
+<li><strong><code>fs::remove</code></strong>: Removes a single empty directory.</li>
+<li><strong><code>fs::remove_all</code></strong>: Recursively removes a directory and all its contents.</li>
+</ul>
+<pre><code class="cpp">fs::path emptyDir = &quot;parent_dir/child_dir&quot;;
+fs::path nonEmptyDir = &quot;parent_dir&quot;;
+
+// Remove empty directory
+try &#123;
+    if(fs::remove(emptyDir)) &#123;
+        std::cout &lt;&lt; &quot;Empty directory removed: &quot; &lt;&lt; emptyDir &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;Empty directory not found: &quot; &lt;&lt; emptyDir &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error removing directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+
+// Recursively remove non-empty directory
+try &#123;
+    size_t removed = fs::remove_all(nonEmptyDir);
+    std::cout &lt;&lt; &quot;Removed &quot; &lt;&lt; removed &lt;&lt; &quot; files/directories from: &quot; &lt;&lt; nonEmptyDir &lt;&lt; std::endl;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error removing directories recursively: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Empty directory removed: &quot;parent_dir&quot;/child_dir
+Removed 1 files/directories from: &quot;parent_dir&quot;
+</code></pre>
+<h3 id="Renaming-Directories"><a href="#Renaming-Directories" class="headerlink" title="Renaming Directories"></a>Renaming Directories</h3><p>Use <code>fs::rename</code> to rename or move directories.</p>
+<pre><code class="cpp">fs::path oldDir = &quot;old_directory&quot;;
+fs::path newDir = &quot;new_directory&quot;;
+
+try &#123;
+    fs::rename(oldDir, newDir);
+    std::cout &lt;&lt; &quot;Directory renamed to: &quot; &lt;&lt; newDir &lt;&lt; std::endl;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error renaming directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Directory renamed to: &quot;new_directory&quot;
+</code></pre>
+<hr>
+<h2 id="Iterating-Through-Directories"><a href="#Iterating-Through-Directories" class="headerlink" title="Iterating Through Directories"></a>Iterating Through Directories</h2><p>Traversing directories allows you to access and manipulate their contents programmatically. <code>std::filesystem</code> provides iterators to facilitate this process.</p>
+<h3 id="Non-Recursive-Iteration"><a href="#Non-Recursive-Iteration" class="headerlink" title="Non-Recursive Iteration"></a>Non-Recursive Iteration</h3><p>Use <code>fs::directory_iterator</code> to iterate through the immediate contents of a directory without descending into subdirectories.</p>
+<pre><code class="cpp">fs::path dir = &quot;example_dir&quot;;
+
+try &#123;
+    for(const auto&amp; entry : fs::directory_iterator(dir)) &#123;
+        std::cout &lt;&lt; entry.path() &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error iterating directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>&quot;example_dir&quot;/file1.txt
+&quot;example_dir&quot;/file2.txt
+&quot;example_dir&quot;/subfolder
+</code></pre>
+<h3 id="Recursive-Iteration"><a href="#Recursive-Iteration" class="headerlink" title="Recursive Iteration"></a>Recursive Iteration</h3><p>Use <code>fs::recursive_directory_iterator</code> to iterate through a directory and all its subdirectories.</p>
+<pre><code class="cpp">fs::path dir = &quot;example_dir&quot;;
+
+try &#123;
+    for(const auto&amp; entry : fs::recursive_directory_iterator(dir)) &#123;
+        std::cout &lt;&lt; entry.path() &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error iterating directories recursively: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>&quot;example_dir&quot;/file1.txt
+&quot;example_dir&quot;/file2.txt
+&quot;example_dir&quot;/subfolder
+&quot;example_dir&quot;/subfolder/file3.txt
+</code></pre>
+<h3 id="Filtering-Entries"><a href="#Filtering-Entries" class="headerlink" title="Filtering Entries"></a>Filtering Entries</h3><p>Combine iterators with conditional checks to filter specific types of entries (e.g., regular files, directories).</p>
+<pre><code class="cpp">fs::path dir = &quot;example_dir&quot;;
+
+try &#123;
+    for(const auto&amp; entry : fs::directory_iterator(dir)) &#123;
+        if(fs::is_regular_file(entry.status())) &#123;
+            std::cout &lt;&lt; &quot;File: &quot; &lt;&lt; entry.path() &lt;&lt; std::endl;
+        &#125; else if(fs::is_directory(entry.status())) &#123;
+            std::cout &lt;&lt; &quot;Directory: &quot; &lt;&lt; entry.path() &lt;&lt; std::endl;
+        &#125;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error iterating directory with filters: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>File: &quot;example_dir&quot;/file1.txt
+File: &quot;example_dir&quot;/file2.txt
+Directory: &quot;example_dir&quot;/subfolder
+</code></pre>
+<hr>
+<h2 id="Querying-File-Properties"><a href="#Querying-File-Properties" class="headerlink" title="Querying File Properties"></a>Querying File Properties</h2><p>Accessing file metadata is crucial for various applications, such as determining file sizes, modification times, and permissions.</p>
+<h3 id="Common-File-Properties"><a href="#Common-File-Properties" class="headerlink" title="Common File Properties"></a>Common File Properties</h3><ol>
+<li><strong>File Size</strong>: The size of the file in bytes.</li>
+<li><strong>File Status</strong>: Information about the file type, permissions, and more.</li>
+<li><strong>Last Write Time</strong>: The timestamp of the last modification.</li>
+<li><strong>File Permissions</strong>: Read, write, and execute permissions.</li>
+</ol>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Getting-File-Size"><a href="#Getting-File-Size" class="headerlink" title="Getting File Size"></a>Getting File Size</h4><pre><code class="cpp">fs::path filePath = &quot;example_dir/file1.txt&quot;;
+
+try &#123;
+    auto size = fs::file_size(filePath);
+    std::cout &lt;&lt; &quot;Size of &quot; &lt;&lt; filePath &lt;&lt; &quot;: &quot; &lt;&lt; size &lt;&lt; &quot; bytes&quot; &lt;&lt; std::endl;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error getting file size: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Size of &quot;example_dir&quot;/file1.txt: 1024 bytes
+</code></pre>
+<h4 id="Checking-File-Status"><a href="#Checking-File-Status" class="headerlink" title="Checking File Status"></a>Checking File Status</h4><pre><code class="cpp">fs::path filePath = &quot;example_dir/file1.txt&quot;;
+
+try &#123;
+    fs::file_status status = fs::status(filePath);
+
+    if(fs::is_regular_file(status)) &#123;
+        std::cout &lt;&lt; filePath &lt;&lt; &quot; is a regular file.&quot; &lt;&lt; std::endl;
+    &#125; else if(fs::is_directory(status)) &#123;
+        std::cout &lt;&lt; filePath &lt;&lt; &quot; is a directory.&quot; &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; filePath &lt;&lt; &quot; is neither a regular file nor a directory.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    // Checking permissions
+    if(fs::status_known(status)) &#123;
+        std::cout &lt;&lt; &quot;Permissions: &quot; &lt;&lt; fs::status(status).permissions() &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error checking file status: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>&quot;example_dir&quot;/file1.txt is a regular file.
+Permissions: 0o644
+</code></pre>
+<p><strong>Note:</strong> The permissions output format may vary based on the operating system.</p>
+<h4 id="Retrieving-Last-Write-Time"><a href="#Retrieving-Last-Write-Time" class="headerlink" title="Retrieving Last Write Time"></a>Retrieving Last Write Time</h4><pre><code class="cpp">fs::path filePath = &quot;example_dir/file1.txt&quot;;
+
+try &#123;
+    auto ftime = fs::last_write_time(filePath);
+    auto sctp = decltype(ftime)::clock::to_sys(ftime);
+    std::time_t cftime = system_clock::to_time_t(sctp);
+    std::cout &lt;&lt; &quot;Last write time: &quot; &lt;&lt; std::ctime(&amp;cftime);
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Error retrieving last write time: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Last write time: Wed Oct 11 14:23:45 2023
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>fs::last_write_time</code></strong>: Retrieves the last modification time as a <code>file_time_type</code>.</li>
+<li><strong>Conversion</strong>: Converts <code>file_time_type</code> to <code>std::time_t</code> for human-readable output.</li>
+</ul>
+<hr>
+<h2 id="Error-Handling-in-Filesystem-Operations"><a href="#Error-Handling-in-Filesystem-Operations" class="headerlink" title="Error Handling in Filesystem Operations"></a>Error Handling in Filesystem Operations</h2><p>Filesystem operations can fail due to various reasons, such as insufficient permissions, non-existent paths, or I&#x2F;O errors. Proper error handling ensures that your application can gracefully handle such scenarios.</p>
+<h3 id="Exceptions-vs-Error-Codes"><a href="#Exceptions-vs-Error-Codes" class="headerlink" title="Exceptions vs. Error Codes"></a>Exceptions vs. Error Codes</h3><ul>
+<li><strong>Exceptions</strong>: Most <code>std::filesystem</code> functions throw <code>std::filesystem::filesystem_error</code> exceptions upon failure.</li>
+<li><strong>Error Codes</strong>: Some functions offer overloads that accept an <code>std::error_code</code> parameter to report errors without throwing exceptions.</li>
+</ul>
+<h3 id="Using-Try-Catch-Blocks"><a href="#Using-Try-Catch-Blocks" class="headerlink" title="Using Try-Catch Blocks"></a>Using Try-Catch Blocks</h3><p>Encapsulate filesystem operations within try-catch blocks to handle exceptions.</p>
+<pre><code class="cpp">fs::path filePath = &quot;example_dir/nonexistent.txt&quot;;
+
+try &#123;
+    if(fs::exists(filePath)) &#123;
+        std::cout &lt;&lt; filePath &lt;&lt; &quot; exists.&quot; &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; filePath &lt;&lt; &quot; does not exist.&quot; &lt;&lt; std::endl;
+    &#125;
+&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    std::cerr &lt;&lt; &quot;Filesystem error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>&quot;example_dir&quot;/nonexistent.txt does not exist.
+</code></pre>
+<h3 id="Using-Overloads-with-std-error-code"><a href="#Using-Overloads-with-std-error-code" class="headerlink" title="Using Overloads with std::error_code"></a>Using Overloads with <code>std::error_code</code></h3><p>Avoid exceptions by using function overloads that accept an <code>std::error_code</code>.</p>
+<pre><code class="cpp">fs::path filePath = &quot;example_dir/sample.txt&quot;;
+std::error_code ec;
+
+bool exists = fs::exists(filePath, ec);
+if(ec) &#123;
+    std::cerr &lt;&lt; &quot;Error checking existence: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+&#125; else &#123;
+    std::cout &lt;&lt; filePath &lt;&lt; (exists ? &quot; exists.&quot; : &quot; does not exist.&quot;) &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>&quot;example_dir&quot;/sample.txt exists.
+</code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Performance</strong>: Avoids the overhead associated with exceptions.</li>
+<li><strong>Control</strong>: Gives more granular control over error handling.</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li><strong>Verbose</strong>: Requires explicit error checking after each operation.</li>
+</ul>
+<h3 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h3><ol>
+<li><strong>Choose the Right Error Handling Strategy</strong>: Use exceptions for critical errors that cannot be recovered from and error codes for recoverable or expected errors.</li>
+<li><strong>Provide Meaningful Messages</strong>: When handling errors, provide clear and informative messages to aid in debugging.</li>
+<li><strong>Clean Up Resources</strong>: Ensure that resources are properly released even when errors occur, leveraging RAII where possible.</li>
+<li><strong>Validate Paths</strong>: Before performing operations, validate that paths meet the expected criteria to minimize errors.</li>
+</ol>
+<hr>
+<h2 id="Best-Practices-with-std-filesystem"><a href="#Best-Practices-with-std-filesystem" class="headerlink" title="Best Practices with std::filesystem"></a>Best Practices with <code>std::filesystem</code></h2><p>Adhering to best practices ensures that your use of <code>std::filesystem</code> is efficient, safe, and maintainable.</p>
+<ol>
+<li><p><strong>Use <code>std::filesystem::path</code> Over Raw Strings</strong></p>
+<ul>
+<li><strong>Advantages</strong>: Handles platform-specific path separators, provides rich functionality for path manipulation.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">fs::path p = &quot;folder/subfolder/file.txt&quot;;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Leverage RAII for Resource Management</strong></p>
+<ul>
+<li>Ensure that resources like file handles are properly managed using RAII principles to prevent leaks.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">std::ofstream ofs(filePath); // Automatically closes when going out of scope
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Prefer Non-Throwing Overloads with <code>std::error_code</code> When Appropriate</strong></p>
+<ul>
+<li>Use non-throwing overloads in performance-critical sections or where exceptions are undesirable.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">std::error_code ec;
+fs::remove(filePath, ec);
+if(ec) &#123; /* handle error */ &#125;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Check for Path Existence Before Operations</strong></p>
+<ul>
+<li>Prevent unnecessary errors by verifying that paths exist before attempting operations.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">if(fs::exists(filePath)) &#123;
+    // Proceed with operation
+&#125;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Handle Permissions Appropriately</strong></p>
+<ul>
+<li>Be aware of file and directory permissions, especially when creating or modifying them.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">fs::permissions(filePath, fs::perms::owner_all, fs::perm_options::add);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Use Iterators for Efficient Directory Traversal</strong></p>
+<ul>
+<li>Utilize <code>directory_iterator</code> and <code>recursive_directory_iterator</code> for efficient and readable directory traversal.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">for(auto&amp; entry : fs::directory_iterator(dirPath)) &#123;
+    // Process entry
+&#125;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Normalize Paths When Necessary</strong></p>
+<ul>
+<li>Use functions like <code>fs::canonical</code> to resolve and normalize paths, ensuring consistency.</li>
+<li><strong>Example</strong>:<pre><code class="cpp">fs::path normalized = fs::canonical(p);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Be Mindful of Platform Differences</strong></p>
+<ul>
+<li>Understand that certain filesystem behaviors may vary across operating systems (e.g., case sensitivity on Windows vs. Linux).</li>
+</ul>
+</li>
+<li><p><strong>Keep Code Clean and Readable</strong></p>
+<ul>
+<li>Avoid overly complex path manipulations; break down operations into manageable steps for clarity.</li>
+</ul>
+</li>
+<li><p><strong>Stay Updated with Compiler Support</strong></p>
+<ul>
+<li>Ensure that your development environment fully supports the features of <code>std::filesystem</code> you intend to use, as implementations may vary across different compilers.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><p>To reinforce your understanding of <code>std::filesystem</code>, let’s explore several practical examples that demonstrate its capabilities in real-world scenarios.</p>
+<h3 id="Example-1-Listing-All-Files-in-a-Directory"><a href="#Example-1-Listing-All-Files-in-a-Directory" class="headerlink" title="Example 1: Listing All Files in a Directory"></a>Example 1: Listing All Files in a Directory</h3><p><strong>Problem</strong>: Create a program that lists all files (excluding directories) in a specified directory.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;filesystem&gt;
+#include &lt;iostream&gt;
+
+namespace fs = std::filesystem;
+
+int main() &#123;
+    fs::path dirPath = &quot;example_dir&quot;;
+
+    try &#123;
+        if(!fs::exists(dirPath) || !fs::is_directory(dirPath)) &#123;
+            std::cerr &lt;&lt; dirPath &lt;&lt; &quot; is not a valid directory.&quot; &lt;&lt; std::endl;
+            return 1;
+        &#125;
+
+        std::cout &lt;&lt; &quot;Files in &quot; &lt;&lt; dirPath &lt;&lt; &quot;:&quot; &lt;&lt; std::endl;
+        for(const auto&amp; entry : fs::directory_iterator(dirPath)) &#123;
+            if(fs::is_regular_file(entry.status())) &#123;
+                std::cout &lt;&lt; &quot; - &quot; &lt;&lt; entry.path().filename() &lt;&lt; std::endl;
+            &#125;
+        &#125;
+    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Filesystem error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Files in &quot;example_dir&quot;:
+ - file1.txt
+ - file2.txt
+ - image.png
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Directory Validation</strong>: Checks if the specified path exists and is a directory.</li>
+<li><strong>Iterating Entries</strong>: Uses <code>directory_iterator</code> to traverse immediate entries.</li>
+<li><strong>Filtering Files</strong>: Filters out directories, listing only regular files.</li>
+</ul>
+<h3 id="Example-2-Recursively-Searching-for-a-File"><a href="#Example-2-Recursively-Searching-for-a-File" class="headerlink" title="Example 2: Recursively Searching for a File"></a>Example 2: Recursively Searching for a File</h3><p><strong>Problem</strong>: Implement a function that searches for a file with a given name within a directory and all its subdirectories.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;filesystem&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+namespace fs = std::filesystem;
+
+// Function to search for a file recursively
+fs::path findFile(const fs::path&amp; directory, const std::string&amp; filename) &#123;
+    try &#123;
+        for(const auto&amp; entry : fs::recursive_directory_iterator(directory)) &#123;
+            if(fs::is_regular_file(entry.status()) &amp;&amp; entry.path().filename() == filename) &#123;
+                return entry.path();
+            &#125;
+        &#125;
+    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Error during search: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+    return fs::path(); // Return empty path if not found
+&#125;
+
+int main() &#123;
+    fs::path searchDir = &quot;example_dir&quot;;
+    std::string targetFile = &quot;document.pdf&quot;;
+
+    fs::path result = findFile(searchDir, targetFile);
+
+    if(!result.empty()) &#123;
+        std::cout &lt;&lt; &quot;File found at: &quot; &lt;&lt; result &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;File &quot; &lt;&lt; targetFile &lt;&lt; &quot; not found in &quot; &lt;&lt; searchDir &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>File found at: &quot;example_dir&quot;/subfolder/documents/document.pdf
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Recursive Iteration</strong>: Utilizes <code>recursive_directory_iterator</code> to traverse all subdirectories.</li>
+<li><strong>Filename Matching</strong>: Compares the target filename with each entry’s filename.</li>
+<li><strong>Result Handling</strong>: Returns the path if found; otherwise, returns an empty path.</li>
+</ul>
+<h3 id="Example-3-Copying-a-Directory"><a href="#Example-3-Copying-a-Directory" class="headerlink" title="Example 3: Copying a Directory"></a>Example 3: Copying a Directory</h3><p><strong>Problem</strong>: Develop a program that copies the contents of one directory to another, preserving the directory structure.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;filesystem&gt;
+#include &lt;iostream&gt;
+
+namespace fs = std::filesystem;
+
+int main() &#123;
+    fs::path sourceDir = &quot;source_directory&quot;;
+    fs::path destinationDir = &quot;destination_directory&quot;;
+
+    try &#123;
+        // Check if source directory exists
+        if(!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) &#123;
+            std::cerr &lt;&lt; &quot;Source directory does not exist or is not a directory.&quot; &lt;&lt; std::endl;
+            return 1;
+        &#125;
+
+        // Create destination directory if it doesn&#39;t exist
+        if(!fs::exists(destinationDir)) &#123;
+            fs::create_directories(destinationDir);
+            std::cout &lt;&lt; &quot;Created destination directory: &quot; &lt;&lt; destinationDir &lt;&lt; std::endl;
+        &#125;
+
+        // Iterate through source directory recursively
+        for(auto&amp; entry : fs::recursive_directory_iterator(sourceDir)) &#123;
+            const auto&amp; path = entry.path();
+            auto relativePath = fs::relative(path, sourceDir);
+            fs::path destPath = destinationDir / relativePath;
+
+            if(fs::is_directory(entry.status())) &#123;
+                fs::create_directories(destPath);
+            &#125; else if(fs::is_regular_file(entry.status())) &#123;
+                fs::copy_file(path, destPath, fs::copy_options::overwrite_existing);
+                std::cout &lt;&lt; &quot;Copied file: &quot; &lt;&lt; path &lt;&lt; &quot; to &quot; &lt;&lt; destPath &lt;&lt; std::endl;
+            &#125;
+        &#125;
+
+        std::cout &lt;&lt; &quot;Directory copy completed successfully.&quot; &lt;&lt; std::endl;
+    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Filesystem error during copy: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Created destination directory: &quot;destination_directory&quot;
+Copied file: &quot;source_directory&quot;/file1.txt to &quot;destination_directory&quot;/file1.txt
+Copied file: &quot;source_directory&quot;/file2.txt to &quot;destination_directory&quot;/file2.txt
+Copied file: &quot;source_directory&quot;/subfolder/documents/document.pdf to &quot;destination_directory&quot;/subfolder/documents/document.pdf
+Directory copy completed successfully.
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Relative Paths</strong>: Uses <code>fs::relative</code> to maintain the directory structure in the destination.</li>
+<li><strong>Directory Creation</strong>: Creates directories in the destination as needed.</li>
+<li><strong>File Copying</strong>: Copies regular files, overwriting existing ones if necessary.</li>
+</ul>
+<hr>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>The <code>std::filesystem</code> library in C++20 provides a comprehensive and standardized way to interact with the filesystem. By leveraging its features, you can perform a wide range of file and directory operations in a portable and efficient manner. Key takeaways from this chapter include:</p>
+<ul>
+<li><strong>Path Management</strong>: Utilize <code>std::filesystem::path</code> for robust and platform-independent path handling.</li>
+<li><strong>File and Directory Operations</strong>: Perform creation, deletion, copying, moving, and renaming of files and directories with ease.</li>
+<li><strong>Iterators</strong>: Traverse directories efficiently using <code>directory_iterator</code> and <code>recursive_directory_iterator</code>.</li>
+<li><strong>File Properties</strong>: Access and manipulate file metadata, such as size, permissions, and modification times.</li>
+<li><strong>Error Handling</strong>: Implement robust error handling strategies using exceptions or error codes to manage filesystem-related errors gracefully.</li>
+<li><strong>Best Practices</strong>: Follow recommended practices to write clean, efficient, and maintainable filesystem code.</li>
+</ul>
+<p>By mastering <code>std::filesystem</code>, you equip yourself with the tools to handle one of the most fundamental aspects of software development: interacting with the file system. Whether you’re building simple utilities, complex applications, or managing resources, <code>std::filesystem</code> offers the capabilities needed to perform these tasks effectively.</p>
+<hr>
+<p>Next, you’ll move on to the following chapter <strong>Best Practices and Design Patterns</strong>, where you’ll explore modern C++ idioms, design patterns, and strategies to write efficient and maintainable code.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-bestpractices">Best Practices and Design Patterns</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,1501 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: C++20 Features | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: C++20 Features</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-advtemplate">Advanced Template Programming</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="C-20-Features"><a href="#C-20-Features" class="headerlink" title="C++20 Features"></a>C++20 Features</h1><p>C++20 is a significant update to the C++ programming language, introducing a plethora of new features and enhancements that aim to make C++ more powerful, expressive, and easier to use. This chapter explores the most impactful features of C++20, including Concepts, Ranges, Coroutines, Modules, the Three-Way Comparison Operator (<code>&lt;=&gt;</code>), <code>std::span</code>, and other notable additions to the Standard Library. By understanding and leveraging these features, you can write more efficient, readable, and maintainable C++ code.</p>
+<span id="more"></span>
+
+<h2 id="Table-of-Contents-for-This-Chapter"><a href="#Table-of-Contents-for-This-Chapter" class="headerlink" title="Table of Contents for This Chapter"></a>Table of Contents for This Chapter</h2><ol>
+<li><a href="#introduction-to-cpp20">Introduction to C++20</a></li>
+<li><a href="#concepts">Concepts</a></li>
+<li><a href="#ranges">Ranges</a></li>
+<li><a href="#coroutines">Coroutines</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#three-way-comparison-operator---">Three-Way Comparison Operator (<code>&lt;=&gt;</code>)</a></li>
+<li><a href="#stdspan"><code>std::span</code></a></li>
+<li><a href="#other-notable-cpp20-features">Other Notable C++20 Features</a><ul>
+<li><a href="#lambda-enhancements">Lambda Enhancements</a></li>
+<li><a href="#consteval-and-constinit"><code>consteval</code> and <code>constinit</code></a></li>
+<li><a href="#template-parameter-lists">Template Parameter Lists</a></li>
+<li><a href="#stdformat"><code>std::format</code></a></li>
+<li><a href="#enhanced-stdchrono">Enhanced <code>std::chrono</code></a></li>
+</ul>
+</li>
+<li><a href="#best-practices-for-using-cpp20-features">Best Practices for Using C++20 Features</a></li>
+<li><a href="#practical-examples">Practical Examples</a></li>
+<li><a href="#summary">Summary</a></li>
+</ol>
+<hr>
+<h2 id="Introduction-to-C-20"><a href="#Introduction-to-C-20" class="headerlink" title="Introduction to C++20"></a>Introduction to C++20</h2><h3 id="Overview-of-C-20"><a href="#Overview-of-C-20" class="headerlink" title="Overview of C++20"></a>Overview of C++20</h3><p>C++20 is a major milestone in the evolution of the C++ language, building upon the foundation laid by previous standards like C++11, C++14, C++17, and C++23. It introduces a range of features that enhance the language’s expressiveness, performance, and usability. Some of the key highlights include:</p>
+<ul>
+<li><strong>Concepts</strong>: Compile-time constraints for template parameters.</li>
+<li><strong>Ranges</strong>: Improved and more expressive ways to work with sequences of elements.</li>
+<li><strong>Coroutines</strong>: Native support for asynchronous programming.</li>
+<li><strong>Modules</strong>: A new way to organize and compile code, improving compile times and encapsulation.</li>
+<li><strong>Three-Way Comparison Operator (<code>&lt;=&gt;</code>)</strong>: Simplifies the implementation of comparison operators.</li>
+<li><strong><code>std::span</code></strong>: A lightweight object that can reference a sequence of elements without owning them.</li>
+<li><strong>Various enhancements to the Standard Library</strong>: Including <code>std::format</code>, enhanced <code>std::chrono</code>, and more.</li>
+</ul>
+<h3 id="Why-Upgrade-to-C-20"><a href="#Why-Upgrade-to-C-20" class="headerlink" title="Why Upgrade to C++20?"></a>Why Upgrade to C++20?</h3><p>Adopting C++20 allows developers to:</p>
+<ul>
+<li><strong>Write More Expressive Code</strong>: Features like Concepts and Ranges enable more readable and maintainable code.</li>
+<li><strong>Improve Performance</strong>: Coroutines and Modules can lead to more efficient programs.</li>
+<li><strong>Enhance Type Safety</strong>: Concepts provide stronger compile-time checks.</li>
+<li><strong>Simplify Asynchronous Programming</strong>: Coroutines make writing asynchronous code more straightforward.</li>
+</ul>
+<p>Before proceeding, ensure that your development environment supports C++20. While most modern compilers like GCC (from version 10), Clang (from version 10), and MSVC (from Visual Studio 2019 version 16.8) offer varying levels of C++20 support, it’s important to note that <strong>module programming in C++20 does not yet have high support across these three major mainstream compilers</strong>. This means that while Modules are a powerful feature, their adoption may be limited until compiler support becomes more mature and standardized.</p>
+<hr>
+<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h2><h3 id="What-Are-Concepts"><a href="#What-Are-Concepts" class="headerlink" title="What Are Concepts?"></a>What Are Concepts?</h3><p>Concepts are a feature introduced in C++20 that provide a way to specify constraints on template parameters. They allow developers to define requirements that types must meet to be used with certain templates, enhancing code clarity and compile-time error messages.</p>
+<h3 id="Benefits-of-Using-Concepts"><a href="#Benefits-of-Using-Concepts" class="headerlink" title="Benefits of Using Concepts"></a>Benefits of Using Concepts</h3><ul>
+<li><strong>Improved Readability</strong>: Clearly states the requirements for template parameters.</li>
+<li><strong>Better Error Messages</strong>: Compiler errors are more informative when template constraints are not met.</li>
+<li><strong>Code Reusability and Safety</strong>: Ensures that templates are used with appropriate types.</li>
+</ul>
+<h3 id="Defining-and-Using-Concepts"><a href="#Defining-and-Using-Concepts" class="headerlink" title="Defining and Using Concepts"></a>Defining and Using Concepts</h3><h4 id="Defining-a-Concept"><a href="#Defining-a-Concept" class="headerlink" title="Defining a Concept"></a>Defining a Concept</h4><p>A concept is defined using the <code>concept</code> keyword, followed by a boolean expression that specifies the constraints.</p>
+<p><strong>Example: Defining a Concept for Arithmetic Types</strong></p>
+<pre><code class="cpp">#include &lt;concepts&gt;
+#include &lt;iostream&gt;
+
+// Define a concept named &#39;Arithmetic&#39; that checks if a type is integral or floating-point
+template&lt;typename T&gt;
+concept Arithmetic = std::is_integral_v&lt;T&gt; || std::is_floating_point_v&lt;T&gt;;
+</code></pre>
+<h4 id="Using-Concepts-in-Templates"><a href="#Using-Concepts-in-Templates" class="headerlink" title="Using Concepts in Templates"></a>Using Concepts in Templates</h4><p>Concepts can be used to constrain template parameters in various ways:</p>
+<ol>
+<li><strong>As a <code>requires</code> Clause</strong></li>
+<li><strong>Using <code>template</code> Parameter Syntax</strong></li>
+<li><strong>Inline Constraints</strong></li>
+</ol>
+<p><strong>Example: Using Concepts with a Function Template</strong></p>
+<pre><code class="cpp">#include &lt;concepts&gt;
+#include &lt;iostream&gt;
+
+// Define the &#39;Arithmetic&#39; concept
+template&lt;typename T&gt;
+concept Arithmetic = std::is_integral_v&lt;T&gt; || std::is_floating_point_v&lt;T&gt;;
+
+// Function that adds two arithmetic types
+Arithmetic auto add(Arithmetic auto a, Arithmetic auto b) &#123;
+    return a + b;
+&#125;
+
+int main() &#123;
+    std::cout &lt;&lt; add(5, 10) &lt;&lt; std::endl;       // Outputs: 15
+    std::cout &lt;&lt; add(3.14, 2.71) &lt;&lt; std::endl; // Outputs: 5.85
+    // std::cout &lt;&lt; add(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // Compilation error
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>15
+5.85
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>add</code> function is constrained to accept only types that satisfy the <code>Arithmetic</code> concept.</li>
+<li>Attempting to call <code>add</code> with non-arithmetic types (e.g., strings) results in a clear compilation error.</li>
+</ul>
+<h4 id="Advanced-Concepts"><a href="#Advanced-Concepts" class="headerlink" title="Advanced Concepts"></a>Advanced Concepts</h4><p>Concepts can express more complex constraints, including multiple requirements and even custom behaviors.</p>
+<p><strong>Example: Defining a Concept for Equality Comparable Types</strong></p>
+<pre><code class="cpp">#include &lt;concepts&gt;
+#include &lt;iostream&gt;
+
+// Define a concept that checks if a type supports equality comparison
+template&lt;typename T&gt;
+concept EqualityComparable = requires(T a, T b) &#123;
+    &#123; a == b &#125; -&gt; std::convertible_to&lt;bool&gt;;
+&#125;;
+
+// Function that checks if two objects are equal
+bool areEqual(EqualityComparable auto a, EqualityComparable auto b) &#123;
+    return a == b;
+&#125;
+
+int main() &#123;
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; areEqual(5, 5) &lt;&lt; std::endl;       // true
+    std::cout &lt;&lt; areEqual(5, 10) &lt;&lt; std::endl;      // false
+    std::cout &lt;&lt; areEqual(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // false
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>true
+false
+false
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>EqualityComparable</code> concept ensures that the types used with <code>areEqual</code> support the <code>==</code> operator and that it returns a type convertible to <code>bool</code>.</li>
+</ul>
+<h3 id="Standard-Library-Concepts"><a href="#Standard-Library-Concepts" class="headerlink" title="Standard Library Concepts"></a>Standard Library Concepts</h3><p>C++20 introduces several predefined concepts in the <code>&lt;concepts&gt;</code> header, such as:</p>
+<ul>
+<li><strong><code>std::integral</code></strong>: Types that represent integral numbers.</li>
+<li><strong><code>std::floating_point</code></strong>: Types that represent floating-point numbers.</li>
+<li><strong><code>std::same_as</code></strong>: Checks if two types are the same.</li>
+<li><strong><code>std::derived_from</code></strong>: Checks if one type is derived from another.</li>
+<li><strong><code>std::convertible_to</code></strong>: Checks if one type is convertible to another.</li>
+</ul>
+<p><strong>Example: Using Standard Library Concepts</strong></p>
+<pre><code class="cpp">#include &lt;concepts&gt;
+#include &lt;iostream&gt;
+
+// Function that only accepts types derived from Base
+struct Base &#123;&#125;;
+struct Derived : Base &#123;&#125;;
+struct Unrelated &#123;&#125;;
+
+template&lt;typename T&gt;
+requires std::derived_from&lt;T, Base&gt;
+void process(const T&amp; obj) &#123;
+    std::cout &lt;&lt; &quot;Processing object derived from Base.&quot; &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    Derived d;
+    process(d); // Valid
+    // Unrelated u;
+    // process(u); // Compilation error
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Processing object derived from Base.
+</code></pre>
+<hr>
+<h2 id="Ranges"><a href="#Ranges" class="headerlink" title="Ranges"></a>Ranges</h2><h3 id="What-Are-Ranges"><a href="#What-Are-Ranges" class="headerlink" title="What Are Ranges?"></a>What Are Ranges?</h3><p>Ranges are a new addition in C++20 that provide a more expressive and intuitive way to work with sequences of elements. They build upon the existing iterator-based approach, offering a more declarative style of programming that can lead to cleaner and more readable code.</p>
+<h3 id="Benefits-of-Using-Ranges"><a href="#Benefits-of-Using-Ranges" class="headerlink" title="Benefits of Using Ranges"></a>Benefits of Using Ranges</h3><ul>
+<li><strong>Improved Readability</strong>: Chain operations in a natural, sequential manner.</li>
+<li><strong>Lazy Evaluation</strong>: Operations are executed only when necessary, enhancing performance.</li>
+<li><strong>Composability</strong>: Easily combine multiple range operations without creating intermediate containers.</li>
+</ul>
+<h3 id="Core-Components-of-Ranges"><a href="#Core-Components-of-Ranges" class="headerlink" title="Core Components of Ranges"></a>Core Components of Ranges</h3><ol>
+<li><strong>Views</strong>: Lightweight, non-owning, and composable views into data.</li>
+<li><strong>Actions</strong>: Operations that can be performed on ranges, such as filtering, transforming, and iterating.</li>
+<li><strong>Range Adaptors</strong>: Tools to modify ranges on-the-fly without altering the original data.</li>
+</ol>
+<h3 id="Using-Range-Based-Algorithms"><a href="#Using-Range-Based-Algorithms" class="headerlink" title="Using Range-Based Algorithms"></a>Using Range-Based Algorithms</h3><p>C++20 introduces new algorithms in the <code>&lt;algorithm&gt;</code> header that work seamlessly with ranges.</p>
+<p><strong>Example: Using <code>std::ranges::for_each</code></strong></p>
+<pre><code class="cpp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+
+    // Apply a lambda function to each element using ranges
+    std::ranges::for_each(numbers, [](int n) &#123;
+        std::cout &lt;&lt; n * n &lt;&lt; &quot; &quot;;
+    &#125;);
+
+    std::cout &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>1 4 9 16 25 
+</code></pre>
+<h3 id="Range-Adaptors"><a href="#Range-Adaptors" class="headerlink" title="Range Adaptors"></a>Range Adaptors</h3><p>Range adaptors allow you to create modified views of existing ranges without copying data.</p>
+<p><strong>Example: Using <code>std::views::filter</code> and <code>std::views::transform</code></strong></p>
+<pre><code class="cpp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5, 6&#125;;
+
+    // Create a view that filters even numbers and then squares them
+    auto processed = numbers 
+                   | std::views::filter([](int n) &#123; return n % 2 == 0; &#125;)
+                   | std::views::transform([](int n) &#123; return n * n; &#125;);
+
+    // Iterate over the processed view
+    for(auto n : processed) &#123;
+        std::cout &lt;&lt; n &lt;&lt; &quot; &quot;; // Outputs: 4 16 36 
+    &#125;
+
+    std::cout &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>4 16 36 
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>std::views::filter</code></strong>: Creates a view that includes only even numbers.</li>
+<li><strong><code>std::views::transform</code></strong>: Transforms each element by squaring it.</li>
+<li><strong>Chaining Adaptors</strong>: Allows for a declarative and readable sequence of operations.</li>
+</ul>
+<h3 id="Range-Based-Containers"><a href="#Range-Based-Containers" class="headerlink" title="Range-Based Containers"></a>Range-Based Containers</h3><p>Most standard containers can be used with ranges, providing a seamless integration of range-based algorithms and adaptors.</p>
+<p><strong>Example: Using Ranges with <code>std::vector</code></strong></p>
+<pre><code class="cpp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;std::string&gt; words = &#123;&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;, &quot;elderberry&quot;&#125;;
+
+    // Find all words that start with the letter &#39;b&#39; or &#39;c&#39; and convert them to uppercase
+    auto processed = words 
+                   | std::views::filter([](const std::string&amp; s) &#123;
+                       return !s.empty() &amp;&amp; (s[0] == &#39;b&#39; || s[0] == &#39;c&#39;);
+                   &#125;)
+                   | std::views::transform([](std::string s) &#123;
+                       for(auto&amp; ch : s) ch = std::toupper(ch);
+                       return s;
+                   &#125;);
+
+    // Display the processed words
+    for(auto&amp; word : processed) &#123;
+        std::cout &lt;&lt; word &lt;&lt; &quot; &quot;; // Outputs: BANANA CHERRY 
+    &#125;
+
+    std::cout &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>BANANA CHERRY 
+</code></pre>
+<h3 id="Combining-Ranges-with-Algorithms"><a href="#Combining-Ranges-with-Algorithms" class="headerlink" title="Combining Ranges with Algorithms"></a>Combining Ranges with Algorithms</h3><p>Ranges can be combined with traditional algorithms for more powerful data processing.</p>
+<p><strong>Example: Using <code>std::ranges::sort</code> with a View</strong></p>
+<pre><code class="cpp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;5, 3, 1, 4, 2&#125;;
+
+    // Create a view that excludes the first element
+    auto view = numbers | std::views::drop(1);
+
+    // Since views are non-owning and non-modifiable by default, we need to copy to a new container
+    auto sorted_view = std::vector&lt;int&gt;(view.begin(), view.end());
+
+    std::ranges::sort(sorted_view);
+
+    // Display the sorted view
+    for(auto n : sorted_view) &#123;
+        std::cout &lt;&lt; n &lt;&lt; &quot; &quot;; // Outputs: 2 3 4 5 
+    &#125;
+
+    std::cout &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>2 3 4 5 
+</code></pre>
+<p><strong>Note:</strong> The original <code>numbers</code> vector remains unchanged.</p>
+<hr>
+<h2 id="Coroutines"><a href="#Coroutines" class="headerlink" title="Coroutines"></a>Coroutines</h2><h3 id="What-Are-Coroutines"><a href="#What-Are-Coroutines" class="headerlink" title="What Are Coroutines?"></a>What Are Coroutines?</h3><p>Coroutines are a feature introduced in C++20 that enable functions to suspend and resume execution without blocking the thread. They provide a powerful mechanism for writing asynchronous and lazy-evaluated code in a natural and readable manner.</p>
+<h3 id="Benefits-of-Using-Coroutines"><a href="#Benefits-of-Using-Coroutines" class="headerlink" title="Benefits of Using Coroutines"></a>Benefits of Using Coroutines</h3><ul>
+<li><strong>Simplified Asynchronous Code</strong>: Write asynchronous operations without complex callback mechanisms.</li>
+<li><strong>Improved Readability</strong>: Code resembles synchronous code, making it easier to understand.</li>
+<li><strong>Efficiency</strong>: Coroutines can reduce overhead by avoiding unnecessary thread creation.</li>
+</ul>
+<h3 id="Understanding-Coroutine-Components"><a href="#Understanding-Coroutine-Components" class="headerlink" title="Understanding Coroutine Components"></a>Understanding Coroutine Components</h3><ol>
+<li><strong><code>co_await</code></strong>: Suspends the coroutine until the awaited operation is complete.</li>
+<li><strong><code>co_yield</code></strong>: Produces a value to the caller and suspends the coroutine.</li>
+<li><strong><code>co_return</code></strong>: Completes the coroutine and optionally returns a value.</li>
+</ol>
+<h3 id="Basic-Coroutine-Example"><a href="#Basic-Coroutine-Example" class="headerlink" title="Basic Coroutine Example"></a>Basic Coroutine Example</h3><p><strong>Example: Simple Coroutine that Yields Values</strong></p>
+<pre><code class="cpp">#include &lt;coroutine&gt;
+#include &lt;iostream&gt;
+#include &lt;optional&gt;
+
+// Define a generator class
+template&lt;typename T&gt;
+struct Generator &#123;
+    struct promise_type &#123;
+        std::optional&lt;T&gt; current_value;
+
+        Generator get_return_object() &#123;
+            return Generator&#123; std::coroutine_handle&lt;promise_type&gt;::from_promise(*this) &#125;;
+        &#125;
+
+        std::suspend_always initial_suspend() &#123; return &#123;&#125;; &#125;
+        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;
+
+        std::suspend_always yield_value(T value) &#123;
+            current_value = value;
+            return &#123;&#125;;
+        &#125;
+
+        void return_void() &#123;&#125;
+        void unhandled_exception() &#123; std::terminate(); &#125;
+    &#125;;
+
+    std::coroutine_handle&lt;promise_type&gt; handle;
+
+    Generator(std::coroutine_handle&lt;promise_type&gt; h) : handle(h) &#123;&#125;
+    ~Generator() &#123; if(handle) handle.destroy(); &#125;
+
+    std::optional&lt;T&gt; next() &#123;
+        if(!handle.done()) &#123;
+            handle.resume();
+            return handle.promise().current_value;
+        &#125;
+        return std::nullopt;
+    &#125;
+&#125;;
+
+// Coroutine function that generates numbers from 1 to 5
+Generator&lt;int&gt; generateNumbers() &#123;
+    for(int i = 1; i &lt;= 5; ++i) &#123;
+        co_yield i;
+    &#125;
+&#125;
+
+int main() &#123;
+    auto gen = generateNumbers();
+    while(auto val = gen.next()) &#123;
+        std::cout &lt;&lt; &quot;Generated: &quot; &lt;&lt; *val &lt;&lt; std::endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Generated: 1
+Generated: 2
+Generated: 3
+Generated: 4
+Generated: 5
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>Generator</code> Class</strong>: Manages the coroutine’s state and provides a <code>next</code> method to retrieve generated values.</li>
+<li><strong><code>promise_type</code></strong>: Defines how the coroutine behaves, including how it yields values.</li>
+<li><strong><code>generateNumbers</code> Coroutine</strong>: Yields numbers from 1 to 5 using <code>co_yield</code>.</li>
+</ul>
+<h3 id="Asynchronous-Coroutines-with-std-future"><a href="#Asynchronous-Coroutines-with-std-future" class="headerlink" title="Asynchronous Coroutines with std::future"></a>Asynchronous Coroutines with <code>std::future</code></h3><p>Coroutines can also be used to perform asynchronous operations that return <code>std::future</code> objects.</p>
+<p><strong>Example: Asynchronous Coroutine that Returns a Future</strong></p>
+<pre><code class="cpp">#include &lt;coroutine&gt;
+#include &lt;future&gt;
+#include &lt;iostream&gt;
+
+// Awaitable type that represents a ready future
+struct ReadyFuture &#123;
+    std::future&lt;int&gt; fut;
+
+    bool await_ready() const noexcept &#123; return true; &#125;
+    void await_suspend(std::coroutine_handle&lt;&gt;) noexcept &#123;&#125;
+    int await_resume() &#123; return fut.get(); &#125;
+&#125;;
+
+// Coroutine function that returns a future
+std::future&lt;int&gt; asyncAdd(int a, int b) &#123;
+    co_return a + b;
+&#125;
+
+int main() &#123;
+    auto fut = asyncAdd(10, 20);
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; fut.get() &lt;&lt; std::endl; // Outputs: Sum: 30
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Sum: 30
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>asyncAdd</code> Coroutine</strong>: Returns a <code>std::future&lt;int&gt;</code> that will hold the result of the addition.</li>
+<li><strong>Awaiting the Future</strong>: In this simple example, <code>co_return</code> automatically creates a ready future.</li>
+</ul>
+<h3 id="Best-Practices-with-Coroutines"><a href="#Best-Practices-with-Coroutines" class="headerlink" title="Best Practices with Coroutines"></a>Best Practices with Coroutines</h3><ol>
+<li><strong>Understand the Coroutine Lifecycle</strong>: Be aware of how coroutines are created, suspended, and destroyed.</li>
+<li><strong>Manage Resource Lifetimes</strong>: Ensure that resources used within coroutines remain valid across suspensions.</li>
+<li><strong>Use Coroutines for Asynchronous Tasks</strong>: Ideal for I&#x2F;O operations, event handling, and other asynchronous workflows.</li>
+<li><strong>Combine with Other C++20 Features</strong>: Leverage Concepts and Ranges alongside Coroutines for more powerful abstractions.</li>
+</ol>
+<hr>
+<h2 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h2><h3 id="What-Are-Modules"><a href="#What-Are-Modules" class="headerlink" title="What Are Modules?"></a>What Are Modules?</h3><p>Modules are a major feature introduced in C++20 that aim to replace the traditional preprocessor-based include system. They provide a more robust, efficient, and scalable way to organize and compile C++ code by encapsulating code into named units with explicit interfaces.</p>
+<h3 id="Benefits-of-Using-Modules"><a href="#Benefits-of-Using-Modules" class="headerlink" title="Benefits of Using Modules"></a>Benefits of Using Modules</h3><ul>
+<li><strong>Faster Compilation</strong>: Reduce compile times by avoiding redundant processing of header files.</li>
+<li><strong>Improved Encapsulation</strong>: Clearly define interfaces and hide implementation details.</li>
+<li><strong>Better Dependency Management</strong>: Avoid issues like the infamous “include hell” and circular dependencies.</li>
+<li><strong>Enhanced Reliability</strong>: Eliminate macro-related bugs and improve code safety.</li>
+</ul>
+<h3 id="Defining-and-Importing-Modules"><a href="#Defining-and-Importing-Modules" class="headerlink" title="Defining and Importing Modules"></a>Defining and Importing Modules</h3><h4 id="Creating-a-Module-Interface"><a href="#Creating-a-Module-Interface" class="headerlink" title="Creating a Module Interface"></a>Creating a Module Interface</h4><p>A module interface file defines the public interface of a module. It uses the <code>export module</code> declaration.</p>
+<p><strong>Example: Defining a Module Interface (<code>math.ixx</code>)</strong></p>
+<pre><code class="cpp">// math.ixx - Module Interface File
+
+export module math;
+
+export int add(int a, int b) &#123;
+    return a + b;
+&#125;
+
+export int multiply(int a, int b) &#123;
+    return a * b;
+&#125;
+</code></pre>
+<h4 id="Importing-a-Module"><a href="#Importing-a-Module" class="headerlink" title="Importing a Module"></a>Importing a Module</h4><p>To use a module in your code, use the <code>import</code> keyword followed by the module name.</p>
+<p><strong>Example: Using the <code>math</code> Module (<code>main.cpp</code>)</strong></p>
+<pre><code class="cpp">// main.cpp
+
+import math;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    int sum = add(5, 3);
+    int product = multiply(5, 3);
+
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl;         // Outputs: Sum: 8
+    std::cout &lt;&lt; &quot;Product: &quot; &lt;&lt; product &lt;&lt; std::endl; // Outputs: Product: 15
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Compilation Steps:</strong></p>
+<ol>
+<li><strong>Compile the Module Interface</strong><pre><code class="bash">g++ -std=c++20 -fmodules-ts -c math.ixx -o math.o
+</code></pre>
+</li>
+<li><strong>Compile the Main Program</strong><pre><code class="bash">g++ -std=c++20 main.cpp math.o -o main
+</code></pre>
+</li>
+<li><strong>Run the Program</strong><pre><code class="bash">./main
+</code></pre>
+</li>
+</ol>
+<p><strong>Output:</strong></p>
+<pre><code>Sum: 8
+Product: 15
+</code></pre>
+<h3 id="Module-Partitioning"><a href="#Module-Partitioning" class="headerlink" title="Module Partitioning"></a>Module Partitioning</h3><p>Modules can be divided into partitions to manage large codebases more effectively. Partitions allow splitting a module’s interface and implementation into separate files.</p>
+<p><strong>Example: Module with Partitions</strong></p>
+<ol>
+<li><p><strong>Module Interface (<code>graphics.ixx</code>)</strong></p>
+<pre><code class="cpp">// graphics.ixx - Module Interface
+
+export module graphics;
+
+export void drawCircle();
+export void drawSquare();
+
+export import graphics.details; // Importing partition
+</code></pre>
+</li>
+<li><p><strong>Module Partition (<code>graphics_details.ixx</code>)</strong></p>
+<pre><code class="cpp">// graphics_details.ixx - Module Partition
+
+module graphics.details;
+
+void drawCircle() &#123;
+    // Implementation of drawing a circle
+&#125;
+
+void drawSquare() &#123;
+    // Implementation of drawing a square
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Using the Module (<code>main.cpp</code>)</strong></p>
+<pre><code class="cpp">// main.cpp
+
+import graphics;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    drawCircle();
+    drawSquare();
+    std::cout &lt;&lt; &quot;Shapes drawn successfully.&quot; &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+</li>
+</ol>
+<p><strong>Compilation Steps:</strong></p>
+<ol>
+<li><strong>Compile the Module Interface and Partition</strong><pre><code class="bash">g++ -std=c++20 -fmodules-ts -c graphics.ixx -o graphics.o
+g++ -std=c++20 -fmodules-ts -c graphics_details.ixx -o graphics_details.o
+</code></pre>
+</li>
+<li><strong>Compile the Main Program</strong><pre><code class="bash">g++ -std=c++20 main.cpp graphics.o graphics_details.o -o main
+</code></pre>
+</li>
+<li><strong>Run the Program</strong><pre><code class="bash">./main
+</code></pre>
+</li>
+</ol>
+<p><strong>Output:</strong></p>
+<pre><code>Shapes drawn successfully.
+</code></pre>
+<h3 id="Compiler-Support-and-Considerations"><a href="#Compiler-Support-and-Considerations" class="headerlink" title="Compiler Support and Considerations"></a>Compiler Support and Considerations</h3><p>While Modules are a powerful feature, <strong>module programming in C++20 does not yet have high support across the three major mainstream compilers</strong>:</p>
+<ul>
+<li><strong>GCC</strong>: Partial support starting from version 10, with ongoing improvements.</li>
+<li><strong>Clang</strong>: Partial support with significant progress in recent versions.</li>
+<li><strong>MSVC</strong>: More mature support compared to GCC and Clang, but still evolving.</li>
+</ul>
+<p><strong>Implications:</strong></p>
+<ul>
+<li><strong>Portability</strong>: Code utilizing Modules may face compatibility issues across different compiler versions.</li>
+<li><strong>Adoption</strong>: Given the limited support, it’s advisable to use Modules judiciously, especially in projects targeting multiple compiler platforms.</li>
+<li><strong>Future Proofing</strong>: As compiler support matures, adopting Modules will become more beneficial. Staying informed about compiler updates is essential.</li>
+</ul>
+<p><strong>Recommendation:</strong></p>
+<ul>
+<li><strong>Evaluate Necessity</strong>: Assess whether the benefits of Modules outweigh the current limitations in compiler support for your project.</li>
+<li><strong>Fallback Mechanisms</strong>: Consider providing traditional header-based includes as a fallback when Modules are not supported.</li>
+<li><strong>Stay Updated</strong>: Keep track of compiler releases and updates to leverage improved Module support as it becomes available.</li>
+</ul>
+<h3 id="Best-Practices-with-Modules"><a href="#Best-Practices-with-Modules" class="headerlink" title="Best Practices with Modules"></a>Best Practices with Modules</h3><ol>
+<li><strong>Organize Code into Logical Modules</strong>: Group related functionalities into separate modules for better maintainability.</li>
+<li><strong>Minimize Module Interfaces</strong>: Expose only what is necessary to reduce dependencies and improve encapsulation.</li>
+<li><strong>Avoid Circular Dependencies</strong>: Design modules to prevent circular imports, which can lead to compilation issues.</li>
+<li><strong>Leverage Module Partitions</strong>: Use partitions to manage large modules by splitting them into manageable pieces.</li>
+<li><strong>Provide Fallbacks</strong>: Ensure that your codebase can compile without Modules if targeting compilers with limited support.</li>
+<li><strong>Document Module Interfaces</strong>: Clearly document the public interface of each module to aid developers in understanding dependencies and usage.</li>
+</ol>
+<hr>
+<h2 id="Three-Way-Comparison-Operator"><a href="#Three-Way-Comparison-Operator" class="headerlink" title="Three-Way Comparison Operator (&lt;=&gt;)"></a>Three-Way Comparison Operator (<code>&lt;=&gt;</code>)</h2><h3 id="What-Is-the-Three-Way-Comparison-Operator"><a href="#What-Is-the-Three-Way-Comparison-Operator" class="headerlink" title="What Is the Three-Way Comparison Operator?"></a>What Is the Three-Way Comparison Operator?</h3><p>The three-way comparison operator, also known as the “spaceship operator” (<code>&lt;=&gt;</code>), was introduced in C++20 to simplify the process of implementing comparison operators. It provides a unified way to perform all relational comparisons (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>) and equality comparisons (<code>==</code>, <code>!=</code>).</p>
+<h3 id="Benefits-of-Using-the-Operator"><a href="#Benefits-of-Using-the-Operator" class="headerlink" title="Benefits of Using the &lt;=&gt; Operator"></a>Benefits of Using the <code>&lt;=&gt;</code> Operator</h3><ul>
+<li><strong>Simplifies Operator Definitions</strong>: Reduces boilerplate code by handling multiple comparisons in one operator.</li>
+<li><strong>Consistent Comparison Logic</strong>: Ensures consistent behavior across different comparison operators.</li>
+<li><strong>Supports Defaulted Comparisons</strong>: Allows the compiler to generate default comparison logic for user-defined types.</li>
+</ul>
+<h3 id="Using-the-Operator"><a href="#Using-the-Operator" class="headerlink" title="Using the &lt;=&gt; Operator"></a>Using the <code>&lt;=&gt;</code> Operator</h3><h4 id="Implementing-the-Operator"><a href="#Implementing-the-Operator" class="headerlink" title="Implementing the &lt;=&gt; Operator"></a>Implementing the <code>&lt;=&gt;</code> Operator</h4><p>To implement the three-way comparison operator, define the <code>operator&lt;=&gt;</code> in your class. You can also default the operator to let the compiler generate it automatically.</p>
+<p><strong>Example: Implementing <code>&lt;=&gt;</code> in a <code>Point</code> Class</strong></p>
+<pre><code class="cpp">#include &lt;compare&gt;
+#include &lt;iostream&gt;
+
+struct Point &#123;
+    int x;
+    int y;
+
+    // Implement the three-way comparison operator
+    auto operator&lt;=&gt;(const Point&amp;) const = default;
+&#125;;
+
+int main() &#123;
+    Point p1&#123;1, 2&#125;;
+    Point p2&#123;1, 3&#125;;
+
+    if(p1 &lt; p2) &#123;
+        std::cout &lt;&lt; &quot;p1 is less than p2&quot; &lt;&lt; std::endl;
+    &#125; else if(p1 &gt; p2) &#123;
+        std::cout &lt;&lt; &quot;p1 is greater than p2&quot; &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;p1 is equal to p2&quot; &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>p1 is less than p2
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Defaulted <code>&lt;=&gt;</code> Operator</strong>: By using <code>= default</code>, the compiler automatically generates the comparison logic based on the member variables.</li>
+<li><strong>Comparison Order</strong>: The comparison starts with the first member (<code>x</code>), and if they are equal, it proceeds to the next member (<code>y</code>).</li>
+</ul>
+<h4 id="Customizing-the-Operator"><a href="#Customizing-the-Operator" class="headerlink" title="Customizing the &lt;=&gt; Operator"></a>Customizing the <code>&lt;=&gt;</code> Operator</h4><p>You can provide custom comparison logic by implementing the <code>operator&lt;=&gt;</code> manually.</p>
+<p><strong>Example: Custom <code>&lt;=&gt;</code> Implementation</strong></p>
+<pre><code class="cpp">#include &lt;compare&gt;
+#include &lt;iostream&gt;
+
+struct Person &#123;
+    std::string name;
+    int age;
+
+    // Custom three-way comparison operator
+    std::partial_ordering operator&lt;=&gt;(const Person&amp; other) const &#123;
+        if(auto cmp = name &lt;=&gt; other.name; cmp != 0) &#123;
+            return cmp;
+        &#125;
+        return age &lt;=&gt; other.age;
+    &#125;
+
+    bool operator==(const Person&amp; other) const = default;
+&#125;;
+
+int main() &#123;
+    Person alice&#123;&quot;Alice&quot;, 30&#125;;
+    Person bob&#123;&quot;Bob&quot;, 25&#125;;
+    Person anotherAlice&#123;&quot;Alice&quot;, 30&#125;;
+
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; &quot;alice == bob: &quot; &lt;&lt; (alice == bob) &lt;&lt; std::endl;               // false
+    std::cout &lt;&lt; &quot;alice &lt; bob: &quot; &lt;&lt; (alice &lt; bob) &lt;&lt; std::endl;                 // true
+    std::cout &lt;&lt; &quot;alice == anotherAlice: &quot; &lt;&lt; (alice == anotherAlice) &lt;&lt; std::endl; // true
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>alice == bob: false
+alice &lt; bob: true
+alice == anotherAlice: true
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Custom Logic</strong>: First compares <code>name</code>, and if equal, compares <code>age</code>.</li>
+<li><strong>Partial Ordering</strong>: Uses <code>std::partial_ordering</code> to handle cases where comparison might not be strict.</li>
+</ul>
+<h3 id="Best-Practices-with-the-Operator"><a href="#Best-Practices-with-the-Operator" class="headerlink" title="Best Practices with the &lt;=&gt; Operator"></a>Best Practices with the <code>&lt;=&gt;</code> Operator</h3><ol>
+<li><strong>Leverage Defaulted Comparisons</strong>: Use <code>= default</code> whenever possible to reduce boilerplate code.</li>
+<li><strong>Ensure Consistency</strong>: Make sure that all members used in comparison are consistent with the intended ordering logic.</li>
+<li><strong>Understand Comparison Categories</strong>: Use appropriate comparison categories (<code>std::strong_ordering</code>, <code>std::weak_ordering</code>, <code>std::partial_ordering</code>) based on the nature of the comparisons.</li>
+<li><strong>Combine with <code>operator==</code></strong>: Define <code>operator==</code> to ensure complete comparison functionality.</li>
+</ol>
+<hr>
+<h2 id="std-span"><a href="#std-span" class="headerlink" title="std::span"></a><code>std::span</code></h2><h3 id="What-Is-std-span"><a href="#What-Is-std-span" class="headerlink" title="What Is std::span?"></a>What Is <code>std::span</code>?</h3><p><code>std::span</code> is a lightweight, non-owning reference to a contiguous sequence of objects. Introduced in C++20, it provides a safe and convenient way to pass arrays or parts of containers to functions without losing size information or resorting to raw pointers.</p>
+<h3 id="Benefits-of-Using-std-span"><a href="#Benefits-of-Using-std-span" class="headerlink" title="Benefits of Using std::span"></a>Benefits of Using <code>std::span</code></h3><ul>
+<li><strong>Safety</strong>: Eliminates common pointer-related errors by keeping track of the size.</li>
+<li><strong>Flexibility</strong>: Can reference entire containers or subranges without copying data.</li>
+<li><strong>Performance</strong>: Minimal overhead since it doesn’t own the data.</li>
+</ul>
+<h3 id="Creating-and-Using-std-span"><a href="#Creating-and-Using-std-span" class="headerlink" title="Creating and Using std::span"></a>Creating and Using <code>std::span</code></h3><p><strong>Example: Basic Usage of <code>std::span</code></strong></p>
+<pre><code class="cpp">#include &lt;span&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+void printSpan(std::span&lt;int&gt; s) &#123;
+    for(auto num : s) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
+    &#125;
+    std::cout &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    int arr[] = &#123;1, 2, 3, 4, 5&#125;;
+    std::vector&lt;int&gt; vec = &#123;6, 7, 8, 9, 10&#125;;
+
+    // Create spans from array and vector
+    std::span&lt;int&gt; spanArr(arr);
+    std::span&lt;int&gt; spanVec(vec);
+
+    printSpan(spanArr); // Outputs: 1 2 3 4 5 
+    printSpan(spanVec); // Outputs: 6 7 8 9 10 
+
+    // Create a subspan
+    auto subSpan = spanArr.subspan(1, 3);
+    printSpan(subSpan); // Outputs: 2 3 4 
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>1 2 3 4 5 
+6 7 8 9 10 
+2 3 4 
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Creating a <code>std::span</code></strong>: Can be created from arrays, <code>std::vector</code>, or other contiguous containers.</li>
+<li><strong>Subspan</strong>: Allows creating a view into a subset of the span.</li>
+</ul>
+<h3 id="Modifying-Data-Through-std-span"><a href="#Modifying-Data-Through-std-span" class="headerlink" title="Modifying Data Through std::span"></a>Modifying Data Through <code>std::span</code></h3><p>Since <code>std::span</code> provides access to the underlying data, modifications are reflected in the original container.</p>
+<p><strong>Example: Modifying Data via <code>std::span</code></strong></p>
+<pre><code class="cpp">#include &lt;span&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+void incrementElements(std::span&lt;int&gt; s) &#123;
+    for(auto&amp; num : s) &#123;
+        ++num;
+    &#125;
+&#125;
+
+int main() &#123;
+    std::vector&lt;int&gt; vec = &#123;10, 20, 30, 40, 50&#125;;
+    std::span&lt;int&gt; spanVec(vec);
+
+    incrementElements(spanVec);
+
+    for(auto num : vec) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 11 21 31 41 51 
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>11 21 31 41 51 
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>std::span</code> Usage</strong>: The <code>incrementElements</code> function takes a span of integers and increments each element.</li>
+<li><strong>Data Modification</strong>: Changes made through the span are directly reflected in the original <code>std::vector</code>.</li>
+</ul>
+<h3 id="Constness-and-std-span"><a href="#Constness-and-std-span" class="headerlink" title="Constness and std::span"></a>Constness and <code>std::span</code></h3><p><code>std::span</code> can be used with <code>const</code> types to provide read-only access to data.</p>
+<p><strong>Example: Read-Only <code>std::span</code></strong></p>
+<pre><code class="cpp">#include &lt;span&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+void printConstSpan(std::span&lt;const int&gt; s) &#123;
+    for(auto num : s) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
+    &#125;
+    std::cout &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    std::vector&lt;int&gt; vec = &#123;100, 200, 300, 400, 500&#125;;
+    std::span&lt;const int&gt; spanVec(vec);
+
+    printConstSpan(spanVec); // Outputs: 100 200 300 400 500 
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>100 200 300 400 500 
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>std::span&lt;const int&gt;</code></strong>: Ensures that the elements cannot be modified through the span.</li>
+</ul>
+<h3 id="Best-Practices-with-std-span"><a href="#Best-Practices-with-std-span" class="headerlink" title="Best Practices with std::span"></a>Best Practices with <code>std::span</code></h3><ol>
+<li><strong>Prefer <code>std::span</code> Over Raw Pointers</strong>: Enhances code safety and clarity by keeping track of size.</li>
+<li><strong>Use Const Correctness</strong>: Pass spans as <code>std::span&lt;const T&gt;</code> when modification is not required.</li>
+<li><strong>Avoid Dangling Spans</strong>: Ensure that the underlying data outlives the span to prevent undefined behavior.</li>
+<li><strong>Leverage Subspans</strong>: Utilize <code>subspan</code> to operate on specific ranges within a span without creating new containers.</li>
+<li><strong>Combine with Ranges</strong>: Use <code>std::span</code> in conjunction with Ranges for more powerful and expressive data processing.</li>
+</ol>
+<hr>
+<h2 id="Other-Notable-C-20-Features"><a href="#Other-Notable-C-20-Features" class="headerlink" title="Other Notable C++20 Features"></a>Other Notable C++20 Features</h2><p>C++20 introduces several other features and enhancements that further enrich the language. Below are some of the notable additions:</p>
+<h3 id="Lambda-Enhancements"><a href="#Lambda-Enhancements" class="headerlink" title="Lambda Enhancements"></a>Lambda Enhancements</h3><h4 id="Template-Lambdas"><a href="#Template-Lambdas" class="headerlink" title="Template Lambdas"></a>Template Lambdas</h4><p>C++20 allows lambda expressions to have template parameters, enabling them to be more generic and flexible.</p>
+<p><strong>Example: Template Lambda</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() &#123;
+    auto print = []&lt;typename T&gt;(const T&amp; value) &#123;
+        std::cout &lt;&lt; value &lt;&lt; &quot; &quot;;
+    &#125;;
+
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+    std::ranges::for_each(numbers, print); // Outputs: 1 2 3 4 5 
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>1 2 3 4 5 
+</code></pre>
+<h4 id="Capturing-this-by-Value"><a href="#Capturing-this-by-Value" class="headerlink" title="Capturing *this by Value"></a>Capturing <code>*this</code> by Value</h4><p>C++20 allows capturing <code>*this</code> by value in lambdas, enabling safer use of member variables.</p>
+<p><strong>Example: Capturing <code>*this</code> by Value</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;functional&gt;
+
+struct Counter &#123;
+    int count = 0;
+
+    void incrementAfterDelay() &#123;
+        auto lambda = [copy = *this]() mutable &#123;
+            copy.count++;
+            std::cout &lt;&lt; &quot;Count after delay: &quot; &lt;&lt; copy.count &lt;&lt; std::endl;
+        &#125;;
+        // Simulate asynchronous execution
+        lambda();
+    &#125;
+&#125;;
+
+int main() &#123;
+    Counter c;
+    c.incrementAfterDelay(); // Outputs: Count after delay: 1
+    std::cout &lt;&lt; &quot;Original count: &quot; &lt;&lt; c.count &lt;&lt; std::endl; // Outputs: Original count: 0
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Count after delay: 1
+Original count: 0
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Capturing by Value</strong>: The lambda captures a copy of <code>*this</code>, ensuring that modifications within the lambda do not affect the original object.</li>
+</ul>
+<h3 id="consteval-and-constinit"><a href="#consteval-and-constinit" class="headerlink" title="consteval and constinit"></a><code>consteval</code> and <code>constinit</code></h3><h4 id="consteval"><a href="#consteval" class="headerlink" title="consteval"></a><code>consteval</code></h4><p>The <code>consteval</code> keyword specifies that a function is an immediate function, meaning it must be evaluated at compile time.</p>
+<p><strong>Example: Using <code>consteval</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+// Immediate function that computes factorial at compile time
+consteval int factorial(int n) &#123;
+    return (n &lt;= 1) ? 1 : (n * factorial(n - 1));
+&#125;
+
+int main() &#123;
+    constexpr int fact5 = factorial(5);
+    std::cout &lt;&lt; &quot;Factorial of 5: &quot; &lt;&lt; fact5 &lt;&lt; std::endl; // Outputs: 120
+
+    // int fact6 = factorial(6); // Error: factorial must be evaluated at compile time
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Factorial of 5: 120
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>consteval</code> Function</strong>: Must be evaluated at compile time. Attempting to use it in a runtime context results in a compilation error.</li>
+</ul>
+<h4 id="constinit"><a href="#constinit" class="headerlink" title="constinit"></a><code>constinit</code></h4><p>The <code>constinit</code> keyword ensures that a variable is initialized at compile time, but unlike <code>constexpr</code>, it does not make the variable constant.</p>
+<p><strong>Example: Using <code>constinit</code></strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+struct Config &#123;
+    int value;
+&#125;;
+
+// Compile-time initialization
+constinit Config config = &#123;42&#125;;
+
+int main() &#123;
+    std::cout &lt;&lt; &quot;Config value: &quot; &lt;&lt; config.value &lt;&lt; std::endl; // Outputs: 42
+    config.value = 100; // Allowed: not const
+    std::cout &lt;&lt; &quot;Updated Config value: &quot; &lt;&lt; config.value &lt;&lt; std::endl; // Outputs: 100
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Config value: 42
+Updated Config value: 100
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>constinit</code> Variable</strong>: Must be initialized at compile time but can be modified at runtime.</li>
+</ul>
+<h3 id="Template-Parameter-Lists-Enhancements"><a href="#Template-Parameter-Lists-Enhancements" class="headerlink" title="Template Parameter Lists Enhancements"></a>Template Parameter Lists Enhancements</h3><p>C++20 introduces new syntax and capabilities for template parameter lists, enhancing their expressiveness.</p>
+<h4 id="Template-Parameter-Lists-with-auto"><a href="#Template-Parameter-Lists-with-auto" class="headerlink" title="Template Parameter Lists with auto"></a>Template Parameter Lists with <code>auto</code></h4><p>Templates can now accept parameters of any type using the <code>auto</code> keyword.</p>
+<p><strong>Example: Template with <code>auto</code> Parameters</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() &#123;
+    // Template lambda with auto parameters
+    auto add = []&lt;typename T&gt;(T a, T b) -&gt; T &#123;
+        return a + b;
+    &#125;;
+
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; add(10, 20) &lt;&lt; std::endl;       // Outputs: 30
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; add(3.5, 2.5) &lt;&lt; std::endl;    // Outputs: 6
+    // std::cout &lt;&lt; add(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl;    // Compilation error
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Sum: 30
+Sum: 6
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Generic Template Lambda</strong>: Uses <code>auto</code> to accept any type that supports the <code>+</code> operator.</li>
+</ul>
+<h3 id="std-format"><a href="#std-format" class="headerlink" title="std::format"></a><code>std::format</code></h3><h4 id="Introduction-to-std-format"><a href="#Introduction-to-std-format" class="headerlink" title="Introduction to std::format"></a>Introduction to <code>std::format</code></h4><p><code>std::format</code> provides a type-safe and extensible way to format strings, similar to Python’s <code>str.format</code> or C#’s string interpolation. It replaces the traditional <code>printf</code>-style formatting with a more modern and secure approach.</p>
+<h4 id="Using-std-format"><a href="#Using-std-format" class="headerlink" title="Using std::format"></a>Using <code>std::format</code></h4><p><strong>Example: Basic Usage of <code>std::format</code></strong></p>
+<pre><code class="cpp">#include &lt;format&gt;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    int age = 30;
+    std::string name = &quot;Alice&quot;;
+
+    std::string message = std::format(&quot;Name: &#123;&#125;, Age: &#123;&#125;&quot;, name, age);
+    std::cout &lt;&lt; message &lt;&lt; std::endl; // Outputs: Name: Alice, Age: 30
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Name: Alice, Age: 30
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>std::format</code> Syntax</strong>: Uses <code>&#123;&#125;</code> as placeholders for arguments, providing a clear and readable way to construct formatted strings.</li>
+</ul>
+<h4 id="Advanced-Formatting"><a href="#Advanced-Formatting" class="headerlink" title="Advanced Formatting"></a>Advanced Formatting</h4><p><code>std::format</code> supports various formatting options, including alignment, width, precision, and more.</p>
+<p><strong>Example: Advanced Formatting</strong></p>
+<pre><code class="cpp">#include &lt;format&gt;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    double pi = 3.14159265358979323846;
+    std::string hexValue = std::format(&quot;&#123;:#x&#125;&quot;, 255); // Hexadecimal with prefix
+
+    std::string message = std::format(&quot;Pi rounded to 2 decimal places: &#123;:.2f&#125;&quot;, pi);
+    std::cout &lt;&lt; message &lt;&lt; std::endl;            // Outputs: Pi rounded to 2 decimal places: 3.14
+    std::cout &lt;&lt; &quot;Hex value: &quot; &lt;&lt; hexValue &lt;&lt; std::endl; // Outputs: Hex value: 0xff
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Pi rounded to 2 decimal places: 3.14
+Hex value: 0xff
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>std::format</code> with Formatting Specifiers</strong>: Allows specifying precision and formatting styles directly within the format string.</li>
+</ul>
+<h3 id="Enhanced-std-chrono"><a href="#Enhanced-std-chrono" class="headerlink" title="Enhanced std::chrono"></a>Enhanced <code>std::chrono</code></h3><p>C++20 introduces several enhancements to the <code>&lt;chrono&gt;</code> library, providing more precise and convenient ways to work with time durations and points.</p>
+<h4 id="Calendar-and-Time-Zone-Support"><a href="#Calendar-and-Time-Zone-Support" class="headerlink" title="Calendar and Time Zone Support"></a>Calendar and Time Zone Support</h4><p>C++20 adds calendar and time zone support to <code>&lt;chrono&gt;</code>, allowing for more accurate and meaningful time manipulations.</p>
+<p><strong>Example: Using <code>std::chrono</code> with Calendars</strong></p>
+<pre><code class="cpp">#include &lt;chrono&gt;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    using namespace std::chrono;
+
+    // Current system time as a time_point
+    auto now = system_clock::now();
+
+    // Convert to time_t for printing
+    std::time_t now_time = system_clock::to_time_t(now);
+    std::cout &lt;&lt; &quot;Current time: &quot; &lt;&lt; std::ctime(&amp;now_time) &lt;&lt; std::endl;
+
+    // Add 5 days
+    auto future = now + days(5);
+    std::time_t future_time = system_clock::to_time_t(future);
+    std::cout &lt;&lt; &quot;Future time (5 days later): &quot; &lt;&lt; std::ctime(&amp;future_time) &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Current time: Wed Oct 11 14:23:45 2023
+Future time (5 days later): Mon Oct 16 14:23:45 2023
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>days</code> Duration</strong>: Allows adding days directly to a <code>time_point</code>.</li>
+<li><strong>Calendar Awareness</strong>: Facilitates operations based on calendar dates.</li>
+</ul>
+<h4 id="Formatting-Dates-and-Times"><a href="#Formatting-Dates-and-Times" class="headerlink" title="Formatting Dates and Times"></a>Formatting Dates and Times</h4><p>With calendar support, formatting dates and times becomes more straightforward.</p>
+<p><strong>Example: Formatting Dates with <code>std::format</code> and <code>std::chrono</code></strong></p>
+<pre><code class="cpp">#include &lt;chrono&gt;
+#include &lt;format&gt;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    using namespace std::chrono;
+
+    // Define a specific date
+    year_month_day ymd&#123;year&#123;2023&#125;, month&#123;10&#125;, day&#123;27&#125;&#125;;
+
+    // Format the date
+    std::string dateStr = std::format(&quot;&#123;:%B %d, %Y&#125;&quot;, ymd);
+    std::cout &lt;&lt; &quot;Formatted Date: &quot; &lt;&lt; dateStr &lt;&lt; std::endl; // Outputs: October 27, 2023
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>Formatted Date: October 27, 2023
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>year_month_day</code></strong>: Represents a calendar date.</li>
+<li><strong><code>std::format</code> with Chrono</strong>: Allows formatting using chrono’s calendar types.</li>
+</ul>
+<h3 id="Best-Practices-for-Utilizing-C-20-Features"><a href="#Best-Practices-for-Utilizing-C-20-Features" class="headerlink" title="Best Practices for Utilizing C++20 Features"></a>Best Practices for Utilizing C++20 Features</h3><ol>
+<li><strong>Gradual Adoption</strong>: Start by integrating C++20 features into new projects or gradually refactor existing codebases.</li>
+<li><strong>Leverage Standard Library Enhancements</strong>: Utilize new Standard Library features like <code>std::format</code> and enhanced <code>std::chrono</code> for more robust code.</li>
+<li><strong>Embrace Modern Syntax</strong>: Use Concepts and Ranges to write more expressive and type-safe code.</li>
+<li><strong>Optimize with Coroutines</strong>: Implement asynchronous operations using coroutines to improve application responsiveness.</li>
+<li><strong>Organize Code with Modules</strong>: Adopt modules to enhance compile times and code encapsulation, keeping in mind the current limited compiler support.</li>
+<li><strong>Stay Updated</strong>: Continuously explore and learn about new C++20 features and their best use cases.</li>
+</ol>
+<hr>
+<h2 id="Best-Practices-for-Using-C-20-Features"><a href="#Best-Practices-for-Using-C-20-Features" class="headerlink" title="Best Practices for Using C++20 Features"></a>Best Practices for Using C++20 Features</h2><p>Integrating C++20 features into your programming workflow can significantly enhance code quality and performance. However, to maximize their benefits, it’s essential to follow best practices:</p>
+<ol>
+<li><strong>Understand the Features Thoroughly</strong>: Before using a new feature, ensure you understand its mechanics, benefits, and potential pitfalls.</li>
+<li><strong>Start Small</strong>: Begin by applying C++20 features to smaller, non-critical parts of your codebase to gain confidence.</li>
+<li><strong>Maintain Consistency</strong>: Use C++20 features consistently across your projects to ensure uniformity and ease of maintenance.</li>
+<li><strong>Leverage Compiler Support</strong>: Ensure that your compiler fully supports the C++20 features you intend to use and stay updated with the latest compiler versions.</li>
+<li><strong>Write Clear and Readable Code</strong>: While advanced features offer powerful abstractions, prioritize code readability and maintainability.</li>
+<li><strong>Use Static Analysis Tools</strong>: Employ tools that can analyze and enforce best practices, ensuring that C++20 features are used correctly.</li>
+<li><strong>Stay Informed</strong>: Keep abreast of updates, community discussions, and evolving best practices related to C++20.</li>
+</ol>
+<hr>
+<h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><p>To solidify your understanding of C++20 features, let’s explore some practical examples that demonstrate how these features can be applied in real-world scenarios.</p>
+<h3 id="Example-1-Using-Concepts-to-Create-a-Generic-Function"><a href="#Example-1-Using-Concepts-to-Create-a-Generic-Function" class="headerlink" title="Example 1: Using Concepts to Create a Generic Function"></a>Example 1: Using Concepts to Create a Generic Function</h3><p><strong>Problem</strong>: Create a generic <code>multiply</code> function that only works with arithmetic types.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;concepts&gt;
+#include &lt;iostream&gt;
+
+// Define the &#39;Arithmetic&#39; concept
+template&lt;typename T&gt;
+concept Arithmetic = std::is_arithmetic_v&lt;T&gt;;
+
+// Generic multiply function constrained by the &#39;Arithmetic&#39; concept
+Arithmetic auto multiply(Arithmetic auto a, Arithmetic auto b) &#123;
+    return a * b;
+&#125;
+
+int main() &#123;
+    std::cout &lt;&lt; multiply(3, 4) &lt;&lt; std::endl;       // Outputs: 12
+    std::cout &lt;&lt; multiply(2.5, 4.2) &lt;&lt; std::endl;   // Outputs: 10.5
+    // std::cout &lt;&lt; multiply(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // Compilation error
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>12
+10.5
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The <code>multiply</code> function is constrained to accept only types that satisfy the <code>Arithmetic</code> concept, ensuring type safety.</li>
+</ul>
+<h3 id="Example-2-Implementing-a-Coroutine-Based-Generator"><a href="#Example-2-Implementing-a-Coroutine-Based-Generator" class="headerlink" title="Example 2: Implementing a Coroutine-Based Generator"></a>Example 2: Implementing a Coroutine-Based Generator</h3><p><strong>Problem</strong>: Create a generator that produces an infinite sequence of Fibonacci numbers using coroutines.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;coroutine&gt;
+#include &lt;iostream&gt;
+#include &lt;optional&gt;
+
+// Generator class for Fibonacci numbers
+struct FibonacciGenerator &#123;
+    struct promise_type &#123;
+        std::optional&lt;long long&gt; current_value;
+
+        FibonacciGenerator get_return_object() &#123;
+            return FibonacciGenerator&#123; std::coroutine_handle&lt;promise_type&gt;::from_promise(*this) &#125;;
+        &#125;
+
+        std::suspend_always initial_suspend() &#123; return &#123;&#125;; &#125;
+        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;
+
+        std::suspend_always yield_value(long long value) &#123;
+            current_value = value;
+            return &#123;&#125;;
+        &#125;
+
+        void return_void() &#123;&#125;
+        void unhandled_exception() &#123; std::terminate(); &#125;
+    &#125;;
+
+    std::coroutine_handle&lt;promise_type&gt; handle;
+
+    FibonacciGenerator(std::coroutine_handle&lt;promise_type&gt; h) : handle(h) &#123;&#125;
+    ~FibonacciGenerator() &#123; if(handle) handle.destroy(); &#125;
+
+    std::optional&lt;long long&gt; next() &#123;
+        if(!handle.done()) &#123;
+            handle.resume();
+            return handle.promise().current_value;
+        &#125;
+        return std::nullopt;
+    &#125;
+&#125;;
+
+// Coroutine function to generate Fibonacci numbers
+FibonacciGenerator generateFibonacci() &#123;
+    long long a = 0, b = 1;
+    while(true) &#123;
+        co_yield a;
+        auto temp = a;
+        a = b;
+        b = temp + b;
+    &#125;
+&#125;
+
+int main() &#123;
+    auto fibGen = generateFibonacci();
+    for(int i = 0; i &lt; 10; ++i) &#123;
+        if(auto val = fibGen.next()) &#123;
+            std::cout &lt;&lt; *val &lt;&lt; &quot; &quot;; // Outputs: 0 1 1 2 3 5 8 13 21 34 
+        &#125;
+    &#125;
+    std::cout &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>0 1 1 2 3 5 8 13 21 34 
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Infinite Coroutine</strong>: The <code>generateFibonacci</code> coroutine runs indefinitely, yielding Fibonacci numbers.</li>
+<li><strong>Generator Usage</strong>: The <code>FibonacciGenerator</code> class manages the coroutine, providing a <code>next</code> method to retrieve values.</li>
+</ul>
+<h3 id="Example-3-Using-std-span-to-Manipulate-Subarrays"><a href="#Example-3-Using-std-span-to-Manipulate-Subarrays" class="headerlink" title="Example 3: Using std::span to Manipulate Subarrays"></a>Example 3: Using <code>std::span</code> to Manipulate Subarrays</h3><p><strong>Problem</strong>: Implement a function that reverses a subarray within a given array using <code>std::span</code>.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;span&gt;
+#include &lt;array&gt;
+
+// Function to reverse a subarray using std::span
+void reverseSubarray(std::span&lt;int&gt; s, size_t start, size_t length) &#123;
+    if(start + length &gt; s.size()) &#123;
+        throw std::out_of_range(&quot;Subarray exceeds span bounds.&quot;);
+    &#125;
+    std::span&lt;int&gt; sub = s.subspan(start, length);
+    std::reverse(sub.begin(), sub.end());
+&#125;
+
+int main() &#123;
+    std::array&lt;int, 8&gt; data = &#123;1, 2, 3, 4, 5, 6, 7, 8&#125;;
+    
+    try &#123;
+        // Reverse elements from index 2 to index 5 (elements 3,4,5,6)
+        reverseSubarray(data, 2, 4);
+        
+        for(auto num : data) &#123;
+            std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 6 5 4 3 7 8 
+        &#125;
+        std::cout &lt;&lt; std::endl;
+    &#125; catch(const std::exception&amp; e) &#123;
+        std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+    
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>1 2 6 5 4 3 7 8 
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>std::span</code> Usage</strong>: The <code>reverseSubarray</code> function takes a span of integers and reverses a specified subrange.</li>
+<li><strong>Safety</strong>: Ensures that the subarray does not exceed the bounds of the span, throwing an exception if it does.</li>
+</ul>
+<h3 id="Example-4-Implementing-Defaulted-Comparisons-with-the-Operator"><a href="#Example-4-Implementing-Defaulted-Comparisons-with-the-Operator" class="headerlink" title="Example 4: Implementing Defaulted Comparisons with the &lt;=&gt; Operator"></a>Example 4: Implementing Defaulted Comparisons with the <code>&lt;=&gt;</code> Operator</h3><p><strong>Problem</strong>: Create a <code>Rectangle</code> class that can be compared using all relational and equality operators without manually defining each operator.</p>
+<p><strong>Solution</strong>:</p>
+<pre><code class="cpp">#include &lt;compare&gt;
+#include &lt;iostream&gt;
+
+struct Rectangle &#123;
+    int width;
+    int height;
+
+    // Default the three-way comparison operator
+    auto operator&lt;=&gt;(const Rectangle&amp;) const = default;
+&#125;;
+
+int main() &#123;
+    Rectangle r1&#123;10, 20&#125;;
+    Rectangle r2&#123;10, 20&#125;;
+    Rectangle r3&#123;15, 25&#125;;
+
+    std::cout &lt;&lt; std::boolalpha;
+    std::cout &lt;&lt; &quot;r1 == r2: &quot; &lt;&lt; (r1 == r2) &lt;&lt; std::endl; // true
+    std::cout &lt;&lt; &quot;r1 &lt; r3: &quot; &lt;&lt; (r1 &lt; r3) &lt;&lt; std::endl;   // true
+    std::cout &lt;&lt; &quot;r3 &gt; r2: &quot; &lt;&lt; (r3 &gt; r2) &lt;&lt; std::endl;   // true
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>r1 == r2: true
+r1 &lt; r3: true
+r3 &gt; r2: true
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Defaulted <code>&lt;=&gt;</code> Operator</strong>: Automatically generates comparison logic based on member variables.</li>
+<li><strong>Comprehensive Comparisons</strong>: Enables the use of <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, and <code>!=</code> without additional code.</li>
+</ul>
+<hr>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>C++20 represents a significant advancement in the C++ language, introducing features that enhance its expressiveness, performance, and usability. In this chapter, you’ve explored some of the most impactful C++20 features:</p>
+<ul>
+<li><strong>Concepts</strong>: Enabled more expressive and type-safe template programming.</li>
+<li><strong>Ranges</strong>: Provided a modern and flexible approach to working with sequences of elements.</li>
+<li><strong>Coroutines</strong>: Simplified asynchronous programming by allowing functions to suspend and resume execution.</li>
+<li><strong>Modules</strong>: Improved code organization, encapsulation, and compile times by introducing a new way to manage dependencies, though with currently limited support across major compilers.</li>
+<li><strong>Three-Way Comparison Operator (<code>&lt;=&gt;</code>)</strong>: Streamlined the implementation of comparison operators, reducing boilerplate code.</li>
+<li><strong><code>std::span</code></strong>: Offered a safe and efficient way to reference contiguous sequences of elements without owning them.</li>
+<li><strong>Other Enhancements</strong>: Including lambda improvements, <code>consteval</code> and <code>constinit</code>, template parameter list enhancements, <code>std::format</code>, and an enriched <code>std::chrono</code> library.</li>
+</ul>
+<p>By integrating these features into your C++ programming practices, you can write more efficient, readable, and maintainable code. Embracing C++20’s modern features not only keeps your skills up-to-date but also leverages the full potential of the C++ language for developing robust and high-performance applications.</p>
+<hr>
+<p>Now you’re ready to move on to <strong>Filesystem</strong>, where you’ll explore C++20’s capabilities for handling file systems, enabling you to build applications that interact seamlessly with the environment.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-filesystem">Filesystem</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

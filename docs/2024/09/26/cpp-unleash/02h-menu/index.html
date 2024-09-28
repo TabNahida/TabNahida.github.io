@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: From Zero to Hero | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: From Zero to Hero</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/26
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #03a9f4">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="C-Unleashed-From-Zero-to-Hero"><a href="#C-Unleashed-From-Zero-to-Hero" class="headerlink" title="C++ Unleashed: From Zero to Hero"></a>C++ Unleashed: From Zero to Hero</h1><p>Welcome to <strong>C++ Unleashed: From Zero to Hero</strong>, a comprehensive and modern tutorial crafted to guide you from the fundamentals to the advanced intricacies of C++ programming. Inspired by the depth and clarity of <em>The Rust Programming Language</em>, this tutorial strives to incorporate the most current features and best practices in the C++ ecosystem. Whether you’re a novice eager to learn C++ from scratch or an experienced developer aiming to refine your skills, this guide offers valuable insights, practical examples, and up-to-date content to accelerate your journey. </p>
+<p>Please note that while every effort has been made to ensure accuracy and completeness, this tutorial is a work in progress. We encourage readers to actively participate by identifying and reporting any errors or areas for improvement. Your feedback is invaluable in helping us create the most effective and reliable learning resource possible.</p>
+<span id="more"></span>
+
+<h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ol>
+<li><p><a href="/2024/09/26/cpp-unleash/02h-intro">Introduction</a></p>
+<ul>
+<li>What is C++?</li>
+<li>Why Choose C++?</li>
+<li>What is xmake?</li>
+<li>What You’ll Learn</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/26/cpp-unleash/02h-getstart">Getting Started</a></p>
+<ul>
+<li>Environment Setup</li>
+<li>Your First Program: Hello, World!</li>
+<li>Variables and Data Types</li>
+<li>Comments in C++</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/26/cpp-unleash/02h-ctrlstruct">Control Structures</a></p>
+<ul>
+<li>Conditional Statements (<code>if</code>, <code>switch</code>)</li>
+<li>Loops (<code>for</code>, <code>while</code>, <code>do-while</code>)</li>
+<li>Jump Statements (<code>break</code>, <code>continue</code>, <code>return</code>, <code>goto</code>)</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/26/cpp-unleash/02h-func">Functions</a></p>
+<ul>
+<li>Function Definition and Calls</li>
+<li>Parameter Passing</li>
+<li>Return Values</li>
+<li>Default Arguments</li>
+<li>Function Overloading</li>
+<li>Recursive Functions</li>
+<li>Lambda Expressions</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/26/cpp-unleash/02h-arystr">Arrays and Strings</a></p>
+<ul>
+<li>Arrays</li>
+<li>Limitations of C-Style Arrays</li>
+<li><code>std::array</code></li>
+<li>C-Style Strings</li>
+<li>The <code>std::string</code> Class</li>
+<li>String Operations</li>
+<li>Converting Between Strings and Numbers</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/26/cpp-unleash/02h-ptrref">Pointers and References</a></p>
+<ul>
+<li>Basics of Pointers</li>
+<li>References and Their Uses</li>
+<li>Smart Pointers (<code>unique_ptr</code>, <code>shared_ptr</code>, <code>weak_ptr</code>)</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-oop">Object-Oriented Programming</a></p>
+<ul>
+<li>Classes and Objects</li>
+<li>Constructors and Destructors</li>
+<li>Copy and Move Semantics</li>
+<li>Inheritance and Polymorphism</li>
+<li>Operator Overloading</li>
+<li>Union and Struct as Special Classes</li>
+<li>Type Conversions (<code>static_cast</code>, <code>dynamic_cast</code>, <code>const_cast</code>, <code>reinterpret_cast</code>)</li>
+<li>Variable Modifiers (<code>const</code>, <code>static</code>, <code>mutable</code>, <code>volatile</code>)</li>
+<li>Virtual Functions and Abstract Classes</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-tplgenpgm">Templates and Generic Programming</a></p>
+<ul>
+<li>Function Templates</li>
+<li>Class Templates</li>
+<li>Template Specialization</li>
+<li>Variadic Templates</li>
+<li>Concepts (C++20)</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-mdncppftr">Modern C++ Features</a></p>
+<ul>
+<li>Auto Type Deduction (<code>auto</code>)</li>
+<li>Range-Based For Loops</li>
+<li>Type Aliases (<code>using</code>)</li>
+<li><code>constexpr</code> and <code>decltype</code></li>
+<li><code>std::variant</code> and <code>std::optional</code></li>
+<li><code>nullptr</code></li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-stl">Standard Template Library (STL)</a></p>
+<ul>
+<li>Containers (<code>vector</code>, <code>list</code>, <code>map</code>, etc.)</li>
+<li>Algorithms and Iterators</li>
+<li>Function Objects (Functors)</li>
+<li>Custom Containers</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-excpt">Error Handling and Exceptions</a></p>
+<ul>
+<li>The Concept of Exceptions</li>
+<li><code>try</code>, <code>catch</code>, <code>throw</code></li>
+<li>Custom Exceptions</li>
+<li>Best Practices for Error Handling</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-concurrency">Concurrency and Multithreading</a></p>
+<ul>
+<li>Introduction to Concurrency</li>
+<li>Threads and <code>std::thread</code></li>
+<li>Mutexes and Locks (<code>std::mutex</code>, <code>std::lock_guard</code>)</li>
+<li>Condition Variables (<code>std::condition_variable</code>)</li>
+<li>Atomic Operations (<code>std::atomic</code>)</li>
+<li>Futures and Promises (<code>std::future</code>, <code>std::promise</code>)</li>
+<li>Asynchronous Programming (<code>std::async</code>)</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-advtemplate">Advanced Template Programming</a></p>
+<ul>
+<li>Template Metaprogramming</li>
+<li>Type Traits and <code>std::type_traits</code></li>
+<li>SFINAE and <code>std::enable_if</code></li>
+<li>CRTP (Curiously Recurring Template Pattern)</li>
+<li>Variadic Templates and Parameter Packs</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-cpp20">C++20 Features</a></p>
+<ul>
+<li>Modules</li>
+<li>Concepts</li>
+<li>Ranges Library</li>
+<li>Coroutines</li>
+<li>Three-Way Comparison Operator (<code>&lt;=&gt;</code>)</li>
+<li><code>std::span</code> and Other New STL Components</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-filesystem">Filesystem</a></p>
+<ul>
+<li>Filesystem Library (<code>std::filesystem</code>)</li>
+<li>File Operations and Path Manipulation</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-bestpractices">Best Practices and Design Patterns</a></p>
+<ul>
+<li>Modern C++ Idioms</li>
+<li>RAII (Resource Acquisition Is Initialization)</li>
+<li>Design Patterns in C++ (Singleton, Factory, Observer, etc.)</li>
+<li>Code Optimization Techniques</li>
+<li>Writing Efficient and Maintainable Code</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-testing">Testing, Debugging, and Building</a></p>
+<ul>
+<li>Unit Testing Without External Libraries</li>
+<li>Test-Driven Development (TDD)</li>
+<li>Debugging Tools and Techniques (GDB, Valgrind)</li>
+<li>Profiling and Performance Analysis</li>
+<li>Advanced xmake Usage</li>
+<li>Continuous Integration and Deployment</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-xmakeprj">Using xmake to Build Projects</a></p>
+<ul>
+<li>Creating the <code>xmake.lua</code> File</li>
+<li>Building and Managing Dependencies</li>
+<li>Custom Build Configurations</li>
+<li>Packaging and Distribution</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-prctlprj">Practical Projects</a></p>
+<ul>
+<li>Project Ideas (Command-Line Tools, Games, Libraries)</li>
+<li>Implementing Projects</li>
+<li>Managing Larger Codebases</li>
+<li>Documenting and Sharing Your Work</li>
+</ul>
+</li>
+<li><p><a href="/2024/09/27/cpp-unleash/02h-clsnnext">Conclusion and Next Steps</a></p>
+<ul>
+<li>Key Takeaways</li>
+<li>Best Practices in C++</li>
+<li>Recommended Resources and Learning Paths</li>
+<li>Staying Updated with Modern C++</li>
+<li>Final Thoughts and Encouragement</li>
+</ul>
+</li>
+</ol>
+<p>Next chapter: <a href="/2024/09/26/cpp-unleash/02h-intro">Introduction</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

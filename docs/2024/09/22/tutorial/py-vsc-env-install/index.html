@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Python VSCode Environment Install | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Python VSCode Environment Install</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/22
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/setup/" style="color: #03a9f4">
+                    SetUp
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/python/" style="color: #ffa2c4">
+                    Python
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/vscode/" style="color: #03a9f4">
+                    VSCode
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Python-and-VSCode-Install-tutorial"><a href="#Python-and-VSCode-Install-tutorial" class="headerlink" title="Python and VSCode Install tutorial"></a>Python and VSCode Install tutorial</h1><p>In this tutorial, you will learn how to install <code>VSCode</code> the most popular code editor and <code>Python</code> the most popular programming language.</p>
+<span id="more"></span>
+
+<h2 id="Install-VSCode"><a href="#Install-VSCode" class="headerlink" title="Install VSCode"></a>Install VSCode</h2><ol>
+<li><p>Please download <code>VSCode</code> install packages from the offical website.</p>
+<ul>
+<li><a href="%22https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user%22">VSCode for Windows</a></li>
+<li><a href="%22https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal%22">VSCode for Mac</a></li>
+<li><a href="%22https://code.visualstudio.com/Download%22">Other VSCode versions</a><br> <em>If you are linux, windows on arm or other platforms please use this link</em></li>
+</ul>
+<p> After download,</p>
+<ul>
+<li>for windows users, it is an exe file. Just click it and follow its installation guide.</li>
+<li>for mac users, it is  zip file. Unzip the zip file and click the VSCode icon to start the app.</li>
+<li>for linux users, it is a package file. Install the package with your package mananger.</li>
+</ul>
+</li>
+<li><p>After install VSCode, you can open the extension markets by click the extension icon or press <code>Ctrl+Shift+X</code> in the same time.</p>
+</li>
+</ol>
+<h2 id="Install-Python"><a href="#Install-Python" class="headerlink" title="Install Python"></a>Install Python</h2><ol>
+<li><p>Please download <code>Python</code> install packages from the offical website.</p>
+<ul>
+<li><a href="%22https://www.python.org/ftp/python/3.12.6/python-3.12.6-amd64.exe%22">Python for Windows</a></li>
+<li><a href="%22https://www.python.org/ftp/python/3.12.6/python-3.12.6-macos11.pkg%22">Python for Mac</a></li>
+<li><a href="%22https://www.python.org/downloads/release/python-3126/%22">Other Python versions</a><br> <em>If you are using a operating system with package manager, please install Python from the package manager</em></li>
+</ul>
+<p> After download,</p>
+<ul>
+<li>for windows user, it is an exe file. Click it and follow the installation guide. I highly recommand you to <strong>ADD PYTHON INTO <code>PATH</code></strong></li>
+<li>for mac user, it is a pkg file. Click it and follow the installation guide.</li>
+</ul>
+</li>
+<li><p>Change <code>PyPi</code> source to a local mirror to better download python packages.</p>
+<p> For chinese user, here are three <code>PyPi</code> mirror.</p>
+<ul>
+<li><a href="%22https://mirrors.tuna.tsinghua.edu.cn/help/pypi/%22">Tuna Tsinghua</a></li>
+<li><a href="%22https://developer.aliyun.com/mirror/pypi?spm=a2c6h.13651102.0.0.514f1b11JxB4w1%22">Aliyun</a></li>
+<li><a href="%22https://mirrors.ustc.edu.cn/help/pypi.html%22">USTC</a></li>
+<li><a href="%22https://lug.org.cn/doku.php?id=china-edu-open-source-mirrors%22">Other mirrors</a></li>
+</ul>
+<p> In this tutorial, I will show how to change into <code>Tuna</code> mirror. Open the terminal and type in two lines of commands as below</p>
+<pre><code class="bash">python -m pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple --upgrade pip
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+</code></pre>
+</li>
+</ol>
+<h2 id="Setup-Python-in-VSCode"><a href="#Setup-Python-in-VSCode" class="headerlink" title="Setup Python in VSCode"></a>Setup Python in VSCode</h2><ol>
+<li><p>Install Python extension in VSCode. First open the extension market and search <code>python</code>. You could install all needed python package by installing the <code>Python Extension Pack</code>.</p>
+</li>
+<li><p>This tutorial recommand you to install Jupyter Notebook as a better way to use Python. To install Jupyter Notebook, please search <code>Jupyter</code> and install <code>Jupyter</code>.</p>
+</li>
+<li><p>Install <code>ipykernel</code> with pip, type in this command</p>
+</li>
+</ol>
+<pre><code class="bash">pip install ipykernel
+</code></pre>
+<ol start="4">
+<li>Open a new <code>.ipynb</code> format file and start your coding.</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

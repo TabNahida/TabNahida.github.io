@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Standard Template Library (STL) | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Standard Template Library (STL)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-mdncppftr">Modern C++ Features</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Standard-Template-Library-STL"><a href="#Standard-Template-Library-STL" class="headerlink" title="Standard Template Library (STL)"></a>Standard Template Library (STL)</h1><p>The Standard Template Library (STL) is a powerful feature of C++ that provides a collection of template classes and functions for managing data. It includes a wide range of data structures (containers), algorithms, and iterators that allow for efficient data manipulation and storage. In this chapter, we will explore the key components of the STL.</p>
+<p>In this chapter, we will cover:</p>
+<ul>
+<li>Containers<ul>
+<li>Sequence Containers</li>
+<li>Associative Containers</li>
+<li>Unordered Containers</li>
+<li>Container Adaptors</li>
+</ul>
+</li>
+<li>Iterators</li>
+<li>Algorithms</li>
+<li>Function Objects (Functors)</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h2><p>Containers are data structures that store objects and provide member functions to manipulate them. The STL provides several types of containers, each designed for specific use cases.</p>
+<h3 id="Sequence-Containers"><a href="#Sequence-Containers" class="headerlink" title="Sequence Containers"></a>Sequence Containers</h3><p>Sequence containers maintain the order of elements. The primary sequence containers are:</p>
+<ul>
+<li><strong><code>std::vector</code></strong></li>
+<li><strong><code>std::deque</code></strong></li>
+<li><strong><code>std::list</code></strong></li>
+</ul>
+<h4 id="std-vector"><a href="#std-vector" class="headerlink" title="std::vector"></a><code>std::vector</code></h4><p>A dynamic array that can resize itself. It provides fast random access to elements.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+
+    numbers.push_back(6); // Adding an element
+    numbers.pop_back();   // Removing the last element
+
+    for (const auto&amp; num : numbers) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-deque"><a href="#std-deque" class="headerlink" title="std::deque"></a><code>std::deque</code></h4><p>A double-ended queue that allows fast insertion and deletion at both ends.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;deque&gt;
+
+int main() &#123;
+    std::deque&lt;int&gt; d = &#123;1, 2, 3&#125;;
+
+    d.push_front(0); // Add to the front
+    d.push_back(4);  // Add to the back
+
+    for (const auto&amp; num : d) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 0 1 2 3 4
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-list"><a href="#std-list" class="headerlink" title="std::list"></a><code>std::list</code></h4><p>A doubly linked list that allows fast insertion and deletion from any position.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;list&gt;
+
+int main() &#123;
+    std::list&lt;int&gt; l = &#123;1, 2, 3&#125;;
+
+    l.push_back(4); // Add to the back
+    l.push_front(0); // Add to the front
+
+    for (const auto&amp; num : l) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 0 1 2 3 4
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Associative-Containers"><a href="#Associative-Containers" class="headerlink" title="Associative Containers"></a>Associative Containers</h3><p>Associative containers store elements in a way that allows for fast retrieval based on keys. The primary associative containers are:</p>
+<ul>
+<li><strong><code>std::set</code></strong></li>
+<li><strong><code>std::map</code></strong></li>
+<li><strong><code>std::multiset</code></strong></li>
+<li><strong><code>std::multimap</code></strong></li>
+</ul>
+<h4 id="std-set"><a href="#std-set" class="headerlink" title="std::set"></a><code>std::set</code></h4><p>A collection of unique elements stored in a specific order.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;set&gt;
+
+int main() &#123;
+    std::set&lt;int&gt; s = &#123;3, 1, 4, 2&#125;;
+
+    s.insert(5); // Adding an element
+    s.erase(2);  // Removing an element
+
+    for (const auto&amp; num : s) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 3 4 5
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-map"><a href="#std-map" class="headerlink" title="std::map"></a><code>std::map</code></h4><p>A collection of key-value pairs, where keys are unique and stored in a specific order.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;map&gt;
+
+int main() &#123;
+    std::map&lt;std::string, int&gt; age;
+    age[&quot;Alice&quot;] = 30;
+    age[&quot;Bob&quot;] = 25;
+
+    for (const auto&amp; [name, ageValue] : age) &#123;
+        std::cout &lt;&lt; name &lt;&lt; &quot;: &quot; &lt;&lt; ageValue &lt;&lt; std::endl; // Outputs: Alice: 30, Bob: 25
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Unordered-Containers"><a href="#Unordered-Containers" class="headerlink" title="Unordered Containers"></a>Unordered Containers</h3><p>Unordered containers allow for fast retrieval but do not maintain any particular order. The primary unordered containers are:</p>
+<ul>
+<li><strong><code>std::unordered_set</code></strong></li>
+<li><strong><code>std::unordered_map</code></strong></li>
+</ul>
+<h4 id="std-unordered-set"><a href="#std-unordered-set" class="headerlink" title="std::unordered_set"></a><code>std::unordered_set</code></h4><p>A collection of unique elements with no specific order.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;unordered_set&gt;
+
+int main() &#123;
+    std::unordered_set&lt;int&gt; us = &#123;1, 2, 3&#125;;
+
+    us.insert(4); // Adding an element
+    us.erase(1);  // Removing an element
+
+    for (const auto&amp; num : us) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 2 3 4 (order may vary)
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-unordered-map"><a href="#std-unordered-map" class="headerlink" title="std::unordered_map"></a><code>std::unordered_map</code></h4><p>A collection of key-value pairs with no specific order.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+
+int main() &#123;
+    std::unordered_map&lt;std::string, int&gt; um;
+    um[&quot;Alice&quot;] = 30;
+    um[&quot;Bob&quot;] = 25;
+
+    for (const auto&amp; [name, ageValue] : um) &#123;
+        std::cout &lt;&lt; name &lt;&lt; &quot;: &quot; &lt;&lt; ageValue &lt;&lt; std::endl; // Outputs: Alice: 30, Bob: 25 (order may vary)
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Container-Adaptors"><a href="#Container-Adaptors" class="headerlink" title="Container Adaptors"></a>Container Adaptors</h3><p>Container adaptors provide a different interface for existing containers. The primary adaptors are:</p>
+<ul>
+<li><strong><code>std::stack</code></strong></li>
+<li><strong><code>std::queue</code></strong></li>
+<li><strong><code>std::priority_queue</code></strong></li>
+</ul>
+<h4 id="std-stack"><a href="#std-stack" class="headerlink" title="std::stack"></a><code>std::stack</code></h4><p>A last-in-first-out (LIFO) data structure.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;stack&gt;
+
+int main() &#123;
+    std::stack&lt;int&gt; s;
+
+    s.push(1);
+    s.push(2);
+    s.push(3);
+
+    while (!s.empty()) &#123;
+        std::cout &lt;&lt; s.top() &lt;&lt; &quot; &quot;; // Outputs: 3 2 1
+        s.pop();
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-queue"><a href="#std-queue" class="headerlink" title="std::queue"></a><code>std::queue</code></h4><p>A first-in-first-out (FIFO) data structure.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+
+int main() &#123;
+    std::queue&lt;int&gt; q;
+
+    q.push(1);
+    q.push(2);
+    q.push(3);
+
+    while (!q.empty()) &#123;
+        std::cout &lt;&lt; q.front() &lt;&lt; &quot; &quot;; // Outputs: 1 2 3
+        q.pop();
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-priority-queue"><a href="#std-priority-queue" class="headerlink" title="std::priority_queue"></a><code>std::priority_queue</code></h4><p>A queue where the highest priority elements are served before others.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+
+int main() &#123;
+    std::priority_queue&lt;int&gt; pq;
+
+    pq.push(3);
+    pq.push(5);
+    pq.push(1);
+
+    while (!pq.empty()) &#123;
+        std::cout &lt;&lt; pq.top() &lt;&lt; &quot; &quot;; // Outputs: 5 3 1 (highest priority first)
+        pq.pop();
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h2><p>Iterators are used to traverse the elements of a container. They provide a uniform interface to access the elements in different types of containers.</p>
+<h3 id="Types-of-Iterators"><a href="#Types-of-Iterators" class="headerlink" title="Types of Iterators"></a>Types of Iterators</h3><ul>
+<li><strong>Input Iterators</strong>: Can read data in a single-pass.</li>
+<li><strong>Output Iterators</strong>: Can write data in a single-pass.</li>
+<li><strong>Forward Iterators</strong>: Can read&#x2F;write data and can be used in multiple passes.</li>
+<li><strong>Bidirectional Iterators</strong>: Can move in both directions.</li>
+<li><strong>Random Access Iterators</strong>: Can access elements with arbitrary index.</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+
+    // Using an iterator to traverse the vector
+    for (auto it = numbers.begin(); it != numbers.end(); ++it) &#123;
+        std::cout &lt;&lt; *it &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><p>STL provides a rich set of algorithms for operations like searching, sorting, and manipulating data. Common algorithms include:</p>
+<ul>
+<li><strong>Sorting</strong>: <code>std::sort</code></li>
+<li><strong>Searching</strong>: <code>std::find</code>, <code>std::binary_search</code></li>
+<li><strong>Transforming</strong>: <code>std::transform</code></li>
+<li><strong>Manipulating</strong>: <code>std::for_each</code>, <code>std::count_if</code></li>
+</ul>
+<h3 id="Example-Sorting-and-Searching"><a href="#Example-Sorting-and-Searching" class="headerlink" title="Example: Sorting and Searching"></a>Example: Sorting and Searching</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;5, 3, 1, 4, 2&#125;;
+
+    // Sorting the vector
+    std::sort(numbers.begin(), numbers.end());
+
+    // Searching for an element
+    if (std::find(numbers.begin(), numbers.end(), 3) != numbers.end()) &#123;
+        std::cout &lt;&lt; &quot;3 is found in the vector.&quot; &lt;&lt; std::endl
+
+;
+    &#125;
+
+    for (const auto&amp; num : numbers) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Function-Objects-Functors"><a href="#Function-Objects-Functors" class="headerlink" title="Function Objects (Functors)"></a>Function Objects (Functors)</h2><p>Function objects, or functors, are objects that can be called as if they were functions. They can store state and be passed to algorithms as parameters.</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+class GreaterThan &#123;
+public:
+    GreaterThan(int value) : value_(value) &#123;&#125;
+
+    bool operator()(int num) const &#123;
+        return num &gt; value_;
+    &#125;
+
+private:
+    int value_;
+&#125;;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+
+    int count = std::count_if(numbers.begin(), numbers.end(), GreaterThan(2));
+    std::cout &lt;&lt; &quot;Count of numbers greater than 2: &quot; &lt;&lt; count &lt;&lt; std::endl; // Outputs: 3
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you learned about the Standard Template Library (STL), which provides a wealth of powerful tools for managing data in C++. We covered:</p>
+<ul>
+<li><strong>Containers</strong>: Different types of data structures for storing elements, including sequence, associative, unordered containers, and container adaptors.</li>
+<li><strong>Iterators</strong>: A uniform interface for traversing containers.</li>
+<li><strong>Algorithms</strong>: A rich set of functions for manipulating data.</li>
+<li><strong>Function Objects (Functors)</strong>: Objects that can be called as functions, allowing for more flexible programming.</li>
+</ul>
+<p>In the next chapter, we will explore <strong>Error Handling and Exceptions</strong>, where you will learn how to manage errors gracefully in your C++ programs.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-excpt">Exception Handling</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

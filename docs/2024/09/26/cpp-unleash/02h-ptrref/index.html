@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Pointers and References | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Pointers and References</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/26
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #00a596">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/26/cpp-unleash/02h-arystr">Arrays and Strings</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Pointers-and-References"><a href="#Pointers-and-References" class="headerlink" title="Pointers and References"></a>Pointers and References</h1><p>Pointers and references are fundamental concepts in C++ that provide powerful ways to manipulate memory and data. They are essential for understanding how variables are stored and accessed, enabling efficient programming techniques such as dynamic memory allocation, passing large objects without copying, and implementing data structures like linked lists and trees.</p>
+<p>In this chapter, we’ll cover:</p>
+<ul>
+<li>Basics of Pointers<ul>
+<li>Pointer Declaration and Initialization</li>
+<li>Dereferencing and Pointer Arithmetic</li>
+<li>Null Pointers</li>
+</ul>
+</li>
+<li>References and Their Uses<ul>
+<li>Reference Declaration and Initialization</li>
+<li>Differences Between Pointers and References</li>
+</ul>
+</li>
+<li>Dynamic Memory Allocation<ul>
+<li><code>new</code> and <code>delete</code></li>
+<li>Arrays and Dynamic Allocation</li>
+</ul>
+</li>
+<li>Smart Pointers (<code>unique_ptr</code>, <code>shared_ptr</code>, <code>weak_ptr</code>)<ul>
+<li>Introduction to Smart Pointers</li>
+<li>Using <code>std::unique_ptr</code></li>
+<li>Using <code>std::shared_ptr</code> and <code>std::weak_ptr</code></li>
+</ul>
+</li>
+<li>Practical Examples<ul>
+<li>Swapping Variables Using Pointers and References</li>
+<li>Implementing a Simple Dynamic Array</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="Basics-of-Pointers"><a href="#Basics-of-Pointers" class="headerlink" title="Basics of Pointers"></a>Basics of Pointers</h2><p>A <strong>pointer</strong> is a variable that holds the memory address of another variable. Pointers provide direct access to memory and allow for powerful programming techniques.</p>
+<h3 id="Pointer-Declaration-and-Initialization"><a href="#Pointer-Declaration-and-Initialization" class="headerlink" title="Pointer Declaration and Initialization"></a>Pointer Declaration and Initialization</h3><h4 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h4><pre><code class="cpp">data_type* pointer_name;
+</code></pre>
+<ul>
+<li><strong>data_type</strong>: The type of the variable the pointer will point to.</li>
+<li><strong>pointer_name</strong>: The name of the pointer variable.</li>
+</ul>
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><p><strong>Declaration without Initialization:</strong></p>
+<pre><code class="cpp">int* ptr; // Pointer to an integer
+</code></pre>
+<p><strong>Declaration with Initialization:</strong></p>
+<pre><code class="cpp">int value = 42;
+int* ptr = &amp;value; // ptr holds the address of value
+</code></pre>
+<ul>
+<li>The <code>&amp;</code> operator is the <strong>address-of</strong> operator, which gives the memory address of a variable.</li>
+</ul>
+<h3 id="Dereferencing-Pointers"><a href="#Dereferencing-Pointers" class="headerlink" title="Dereferencing Pointers"></a>Dereferencing Pointers</h3><p>The <strong>dereference</strong> operator <code>*</code> is used to access or modify the value at the memory address the pointer points to.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">int value = 42;
+int* ptr = &amp;value;
+
+std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; value &lt;&lt; std::endl;       // Outputs 42
+std::cout &lt;&lt; &quot;Pointer Address: &quot; &lt;&lt; ptr &lt;&lt; std::endl; // Outputs the memory address
+std::cout &lt;&lt; &quot;Dereferenced Value: &quot; &lt;&lt; *ptr &lt;&lt; std::endl; // Outputs 42
+
+// Modifying the value via the pointer
+*ptr = 100;
+std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::endl; // Outputs 100
+</code></pre>
+<h3 id="Pointer-Arithmetic"><a href="#Pointer-Arithmetic" class="headerlink" title="Pointer Arithmetic"></a>Pointer Arithmetic</h3><p>Pointers can be incremented or decremented to traverse arrays.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">int arr[] = &#123;10, 20, 30, 40, 50&#125;;
+int* ptr = arr; // Points to the first element
+
+for (int i = 0; i &lt; 5; ++i) &#123;
+    std::cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; *(ptr + i) &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<ul>
+<li>When you add <code>i</code> to a pointer, it moves <code>i</code> elements forward, considering the size of the data type it points to.</li>
+</ul>
+<h3 id="Null-Pointers"><a href="#Null-Pointers" class="headerlink" title="Null Pointers"></a>Null Pointers</h3><p>A null pointer is a pointer that doesn’t point to any valid memory address.</p>
+<h4 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h4><pre><code class="cpp">int* ptr = nullptr; // C++11 and later
+</code></pre>
+<ul>
+<li><code>nullptr</code> is a keyword introduced in C++11 to represent a null pointer.</li>
+</ul>
+<p><strong>Pre-C++11:</strong></p>
+<pre><code class="cpp">int* ptr = 0;
+int* ptr = NULL; // Requires including &lt;cstddef&gt;
+</code></pre>
+<h4 id="Checking-for-Null-Pointers"><a href="#Checking-for-Null-Pointers" class="headerlink" title="Checking for Null Pointers"></a>Checking for Null Pointers</h4><p>Always check if a pointer is null before dereferencing to avoid undefined behavior.</p>
+<pre><code class="cpp">if (ptr != nullptr) &#123;
+    // Safe to dereference ptr
+&#125;
+</code></pre>
+<h2 id="References-and-Their-Uses"><a href="#References-and-Their-Uses" class="headerlink" title="References and Their Uses"></a>References and Their Uses</h2><p>A <strong>reference</strong> is an alias for another variable. Once a reference is initialized to a variable, it cannot be changed to refer to another variable.</p>
+<h3 id="Reference-Declaration-and-Initialization"><a href="#Reference-Declaration-and-Initialization" class="headerlink" title="Reference Declaration and Initialization"></a>Reference Declaration and Initialization</h3><h4 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h4><pre><code class="cpp">data_type&amp; reference_name = variable_name;
+</code></pre>
+<ul>
+<li><strong>data_type</strong>: The type of the variable.</li>
+<li><strong>reference_name</strong>: The name of the reference.</li>
+<li><strong>variable_name</strong>: The variable being referenced.</li>
+</ul>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><pre><code class="cpp">int value = 42;
+int&amp; ref = value; // ref is a reference to value
+
+std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; value &lt;&lt; std::endl; // Outputs 42
+std::cout &lt;&lt; &quot;Reference: &quot; &lt;&lt; ref &lt;&lt; std::endl; // Outputs 42
+
+// Modifying the value via the reference
+ref = 100;
+std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::endl; // Outputs 100
+</code></pre>
+<h3 id="References-as-Function-Parameters"><a href="#References-as-Function-Parameters" class="headerlink" title="References as Function Parameters"></a>References as Function Parameters</h3><p>References are commonly used to pass variables to functions without copying.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void increment(int&amp; num) &#123;
+    num += 1;
+&#125;
+
+int main() &#123;
+    int number = 5;
+    increment(number);
+    std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; number &lt;&lt; std::endl; // Outputs 6
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Differences-Between-Pointers-and-References"><a href="#Differences-Between-Pointers-and-References" class="headerlink" title="Differences Between Pointers and References"></a>Differences Between Pointers and References</h3><ul>
+<li><strong>Nullability:</strong><ul>
+<li>Pointers can be null; references must be bound to a valid object upon initialization.</li>
+</ul>
+</li>
+<li><strong>Reassignment:</strong><ul>
+<li>Pointers can be reassigned to point to different objects; references cannot be reseated.</li>
+</ul>
+</li>
+<li><strong>Syntax:</strong><ul>
+<li>Accessing the value pointed to by a pointer requires dereferencing (<code>*ptr</code>); references can be used directly as the variable.</li>
+</ul>
+</li>
+<li><strong>Memory Address:</strong><ul>
+<li>A pointer holds a memory address; a reference is an alias for an existing variable.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example of Pointer Reassignment:</strong></p>
+<pre><code class="cpp">int a = 10;
+int b = 20;
+int* ptr = &amp;a;
+ptr = &amp;b; // Now ptr points to b
+</code></pre>
+<p><strong>References Cannot Be Reassigned:</strong></p>
+<pre><code class="cpp">int a = 10;
+int b = 20;
+int&amp; ref = a;
+// ref = &amp;b; // Error: Cannot rebind a reference
+ref = b; // Assigns the value of b to a
+</code></pre>
+<h2 id="Dynamic-Memory-Allocation"><a href="#Dynamic-Memory-Allocation" class="headerlink" title="Dynamic Memory Allocation"></a>Dynamic Memory Allocation</h2><p>Dynamic memory allocation allows you to allocate memory at runtime, which is essential when the size of data structures cannot be determined at compile-time.</p>
+<h3 id="new-and-delete"><a href="#new-and-delete" class="headerlink" title="new and delete"></a><code>new</code> and <code>delete</code></h3><ul>
+<li><strong><code>new</code> Operator:</strong> Allocates memory on the heap and returns a pointer to it.</li>
+<li><strong><code>delete</code> Operator:</strong> Deallocates memory previously allocated with <code>new</code>.</li>
+</ul>
+<h4 id="Allocating-and-Deallocating-Single-Variables"><a href="#Allocating-and-Deallocating-Single-Variables" class="headerlink" title="Allocating and Deallocating Single Variables"></a>Allocating and Deallocating Single Variables</h4><p><strong>Allocation:</strong></p>
+<pre><code class="cpp">int* ptr = new int;       // Allocates an integer
+*ptr = 42;
+
+int* ptrWithValue = new int(42); // Allocates and initializes an integer
+</code></pre>
+<p><strong>Deallocation:</strong></p>
+<pre><code class="cpp">delete ptr;
+</code></pre>
+<h4 id="Allocating-and-Deallocating-Arrays"><a href="#Allocating-and-Deallocating-Arrays" class="headerlink" title="Allocating and Deallocating Arrays"></a>Allocating and Deallocating Arrays</h4><p><strong>Allocation:</strong></p>
+<pre><code class="cpp">int* arr = new int[5]; // Allocates an array of 5 integers
+</code></pre>
+<p><strong>Deallocation:</strong></p>
+<pre><code class="cpp">delete[] arr;
+</code></pre>
+<ul>
+<li><strong>Important:</strong> Use <code>delete[]</code> when deallocating memory allocated with <code>new[]</code>.</li>
+</ul>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><pre><code class="cpp">int main() &#123;
+    int* numbers = new int[5];
+    for (int i = 0; i &lt; 5; ++i) &#123;
+        numbers[i] = i * 10;
+    &#125;
+
+    for (int i = 0; i &lt; 5; ++i) &#123;
+        std::cout &lt;&lt; numbers[i] &lt;&lt; &quot; &quot;;
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    delete[] numbers; // Free the allocated memory
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Memory-Leaks"><a href="#Memory-Leaks" class="headerlink" title="Memory Leaks"></a>Memory Leaks</h3><p>Failing to deallocate memory with <code>delete</code> or <code>delete[]</code> leads to memory leaks, which can exhaust system memory over time.</p>
+<p><strong>Example of Memory Leak:</strong></p>
+<pre><code class="cpp">void leakMemory() &#123;
+    int* ptr = new int(42);
+    // Forgot to delete ptr
+&#125;
+</code></pre>
+<h2 id="Smart-Pointers"><a href="#Smart-Pointers" class="headerlink" title="Smart Pointers"></a>Smart Pointers</h2><p>Manual memory management with <code>new</code> and <code>delete</code> is error-prone. C++ provides smart pointers in the <code>&lt;memory&gt;</code> header to automate memory management.</p>
+<h3 id="Introduction-to-Smart-Pointers"><a href="#Introduction-to-Smart-Pointers" class="headerlink" title="Introduction to Smart Pointers"></a>Introduction to Smart Pointers</h3><p>Smart pointers are classes that behave like pointers but manage the memory automatically.</p>
+<ul>
+<li><strong><code>std::unique_ptr</code>:</strong> Owns an object exclusively.</li>
+<li><strong><code>std::shared_ptr</code>:</strong> Allows multiple pointers to share ownership of an object.</li>
+<li><strong><code>std::weak_ptr</code>:</strong> Holds a non-owning reference to an object managed by <code>std::shared_ptr</code>.</li>
+</ul>
+<h3 id="Using-std-unique-ptr"><a href="#Using-std-unique-ptr" class="headerlink" title="Using std::unique_ptr"></a>Using <code>std::unique_ptr</code></h3><ul>
+<li>Defined in <code>&lt;memory&gt;</code>.</li>
+<li>Cannot be copied, only moved.</li>
+<li>Automatically deletes the object when it goes out of scope.</li>
+</ul>
+<h4 id="Syntax-2"><a href="#Syntax-2" class="headerlink" title="Syntax"></a>Syntax</h4><pre><code class="cpp">std::unique_ptr&lt;data_type&gt; ptr(new data_type);
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() &#123;
+    std::unique_ptr&lt;int&gt; ptr(new int(42));
+    std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; *ptr &lt;&lt; std::endl;
+
+    // No need to delete; ptr will automatically clean up
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Prefer <code>make_unique</code> (C++14 and later):</strong></p>
+<pre><code class="cpp">auto ptr = std::make_unique&lt;int&gt;(42);
+</code></pre>
+<h4 id="Transferring-Ownership"><a href="#Transferring-Ownership" class="headerlink" title="Transferring Ownership"></a>Transferring Ownership</h4><pre><code class="cpp">std::unique_ptr&lt;int&gt; ptr1 = std::make_unique&lt;int&gt;(42);
+std::unique_ptr&lt;int&gt; ptr2 = std::move(ptr1); // ptr1 is now null
+</code></pre>
+<h3 id="Using-std-shared-ptr-and-std-weak-ptr"><a href="#Using-std-shared-ptr-and-std-weak-ptr" class="headerlink" title="Using std::shared_ptr and std::weak_ptr"></a>Using <code>std::shared_ptr</code> and <code>std::weak_ptr</code></h3><h4 id="std-shared-ptr"><a href="#std-shared-ptr" class="headerlink" title="std::shared_ptr"></a><code>std::shared_ptr</code></h4><ul>
+<li>Allows multiple pointers to own the same object.</li>
+<li>The object is deleted when the last <code>std::shared_ptr</code> owning it is destroyed.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() &#123;
+    std::shared_ptr&lt;int&gt; ptr1 = std::make_shared&lt;int&gt;(42);
+    &#123;
+        std::shared_ptr&lt;int&gt; ptr2 = ptr1;
+        std::cout &lt;&lt; &quot;Use count inside block: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; std::endl; // Outputs 2
+    &#125;
+    std::cout &lt;&lt; &quot;Use count after block: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; std::endl; // Outputs 1
+
+    // Object is deleted when use_count reaches zero
+    return 0;
+&#125;
+</code></pre>
+<h4 id="std-weak-ptr"><a href="#std-weak-ptr" class="headerlink" title="std::weak_ptr"></a><code>std::weak_ptr</code></h4><ul>
+<li>Provides a weak reference to an object managed by <code>std::shared_ptr</code>.</li>
+<li>Does not contribute to the reference count.</li>
+<li>Must be converted to <code>std::shared_ptr</code> to access the object.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() &#123;
+    std::shared_ptr&lt;int&gt; sharedPtr = std::make_shared&lt;int&gt;(42);
+    std::weak_ptr&lt;int&gt; weakPtr = sharedPtr;
+
+    if (auto lockedPtr = weakPtr.lock()) &#123;
+        std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; *lockedPtr &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; &quot;Object has been destroyed.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Use Case:</strong> Avoiding cyclic references in data structures.</p>
+<h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><h3 id="Swapping-Variables-Using-Pointers-and-References"><a href="#Swapping-Variables-Using-Pointers-and-References" class="headerlink" title="Swapping Variables Using Pointers and References"></a>Swapping Variables Using Pointers and References</h3><h4 id="Using-Pointers"><a href="#Using-Pointers" class="headerlink" title="Using Pointers"></a>Using Pointers</h4><pre><code class="cpp">void swap(int* a, int* b) &#123;
+    if (a &amp;&amp; b) &#123; // Check for null pointers
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    &#125;
+&#125;
+
+int main() &#123;
+    int x = 10;
+    int y = 20;
+    swap(&amp;x, &amp;y);
+    std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; &quot;, y: &quot; &lt;&lt; y &lt;&lt; std::endl; // Outputs x: 20, y: 10
+    return 0;
+&#125;
+</code></pre>
+<h4 id="Using-References"><a href="#Using-References" class="headerlink" title="Using References"></a>Using References</h4><pre><code class="cpp">void swap(int&amp; a, int&amp; b) &#123;
+    int temp = a;
+    a = b;
+    b = temp;
+&#125;
+
+int main() &#123;
+    int x = 10;
+    int y = 20;
+    swap(x, y);
+    std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; &quot;, y: &quot; &lt;&lt; y &lt;&lt; std::endl; // Outputs x: 20, y: 10
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Implementing-a-Simple-Dynamic-Array"><a href="#Implementing-a-Simple-Dynamic-Array" class="headerlink" title="Implementing a Simple Dynamic Array"></a>Implementing a Simple Dynamic Array</h3><p>Let’s create a simple dynamic array class that manages its own memory.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+class DynamicArray &#123;
+private:
+    int* data;
+    size_t size;
+
+public:
+    DynamicArray(size_t size) : size(size) &#123;
+        data = new int[size];
+    &#125;
+
+    ~DynamicArray() &#123;
+        delete[] data;
+    &#125;
+
+    int&amp; operator[](size_t index) &#123;
+        if (index &gt;= size) &#123;
+            throw std::out_of_range(&quot;Index out of range&quot;);
+        &#125;
+        return data[index];
+    &#125;
+
+    size_t getSize() const &#123;
+        return size;
+    &#125;
+&#125;;
+
+int main() &#123;
+    DynamicArray arr(5);
+
+    for (size_t i = 0; i &lt; arr.getSize(); ++i) &#123;
+        arr[i] = static_cast&lt;int&gt;(i * 10);
+    &#125;
+
+    for (size_t i = 0; i &lt; arr.getSize(); ++i) &#123;
+        std::cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; arr[i] &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Constructor:</strong> Allocates memory for the array.</li>
+<li><strong>Destructor:</strong> Deallocates memory to prevent memory leaks.</li>
+<li><strong>Operator Overloading (<code>operator[]</code>):</strong> Allows array-style access with bounds checking.</li>
+<li><strong>Exception Handling:</strong> Throws an exception if the index is out of range.</li>
+</ul>
+<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><ol>
+<li><p><strong>Pointer Basics</strong></p>
+<p>Write a program that declares an integer variable, a pointer to it, and uses the pointer to modify the variable’s value.</p>
+<p><strong>Solution:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    int value = 10;
+    int* ptr = &amp;value;
+
+    std::cout &lt;&lt; &quot;Original Value: &quot; &lt;&lt; value &lt;&lt; std::endl;
+
+    *ptr = 20;
+
+    std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Dynamic Memory Allocation</strong></p>
+<p>Create a program that allocates memory for an array of integers at runtime, fills it with values, and then deallocates the memory.</p>
+<p><strong>Solution:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() &#123;
+    size_t size;
+
+    std::cout &lt;&lt; &quot;Enter the size of the array: &quot;;
+    std::cin &gt;&gt; size;
+
+    int* arr = new int[size];
+
+    for (size_t i = 0; i &lt; size; ++i) &#123;
+        arr[i] = static_cast&lt;int&gt;(i * i);
+    &#125;
+
+    std::cout &lt;&lt; &quot;Array Elements:&quot; &lt;&lt; std::endl;
+    for (size_t i = 0; i &lt; size; ++i) &#123;
+        std::cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    delete[] arr;
+
+    return 0;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Using Smart Pointers</strong></p>
+<p>Modify the previous program to use <code>std::unique_ptr</code> instead of raw pointers.</p>
+<p><strong>Solution:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() &#123;
+    size_t size;
+
+    std::cout &lt;&lt; &quot;Enter the size of the array: &quot;;
+    std::cin &gt;&gt; size;
+
+    std::unique_ptr&lt;int[]&gt; arr(new int[size]);
+
+    for (size_t i = 0; i &lt; size; ++i) &#123;
+        arr[i] = static_cast&lt;int&gt;(i * i);
+    &#125;
+
+    std::cout &lt;&lt; &quot;Array Elements:&quot; &lt;&lt; std::endl;
+    for (size_t i = 0; i &lt; size; ++i) &#123;
+        std::cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+    &#125;
+    std::cout &lt;&lt; std::endl;
+
+    // Memory is automatically deallocated
+
+    return 0;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Reference Parameters</strong></p>
+<p>Write a function that calculates the area and perimeter of a rectangle and returns the results via reference parameters.</p>
+<p><strong>Solution:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+void calculateRectangle(double width, double height, double&amp; area, double&amp; perimeter) &#123;
+    area = width * height;
+    perimeter = 2 * (width + height);
+&#125;
+
+int main() &#123;
+    double width = 5.0;
+    double height = 3.0;
+    double area, perimeter;
+
+    calculateRectangle(width, height, area, perimeter);
+
+    std::cout &lt;&lt; &quot;Area: &quot; &lt;&lt; area &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Perimeter: &quot; &lt;&lt; perimeter &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve learned about:</p>
+<ul>
+<li><strong>Pointers:</strong><ul>
+<li>How to declare and initialize pointers.</li>
+<li>Dereferencing pointers and pointer arithmetic.</li>
+<li>Handling null pointers and avoiding undefined behavior.</li>
+</ul>
+</li>
+<li><strong>References:</strong><ul>
+<li>Declaring references and using them to alias variables.</li>
+<li>Differences between pointers and references.</li>
+</ul>
+</li>
+<li><strong>Dynamic Memory Allocation:</strong><ul>
+<li>Using <code>new</code> and <code>delete</code> to manage memory at runtime.</li>
+<li>Allocating and deallocating arrays dynamically.</li>
+<li>Avoiding memory leaks through proper deallocation.</li>
+</ul>
+</li>
+<li><strong>Smart Pointers:</strong><ul>
+<li>Introduction to <code>std::unique_ptr</code>, <code>std::shared_ptr</code>, and <code>std::weak_ptr</code>.</li>
+<li>Automating memory management and preventing resource leaks.</li>
+</ul>
+</li>
+<li><strong>Practical Applications:</strong><ul>
+<li>Swapping variables using pointers and references.</li>
+<li>Implementing a simple dynamic array class.</li>
+</ul>
+</li>
+</ul>
+<p>Understanding pointers and references is crucial in C++ programming, as they provide the foundation for dynamic memory management, efficient data manipulation, and advanced programming techniques. Mastery of these concepts will greatly enhance your ability to write robust and efficient C++ programs.</p>
+<hr>
+<p>In the next chapter, we’ll explore <strong>Object-Oriented Programming</strong>, delving into classes, objects, and the principles that enable modular and reusable code.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-oop">Object-Oriented Programming</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

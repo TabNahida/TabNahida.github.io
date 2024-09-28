@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Functions | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Functions</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/26
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #00a596">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/26/cpp-unleash/02h-ctrlstruct">Control Structures</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h1><p>Functions are fundamental building blocks in C++ programming that allow you to organize your code into reusable pieces. They help break down complex problems into smaller, manageable tasks, improve code readability, and facilitate code reuse.</p>
+<p>In this chapter, we’ll cover:</p>
+<ul>
+<li>Function Definition and Calls</li>
+<li>Parameter Passing</li>
+<li>Return Values</li>
+<li>Default Arguments</li>
+<li>Function Overloading</li>
+<li>Recursive Functions</li>
+<li>Lambda Expressions</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="Function-Definition-and-Calls"><a href="#Function-Definition-and-Calls" class="headerlink" title="Function Definition and Calls"></a>Function Definition and Calls</h2><p>A function is a block of code that performs a specific task. In C++, you define a function once and can call it multiple times throughout your program.</p>
+<h3 id="Function-Syntax"><a href="#Function-Syntax" class="headerlink" title="Function Syntax"></a>Function Syntax</h3><p>The basic syntax for defining a function:</p>
+<pre><code class="cpp">return_type function_name(parameter_list) &#123;
+    // Function body
+&#125;
+</code></pre>
+<ul>
+<li><strong>return_type</strong>: The data type of the value the function returns. Use <code>void</code> if it doesn’t return a value.</li>
+<li><strong>function_name</strong>: The name you give to the function.</li>
+<li><strong>parameter_list</strong>: A comma-separated list of parameters (can be empty).</li>
+</ul>
+<h3 id="Example-Simple-Function"><a href="#Example-Simple-Function" class="headerlink" title="Example: Simple Function"></a>Example: Simple Function</h3><p><strong>Definition:</strong></p>
+<pre><code class="cpp">// Function that prints a greeting message
+void greet() &#123;
+    std::cout &lt;&lt; &quot;Hello from the function!&quot; &lt;&lt; std::endl;
+&#125;
+</code></pre>
+<p><strong>Calling the Function:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    greet(); // Function call
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Function-Declaration-vs-Definition"><a href="#Function-Declaration-vs-Definition" class="headerlink" title="Function Declaration vs. Definition"></a>Function Declaration vs. Definition</h3><ul>
+<li><strong>Declaration (Prototype):</strong> Tells the compiler about a function’s name, return type, and parameters.</li>
+<li><strong>Definition:</strong> Provides the actual body of the function.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">// Function declaration (prototype)
+int add(int a, int b);
+
+// Function definition
+int add(int a, int b) &#123;
+    return a + b;
+&#125;
+</code></pre>
+<h3 id="Why-Separate-Declaration-and-Definition"><a href="#Why-Separate-Declaration-and-Definition" class="headerlink" title="Why Separate Declaration and Definition?"></a>Why Separate Declaration and Definition?</h3><ul>
+<li><strong>Organization:</strong> Declarations are often placed in header files (<code>.h</code>), and definitions in source files (<code>.cpp</code>).</li>
+<li><strong>Multiple Files:</strong> Allows functions to be used across multiple files.</li>
+</ul>
+<h2 id="Parameter-Passing"><a href="#Parameter-Passing" class="headerlink" title="Parameter Passing"></a>Parameter Passing</h2><p>Parameters allow functions to accept inputs, making them more flexible and reusable.</p>
+<h3 id="Pass-by-Value"><a href="#Pass-by-Value" class="headerlink" title="Pass by Value"></a>Pass by Value</h3><p>By default, arguments are passed by value, meaning a copy is made.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void increment(int num) &#123;
+    num += 1; // This change won&#39;t affect the original variable
+&#125;
+
+int main() &#123;
+    int number = 5;
+    increment(number);
+    std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; number &lt;&lt; std::endl; // Outputs 5
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Pass-by-Reference"><a href="#Pass-by-Reference" class="headerlink" title="Pass by Reference"></a>Pass by Reference</h3><p>Passing by reference allows the function to modify the original variable.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">void function_name(data_type&amp; parameter_name) &#123;
+    // Function body
+&#125;
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void increment(int&amp; num) &#123;
+    num += 1; // This change will affect the original variable
+&#125;
+
+int main() &#123;
+    int number = 5;
+    increment(number);
+    std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; number &lt;&lt; std::endl; // Outputs 6
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Pass-by-Pointer"><a href="#Pass-by-Pointer" class="headerlink" title="Pass by Pointer"></a>Pass by Pointer</h3><p>You can also pass arguments by pointer.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void increment(int* num) &#123;
+    (*num) += 1;
+&#125;
+
+int main() &#123;
+    int number = 5;
+    increment(&amp;number);
+    std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; number &lt;&lt; std::endl; // Outputs 6
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Choosing-Parameter-Passing-Method"><a href="#Choosing-Parameter-Passing-Method" class="headerlink" title="Choosing Parameter Passing Method"></a>Choosing Parameter Passing Method</h3><ul>
+<li><strong>Pass by Value:</strong> Use when you don’t need to modify the original data.</li>
+<li><strong>Pass by Reference:</strong> Use when you need to modify the original data or for efficiency with large objects.</li>
+<li><strong>Pass by Pointer:</strong> Similar to pass by reference but can accept <code>nullptr</code> and can be reassigned within the function.</li>
+</ul>
+<h2 id="Return-Values"><a href="#Return-Values" class="headerlink" title="Return Values"></a>Return Values</h2><p>Functions can return values to the caller.</p>
+<h3 id="Returning-a-Single-Value"><a href="#Returning-a-Single-Value" class="headerlink" title="Returning a Single Value"></a>Returning a Single Value</h3><p><strong>Example:</strong></p>
+<pre><code class="cpp">int add(int a, int b) &#123;
+    return a + b;
+&#125;
+
+int main() &#123;
+    int sum = add(5, 3);
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl; // Outputs 8
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Returning-Multiple-Values"><a href="#Returning-Multiple-Values" class="headerlink" title="Returning Multiple Values"></a>Returning Multiple Values</h3><p>C++ doesn’t support returning multiple values directly, but you can use several techniques:</p>
+<h4 id="Using-References-or-Pointers"><a href="#Using-References-or-Pointers" class="headerlink" title="Using References or Pointers"></a>Using References or Pointers</h4><p>Modify multiple output variables passed by reference or pointer.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void getMinMax(int a, int b, int&amp; min, int&amp; max) &#123;
+    if (a &lt; b) &#123;
+        min = a;
+        max = b;
+    &#125; else &#123;
+        min = b;
+        max = a;
+    &#125;
+&#125;
+
+int main() &#123;
+    int min, max;
+    getMinMax(10, 20, min, max);
+    std::cout &lt;&lt; &quot;Min: &quot; &lt;&lt; min &lt;&lt; &quot;, Max: &quot; &lt;&lt; max &lt;&lt; std::endl; // Outputs: Min: 10, Max: 20
+    return 0;
+&#125;
+</code></pre>
+<h4 id="Using-Structures-or-Classes"><a href="#Using-Structures-or-Classes" class="headerlink" title="Using Structures or Classes"></a>Using Structures or Classes</h4><p>Return a struct or class containing multiple values.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">struct MinMax &#123;
+    int min;
+    int max;
+&#125;;
+
+MinMax getMinMax(int a, int b) &#123;
+    MinMax result;
+    if (a &lt; b) &#123;
+        result.min = a;
+        result.max = b;
+    &#125; else &#123;
+        result.min = b;
+        result.max = a;
+    &#125;
+    return result;
+&#125;
+
+int main() &#123;
+    MinMax result = getMinMax(10, 20);
+    std::cout &lt;&lt; &quot;Min: &quot; &lt;&lt; result.min &lt;&lt; &quot;, Max: &quot; &lt;&lt; result.max &lt;&lt; std::endl; // Outputs: Min: 10, Max: 20
+    return 0;
+&#125;
+</code></pre>
+<h4 id="Using-std-pair-or-std-tuple"><a href="#Using-std-pair-or-std-tuple" class="headerlink" title="Using std::pair or std::tuple"></a>Using <code>std::pair</code> or <code>std::tuple</code></h4><p>Standard library classes <code>std::pair</code> and <code>std::tuple</code> can be used to return multiple values.</p>
+<p><strong>Using <code>std::pair</code>:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;utility&gt; // For std::pair
+
+std::pair&lt;int, int&gt; getMinMax(int a, int b) &#123;
+    if (a &lt; b)
+        return std::make_pair(a, b);
+    else
+        return std::make_pair(b, a);
+&#125;
+
+int main() &#123;
+    std::pair&lt;int, int&gt; result = getMinMax(10, 20);
+    std::cout &lt;&lt; &quot;Min: &quot; &lt;&lt; result.first &lt;&lt; &quot;, Max: &quot; &lt;&lt; result.second &lt;&lt; std::endl; // Outputs: Min: 10, Max: 20
+    return 0;
+&#125;
+</code></pre>
+<p>Alternatively, with C++17 structured bindings:</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;utility&gt; // For std::pair
+
+std::pair&lt;int, int&gt; getMinMax(int a, int b) &#123;
+    if (a &lt; b)
+        return &#123;a, b&#125;;
+    else
+        return &#123;b, a&#125;;
+&#125;
+
+int main() &#123;
+    auto [min, max] = getMinMax(10, 20); // Structured binding (C++17)
+    std::cout &lt;&lt; &quot;Min: &quot; &lt;&lt; min &lt;&lt; &quot;, Max: &quot; &lt;&lt; max &lt;&lt; std::endl; // Outputs: Min: 10, Max: 20
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Using <code>std::tuple</code>:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;tuple&gt; // For std::tuple
+
+std::tuple&lt;int, int, int&gt; getStats(int a, int b, int c) &#123;
+    int min = std::min(&#123;a, b, c&#125;);
+    int max = std::max(&#123;a, b, c&#125;);
+    int sum = a + b + c;
+    return std::make_tuple(min, max, sum);
+&#125;
+
+int main() &#123;
+    auto [min, max, sum] = getStats(5, 10, 15); // Structured binding (C++17)
+    std::cout &lt;&lt; &quot;Min: &quot; &lt;&lt; min &lt;&lt; &quot;, Max: &quot; &lt;&lt; max &lt;&lt; &quot;, Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl; // Outputs: Min: 5, Max: 15, Sum: 30
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Note:</strong> Structured bindings require C++17 or newer. If you are using an older standard, you can access tuple elements using <code>std::get</code>.</p>
+<p>Example without structured bindings:</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;tuple&gt; // For std::tuple
+
+std::tuple&lt;int, int, int&gt; getStats(int a, int b, int c) &#123;
+    int min = std::min(&#123;a, b, c&#125;);
+    int max = std::max(&#123;a, b, c&#125;);
+    int sum = a + b + c;
+    return std::make_tuple(min, max, sum);
+&#125;
+
+int main() &#123;
+    std::tuple&lt;int, int, int&gt; result = getStats(5, 10, 15);
+    int min = std::get&lt;0&gt;(result);
+    int max = std::get&lt;1&gt;(result);
+    int sum = std::get&lt;2&gt;(result);
+    std::cout &lt;&lt; &quot;Min: &quot; &lt;&lt; min &lt;&lt; &quot;, Max: &quot; &lt;&lt; max &lt;&lt; &quot;, Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl; // Outputs: Min: 5, Max: 15, Sum: 30
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Default-Arguments"><a href="#Default-Arguments" class="headerlink" title="Default Arguments"></a>Default Arguments</h2><p>Functions can have default parameter values, which are used if no argument is provided for that parameter.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void display(int a = 0, int b = 0) &#123;
+    std::cout &lt;&lt; &quot;a: &quot; &lt;&lt; a &lt;&lt; &quot;, b: &quot; &lt;&lt; b &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    display();          // Outputs: a: 0, b: 0
+    display(5);         // Outputs: a: 5, b: 0
+    display(5, 10);     // Outputs: a: 5, b: 10
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Rules:</strong></p>
+<ul>
+<li>Default values must be specified in the function declaration (prototype), not in the definition if they are separate.</li>
+<li>Once a parameter is given a default value, all subsequent parameters must also have default values.</li>
+</ul>
+<h2 id="Function-Overloading"><a href="#Function-Overloading" class="headerlink" title="Function Overloading"></a>Function Overloading</h2><p>C++ allows multiple functions with the same name but different parameter lists (number or types of parameters). This is called function overloading.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">void print(int i) &#123;
+    std::cout &lt;&lt; &quot;Integer: &quot; &lt;&lt; i &lt;&lt; std::endl;
+&#125;
+
+void print(double f) &#123;
+    std::cout &lt;&lt; &quot;Double: &quot; &lt;&lt; f &lt;&lt; std::endl;
+&#125;
+
+void print(const std::string&amp; s) &#123;
+    std::cout &lt;&lt; &quot;String: &quot; &lt;&lt; s &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    print(10);            // Calls print(int)
+    print(3.14);          // Calls print(double)
+    print(&quot;Hello&quot;);       // Calls print(const std::string&amp;)
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Recursive-Functions"><a href="#Recursive-Functions" class="headerlink" title="Recursive Functions"></a>Recursive Functions</h2><p>A function that calls itself is known as a recursive function. Recursion is a powerful tool but should be used with care to avoid infinite loops or stack overflows.</p>
+<p><strong>Example: Factorial Calculation</strong></p>
+<pre><code class="cpp">int factorial(int n) &#123;
+    if (n &lt;= 1)
+        return 1; // Base case
+    else
+        return n * factorial(n - 1); // Recursive call
+&#125;
+
+int main() &#123;
+    int num = 5;
+    std::cout &lt;&lt; &quot;Factorial of &quot; &lt;&lt; num &lt;&lt; &quot; is &quot; &lt;&lt; factorial(num) &lt;&lt; std::endl; // Outputs: Factorial of 5 is 120
+    return 0;
+&#125;
+</code></pre>
+<p><strong>Note:</strong> Always ensure that there is a base case to terminate recursion.</p>
+<h2 id="Lambda-Expressions"><a href="#Lambda-Expressions" class="headerlink" title="Lambda Expressions"></a>Lambda Expressions</h2><p>Lambda expressions (also known as closures) are anonymous functions that you can define in-place. They are useful for short snippets of code, especially when working with algorithms.</p>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="cpp">[capture_list](parameter_list) -&gt; return_type &#123;
+    // Function body
+&#125;;
+</code></pre>
+<ul>
+<li><strong>capture_list</strong>: Specifies which variables are captured from the surrounding scope.</li>
+<li><strong>parameter_list</strong>: Parameters passed to the lambda.</li>
+<li><strong>return_type</strong>: (Optional) The return type of the lambda (often deduced automatically).</li>
+</ul>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Basic-Lambda"><a href="#Basic-Lambda" class="headerlink" title="Basic Lambda"></a>Basic Lambda</h4><pre><code class="cpp">auto greet = []() &#123;
+    std::cout &lt;&lt; &quot;Hello from lambda!&quot; &lt;&lt; std::endl;
+&#125;;
+
+int main() &#123;
+    greet(); // Outputs: Hello from lambda!
+    return 0;
+&#125;
+</code></pre>
+<h4 id="Lambda-with-Parameters"><a href="#Lambda-with-Parameters" class="headerlink" title="Lambda with Parameters"></a>Lambda with Parameters</h4><pre><code class="cpp">auto add = [](int a, int b) &#123;
+    return a + b;
+&#125;;
+
+int main() &#123;
+    int sum = add(5, 3);
+    std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl; // Outputs: Sum: 8
+    return 0;
+&#125;
+</code></pre>
+<h4 id="Capturing-Variables"><a href="#Capturing-Variables" class="headerlink" title="Capturing Variables"></a>Capturing Variables</h4><pre><code class="cpp">int main() &#123;
+    int factor = 2;
+    auto multiply = [factor](int x) &#123;
+        return x * factor;
+    &#125;;
+
+    int result = multiply(5);
+    std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; result &lt;&lt; std::endl; // Outputs: Result: 10
+    return 0;
+&#125;
+</code></pre>
+<ul>
+<li><strong>Capture by Value (<code>[factor]</code>)</strong>: Captures a copy of <code>factor</code>.</li>
+<li><strong>Capture by Reference (<code>[&amp;factor]</code>)</strong>: Captures <code>factor</code> by reference, allowing modification.</li>
+<li><strong>Capture All by Value (<code>[=]</code>)</strong>: Captures all automatic variables (local variables) by value.</li>
+<li><strong>Capture All by Reference (<code>[&amp;]</code>)</strong>: Captures all automatic variables by reference.</li>
+</ul>
+<h4 id="Modifying-Captured-Variables"><a href="#Modifying-Captured-Variables" class="headerlink" title="Modifying Captured Variables"></a>Modifying Captured Variables</h4><p>To modify a captured variable in a lambda, you must capture it by reference.</p>
+<pre><code class="cpp">int main() &#123;
+    int count = 0;
+    auto increment = [&amp;count]() &#123;
+        count++;
+    &#125;;
+
+    increment();
+    increment();
+    std::cout &lt;&lt; &quot;Count: &quot; &lt;&lt; count &lt;&lt; std::endl; // Outputs: Count: 2
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Lambdas-in-Algorithms"><a href="#Lambdas-in-Algorithms" class="headerlink" title="Lambdas in Algorithms"></a>Lambdas in Algorithms</h3><p>Lambdas are often used with Standard Template Library (STL) algorithms.</p>
+<pre><code class="cpp">#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+int main() &#123;
+    std::vector&lt;int&gt; numbers = &#123;5, 2, 8, 1, 3&#125;;
+
+    // Sort in ascending order using a lambda
+    std::sort(numbers.begin(), numbers.end(), [](int a, int b) &#123;
+        return a &lt; b;
+    &#125;);
+
+    for (int num : numbers) &#123;
+        std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 5 8
+    &#125;
+
+    std::cout &lt;&lt; std::endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Inline-Functions"><a href="#Inline-Functions" class="headerlink" title="Inline Functions"></a>Inline Functions</h2><p>The <code>inline</code> keyword suggests to the compiler to insert the function’s body where the function call is, potentially reducing the overhead of a function call.</p>
+<p><strong>Syntax:</strong></p>
+<pre><code class="cpp">inline int add(int a, int b) &#123;
+    return a + b;
+&#125;
+</code></pre>
+<p><strong>Note:</strong> Modern compilers optimize function calls efficiently, so the <code>inline</code> keyword is often unnecessary. It is generally used for very small, frequently called functions.</p>
+<h2 id="Practical-Example-Calculator-with-Functions"><a href="#Practical-Example-Calculator-with-Functions" class="headerlink" title="Practical Example: Calculator with Functions"></a>Practical Example: Calculator with Functions</h2><p>Let’s refactor the calculator example from the previous chapter using functions.</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+
+double add(double a, double b) &#123;
+    return a + b;
+&#125;
+
+double subtract(double a, double b) &#123;
+    return a - b;
+&#125;
+
+double multiply(double a, double b) &#123;
+    return a * b;
+&#125;
+
+double divide(double a, double b) &#123;
+    if (b != 0.0)
+        return a / b;
+    else &#123;
+        std::cerr &lt;&lt; &quot;Error: Division by zero.&quot; &lt;&lt; std::endl;
+        return 0.0;
+    &#125;
+&#125;
+
+int main() &#123;
+    double num1, num2;
+    char operation;
+    bool valid = true;
+
+    std::cout &lt;&lt; &quot;Enter first number: &quot;;
+    std::cin &gt;&gt; num1;
+
+    std::cout &lt;&lt; &quot;Enter an operator (+, -, *, /): &quot;;
+    std::cin &gt;&gt; operation;
+
+    std::cout &lt;&lt; &quot;Enter second number: &quot;;
+    std::cin &gt;&gt; num2;
+
+    double result;
+
+    switch (operation) &#123;
+        case &#39;+&#39;:
+            result = add(num1, num2);
+            break;
+        case &#39;-&#39;:
+            result = subtract(num1, num2);
+            break;
+        case &#39;*&#39;:
+            result = multiply(num1, num2);
+            break;
+        case &#39;/&#39;:
+            result = divide(num1, num2);
+            break;
+        default:
+            std::cerr &lt;&lt; &quot;Invalid operator.&quot; &lt;&lt; std::endl;
+            valid = false;
+    &#125;
+
+    if (valid) &#123;
+        std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; result &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><ol>
+<li><p><strong>Temperature Conversion</strong></p>
+<p>Write functions that convert temperatures between Celsius and Fahrenheit.</p>
+<pre><code class="cpp">double toFahrenheit(double celsius);
+double toCelsius(double fahrenheit);
+</code></pre>
+<p><strong>Example Implementation:</strong></p>
+<pre><code class="cpp">double toFahrenheit(double celsius) &#123;
+    return (celsius * 9.0 / 5.0) + 32.0;
+&#125;
+
+double toCelsius(double fahrenheit) &#123;
+    return (fahrenheit - 32.0) * 5.0 / 9.0;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Find Maximum</strong></p>
+<p>Create a function template <code>maxValue</code> that returns the maximum of two values.</p>
+<pre><code class="cpp">template &lt;typename T&gt;
+T maxValue(T a, T b) &#123;
+    return (a &gt; b) ? a : b;
+&#125;
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="cpp">int main() &#123;
+    std::cout &lt;&lt; &quot;Max of 10 and 20 is &quot; &lt;&lt; maxValue(10, 20) &lt;&lt; std::endl; // Outputs: Max of 10 and 20 is 20
+    std::cout &lt;&lt; &quot;Max of 3.14 and 2.72 is &quot; &lt;&lt; maxValue(3.14, 2.72) &lt;&lt; std::endl; // Outputs: Max of 3.14 and 2.72 is 3.14
+    return 0;
+&#125;
+</code></pre>
+</li>
+<li><p><strong>Palindrome Check</strong></p>
+<p>Write a function that checks if a given <code>std::string</code> is a palindrome.</p>
+<pre><code class="cpp">#include &lt;string&gt;
+#include &lt;algorithm&gt;
+
+bool isPalindrome(const std::string&amp; str) &#123;
+    std::string reversed = str;
+    std::reverse(reversed.begin(), reversed.end());
+    return str == reversed;
+&#125;
+
+int main() &#123;
+    std::string word = &quot;radar&quot;;
+    if (isPalindrome(word)) &#123;
+        std::cout &lt;&lt; word &lt;&lt; &quot; is a palindrome.&quot; &lt;&lt; std::endl;
+    &#125; else &#123;
+        std::cout &lt;&lt; word &lt;&lt; &quot; is not a palindrome.&quot; &lt;&lt; std::endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve learned about:</p>
+<ul>
+<li><strong>Function Definition and Calls:</strong> How to define and invoke functions.</li>
+<li><strong>Parameter Passing:</strong> The difference between passing by value, reference, and pointer.</li>
+<li><strong>Return Values:</strong> Techniques to return single and multiple values from functions.</li>
+<li><strong>Default Arguments:</strong> How to use default parameter values.</li>
+<li><strong>Function Overloading:</strong> Using the same function name with different parameter lists.</li>
+<li><strong>Recursive Functions:</strong> Functions that call themselves.</li>
+<li><strong>Lambda Expressions:</strong> Creating and using anonymous functions for concise code.</li>
+</ul>
+<p>Functions are essential for writing modular, maintainable, and reusable code. Understanding how to effectively use functions will greatly enhance your ability to develop complex applications.</p>
+<hr>
+<p>Next, we’ll explore <strong>Arrays and Strings</strong>, diving into how to manage collections of data in C++.</p>
+<p>Next chapter: <a href="/2024/09/26/cpp-unleash/02h-arystr">Arrays and Strings</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>

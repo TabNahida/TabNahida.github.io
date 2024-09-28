@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C++ Unleashed: Error Handling and Exceptions | Tab&#39;s Blog</title>
+    <meta name="author" content="Tab Nahida" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar1.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>TAB&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;TAB&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C++ Unleashed: Error Handling and Exceptions</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/tutor/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Tutorial
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                    C/C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                    Modern C++
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
+                    C++ Unleashed
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
+                    Zero to Hero
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
+<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-stl">Standard Template Library (STL)</a></p>
+<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
+<h1 id="Error-Handling-and-Exceptions"><a href="#Error-Handling-and-Exceptions" class="headerlink" title="Error Handling and Exceptions"></a>Error Handling and Exceptions</h1><p>In C++, effective error handling is crucial for creating robust applications. This chapter will cover the concept of exceptions, how to use them for error handling, and best practices for managing errors in your code.</p>
+<span id="more"></span>
+
+<h2 id="The-Concept-of-Exceptions"><a href="#The-Concept-of-Exceptions" class="headerlink" title="The Concept of Exceptions"></a>The Concept of Exceptions</h2><p>Exceptions are events that occur during program execution that disrupt the normal flow of the program. They can be used to signal errors or unexpected conditions. Instead of returning error codes, C++ provides a more structured way to handle errors through exceptions.</p>
+<h3 id="Key-Components-of-Exception-Handling"><a href="#Key-Components-of-Exception-Handling" class="headerlink" title="Key Components of Exception Handling"></a>Key Components of Exception Handling</h3><ol>
+<li><strong>Throwing Exceptions</strong>: When an error condition is detected, an exception can be thrown using the <code>throw</code> keyword.</li>
+<li><strong>Catching Exceptions</strong>: Exceptions are caught using <code>try</code> and <code>catch</code> blocks.</li>
+<li><strong>Handling Exceptions</strong>: Once an exception is caught, you can handle it appropriately, such as logging the error or providing a fallback mechanism.</li>
+</ol>
+<h2 id="Using-try-catch-and-throw"><a href="#Using-try-catch-and-throw" class="headerlink" title="Using try, catch, and throw"></a>Using <code>try</code>, <code>catch</code>, and <code>throw</code></h2><h3 id="Throwing-Exceptions"><a href="#Throwing-Exceptions" class="headerlink" title="Throwing Exceptions"></a>Throwing Exceptions</h3><p>To throw an exception, use the <code>throw</code> keyword followed by an instance of an exception class. C++ provides several built-in exception classes, but you can also create custom exceptions.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+
+void divide(int a, int b) &#123;
+    if (b == 0) &#123;
+        throw std::invalid_argument(&quot;Division by zero is not allowed.&quot;);
+    &#125;
+    std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; a / b &lt;&lt; std::endl;
+&#125;
+
+int main() &#123;
+    try &#123;
+        divide(10, 0);
+    &#125; catch (const std::invalid_argument&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl; // Outputs: Error: Division by zero is not allowed.
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Catching-Exceptions"><a href="#Catching-Exceptions" class="headerlink" title="Catching Exceptions"></a>Catching Exceptions</h3><p>The <code>try</code> block contains code that might throw an exception, while the <code>catch</code> block defines how to handle it. You can catch specific exceptions or use a general catch-all.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+
+void mightGoWrong() &#123;
+    throw std::runtime_error(&quot;Something went wrong!&quot;);
+&#125;
+
+int main() &#123;
+    try &#123;
+        mightGoWrong();
+    &#125; catch (const std::runtime_error&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Caught an exception: &quot; &lt;&lt; e.what() &lt;&lt; std::endl; // Outputs: Caught an exception: Something went wrong!
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="Multiple-Catch-Blocks"><a href="#Multiple-Catch-Blocks" class="headerlink" title="Multiple Catch Blocks"></a>Multiple Catch Blocks</h3><p>You can have multiple <code>catch</code> blocks to handle different types of exceptions.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+
+void testFunction() &#123;
+    throw std::out_of_range(&quot;Out of range error!&quot;);
+&#125;
+
+int main() &#123;
+    try &#123;
+        testFunction();
+    &#125; catch (const std::out_of_range&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Out of range: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125; catch (const std::exception&amp; e) &#123;
+        std::cerr &lt;&lt; &quot;Standard exception: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="Best-Practices-for-Error-Handling"><a href="#Best-Practices-for-Error-Handling" class="headerlink" title="Best Practices for Error Handling"></a>Best Practices for Error Handling</h2><ol>
+<li><strong>Use Exceptions for Exceptional Cases</strong>: Only use exceptions for situations that are truly exceptional. Avoid using them for regular control flow.</li>
+<li><strong>Provide Meaningful Error Messages</strong>: When throwing exceptions, ensure the message clearly describes the error.</li>
+<li><strong>Catch by Reference</strong>: Catch exceptions by reference to avoid slicing and to improve performance.</li>
+<li><strong>Clean Up Resources</strong>: Use RAII (Resource Acquisition Is Initialization) to manage resources, ensuring they are released even in the presence of exceptions.</li>
+<li><strong>Document Exception Behavior</strong>: Clearly document which functions may throw exceptions, so users of your code are aware of potential error conditions.</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, we explored error handling in C++ using exceptions. You learned how to throw, catch, and handle exceptions effectively, along with best practices for robust error management. Understanding and implementing proper error handling will enhance the reliability of your C++ applications and improve user experience. </p>
+<p>In the next chapter, we will delve into using <strong>xmake to Build Projects</strong>, where you’ll learn how to set up and manage builds for your C++ projects.</p>
+<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-concurrency">Concurrency and Multithreading</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Tab&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Tab Nahida
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="TabNahida/TabNahida.github.io"
+    data-repo-id="R_kgDOJtk4Ag"
+    data-category="General"
+    data-category-id="DIC_kwDOJtk4As4Ci3B7"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_protanopia"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
