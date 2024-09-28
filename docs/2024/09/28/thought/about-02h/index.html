@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>C++ Unleashed: Using xmake to Build Projects | Tab&#39;s Blog</title>
+    <title>About The Book &lt;From Zero to Hero&gt; | Tab&#39;s Blog</title>
     <meta name="author" content="Tab Nahida" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>C++ Unleashed: Using xmake to Build Projects</h1>
+        <h1>About The Book &lt;From Zero to Hero&gt;</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/27
+            2024/9/28
         </span>
         
         <span class="category">
@@ -184,21 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #03a9f4">
-                    c-cpp
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
-                    modern-cpp
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
                     cpp-unleash
                 </a>
             </span>
@@ -210,75 +196,31 @@
                 </a>
             </span>
             
+            <span class="tag">
+                
+                <a href="/tags/diary/" style="color: #03a9f4">
+                    diary
+                </a>
+            </span>
+            
         </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
-<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-testing">Testing, Debugging, and Building</a></p>
-<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
-<h1 id="Using-xmake-to-Build-Projects"><a href="#Using-xmake-to-Build-Projects" class="headerlink" title="Using xmake to Build Projects"></a>Using xmake to Build Projects</h1><p>In this chapter, we will learn how to use <strong>xmake</strong>, a cross-platform build utility that simplifies the building and managing of C++ projects. With xmake, you can easily configure your build environment and manage dependencies without hassle. </p>
-<h2 id="Creating-the-xmake-lua-File"><a href="#Creating-the-xmake-lua-File" class="headerlink" title="Creating the xmake.lua File"></a>Creating the <code>xmake.lua</code> File</h2><p>The configuration for your xmake project is defined in a file named <code>xmake.lua</code>. This file contains all the necessary information for building your application, including source files, target settings, and dependencies.</p>
-<h3 id="Basic-Structure-of-xmake-lua"><a href="#Basic-Structure-of-xmake-lua" class="headerlink" title="Basic Structure of xmake.lua"></a>Basic Structure of <code>xmake.lua</code></h3><p>Here’s a minimal example of a <code>xmake.lua</code> file for a console application:</p>
-<pre><code class="lua">-- Set the project name
-set_project(&quot;MyApp&quot;)
-
--- Set the version
-set_version(&quot;1.0.0&quot;)
-
--- Set the target type
-target(&quot;myapp&quot;)
-    set_kind(&quot;binary&quot;)
-    
-    -- Add source files
-    add_files(&quot;src/*.cpp&quot;)
-
-    -- Include directories
-    add_includedirs(&quot;include&quot;)
-
-    -- Link libraries
-    add_links(&quot;mylib&quot;)
-</code></pre>
-<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
-<li><strong>set_project</strong>: Define the project name.</li>
-<li><strong>set_version</strong>: Specify the version of the project.</li>
-<li><strong>target</strong>: Create a target (e.g., a binary named <code>myapp</code>).</li>
-<li><strong>set_kind</strong>: Indicate the type of target (binary, shared, static).</li>
-<li><strong>add_files</strong>: Specify the source files to include in the build.</li>
-<li><strong>add_includedirs</strong>: Define directories for header files.</li>
-<li><strong>add_links</strong>: Link against any external libraries.</li>
+        <p>Ahhhhh! I’ve written almost 50,000 words! Even though I used AI and borrowed some from others, the workload is still massive. I have to review it so many times each day, tweaking things here and there. This tutorial is both frustrating and so much fun!</p>
+<p>I initially decided to write it in English because I felt that the final result would be better (my Chinese isn’t that good). Sure enough, when I tried to translate it, the whole thing almost twisted my brain into knots with the Chinese vocabulary.</p>
+<p>Thanks to AI technology (O1’s understanding saved me a lot of time), otherwise, writing in English would’ve been torture. But the sense of accomplishment from this is huge—48k words in three days is pretty impressive!</p>
+<p>I’ve been wanting to write this book <em>C++ Unleashed: From Zero to Hero</em> for a long time, and I finally got around to it. I’ve already realized a lot of my ambitions, and this is the first step in my MCGA (Make C++ Great Again) plan. Onward and upward!</p>
+<p>Right now, the book is riddled with bugs, but I’ll just have to fix them bit by bit.</p>
+<p>To be honest, there are a lot of parts I’m not satisfied with, but it will have to do for now.</p>
+<p><strong>TODO</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Break down the content more carefully by the following lifecycle stages</li>
+<li><input disabled="" type="checkbox"> The file system section isn’t written well (I initially planned to write about network libraries but didn’t want to introduce non-standard libraries)</li>
+<li><input disabled="" type="checkbox"> The coroutines section could use some adjustments—my understanding of coroutines isn’t deep enough</li>
+<li><input disabled="" type="checkbox"> Not beginner-friendly enough?</li>
 </ul>
-<h2 id="Building-the-Project"><a href="#Building-the-Project" class="headerlink" title="Building the Project"></a>Building the Project</h2><p>Once your <code>xmake.lua</code> file is ready, building your project is straightforward. Open a terminal, navigate to your project directory, and run:</p>
-<pre><code class="bash">xmake
-</code></pre>
-<p>This command will compile your project according to the specifications defined in the <code>xmake.lua</code> file.</p>
-<h3 id="Building-in-Release-Mode"><a href="#Building-in-Release-Mode" class="headerlink" title="Building in Release Mode"></a>Building in Release Mode</h3><p>To compile your project in release mode, you can configure it with:</p>
-<pre><code class="bash">xmake f -m release
-</code></pre>
-<p>Then run the build command again:</p>
-<pre><code class="bash">xmake
-</code></pre>
-<h2 id="Managing-Dependencies"><a href="#Managing-Dependencies" class="headerlink" title="Managing Dependencies"></a>Managing Dependencies</h2><p>xmake makes it easy to manage dependencies, allowing you to integrate third-party libraries seamlessly. You can specify required dependencies directly in your <code>xmake.lua</code> file.</p>
-<h3 id="Adding-Dependencies"><a href="#Adding-Dependencies" class="headerlink" title="Adding Dependencies"></a>Adding Dependencies</h3><p>For example, if you want to use the <code>boost</code> library, modify your <code>xmake.lua</code> as follows:</p>
-<pre><code class="lua">add_requires(&quot;boost&quot;)
-
-target(&quot;myapp&quot;)
-    set_kind(&quot;binary&quot;)
-    add_files(&quot;src/*.cpp&quot;)
-    add_packages(&quot;boost&quot;)
-</code></pre>
-<h3 id="Installing-Dependencies"><a href="#Installing-Dependencies" class="headerlink" title="Installing Dependencies"></a>Installing Dependencies</h3><p>Before building your project, ensure that all required dependencies are installed. Use the following command:</p>
-<pre><code class="bash">xmake install
-</code></pre>
-<p>This will automatically download and install the specified packages.</p>
-<h2 id="Running-the-Application"><a href="#Running-the-Application" class="headerlink" title="Running the Application"></a>Running the Application</h2><p>Once the build process is complete, you can run your application directly from the command line:</p>
-<pre><code class="bash">xmake run myapp
-</code></pre>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, we have covered how to use <strong>xmake</strong> to build C++ projects efficiently. We discussed the creation of the <code>xmake.lua</code> configuration file, the process of building your project, and how to manage dependencies with ease. By using xmake, you can streamline your development workflow and focus more on coding.</p>
-<p>In the next chapter, we will dive into <strong>Practical Projects</strong>, where you’ll apply your newfound knowledge to real-world programming challenges and best practices.</p>
-<p>For more information, visit the official <a target="_blank" rel="noopener" href="https://xmake.io/">xmake website</a>.</p>
-<p>Next chapter: <a href="/2024/09/27/cpp-unleash/02h-prctlprj">Practical Projects</a></p>
 
     </div>
     
