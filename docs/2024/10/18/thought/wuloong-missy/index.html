@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Using PrizmSDK to Build Programs for Casio Graphing Calculators | Tab&#39;s Blog</title>
+    <title>Miss from Wuloong | Tab&#39;s Blog</title>
     <meta name="author" content="Tab Nahida" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -156,22 +156,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Using PrizmSDK to Build Programs for Casio Graphing Calculators</h1>
+        <h1>Miss from Wuloong</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/29
+            2024/10/18
         </span>
         
         <span class="category">
-            <a href="/categories/tutor/">
+            <a href="/categories/thought/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                Tutorial
+                Thought
             </a>
         </span>
         
@@ -184,43 +184,22 @@
             
             <span class="tag">
                 
-                <a href="/tags/lib/" style="color: #ff7d73">
-                    Library
+                <a href="/tags/diary/" style="color: #00a596">
+                    Diary
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/setup/" style="color: #03a9f4">
-                    SetUp
+                <a href="/tags/novel/" style="color: #03a9f4">
+                    Novel
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/prizm-sdk/" style="color: #ff7d73">
-                    PrizmSDK
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/embed/" style="color: #03a9f4">
-                    Embedded
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/compiler/" style="color: #ffa2c4">
-                    Compiler
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/toolchain/" style="color: #03a9f4">
-                    Toolchain
+                <a href="/tags/literature/" style="color: #00a596">
+                    Literature
                 </a>
             </span>
             
@@ -229,73 +208,12 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="Using-PrizmSDK-to-Build-Programs-for-Casio-Graphing-Calculators"><a href="#Using-PrizmSDK-to-Build-Programs-for-Casio-Graphing-Calculators" class="headerlink" title="Using PrizmSDK to Build Programs for Casio Graphing Calculators"></a>Using PrizmSDK to Build Programs for Casio Graphing Calculators</h1><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>If you’re a developer who loves coding or is interested in running custom programs on Casio graphing calculators, you may have heard of <strong>PrizmSDK</strong>. PrizmSDK is a software development kit (SDK) designed for developing programs that run on Casio graphing calculators, such as the fx-CG series. In this article, we will walk you through how to use <strong>PrizmSDK</strong>, which integrates <code>libfxcg</code>, <code>mkg3a</code>, <code>gcc</code>, and <code>binutils</code> into a complete SDK toolchain.</p>
-<span id="more"></span>
-
-<h3 id="Components-of-PrizmSDK"><a href="#Components-of-PrizmSDK" class="headerlink" title="Components of PrizmSDK"></a>Components of PrizmSDK</h3><p>Your PrizmSDK is built upon the following toolchain components:</p>
-<ul>
-<li><strong>libfxcg</strong>: A library that facilitates hardware interactions with the Casio fx-CG series calculators, providing an abstraction of the calculator’s API and hardware operations.</li>
-<li><strong>mkg3a</strong>: A tool for packaging and generating executable files in the G3A format, which is the format required by Casio calculators.</li>
-<li><strong>gcc (GNU Compiler Collection)</strong>: The compiler that translates C or C++ source code into machine code.</li>
-<li><strong>binutils</strong>: A suite of tools for handling object files, including the linker and other utilities.</li>
-</ul>
-<p>By combining these tools, PrizmSDK allows you to easily compile, package, and run programs on Casio calculators.</p>
-<h3 id="Installing-PrizmSDK"><a href="#Installing-PrizmSDK" class="headerlink" title="Installing PrizmSDK"></a>Installing PrizmSDK</h3><p>First, make sure you’ve cloned the <a target="_blank" rel="noopener" href="https://github.com/TabNahida/PrizmSDK">PrizmSDK repository</a>. You can do this by running the following commands:</p>
-<pre><code class="bash">git clone https://github.com/TabNahida/PrizmSDK.git
-cd PrizmSDK
-</code></pre>
-<p>Before proceeding, you need to install some dependencies like <code>gcc</code>, <code>make</code>, and <code>binutils</code>. On Linux or macOS, you can install them using the following command:</p>
-<pre><code class="bash">sudo apt-get install gcc make binutils
-</code></pre>
-<p>Then you can run following commad to clone <code>gcc</code> <code>binutils</code> <code>libfxcg</code> and <code>mkg3a</code>:</p>
-<pre><code class="bash">git clone https://github.com/Jonimoose/libfxcg.git
-git clone https://gitlab.com/taricorp/mkg3a.git
-git clone git://gcc.gnu.org/git/gcc.git
-git clone git://sourceware.org/git/binutils-gdb.git
-chmod +x build.sh
-./build.sh
-</code></pre>
-<p>If you’re using Windows, it’s recommended to use <a target="_blank" rel="noopener" href="https://github.com/Jonimoose/libfxcg/releases">PrizmSDK prebuild by libfxcg</a>.</p>
-<h3 id="Building-Your-First-Program"><a href="#Building-Your-First-Program" class="headerlink" title="Building Your First Program"></a>Building Your First Program</h3><p>Once the installation is complete, let’s create and build a simple “Hello, World!” program.</p>
-<h4 id="1-Writing-C-Source-Code"><a href="#1-Writing-C-Source-Code" class="headerlink" title="1. Writing C Source Code"></a>1. Writing C Source Code</h4><p>Create a new directory and navigate into it:</p>
-<pre><code class="bash">mkdir hello_world
-cd hello_world
-</code></pre>
-<p>Next, create a file called <code>main.c</code> and insert the following code:</p>
-<pre><code class="c">#include &lt;fxcg/display.h&gt;
-
-int main(void) &#123;
-    // Clear the screen and display &quot;Hello, World!&quot;
-    Bdisp_AllClr_VRAM();
-    PrintXY(5, 5, &quot;Hello, World!&quot;, 0);
-    
-    // Wait for user input
-    while (1) &#123;
-        int key;
-        GetKey(&amp;key);
-        if (key == KEY_CTRL_EXIT) &#123;
-            break;
-        &#125;
-    &#125;
-    
-    return 0;
-&#125;
-</code></pre>
-<h4 id="2-Compiling-the-Program"><a href="#2-Compiling-the-Program" class="headerlink" title="2. Compiling the Program"></a>2. Compiling the Program</h4><p>Ensure you’ve set up your environment variables to include PrizmSDK’s toolchain in your <code>$PATH</code>. For example:</p>
-<pre><code class="bash">export PATH=/path/to/PrizmSDK/bin:$PATH
-</code></pre>
-<p>Then, use <code>make</code> to compile the program. You can utilize the Makefile from PrizmSDK to simplify the process. Run the following command:</p>
-<pre><code class="bash">make
-</code></pre>
-<p>After compiling, you will see a <code>.g3a</code> file, which is the executable format that you can run on the Casio calculator.</p>
-<h4 id="3-Uploading-the-Program-to-the-Calculator"><a href="#3-Uploading-the-Program-to-the-Calculator" class="headerlink" title="3. Uploading the Program to the Calculator"></a>3. Uploading the Program to the Calculator</h4><p>To upload the generated <code>.g3a</code> file to your calculator, connect your calculator via USB and transfer the file to the “Applications” folder on the calculator.</p>
-<h3 id="Additional-Features"><a href="#Additional-Features" class="headerlink" title="Additional Features"></a>Additional Features</h3><p>PrizmSDK offers a rich set of APIs, enabling you to perform more complex tasks on the calculator, such as:</p>
-<ul>
-<li><strong>Graphics Drawing</strong>: You can draw graphics and even create simple games.</li>
-<li><strong>File Operations</strong>: Read and write files directly.</li>
-<li><strong>Hardware Interaction</strong>: Interact with the calculator’s hardware, such as the keyboard and display.</li>
-</ul>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>With PrizmSDK, you can leverage the hardware capabilities of Casio graphing calculators to develop rich custom programs and applications. This article walked you through installing the SDK, writing a simple “Hello, World!” program, and deploying it to the calculator. As you continue exploring the SDK, you’ll be able to create more complex and exciting applications.</p>
+        <p>Finally, I’ve started writing my book, “Miss from Wuloong.” I’ve wanted to write a novel for a long time, but never had the chance. My writing skills aren’t great, and I’m a slow writer, which made it really hard to get started. Thanks to the amazing GPT-4 canvas, I finally have ideas and can get some help with the writing process, so my limited literary skills won’t hold me back anymore.</p>
+<p>Even though I’m using GPT, it still took quite a bit of time. Honestly, GPT isn’t quite powerful enough just yet—there are many fixed patterns in the story, and I have to keep adjusting and refining them repeatedly. But despite all that, I’ve finally started writing, and that feels fantastic. I hope it turns out well, and I’m excited to see where this journey takes me.</p>
+<p>Writing has always been a dream of mine, but it felt like an unattainable goal for a long time. I would often think about different story ideas and characters, but I lacked the confidence to put them into words. It’s easy to get discouraged when you compare yourself to professional authors, but I realized that everyone has to start somewhere. The important thing is to just get the words down, no matter how imperfect they are.</p>
+<p>With “Miss from Wuloong,” I want to bring to life the beauty of Wuloong and the experiences of the characters who live there. It’s a story about growth, love, and the challenges that come with change. Wuloong is a place filled with cultural richness and natural beauty, and I hope to capture that in my writing. My protagonist is someone who embodies both strength and vulnerability, and I want readers to connect with her journey on a personal level.</p>
+<p>There are so many aspects of writing that I’m learning along the way—plot development, character arcs, pacing, and even just the discipline of writing regularly. Using GPT helps me overcome writer’s block and gives me new perspectives on how to approach certain scenes. But it’s still up to me to make the final decisions, add my own touch, and make the story uniquely mine. I think that’s the most rewarding part: knowing that, in the end, it’s my story, shaped by my experiences and imagination.</p>
+<p>It’s been a challenging start, but I’m optimistic. I believe that if I keep pushing forward, I can create something meaningful. I’m grateful for this opportunity to finally bring my ideas to life, and I hope that one day others will enjoy reading “Miss from Wuloong” as much as I enjoy writing it.</p>
 
     </div>
     
