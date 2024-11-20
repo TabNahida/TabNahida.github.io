@@ -181,6 +181,75 @@
         
 
 <div class="post">
+    <a href="/2024/11/21/thought/cbuerc-init/">
+        <h2 class="post-title">Embracing Modularity: Incremental Programming and My Journey with the CBuer Compiler</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/thought/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Thought
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>After some help from GPT-4, I finally began working on the <a target="_blank" rel="noopener" href="https://github.com/C-Buer/Compiler">CBuer language compiler</a>. Initially, I was hesitant about breaking things apart. I wanted to put most of the frontend, such as the Lexer and Parser, into a single state machine. It seemed simpler at first, but it quickly became a nightmare to maintain. Every change meant sifting through a tangled mess, and extending functionality was getting harder by the day.</p>
+<p>Eventually, I embraced a modular approach, separating each of the compiler components into distinct modules. By breaking down the components into manageable parts, everything started falling into place. Each module had a well-defined responsibility—Lexer, Parser, and the subsequent stages were their own entities, communicating through clear interfaces.</p>
+<p>This separation brought several benefits. Writing new features became more straightforward, debugging became easier, and more importantly, making changes didn’t feel like defusing a bomb anymore. I could work on the Lexer without worrying about breaking the Parser, and vice versa. Each piece of the puzzle had its own rules and scope, reducing the complexity of the overall system. It’s like building with LEGO blocks rather than trying to mold a monolithic, shapeless lump of clay.</p>
+<p>One major lesson I learned during this journey is the power of incremental programming. It wasn’t about building everything perfectly right away, but rather developing each module iteratively. As I grew more familiar with the project, my development speed increased as well. Incremental changes became second nature, and adding new features felt like stacking another brick rather than reconstructing a tower.</p>
+<p>Of course, AI assistance played a significant role in this transformation. I found that, while AI is great for a lot of tasks, it struggles even after moving to a modular approach, especially when the problems are deeply interconnected. Despite the modularity, GPT-4 often faced challenges in addressing the complexities inherent in such systems.</p>
+<p>Modularity has truly changed the way I approach programming. It made my work more structured and efficient, but also much more enjoyable. Taking this step towards embracing separation and incremental progress was a game-changer for developing the CBuer compiler.</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/diary/" style="color: #ff7d73">Diary</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/cpp/" style="color: #03a9f4">C++</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/compiler/" style="color: #00a596">Compiler</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/cbuer/" style="color: #00bcd4">CBuer</a>
+        </span>
+        
+    </div>
+    <a href="/2024/11/21/thought/cbuerc-init/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/10/18/thought/wuloong-missy/">
         <h2 class="post-title">Miss from Wuloong</h2>
     </a>
@@ -227,17 +296,17 @@
         
         <span class="tag">
             
-            <a href="/tags/diary/" style="color: #00a596">Diary</a>
+            <a href="/tags/diary/" style="color: #00bcd4">Diary</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/novel/" style="color: #ffa2c4">Novel</a>
+            <a href="/tags/novel/" style="color: #03a9f4">Novel</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/literature/" style="color: #00a596">Literature</a>
+            <a href="/tags/literature/" style="color: #ffa2c4">Literature</a>
         </span>
         
     </div>
@@ -285,22 +354,27 @@
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #03a9f4">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/opensumeru/" style="color: #00a596">OpenSumeru</a>
+            <a href="/tags/opensumeru/" style="color: #ff7d73">OpenSumeru</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/network/" style="color: #ff7d73">NetWork</a>
+            <a href="/tags/network/" style="color: #ffa2c4">NetWork</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/tool/" style="color: #03a9f4">Tool</a>
+            <a href="/tags/tool/" style="color: #00a596">Tool</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/release/" style="color: #00bcd4">Release</a>
         </span>
         
     </div>
@@ -353,7 +427,7 @@
         
         <span class="tag">
             
-            <a href="/tags/lib/" style="color: #03a9f4">Library</a>
+            <a href="/tags/lib/" style="color: #ffa2c4">Library</a>
         </span>
         
         <span class="tag">
@@ -411,27 +485,27 @@
         
         <span class="tag">
             
+            <a href="/tags/compiler/" style="color: #00a596">Compiler</a>
+        </span>
+        
+        <span class="tag">
+            
             <a href="/tags/setup/" style="color: #ff7d73">SetUp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/prizm-sdk/" style="color: #00bcd4">PrizmSDK</a>
+            <a href="/tags/prizm-sdk/" style="color: #00a596">PrizmSDK</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/embed/" style="color: #00a596">Embedded</a>
+            <a href="/tags/embed/" style="color: #ff7d73">Embedded</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/compiler/" style="color: #ff7d73">Compiler</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/toolchain/" style="color: #ffa2c4">Toolchain</a>
+            <a href="/tags/toolchain/" style="color: #00bcd4">Toolchain</a>
         </span>
         
     </div>
@@ -495,7 +569,7 @@
         
         <span class="tag">
             
-            <a href="/tags/data/" style="color: #ff7d73">Data</a>
+            <a href="/tags/data/" style="color: #03a9f4">Data</a>
         </span>
         
         <span class="tag">
@@ -553,22 +627,22 @@
         
         <span class="tag">
             
-            <a href="/tags/github-act/" style="color: #ffa2c4">GitHub Action</a>
+            <a href="/tags/github-act/" style="color: #00bcd4">GitHub Action</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/hexo/" style="color: #ff7d73">Hexo</a>
+            <a href="/tags/hexo/" style="color: #ffa2c4">Hexo</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/web/" style="color: #00a596">Web</a>
+            <a href="/tags/web/" style="color: #03a9f4">Web</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/setup/" style="color: #ffa2c4">SetUp</a>
+            <a href="/tags/setup/" style="color: #00bcd4">SetUp</a>
         </span>
         
     </div>
@@ -690,7 +764,7 @@
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #03a9f4">C/C++</a>
         </span>
         
         <span class="tag">
@@ -700,12 +774,12 @@
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00bcd4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">Zero to Hero</a>
         </span>
         
     </div>
@@ -756,92 +830,26 @@
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #03a9f4">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00a596">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #00bcd4">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #03a9f4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #00a596">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">Zero to Hero</a>
         </span>
         
     </div>
     <a href="/2024/09/27/cpp-unleash/02h-bestpractices/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/09/27/cpp-unleash/02h-filesystem/">
-        <h2 class="post-title">C++ Unleashed: Filesystem</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/tutor/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Tutorial
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/9/27
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
-<p>Previous chapter: <a href="/2024/09/27/cpp-unleash/02h-cpp20">C++20 Features</a></p>
-<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
-<h1 id="Filesystem"><a href="#Filesystem" class="headerlink" title="Filesystem"></a>Filesystem</h1><p>The <strong>Filesystem</strong> library, introduced in C++17 and further enhanced in C++20, provides a standardized and portable way to perform file and directory operations. It abstracts away the underlying operating system’s file handling mechanisms, allowing developers to interact with the filesystem using a consistent and intuitive API. This chapter delves into the capabilities of <code>std::filesystem</code>, enabling you to manage files and directories efficiently in your C++ applications.</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/c-cpp/" style="color: #00bcd4">C/C++</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/modern-cpp/" style="color: #ffa2c4">Modern C++</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/cpp-unleash/" style="color: #ff7d73">C++ Unleashed</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
-        </span>
-        
-    </div>
-    <a href="/2024/09/27/cpp-unleash/02h-filesystem/" class="go-post">阅读全文</a>
 </div>
 
 
@@ -858,6 +866,9 @@
         3
     </a>
     
+    
+    <span class="page-omit">...</span>
+    <a class="page-num" href="/page/4">4</a>
     
     
     <a class="page-num" href="/page/2/">
