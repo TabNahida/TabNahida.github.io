@@ -191,21 +191,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                <a href="/tags/modern-cpp/" style="color: #03a9f4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -239,13 +239,13 @@
 </ul>
 </li>
 <li><strong>macOS (Clang)</strong>:<ul>
-<li>Install Xcode Command Line Tools by running the following command in Terminal:<pre><code class="bash">xcode-select --install
+<li>Install Xcode Command Line Tools by running the following command in Terminal:<pre><code class="language-bash">xcode-select --install
 </code></pre>
 </li>
 </ul>
 </li>
 <li><strong>Linux (GCC)</strong>:<ul>
-<li>Install GCC using your distribution’s package manager. For example, on Debian-based systems:<pre><code class="bash">sudo apt-get update
+<li>Install GCC using your distribution’s package manager. For example, on Debian-based systems:<pre><code class="language-bash">sudo apt-get update
 sudo apt-get install build-essential
 </code></pre>
 </li>
@@ -258,14 +258,14 @@ sudo apt-get install build-essential
 </ul>
 </li>
 <li><strong>macOS</strong>:<ul>
-<li>If you have Homebrew installed, run:<pre><code class="bash">brew install llvm
+<li>If you have Homebrew installed, run:<pre><code class="language-bash">brew install llvm
 </code></pre>
 </li>
 <li>Ensure that <code>clangd</code> is in your PATH.</li>
 </ul>
 </li>
 <li><strong>Linux</strong>:<ul>
-<li>Install <code>clangd</code> via your package manager. For example:<pre><code class="bash">sudo apt-get install clangd
+<li>Install <code>clangd</code> via your package manager. For example:<pre><code class="language-bash">sudo apt-get install clangd
 </code></pre>
 </li>
 </ul>
@@ -277,13 +277,13 @@ sudo apt-get install build-essential
 </ul>
 </li>
 <li><strong>macOS</strong>:<ul>
-<li>Install via Homebrew:<pre><code class="bash">brew install xmake
+<li>Install via Homebrew:<pre><code class="language-bash">brew install xmake
 </code></pre>
 </li>
 </ul>
 </li>
 <li><strong>Linux</strong>:<ul>
-<li>Use the installation script:<pre><code class="bash">curl -fsSL https://xmake.io/shget.text | bash
+<li>Use the installation script:<pre><code class="language-bash">curl -fsSL https://xmake.io/shget.text | bash
 </code></pre>
 </li>
 </ul>
@@ -307,7 +307,7 @@ sudo apt-get install build-essential
 </ul>
 <h2 id="Your-First-Program-Hello-World"><a href="#Your-First-Program-Hello-World" class="headerlink" title="Your First Program: Hello, World!"></a>Your First Program: Hello, World!</h2><p>Let’s create a simple “Hello, World!” program using <code>xmake</code>.</p>
 <h3 id="Step-1-Create-a-New-Project"><a href="#Step-1-Create-a-New-Project" class="headerlink" title="Step 1: Create a New Project"></a>Step 1: Create a New Project</h3><p>Open a terminal and run:</p>
-<pre><code class="bash">xmake create -l c++ -t console hello
+<pre><code class="language-bash">xmake create -l c++ -t console hello
 </code></pre>
 <p>Explanation:</p>
 <ul>
@@ -315,7 +315,7 @@ sudo apt-get install build-essential
 <li><code>-t console</code>: Creates a console application template.</li>
 <li><code>hello</code>: Names the project directory as <code>hello</code>.</li>
 </ul>
-<h3 id="Step-2-Navigate-to-the-Project-Directory"><a href="#Step-2-Navigate-to-the-Project-Directory" class="headerlink" title="Step 2: Navigate to the Project Directory"></a>Step 2: Navigate to the Project Directory</h3><pre><code class="bash">cd hello
+<h3 id="Step-2-Navigate-to-the-Project-Directory"><a href="#Step-2-Navigate-to-the-Project-Directory" class="headerlink" title="Step 2: Navigate to the Project Directory"></a>Step 2: Navigate to the Project Directory</h3><pre><code class="language-bash">cd hello
 </code></pre>
 <h3 id="Step-3-Explore-the-Project-Structure"><a href="#Step-3-Explore-the-Project-Structure" class="headerlink" title="Step 3: Explore the Project Structure"></a>Step 3: Explore the Project Structure</h3><p>Your project should have the following structure:</p>
 <pre><code>hello/
@@ -334,12 +334,12 @@ sudo apt-get install build-essential
 <h3 id="Step-5-Build-the-Project"><a href="#Step-5-Build-the-Project" class="headerlink" title="Step 5: Build the Project"></a>Step 5: Build the Project</h3><p>In VSCode:</p>
 <ul>
 <li>Open the integrated terminal (<strong>View</strong> &gt; <strong>Terminal</strong>).</li>
-<li>Build the project by running:<pre><code class="bash">xmake
+<li>Build the project by running:<pre><code class="language-bash">xmake
 </code></pre>
 </li>
 </ul>
 <h3 id="Step-6-Run-the-Program"><a href="#Step-6-Run-the-Program" class="headerlink" title="Step 6: Run the Program"></a>Step 6: Run the Program</h3><p>Execute the program with:</p>
-<pre><code class="bash">xmake run
+<pre><code class="language-bash">xmake run
 </code></pre>
 <p>You should see the output:</p>
 <pre><code>hello world!
@@ -370,13 +370,13 @@ sudo apt-get install build-essential
 </li>
 </ul>
 <h3 id="Declaring-and-Initializing-Variables"><a href="#Declaring-and-Initializing-Variables" class="headerlink" title="Declaring and Initializing Variables"></a>Declaring and Initializing Variables</h3><p>You can declare a variable by specifying its type followed by its name:</p>
-<pre><code class="cpp">int age;
+<pre><code class="language-cpp">int age;
 float salary;
 char grade;
 bool isEmployed;
 </code></pre>
 <p>You can also initialize variables at the time of declaration:</p>
-<pre><code class="cpp">int age = 30;
+<pre><code class="language-cpp">int age = 30;
 float salary = 75000.50;
 char grade = &#39;A&#39;;
 bool isEmployed = true;
@@ -384,7 +384,7 @@ std::string name = &quot;Alice&quot;;
 </code></pre>
 <h3 id="Using-Variables-in-Code"><a href="#Using-Variables-in-Code" class="headerlink" title="Using Variables in Code"></a>Using Variables in Code</h3><p>Let’s modify our program to include variables and data types.</p>
 <h4 id="Step-1-Update-main-cpp"><a href="#Step-1-Update-main-cpp" class="headerlink" title="Step 1: Update main.cpp"></a>Step 1: Update <code>main.cpp</code></h4><p>Open <code>src/main.cpp</code> and replace its contents with:</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 int main() &#123;
@@ -406,10 +406,10 @@ int main() &#123;
 &#125;
 </code></pre>
 <h4 id="Step-2-Build-and-Run-the-Program"><a href="#Step-2-Build-and-Run-the-Program" class="headerlink" title="Step 2: Build and Run the Program"></a>Step 2: Build and Run the Program</h4><p>In the terminal, build the project:</p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 </code></pre>
 <p>Run the program:</p>
-<pre><code class="bash">xmake run
+<pre><code class="language-bash">xmake run
 </code></pre>
 <h4 id="Expected-Output"><a href="#Expected-Output" class="headerlink" title="Expected Output"></a>Expected Output</h4><pre><code>Name: Alice
 Age: 30 years old
@@ -445,7 +445,7 @@ Employed: true
 </ol>
 <h4 id="Single-line-Comments"><a href="#Single-line-Comments" class="headerlink" title="Single-line Comments"></a>Single-line Comments</h4><p>Single-line comments are useful for brief explanations or notes.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">int main() &#123;
+<pre><code class="language-cpp">int main() &#123;
     // Output a greeting message
     std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl; // End of line comment
     return 0;
@@ -453,7 +453,7 @@ Employed: true
 </code></pre>
 <h4 id="Multi-line-Comments"><a href="#Multi-line-Comments" class="headerlink" title="Multi-line Comments"></a>Multi-line Comments</h4><p>Multi-line comments are useful for longer explanations or commenting out blocks of code.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">/*
+<pre><code class="language-cpp">/*
     This program demonstrates the use of variables and data types.
     Author: Your Name
     Date: Today&#39;s Date
@@ -465,28 +465,28 @@ int main() &#123;
 <h3 id="Using-Comments-Effectively"><a href="#Using-Comments-Effectively" class="headerlink" title="Using Comments Effectively"></a>Using Comments Effectively</h3><ul>
 <li><p><strong>Explain the Why, Not the What</strong>: Comments should provide insight into why certain decisions were made, not just describe what the code is doing.</p>
 <p><strong>Ineffective Comment:</strong></p>
-<pre><code class="cpp">int x = 5; // Assign 5 to x
+<pre><code class="language-cpp">int x = 5; // Assign 5 to x
 </code></pre>
 <p><strong>Effective Comment:</strong></p>
-<pre><code class="cpp">int maxRetries = 5; // Maximum number of retry attempts before aborting
+<pre><code class="language-cpp">int maxRetries = 5; // Maximum number of retry attempts before aborting
 </code></pre>
 </li>
 <li><p><strong>Keep Comments Up-to-Date</strong>: Always update comments when modifying code to prevent misinformation.</p>
 </li>
 <li><p><strong>Avoid Obvious Comments</strong>: Do not state the obvious, as it can clutter the code.</p>
 <p><strong>Obvious:</strong></p>
-<pre><code class="cpp">i++; // Increment i by 1
+<pre><code class="language-cpp">i++; // Increment i by 1
 </code></pre>
 </li>
 <li><p><strong>Use Comments for Complex Logic</strong>: When dealing with complex algorithms or tricky parts of the code, comments can clarify intent.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">// Use binary search to find the target value in a sorted array
+<pre><code class="language-cpp">// Use binary search to find the target value in a sorted array
 </code></pre>
 </li>
 </ul>
 <h3 id="Commenting-Out-Code"><a href="#Commenting-Out-Code" class="headerlink" title="Commenting Out Code"></a>Commenting Out Code</h3><p>During debugging or testing, you might want to disable certain parts of your code.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">int main() &#123;
+<pre><code class="language-cpp">int main() &#123;
     std::cout &lt;&lt; &quot;This line will execute.&quot; &lt;&lt; std::endl;
 
     // Temporarily disable the following line
@@ -496,7 +496,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <h3 id="Practical-Example-with-Comments"><a href="#Practical-Example-with-Comments" class="headerlink" title="Practical Example with Comments"></a>Practical Example with Comments</h3><p>Let’s revisit our previous program and add comments to enhance understanding.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 /*
@@ -523,7 +523,7 @@ int main() &#123;
 </code></pre>
 <h3 id="Generating-Documentation-from-Comments"><a href="#Generating-Documentation-from-Comments" class="headerlink" title="Generating Documentation from Comments"></a>Generating Documentation from Comments</h3><p>For larger projects, consider using tools like <strong>Doxygen</strong> to generate documentation from specially formatted comments.</p>
 <p><strong>Doxygen Comment Example:</strong></p>
-<pre><code class="cpp">/**
+<pre><code class="language-cpp">/**
  * @brief Calculates the factorial of a number.
  * 
  * @param n The number to calculate the factorial for.
@@ -563,7 +563,7 @@ int factorial(int n) &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                <a href="/tags/c-cpp/" style="color: #03a9f4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -239,7 +239,7 @@
 </ul>
 <h3 id="Defining-a-Class"><a href="#Defining-a-Class" class="headerlink" title="Defining a Class"></a>Defining a Class</h3><p>To define a class in C++, use the <code>class</code> keyword followed by the class name and a pair of curly braces <code>&#123;&#125;</code> enclosing its members.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">class ClassName &#123;
+<pre><code class="language-cpp">class ClassName &#123;
 public:
     // Public members
 private:
@@ -248,7 +248,7 @@ protected:
     // Protected members
 &#125;;
 </code></pre>
-<h3 id="Example-Defining-and-Using-a-Class"><a href="#Example-Defining-and-Using-a-Class" class="headerlink" title="Example: Defining and Using a Class"></a>Example: Defining and Using a Class</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Defining-and-Using-a-Class"><a href="#Example-Defining-and-Using-a-Class" class="headerlink" title="Example: Defining and Using a Class"></a>Example: Defining and Using a Class</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Definition of the Person class
@@ -290,7 +290,7 @@ int main() &#123;
 <li><strong>protected</strong>: Members are accessible within the class and by derived classes.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">class Example &#123;
+<pre><code class="language-cpp">class Example &#123;
 public:
     int publicVar; // Accessible from anywhere
 
@@ -311,7 +311,7 @@ protected:
 <li><strong>Move Constructor</strong>: Transfers resources from a temporary object to a new object.</li>
 </ol>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 class Person &#123;
@@ -377,12 +377,12 @@ Name: Alice, Age: 30
 </code></pre>
 <h3 id="Destructors"><a href="#Destructors" class="headerlink" title="Destructors"></a>Destructors</h3><p>Destructors are special member functions that are called when an object is destroyed. They are used to release resources allocated to the object and perform any necessary cleanup.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">~ClassName() &#123;
+<pre><code class="language-cpp">~ClassName() &#123;
     // Cleanup code
 &#125;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 class Resource &#123;
@@ -419,13 +419,13 @@ Resource FileHandle released.
 <hr>
 <h2 id="Copy-and-Move-Semantics"><a href="#Copy-and-Move-Semantics" class="headerlink" title="Copy and Move Semantics"></a>Copy and Move Semantics</h2><h3 id="Copy-Semantics"><a href="#Copy-Semantics" class="headerlink" title="Copy Semantics"></a>Copy Semantics</h3><p>Copy semantics involve creating a new object as a copy of an existing object. This is typically handled by the copy constructor and copy assignment operator.</p>
 <p><strong>Copy Constructor:</strong></p>
-<pre><code class="cpp">ClassName(const ClassName&amp; other);
+<pre><code class="language-cpp">ClassName(const ClassName&amp; other);
 </code></pre>
 <p><strong>Copy Assignment Operator:</strong></p>
-<pre><code class="cpp">ClassName&amp; operator=(const ClassName&amp; other);
+<pre><code class="language-cpp">ClassName&amp; operator=(const ClassName&amp; other);
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 class Box &#123;
@@ -468,13 +468,13 @@ Box(3 x 4 x 5)
 </code></pre>
 <h3 id="Move-Semantics"><a href="#Move-Semantics" class="headerlink" title="Move Semantics"></a>Move Semantics</h3><p>Move semantics allow the resources of a temporary object to be transferred rather than copied, enhancing performance, especially for objects with dynamic memory allocation.</p>
 <p><strong>Move Constructor:</strong></p>
-<pre><code class="cpp">ClassName(ClassName&amp;&amp; other) noexcept;
+<pre><code class="language-cpp">ClassName(ClassName&amp;&amp; other) noexcept;
 </code></pre>
 <p><strong>Move Assignment Operator:</strong></p>
-<pre><code class="cpp">ClassName&amp; operator=(ClassName&amp;&amp; other) noexcept;
+<pre><code class="language-cpp">ClassName&amp; operator=(ClassName&amp;&amp; other) noexcept;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 class Buffer &#123;
@@ -548,7 +548,7 @@ Buffer of size 10 destroyed.
 <hr>
 <h2 id="Inheritance-and-Polymorphism"><a href="#Inheritance-and-Polymorphism" class="headerlink" title="Inheritance and Polymorphism"></a>Inheritance and Polymorphism</h2><h3 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h3><p>Inheritance allows a class (derived class) to inherit properties and behaviors from another class (base class). This promotes code reuse and establishes a hierarchical relationship between classes.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">class BaseClass &#123;
+<pre><code class="language-cpp">class BaseClass &#123;
 public:
     void baseFunction() &#123;
         // Base class function
@@ -563,7 +563,7 @@ public:
 &#125;;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Base class
@@ -602,7 +602,7 @@ The dog barks.
 </ol>
 <h4 id="Virtual-Functions"><a href="#Virtual-Functions" class="headerlink" title="Virtual Functions"></a>Virtual Functions</h4><p>A virtual function is a member function that you expect to be redefined in derived classes. When you refer to a derived class object using a pointer or a reference to the base class, you can call a virtual function for that object and execute the derived class’s version of the function.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Base class
@@ -648,13 +648,13 @@ Drawing a square.
 </code></pre>
 <h4 id="Abstract-Classes"><a href="#Abstract-Classes" class="headerlink" title="Abstract Classes"></a>Abstract Classes</h4><p>An abstract class is a class that cannot be instantiated and is designed to be subclassed. It typically contains at least one pure virtual function, which must be overridden by derived classes.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">class AbstractClass &#123;
+<pre><code class="language-cpp">class AbstractClass &#123;
 public:
     virtual void pureVirtualFunction() = 0; // Pure virtual function
 &#125;;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Abstract base class
@@ -713,7 +713,7 @@ The boat sails on the water.
 </ul>
 <h3 id="How-to-Overload-Operators"><a href="#How-to-Overload-Operators" class="headerlink" title="How to Overload Operators"></a>How to Overload Operators</h3><p>Operators can be overloaded as member functions or as friend functions. Not all operators can be overloaded, and care must be taken to maintain code clarity.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">// Member function
+<pre><code class="language-cpp">// Member function
 ReturnType operatorOp(Parameters) &#123;
     // Implementation
 &#125;
@@ -723,7 +723,7 @@ friend ReturnType operatorOp(const ClassName&amp; lhs, const ClassName&amp; rhs)
     // Implementation
 &#125;
 </code></pre>
-<h3 id="Example-Overloading-the-Operator"><a href="#Example-Overloading-the-Operator" class="headerlink" title="Example: Overloading the + Operator"></a>Example: Overloading the <code>+</code> Operator</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Overloading-the-Operator"><a href="#Example-Overloading-the-Operator" class="headerlink" title="Example: Overloading the + Operator"></a>Example: Overloading the <code>+</code> Operator</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Vector &#123;
 public:
@@ -757,7 +757,7 @@ int main() &#123;
 <p><strong>Output:</strong></p>
 <pre><code>(4, 6)
 </code></pre>
-<h3 id="Example-Overloading-the"><a href="#Example-Overloading-the" class="headerlink" title="Example: Overloading the &lt;&lt; Operator for Output"></a>Example: Overloading the <code>&lt;&lt;</code> Operator for Output</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Overloading-the"><a href="#Example-Overloading-the" class="headerlink" title="Example: Overloading the &lt;&lt; Operator for Output"></a>Example: Overloading the <code>&lt;&lt;</code> Operator for Output</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Point &#123;
 public:
@@ -794,7 +794,7 @@ int main() &#123;
 <h2 id="Union-and-Struct-as-Special-Classes"><a href="#Union-and-Struct-as-Special-Classes" class="headerlink" title="Union and Struct as Special Classes"></a>Union and Struct as Special Classes</h2><p>In C++, <code>struct</code> and <code>union</code> are special types of classes with unique characteristics and use cases.</p>
 <h3 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h3><p>A <code>struct</code> is similar to a <code>class</code> but has default public access specifiers. It is primarily used for passive objects that carry data.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">struct StructName &#123;
+<pre><code class="language-cpp">struct StructName &#123;
     // Public members by default
     int member1;
     double member2;
@@ -806,7 +806,7 @@ int main() &#123;
 &#125;;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 struct Point &#123;
     int x;
@@ -825,14 +825,14 @@ int main() &#123;
 </code></pre>
 <h3 id="Unions"><a href="#Unions" class="headerlink" title="Unions"></a>Unions</h3><p>A <code>union</code> allows storing different data types in the same memory location. Only one member can hold a value at any given time.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">union UnionName &#123;
+<pre><code class="language-cpp">union UnionName &#123;
     int intVal;
     float floatVal;
     char charVal;
 &#125;;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
 union Data &#123;
@@ -865,7 +865,7 @@ data.charVal: A
 <h2 id="Type-Conversions"><a href="#Type-Conversions" class="headerlink" title="Type Conversions"></a>Type Conversions</h2><p>Type conversions, also known as type casting, allow you to convert a value from one data type to another. Understanding type conversions is crucial for operations involving different data types, function calls, and more, especially within the context of OOP.</p>
 <h3 id="Implicit-Type-Conversion"><a href="#Implicit-Type-Conversion" class="headerlink" title="Implicit Type Conversion"></a>Implicit Type Conversion</h3><p>Implicit type conversion occurs automatically when converting from a smaller to a larger type or between compatible types. The compiler handles this conversion without explicit instructions.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     int a = 10;
@@ -889,7 +889,7 @@ int main() &#123;
 </ol>
 <h4 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a><code>static_cast</code></h4><p>Used for well-defined and safe conversions, such as between numeric types or upcasting in inheritance hierarchies.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     double pi = 3.14159;
@@ -900,7 +900,7 @@ int main() &#123;
 </code></pre>
 <h4 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a><code>dynamic_cast</code></h4><p>Used primarily for downcasting in inheritance hierarchies, ensuring that the cast is safe at runtime. Requires the base class to have at least one virtual function.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Base &#123;
 public:
@@ -928,7 +928,7 @@ int main() &#123;
 </code></pre>
 <h4 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a><code>const_cast</code></h4><p>Used to add or remove the <code>const</code> qualifier from a variable. It should be used cautiously, as modifying a <code>const</code> variable after removing <code>const</code> can lead to undefined behavior.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 void printNumber(const int* num) &#123;
     int* modifiableNum = const_cast&lt;int*&gt;(num);
@@ -944,7 +944,7 @@ int main() &#123;
 </code></pre>
 <h4 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a><code>reinterpret_cast</code></h4><p>Used for low-level, unsafe conversions, such as converting between pointer types or between pointers and integers. It should be used sparingly and only when absolutely necessary.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     int a = 65;
@@ -988,7 +988,7 @@ int main() &#123;
 </ol>
 <h3 id="Using-Type-Conversions-in-Code"><a href="#Using-Type-Conversions-in-Code" class="headerlink" title="Using Type Conversions in Code"></a>Using Type Conversions in Code</h3><p>Understanding when and how to perform type conversions is essential for writing flexible and error-free C++ programs. Let’s modify our program to include examples of type conversions.</p>
 <h4 id="Step-1-Update-main-cpp"><a href="#Step-1-Update-main-cpp" class="headerlink" title="Step 1: Update main.cpp"></a>Step 1: Update <code>main.cpp</code></h4><p>Open <code>src/main.cpp</code> and replace its contents with the following code:</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 int main() &#123;
@@ -1017,10 +1017,10 @@ int main() &#123;
 &#125;
 </code></pre>
 <h4 id="Step-2-Build-and-Run-the-Program"><a href="#Step-2-Build-and-Run-the-Program" class="headerlink" title="Step 2: Build and Run the Program"></a>Step 2: Build and Run the Program</h4><p>In the terminal, build the project:</p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 </code></pre>
 <p>Run the program:</p>
-<pre><code class="bash">xmake run
+<pre><code class="language-bash">xmake run
 </code></pre>
 <h4 id="Expected-Output"><a href="#Expected-Output" class="headerlink" title="Expected Output"></a>Expected Output</h4><pre><code>Floating: 42
 intPi: 3
@@ -1059,7 +1059,7 @@ Modified Value: 200
 </ul>
 <h3 id="How-to-Overload-Operators-1"><a href="#How-to-Overload-Operators-1" class="headerlink" title="How to Overload Operators"></a>How to Overload Operators</h3><p>Operators can be overloaded as member functions or as friend functions. Not all operators can be overloaded, and care must be taken to maintain code clarity.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">// Member function
+<pre><code class="language-cpp">// Member function
 ReturnType operatorOp(Parameters) &#123;
     // Implementation
 &#125;
@@ -1069,7 +1069,7 @@ friend ReturnType operatorOp(const ClassName&amp; lhs, const ClassName&amp; rhs)
     // Implementation
 &#125;
 </code></pre>
-<h3 id="Example-Overloading-the-Operator-1"><a href="#Example-Overloading-the-Operator-1" class="headerlink" title="Example: Overloading the + Operator"></a>Example: Overloading the <code>+</code> Operator</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Overloading-the-Operator-1"><a href="#Example-Overloading-the-Operator-1" class="headerlink" title="Example: Overloading the + Operator"></a>Example: Overloading the <code>+</code> Operator</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Vector &#123;
 public:
@@ -1103,7 +1103,7 @@ int main() &#123;
 <p><strong>Output:</strong></p>
 <pre><code>(4, 6)
 </code></pre>
-<h3 id="Example-Overloading-the-1"><a href="#Example-Overloading-the-1" class="headerlink" title="Example: Overloading the &lt;&lt; Operator for Output"></a>Example: Overloading the <code>&lt;&lt;</code> Operator for Output</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Overloading-the-1"><a href="#Example-Overloading-the-1" class="headerlink" title="Example: Overloading the &lt;&lt; Operator for Output"></a>Example: Overloading the <code>&lt;&lt;</code> Operator for Output</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Point &#123;
 public:
@@ -1140,7 +1140,7 @@ int main() &#123;
 <h2 id="Union-and-Struct-as-Special-Classes-1"><a href="#Union-and-Struct-as-Special-Classes-1" class="headerlink" title="Union and Struct as Special Classes"></a>Union and Struct as Special Classes</h2><p>In C++, <code>struct</code> and <code>union</code> are special types of classes with unique characteristics and use cases.</p>
 <h3 id="Structs-1"><a href="#Structs-1" class="headerlink" title="Structs"></a>Structs</h3><p>A <code>struct</code> is similar to a <code>class</code> but has default public access specifiers. It is primarily used for passive objects that carry data.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">struct StructName &#123;
+<pre><code class="language-cpp">struct StructName &#123;
     // Public members by default
     int member1;
     double member2;
@@ -1152,7 +1152,7 @@ int main() &#123;
 &#125;;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 struct Point &#123;
     int x;
@@ -1171,14 +1171,14 @@ int main() &#123;
 </code></pre>
 <h3 id="Unions-1"><a href="#Unions-1" class="headerlink" title="Unions"></a>Unions</h3><p>A <code>union</code> allows storing different data types in the same memory location. Only one member can hold a value at any given time.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">union UnionName &#123;
+<pre><code class="language-cpp">union UnionName &#123;
     int intVal;
     float floatVal;
     char charVal;
 &#125;;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
 union Data &#123;
@@ -1211,7 +1211,7 @@ data.charVal: A
 <h2 id="Type-Conversions-1"><a href="#Type-Conversions-1" class="headerlink" title="Type Conversions"></a>Type Conversions</h2><p>Type conversions, also known as type casting, allow you to convert a value from one data type to another. Understanding type conversions is crucial for operations involving different data types, function calls, and more, especially within the context of OOP.</p>
 <h3 id="Implicit-Type-Conversion-1"><a href="#Implicit-Type-Conversion-1" class="headerlink" title="Implicit Type Conversion"></a>Implicit Type Conversion</h3><p>Implicit type conversion occurs automatically when converting from a smaller to a larger type or between compatible types. The compiler handles this conversion without explicit instructions.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     int a = 10;
@@ -1235,7 +1235,7 @@ int main() &#123;
 </ol>
 <h4 id="static-cast-1"><a href="#static-cast-1" class="headerlink" title="static_cast"></a><code>static_cast</code></h4><p>Used for well-defined and safe conversions, such as between numeric types or upcasting in inheritance hierarchies.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     double pi = 3.14159;
@@ -1246,7 +1246,7 @@ int main() &#123;
 </code></pre>
 <h4 id="dynamic-cast-1"><a href="#dynamic-cast-1" class="headerlink" title="dynamic_cast"></a><code>dynamic_cast</code></h4><p>Used primarily for downcasting in inheritance hierarchies, ensuring that the cast is safe at runtime. Requires the base class to have at least one virtual function.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Base &#123;
 public:
@@ -1274,7 +1274,7 @@ int main() &#123;
 </code></pre>
 <h4 id="const-cast-1"><a href="#const-cast-1" class="headerlink" title="const_cast"></a><code>const_cast</code></h4><p>Used to add or remove the <code>const</code> qualifier from a variable. It should be used cautiously, as modifying a <code>const</code> variable after removing <code>const</code> can lead to undefined behavior.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 void printNumber(const int* num) &#123;
     int* modifiableNum = const_cast&lt;int*&gt;(num);
@@ -1290,7 +1290,7 @@ int main() &#123;
 </code></pre>
 <h4 id="reinterpret-cast-1"><a href="#reinterpret-cast-1" class="headerlink" title="reinterpret_cast"></a><code>reinterpret_cast</code></h4><p>Used for low-level, unsafe conversions, such as converting between pointer types or between pointers and integers. It should be used sparingly and only when absolutely necessary.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     int a = 65;
@@ -1334,7 +1334,7 @@ int main() &#123;
 </ol>
 <h3 id="Using-Type-Conversions-in-Code-1"><a href="#Using-Type-Conversions-in-Code-1" class="headerlink" title="Using Type Conversions in Code"></a>Using Type Conversions in Code</h3><p>Understanding when and how to perform type conversions is essential for writing flexible and error-free C++ programs. Let’s modify our program to include examples of type conversions.</p>
 <h4 id="Step-1-Update-main-cpp-1"><a href="#Step-1-Update-main-cpp-1" class="headerlink" title="Step 1: Update main.cpp"></a>Step 1: Update <code>main.cpp</code></h4><p>Open <code>src/main.cpp</code> and replace its contents with the following code:</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 int main() &#123;
@@ -1363,10 +1363,10 @@ int main() &#123;
 &#125;
 </code></pre>
 <h4 id="Step-2-Build-and-Run-the-Program-1"><a href="#Step-2-Build-and-Run-the-Program-1" class="headerlink" title="Step 2: Build and Run the Program"></a>Step 2: Build and Run the Program</h4><p>In the terminal, build the project:</p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 </code></pre>
 <p>Run the program:</p>
-<pre><code class="bash">xmake run
+<pre><code class="language-bash">xmake run
 </code></pre>
 <h4 id="Expected-Output-1"><a href="#Expected-Output-1" class="headerlink" title="Expected Output"></a>Expected Output</h4><pre><code>Floating: 42
 intPi: 3
@@ -1402,7 +1402,7 @@ Modified Value: 200
 <p><strong>Usage in Classes:</strong></p>
 <ul>
 <li><p><strong>Constant Member Functions</strong>: Functions that do not modify the state of the object.</p>
-<pre><code class="cpp">class Rectangle &#123;
+<pre><code class="language-cpp">class Rectangle &#123;
 public:
     Rectangle(double w, double h) : width(w), height(h) &#123;&#125;
 
@@ -1417,7 +1417,7 @@ private:
 </code></pre>
 </li>
 <li><p><strong>Constant Data Members</strong>: Data members that cannot be modified after initialization.</p>
-<pre><code class="cpp">class Circle &#123;
+<pre><code class="language-cpp">class Circle &#123;
 public:
     Circle(double r) : radius(r) &#123;&#125;
 
@@ -1434,7 +1434,7 @@ private:
 <h3 id="static"><a href="#static" class="headerlink" title="static"></a><code>static</code></h3><p>The <code>static</code> keyword has different meanings depending on the context within a class:</p>
 <ul>
 <li><p><strong>Static Data Members</strong>: Shared among all instances of the class. They are not tied to any specific object.</p>
-<pre><code class="cpp">class Counter &#123;
+<pre><code class="language-cpp">class Counter &#123;
 public:
     Counter() &#123; ++count; &#125;
     static int getCount() &#123; return count; &#125;
@@ -1455,7 +1455,7 @@ int main() &#123;
 </code></pre>
 </li>
 <li><p><strong>Static Member Functions</strong>: Can be called without creating an instance of the class. They can only access static data members.</p>
-<pre><code class="cpp">class MathUtils &#123;
+<pre><code class="language-cpp">class MathUtils &#123;
 public:
     static double pi() &#123;
         return 3.14159;
@@ -1471,7 +1471,7 @@ int main() &#123;
 </ul>
 <h3 id="mutable"><a href="#mutable" class="headerlink" title="mutable"></a><code>mutable</code></h3><p>The <code>mutable</code> keyword allows a member of an object to be modified even if the object is declared as <code>const</code>. This is useful for fields that are logically not part of the object’s state, such as caching or logging information.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 class Logger &#123;
@@ -1504,7 +1504,7 @@ Log: Starting application (Log Count: 2)
 <p><strong>Usage in Classes:</strong></p>
 <ul>
 <li><p><strong>Volatile Member Variables</strong>: Useful in scenarios where variables can be modified by external factors, such as memory-mapped hardware registers or signal handlers.</p>
-<pre><code class="cpp">class HardwareRegister &#123;
+<pre><code class="language-cpp">class HardwareRegister &#123;
 public:
     volatile int status; // Status register that can change unexpectedly
 
@@ -1537,7 +1537,7 @@ int main() &#123;
 <li><strong>Not a Substitute for Synchronization</strong>: <code>volatile</code> does not provide any thread synchronization or memory ordering guarantees. For multithreading, prefer using atomic types and synchronization primitives from <code>&lt;atomic&gt;</code> and <code>&lt;mutex&gt;</code>.</li>
 </ul>
 <p><strong>Example with Multithreading:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;atomic&gt;
 
@@ -1616,7 +1616,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

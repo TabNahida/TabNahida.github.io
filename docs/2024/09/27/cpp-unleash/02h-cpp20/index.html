@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00a596">
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                <a href="/tags/modern-cpp/" style="color: #00a596">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
+                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
                     Zero to Hero
                 </a>
             </span>
@@ -269,7 +269,7 @@
 </ul>
 <h3 id="Defining-and-Using-Concepts"><a href="#Defining-and-Using-Concepts" class="headerlink" title="Defining and Using Concepts"></a>Defining and Using Concepts</h3><h4 id="Defining-a-Concept"><a href="#Defining-a-Concept" class="headerlink" title="Defining a Concept"></a>Defining a Concept</h4><p>A concept is defined using the <code>concept</code> keyword, followed by a boolean expression that specifies the constraints.</p>
 <p><strong>Example: Defining a Concept for Arithmetic Types</strong></p>
-<pre><code class="cpp">#include &lt;concepts&gt;
+<pre><code class="language-cpp">#include &lt;concepts&gt;
 #include &lt;iostream&gt;
 
 // Define a concept named &#39;Arithmetic&#39; that checks if a type is integral or floating-point
@@ -283,7 +283,7 @@ concept Arithmetic = std::is_integral_v&lt;T&gt; || std::is_floating_point_v&lt;
 <li><strong>Inline Constraints</strong></li>
 </ol>
 <p><strong>Example: Using Concepts with a Function Template</strong></p>
-<pre><code class="cpp">#include &lt;concepts&gt;
+<pre><code class="language-cpp">#include &lt;concepts&gt;
 #include &lt;iostream&gt;
 
 // Define the &#39;Arithmetic&#39; concept
@@ -313,7 +313,7 @@ int main() &#123;
 </ul>
 <h4 id="Advanced-Concepts"><a href="#Advanced-Concepts" class="headerlink" title="Advanced Concepts"></a>Advanced Concepts</h4><p>Concepts can express more complex constraints, including multiple requirements and even custom behaviors.</p>
 <p><strong>Example: Defining a Concept for Equality Comparable Types</strong></p>
-<pre><code class="cpp">#include &lt;concepts&gt;
+<pre><code class="language-cpp">#include &lt;concepts&gt;
 #include &lt;iostream&gt;
 
 // Define a concept that checks if a type supports equality comparison
@@ -353,7 +353,7 @@ false
 <li><strong><code>std::convertible_to</code></strong>: Checks if one type is convertible to another.</li>
 </ul>
 <p><strong>Example: Using Standard Library Concepts</strong></p>
-<pre><code class="cpp">#include &lt;concepts&gt;
+<pre><code class="language-cpp">#include &lt;concepts&gt;
 #include &lt;iostream&gt;
 
 // Function that only accepts types derived from Base
@@ -392,7 +392,7 @@ int main() &#123;
 </ol>
 <h3 id="Using-Range-Based-Algorithms"><a href="#Using-Range-Based-Algorithms" class="headerlink" title="Using Range-Based Algorithms"></a>Using Range-Based Algorithms</h3><p>C++20 introduces new algorithms in the <code>&lt;algorithm&gt;</code> header that work seamlessly with ranges.</p>
 <p><strong>Example: Using <code>std::ranges::for_each</code></strong></p>
-<pre><code class="cpp">#include &lt;algorithm&gt;
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -413,7 +413,7 @@ int main() &#123;
 </code></pre>
 <h3 id="Range-Adaptors"><a href="#Range-Adaptors" class="headerlink" title="Range Adaptors"></a>Range Adaptors</h3><p>Range adaptors allow you to create modified views of existing ranges without copying data.</p>
 <p><strong>Example: Using <code>std::views::filter</code> and <code>std::views::transform</code></strong></p>
-<pre><code class="cpp">#include &lt;algorithm&gt;
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 #include &lt;ranges&gt;
 #include &lt;vector&gt;
@@ -446,7 +446,7 @@ int main() &#123;
 </ul>
 <h3 id="Range-Based-Containers"><a href="#Range-Based-Containers" class="headerlink" title="Range-Based Containers"></a>Range-Based Containers</h3><p>Most standard containers can be used with ranges, providing a seamless integration of range-based algorithms and adaptors.</p>
 <p><strong>Example: Using Ranges with <code>std::vector</code></strong></p>
-<pre><code class="cpp">#include &lt;algorithm&gt;
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 #include &lt;ranges&gt;
 #include &lt;vector&gt;
@@ -478,7 +478,7 @@ int main() &#123;
 </code></pre>
 <h3 id="Combining-Ranges-with-Algorithms"><a href="#Combining-Ranges-with-Algorithms" class="headerlink" title="Combining Ranges with Algorithms"></a>Combining Ranges with Algorithms</h3><p>Ranges can be combined with traditional algorithms for more powerful data processing.</p>
 <p><strong>Example: Using <code>std::ranges::sort</code> with a View</strong></p>
-<pre><code class="cpp">#include &lt;algorithm&gt;
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 #include &lt;ranges&gt;
 #include &lt;vector&gt;
@@ -520,7 +520,7 @@ int main() &#123;
 <li><strong><code>co_return</code></strong>: Completes the coroutine and optionally returns a value.</li>
 </ol>
 <h3 id="Basic-Coroutine-Example"><a href="#Basic-Coroutine-Example" class="headerlink" title="Basic Coroutine Example"></a>Basic Coroutine Example</h3><p><strong>Example: Simple Coroutine that Yields Values</strong></p>
-<pre><code class="cpp">#include &lt;coroutine&gt;
+<pre><code class="language-cpp">#include &lt;coroutine&gt;
 #include &lt;iostream&gt;
 #include &lt;optional&gt;
 
@@ -590,7 +590,7 @@ Generated: 5
 </ul>
 <h3 id="Asynchronous-Coroutines-with-std-future"><a href="#Asynchronous-Coroutines-with-std-future" class="headerlink" title="Asynchronous Coroutines with std::future"></a>Asynchronous Coroutines with <code>std::future</code></h3><p>Coroutines can also be used to perform asynchronous operations that return <code>std::future</code> objects.</p>
 <p><strong>Example: Asynchronous Coroutine that Returns a Future</strong></p>
-<pre><code class="cpp">#include &lt;coroutine&gt;
+<pre><code class="language-cpp">#include &lt;coroutine&gt;
 #include &lt;future&gt;
 #include &lt;iostream&gt;
 
@@ -638,7 +638,7 @@ int main() &#123;
 </ul>
 <h3 id="Defining-and-Importing-Modules"><a href="#Defining-and-Importing-Modules" class="headerlink" title="Defining and Importing Modules"></a>Defining and Importing Modules</h3><h4 id="Creating-a-Module-Interface"><a href="#Creating-a-Module-Interface" class="headerlink" title="Creating a Module Interface"></a>Creating a Module Interface</h4><p>A module interface file defines the public interface of a module. It uses the <code>export module</code> declaration.</p>
 <p><strong>Example: Defining a Module Interface (<code>math.ixx</code>)</strong></p>
-<pre><code class="cpp">// math.ixx - Module Interface File
+<pre><code class="language-cpp">// math.ixx - Module Interface File
 
 export module math;
 
@@ -652,7 +652,7 @@ export int multiply(int a, int b) &#123;
 </code></pre>
 <h4 id="Importing-a-Module"><a href="#Importing-a-Module" class="headerlink" title="Importing a Module"></a>Importing a Module</h4><p>To use a module in your code, use the <code>import</code> keyword followed by the module name.</p>
 <p><strong>Example: Using the <code>math</code> Module (<code>main.cpp</code>)</strong></p>
-<pre><code class="cpp">// main.cpp
+<pre><code class="language-cpp">// main.cpp
 
 import math;
 #include &lt;iostream&gt;
@@ -669,13 +669,13 @@ int main() &#123;
 </code></pre>
 <p><strong>Compilation Steps:</strong></p>
 <ol>
-<li><strong>Compile the Module Interface</strong><pre><code class="bash">g++ -std=c++20 -fmodules-ts -c math.ixx -o math.o
+<li><strong>Compile the Module Interface</strong><pre><code class="language-bash">g++ -std=c++20 -fmodules-ts -c math.ixx -o math.o
 </code></pre>
 </li>
-<li><strong>Compile the Main Program</strong><pre><code class="bash">g++ -std=c++20 main.cpp math.o -o main
+<li><strong>Compile the Main Program</strong><pre><code class="language-bash">g++ -std=c++20 main.cpp math.o -o main
 </code></pre>
 </li>
-<li><strong>Run the Program</strong><pre><code class="bash">./main
+<li><strong>Run the Program</strong><pre><code class="language-bash">./main
 </code></pre>
 </li>
 </ol>
@@ -687,7 +687,7 @@ Product: 15
 <p><strong>Example: Module with Partitions</strong></p>
 <ol>
 <li><p><strong>Module Interface (<code>graphics.ixx</code>)</strong></p>
-<pre><code class="cpp">// graphics.ixx - Module Interface
+<pre><code class="language-cpp">// graphics.ixx - Module Interface
 
 export module graphics;
 
@@ -698,7 +698,7 @@ export import graphics.details; // Importing partition
 </code></pre>
 </li>
 <li><p><strong>Module Partition (<code>graphics_details.ixx</code>)</strong></p>
-<pre><code class="cpp">// graphics_details.ixx - Module Partition
+<pre><code class="language-cpp">// graphics_details.ixx - Module Partition
 
 module graphics.details;
 
@@ -712,7 +712,7 @@ void drawSquare() &#123;
 </code></pre>
 </li>
 <li><p><strong>Using the Module (<code>main.cpp</code>)</strong></p>
-<pre><code class="cpp">// main.cpp
+<pre><code class="language-cpp">// main.cpp
 
 import graphics;
 #include &lt;iostream&gt;
@@ -728,14 +728,14 @@ int main() &#123;
 </ol>
 <p><strong>Compilation Steps:</strong></p>
 <ol>
-<li><strong>Compile the Module Interface and Partition</strong><pre><code class="bash">g++ -std=c++20 -fmodules-ts -c graphics.ixx -o graphics.o
+<li><strong>Compile the Module Interface and Partition</strong><pre><code class="language-bash">g++ -std=c++20 -fmodules-ts -c graphics.ixx -o graphics.o
 g++ -std=c++20 -fmodules-ts -c graphics_details.ixx -o graphics_details.o
 </code></pre>
 </li>
-<li><strong>Compile the Main Program</strong><pre><code class="bash">g++ -std=c++20 main.cpp graphics.o graphics_details.o -o main
+<li><strong>Compile the Main Program</strong><pre><code class="language-bash">g++ -std=c++20 main.cpp graphics.o graphics_details.o -o main
 </code></pre>
 </li>
-<li><strong>Run the Program</strong><pre><code class="bash">./main
+<li><strong>Run the Program</strong><pre><code class="language-bash">./main
 </code></pre>
 </li>
 </ol>
@@ -777,7 +777,7 @@ g++ -std=c++20 -fmodules-ts -c graphics_details.ixx -o graphics_details.o
 </ul>
 <h3 id="Using-the-Operator"><a href="#Using-the-Operator" class="headerlink" title="Using the &lt;=&gt; Operator"></a>Using the <code>&lt;=&gt;</code> Operator</h3><h4 id="Implementing-the-Operator"><a href="#Implementing-the-Operator" class="headerlink" title="Implementing the &lt;=&gt; Operator"></a>Implementing the <code>&lt;=&gt;</code> Operator</h4><p>To implement the three-way comparison operator, define the <code>operator&lt;=&gt;</code> in your class. You can also default the operator to let the compiler generate it automatically.</p>
 <p><strong>Example: Implementing <code>&lt;=&gt;</code> in a <code>Point</code> Class</strong></p>
-<pre><code class="cpp">#include &lt;compare&gt;
+<pre><code class="language-cpp">#include &lt;compare&gt;
 #include &lt;iostream&gt;
 
 struct Point &#123;
@@ -813,7 +813,7 @@ int main() &#123;
 </ul>
 <h4 id="Customizing-the-Operator"><a href="#Customizing-the-Operator" class="headerlink" title="Customizing the &lt;=&gt; Operator"></a>Customizing the <code>&lt;=&gt;</code> Operator</h4><p>You can provide custom comparison logic by implementing the <code>operator&lt;=&gt;</code> manually.</p>
 <p><strong>Example: Custom <code>&lt;=&gt;</code> Implementation</strong></p>
-<pre><code class="cpp">#include &lt;compare&gt;
+<pre><code class="language-cpp">#include &lt;compare&gt;
 #include &lt;iostream&gt;
 
 struct Person &#123;
@@ -868,7 +868,7 @@ alice == anotherAlice: true
 <li><strong>Performance</strong>: Minimal overhead since it doesn’t own the data.</li>
 </ul>
 <h3 id="Creating-and-Using-std-span"><a href="#Creating-and-Using-std-span" class="headerlink" title="Creating and Using std::span"></a>Creating and Using <code>std::span</code></h3><p><strong>Example: Basic Usage of <code>std::span</code></strong></p>
-<pre><code class="cpp">#include &lt;span&gt;
+<pre><code class="language-cpp">#include &lt;span&gt;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -909,7 +909,7 @@ int main() &#123;
 </ul>
 <h3 id="Modifying-Data-Through-std-span"><a href="#Modifying-Data-Through-std-span" class="headerlink" title="Modifying Data Through std::span"></a>Modifying Data Through <code>std::span</code></h3><p>Since <code>std::span</code> provides access to the underlying data, modifications are reflected in the original container.</p>
 <p><strong>Example: Modifying Data via <code>std::span</code></strong></p>
-<pre><code class="cpp">#include &lt;span&gt;
+<pre><code class="language-cpp">#include &lt;span&gt;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -943,7 +943,7 @@ int main() &#123;
 </ul>
 <h3 id="Constness-and-std-span"><a href="#Constness-and-std-span" class="headerlink" title="Constness and std::span"></a>Constness and <code>std::span</code></h3><p><code>std::span</code> can be used with <code>const</code> types to provide read-only access to data.</p>
 <p><strong>Example: Read-Only <code>std::span</code></strong></p>
-<pre><code class="cpp">#include &lt;span&gt;
+<pre><code class="language-cpp">#include &lt;span&gt;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
@@ -981,7 +981,7 @@ int main() &#123;
 <h2 id="Other-Notable-C-20-Features"><a href="#Other-Notable-C-20-Features" class="headerlink" title="Other Notable C++20 Features"></a>Other Notable C++20 Features</h2><p>C++20 introduces several other features and enhancements that further enrich the language. Below are some of the notable additions:</p>
 <h3 id="Lambda-Enhancements"><a href="#Lambda-Enhancements" class="headerlink" title="Lambda Enhancements"></a>Lambda Enhancements</h3><h4 id="Template-Lambdas"><a href="#Template-Lambdas" class="headerlink" title="Template Lambdas"></a>Template Lambdas</h4><p>C++20 allows lambda expressions to have template parameters, enabling them to be more generic and flexible.</p>
 <p><strong>Example: Template Lambda</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
@@ -1001,7 +1001,7 @@ int main() &#123;
 </code></pre>
 <h4 id="Capturing-this-by-Value"><a href="#Capturing-this-by-Value" class="headerlink" title="Capturing *this by Value"></a>Capturing <code>*this</code> by Value</h4><p>C++20 allows capturing <code>*this</code> by value in lambdas, enabling safer use of member variables.</p>
 <p><strong>Example: Capturing <code>*this</code> by Value</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;functional&gt;
 
 struct Counter &#123;
@@ -1034,7 +1034,7 @@ Original count: 0
 </ul>
 <h3 id="consteval-and-constinit"><a href="#consteval-and-constinit" class="headerlink" title="consteval and constinit"></a><code>consteval</code> and <code>constinit</code></h3><h4 id="consteval"><a href="#consteval" class="headerlink" title="consteval"></a><code>consteval</code></h4><p>The <code>consteval</code> keyword specifies that a function is an immediate function, meaning it must be evaluated at compile time.</p>
 <p><strong>Example: Using <code>consteval</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // Immediate function that computes factorial at compile time
 consteval int factorial(int n) &#123;
@@ -1058,7 +1058,7 @@ int main() &#123;
 </ul>
 <h4 id="constinit"><a href="#constinit" class="headerlink" title="constinit"></a><code>constinit</code></h4><p>The <code>constinit</code> keyword ensures that a variable is initialized at compile time, but unlike <code>constexpr</code>, it does not make the variable constant.</p>
 <p><strong>Example: Using <code>constinit</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 struct Config &#123;
     int value;
@@ -1085,7 +1085,7 @@ Updated Config value: 100
 <h3 id="Template-Parameter-Lists-Enhancements"><a href="#Template-Parameter-Lists-Enhancements" class="headerlink" title="Template Parameter Lists Enhancements"></a>Template Parameter Lists Enhancements</h3><p>C++20 introduces new syntax and capabilities for template parameter lists, enhancing their expressiveness.</p>
 <h4 id="Template-Parameter-Lists-with-auto"><a href="#Template-Parameter-Lists-with-auto" class="headerlink" title="Template Parameter Lists with auto"></a>Template Parameter Lists with <code>auto</code></h4><p>Templates can now accept parameters of any type using the <code>auto</code> keyword.</p>
 <p><strong>Example: Template with <code>auto</code> Parameters</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
@@ -1112,7 +1112,7 @@ Sum: 6
 </ul>
 <h3 id="std-format"><a href="#std-format" class="headerlink" title="std::format"></a><code>std::format</code></h3><h4 id="Introduction-to-std-format"><a href="#Introduction-to-std-format" class="headerlink" title="Introduction to std::format"></a>Introduction to <code>std::format</code></h4><p><code>std::format</code> provides a type-safe and extensible way to format strings, similar to Python’s <code>str.format</code> or C#’s string interpolation. It replaces the traditional <code>printf</code>-style formatting with a more modern and secure approach.</p>
 <h4 id="Using-std-format"><a href="#Using-std-format" class="headerlink" title="Using std::format"></a>Using <code>std::format</code></h4><p><strong>Example: Basic Usage of <code>std::format</code></strong></p>
-<pre><code class="cpp">#include &lt;format&gt;
+<pre><code class="language-cpp">#include &lt;format&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -1134,7 +1134,7 @@ int main() &#123;
 </ul>
 <h4 id="Advanced-Formatting"><a href="#Advanced-Formatting" class="headerlink" title="Advanced Formatting"></a>Advanced Formatting</h4><p><code>std::format</code> supports various formatting options, including alignment, width, precision, and more.</p>
 <p><strong>Example: Advanced Formatting</strong></p>
-<pre><code class="cpp">#include &lt;format&gt;
+<pre><code class="language-cpp">#include &lt;format&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -1159,7 +1159,7 @@ Hex value: 0xff
 <h3 id="Enhanced-std-chrono"><a href="#Enhanced-std-chrono" class="headerlink" title="Enhanced std::chrono"></a>Enhanced <code>std::chrono</code></h3><p>C++20 introduces several enhancements to the <code>&lt;chrono&gt;</code> library, providing more precise and convenient ways to work with time durations and points.</p>
 <h4 id="Calendar-and-Time-Zone-Support"><a href="#Calendar-and-Time-Zone-Support" class="headerlink" title="Calendar and Time Zone Support"></a>Calendar and Time Zone Support</h4><p>C++20 adds calendar and time zone support to <code>&lt;chrono&gt;</code>, allowing for more accurate and meaningful time manipulations.</p>
 <p><strong>Example: Using <code>std::chrono</code> with Calendars</strong></p>
-<pre><code class="cpp">#include &lt;chrono&gt;
+<pre><code class="language-cpp">#include &lt;chrono&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -1191,7 +1191,7 @@ Future time (5 days later): Mon Oct 16 14:23:45 2023
 </ul>
 <h4 id="Formatting-Dates-and-Times"><a href="#Formatting-Dates-and-Times" class="headerlink" title="Formatting Dates and Times"></a>Formatting Dates and Times</h4><p>With calendar support, formatting dates and times becomes more straightforward.</p>
 <p><strong>Example: Formatting Dates with <code>std::format</code> and <code>std::chrono</code></strong></p>
-<pre><code class="cpp">#include &lt;chrono&gt;
+<pre><code class="language-cpp">#include &lt;chrono&gt;
 #include &lt;format&gt;
 #include &lt;iostream&gt;
 
@@ -1239,7 +1239,7 @@ int main() &#123;
 <h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><p>To solidify your understanding of C++20 features, let’s explore some practical examples that demonstrate how these features can be applied in real-world scenarios.</p>
 <h3 id="Example-1-Using-Concepts-to-Create-a-Generic-Function"><a href="#Example-1-Using-Concepts-to-Create-a-Generic-Function" class="headerlink" title="Example 1: Using Concepts to Create a Generic Function"></a>Example 1: Using Concepts to Create a Generic Function</h3><p><strong>Problem</strong>: Create a generic <code>multiply</code> function that only works with arithmetic types.</p>
 <p><strong>Solution</strong>:</p>
-<pre><code class="cpp">#include &lt;concepts&gt;
+<pre><code class="language-cpp">#include &lt;concepts&gt;
 #include &lt;iostream&gt;
 
 // Define the &#39;Arithmetic&#39; concept
@@ -1268,7 +1268,7 @@ int main() &#123;
 </ul>
 <h3 id="Example-2-Implementing-a-Coroutine-Based-Generator"><a href="#Example-2-Implementing-a-Coroutine-Based-Generator" class="headerlink" title="Example 2: Implementing a Coroutine-Based Generator"></a>Example 2: Implementing a Coroutine-Based Generator</h3><p><strong>Problem</strong>: Create a generator that produces an infinite sequence of Fibonacci numbers using coroutines.</p>
 <p><strong>Solution</strong>:</p>
-<pre><code class="cpp">#include &lt;coroutine&gt;
+<pre><code class="language-cpp">#include &lt;coroutine&gt;
 #include &lt;iostream&gt;
 #include &lt;optional&gt;
 
@@ -1339,7 +1339,7 @@ int main() &#123;
 </ul>
 <h3 id="Example-3-Using-std-span-to-Manipulate-Subarrays"><a href="#Example-3-Using-std-span-to-Manipulate-Subarrays" class="headerlink" title="Example 3: Using std::span to Manipulate Subarrays"></a>Example 3: Using <code>std::span</code> to Manipulate Subarrays</h3><p><strong>Problem</strong>: Implement a function that reverses a subarray within a given array using <code>std::span</code>.</p>
 <p><strong>Solution</strong>:</p>
-<pre><code class="cpp">#include &lt;algorithm&gt;
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 #include &lt;span&gt;
 #include &lt;array&gt;
@@ -1381,7 +1381,7 @@ int main() &#123;
 </ul>
 <h3 id="Example-4-Implementing-Defaulted-Comparisons-with-the-Operator"><a href="#Example-4-Implementing-Defaulted-Comparisons-with-the-Operator" class="headerlink" title="Example 4: Implementing Defaulted Comparisons with the &lt;=&gt; Operator"></a>Example 4: Implementing Defaulted Comparisons with the <code>&lt;=&gt;</code> Operator</h3><p><strong>Problem</strong>: Create a <code>Rectangle</code> class that can be compared using all relational and equality operators without manually defining each operator.</p>
 <p><strong>Solution</strong>:</p>
-<pre><code class="cpp">#include &lt;compare&gt;
+<pre><code class="language-cpp">#include &lt;compare&gt;
 #include &lt;iostream&gt;
 
 struct Rectangle &#123;
@@ -1449,7 +1449,7 @@ r3 &gt; r2: true
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                <a href="/tags/c-cpp/" style="color: #03a9f4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #03a9f4">
+                <a href="/tags/modern-cpp/" style="color: #00a596">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
                     Zero to Hero
                 </a>
             </span>
@@ -246,7 +246,7 @@
 <h2 id="Threads-and-std-thread"><a href="#Threads-and-std-thread" class="headerlink" title="Threads and std::thread"></a>Threads and <code>std::thread</code></h2><h3 id="Understanding-Threads"><a href="#Understanding-Threads" class="headerlink" title="Understanding Threads"></a>Understanding Threads</h3><p>A thread is the smallest unit of processing that can be scheduled by an operating system. In C++, the <code>&lt;thread&gt;</code> library provides facilities to create and manage threads, allowing concurrent execution of code.</p>
 <h3 id="Creating-and-Managing-Threads"><a href="#Creating-and-Managing-Threads" class="headerlink" title="Creating and Managing Threads"></a>Creating and Managing Threads</h3><p>To create a thread in C++, instantiate a <code>std::thread</code> object, passing a callable entity (function, lambda, or functor) as its argument.</p>
 <p><strong>Example: Creating a Simple Thread</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 
 // Function to be executed by the thread
@@ -271,7 +271,7 @@ Thread has finished execution.
 </code></pre>
 <h3 id="Passing-Arguments-to-Threads"><a href="#Passing-Arguments-to-Threads" class="headerlink" title="Passing Arguments to Threads"></a>Passing Arguments to Threads</h3><p>Threads can accept arguments by passing them to the constructor of <code>std::thread</code>.</p>
 <p><strong>Example: Passing Arguments</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 
 // Function that takes two integers and prints their sum
@@ -294,7 +294,7 @@ int main() &#123;
 </code></pre>
 <h3 id="Detaching-Threads"><a href="#Detaching-Threads" class="headerlink" title="Detaching Threads"></a>Detaching Threads</h3><p>A thread can be detached from the main thread, allowing it to run independently. However, once detached, it cannot be joined, and its resources are released automatically upon completion.</p>
 <p><strong>Example: Detaching a Thread</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;chrono&gt;
 
@@ -322,7 +322,7 @@ Background task completed.
 <p><strong>Caution:</strong> Detached threads should be used carefully to avoid issues such as accessing invalidated resources.</p>
 <h3 id="Lambda-Expressions-with-Threads"><a href="#Lambda-Expressions-with-Threads" class="headerlink" title="Lambda Expressions with Threads"></a>Lambda Expressions with Threads</h3><p>Lambda expressions provide a concise way to define inline functions, making them ideal for thread creation.</p>
 <p><strong>Example: Using Lambda with <code>std::thread</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 
 int main() &#123;
@@ -355,7 +355,7 @@ Final count: 5
 <h2 id="Mutexes-and-Locks-std-mutex-std-lock-guard"><a href="#Mutexes-and-Locks-std-mutex-std-lock-guard" class="headerlink" title="Mutexes and Locks (std::mutex, std::lock_guard)"></a>Mutexes and Locks (<code>std::mutex</code>, <code>std::lock_guard</code>)</h2><h3 id="Ensuring-Thread-Safety"><a href="#Ensuring-Thread-Safety" class="headerlink" title="Ensuring Thread Safety"></a>Ensuring Thread Safety</h3><p>When multiple threads access shared data, it’s crucial to synchronize access to prevent data races. Mutexes (mutual exclusions) are synchronization primitives that protect shared data by allowing only one thread to access the data at a time.</p>
 <h3 id="Using-std-mutex"><a href="#Using-std-mutex" class="headerlink" title="Using std::mutex"></a>Using <code>std::mutex</code></h3><p>A <code>std::mutex</code> object can be locked and unlocked to control access to shared resources.</p>
 <p><strong>Example: Protecting Shared Data with <code>std::mutex</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;mutex&gt;
 
@@ -387,7 +387,7 @@ Final Shared Counter: 2
 </code></pre>
 <h3 id="Using-std-lock-guard"><a href="#Using-std-lock-guard" class="headerlink" title="Using std::lock_guard"></a>Using <code>std::lock_guard</code></h3><p>Manually locking and unlocking mutexes can be error-prone, especially in the presence of exceptions. <code>std::lock_guard</code> is a RAII (Resource Acquisition Is Initialization) wrapper that automatically manages mutex locking and unlocking.</p>
 <p><strong>Example: Using <code>std::lock_guard</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;mutex&gt;
 
@@ -427,7 +427,7 @@ Final Shared Counter: 2
 <h2 id="Condition-Variables-std-condition-variable"><a href="#Condition-Variables-std-condition-variable" class="headerlink" title="Condition Variables (std::condition_variable)"></a>Condition Variables (<code>std::condition_variable</code>)</h2><h3 id="Synchronizing-Threads"><a href="#Synchronizing-Threads" class="headerlink" title="Synchronizing Threads"></a>Synchronizing Threads</h3><p>Condition variables allow threads to wait for certain conditions to be met before proceeding. They are used in conjunction with mutexes to synchronize thread execution based on shared data states.</p>
 <h3 id="Using-std-condition-variable"><a href="#Using-std-condition-variable" class="headerlink" title="Using std::condition_variable"></a>Using <code>std::condition_variable</code></h3><p>A <code>std::condition_variable</code> object can block a thread until notified by another thread that a condition has been met.</p>
 <p><strong>Example: Producer-Consumer Problem Using <code>std::condition_variable</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;mutex&gt;
 #include &lt;condition_variable&gt;
@@ -517,7 +517,7 @@ All threads have finished.
 <h2 id="Atomic-Operations-std-atomic"><a href="#Atomic-Operations-std-atomic" class="headerlink" title="Atomic Operations (std::atomic)"></a>Atomic Operations (<code>std::atomic</code>)</h2><h3 id="Understanding-Atomicity"><a href="#Understanding-Atomicity" class="headerlink" title="Understanding Atomicity"></a>Understanding Atomicity</h3><p>Atomic operations are indivisible operations that complete without the possibility of interference from other threads. They are essential for ensuring data integrity when multiple threads access shared variables without using mutexes.</p>
 <h3 id="Using-std-atomic"><a href="#Using-std-atomic" class="headerlink" title="Using std::atomic"></a>Using <code>std::atomic</code></h3><p>The <code>&lt;atomic&gt;</code> library provides atomic types that can be used safely across multiple threads without additional synchronization.</p>
 <p><strong>Example: Using <code>std::atomic&lt;int&gt;</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;atomic&gt;
 
@@ -545,7 +545,7 @@ int main() &#123;
 </code></pre>
 <h3 id="Atomic-Operations-on-Complex-Types"><a href="#Atomic-Operations-on-Complex-Types" class="headerlink" title="Atomic Operations on Complex Types"></a>Atomic Operations on Complex Types</h3><p>While <code>std::atomic</code> is primarily used with fundamental types, it can also be used with user-defined types if they meet certain requirements (trivially copyable).</p>
 <p><strong>Example: Using <code>std::atomic&lt;bool&gt;</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;atomic&gt;
 
@@ -585,7 +585,7 @@ Flag detected as true.
 <hr>
 <h2 id="Futures-and-Promises-std-future-std-promise"><a href="#Futures-and-Promises-std-future-std-promise" class="headerlink" title="Futures and Promises (std::future, std::promise)"></a>Futures and Promises (<code>std::future</code>, <code>std::promise</code>)</h2><h3 id="Asynchronous-Result-Retrieval"><a href="#Asynchronous-Result-Retrieval" class="headerlink" title="Asynchronous Result Retrieval"></a>Asynchronous Result Retrieval</h3><p>Futures and promises facilitate communication between threads, allowing one thread to set a value (promise) that another thread can retrieve (future) once it’s ready.</p>
 <h3 id="Using-std-promise-and-std-future"><a href="#Using-std-promise-and-std-future" class="headerlink" title="Using std::promise and std::future"></a>Using <code>std::promise</code> and <code>std::future</code></h3><p><strong>Example: Using <code>std::promise</code> and <code>std::future</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 #include &lt;future&gt;
 
@@ -617,7 +617,7 @@ Received value: 42
 </code></pre>
 <h3 id="Using-std-future-with-std-async"><a href="#Using-std-future-with-std-async" class="headerlink" title="Using std::future with std::async"></a>Using <code>std::future</code> with <code>std::async</code></h3><p><code>std::async</code> provides a higher-level abstraction for asynchronous operations, returning a <code>std::future</code> that can be used to retrieve the result.</p>
 <p><strong>Example: Using <code>std::async</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;future&gt;
 
 // Function to perform a computation
@@ -652,7 +652,7 @@ Sum: 30
 <h2 id="Asynchronous-Programming-std-async"><a href="#Asynchronous-Programming-std-async" class="headerlink" title="Asynchronous Programming (std::async)"></a>Asynchronous Programming (<code>std::async</code>)</h2><h3 id="Leveraging-Asynchronous-Tasks"><a href="#Leveraging-Asynchronous-Tasks" class="headerlink" title="Leveraging Asynchronous Tasks"></a>Leveraging Asynchronous Tasks</h3><p>Asynchronous programming allows tasks to run independently of the main program flow, improving performance and responsiveness. C++ provides the <code>std::async</code> facility to execute functions asynchronously.</p>
 <h3 id="Using-std-async"><a href="#Using-std-async" class="headerlink" title="Using std::async"></a>Using <code>std::async</code></h3><p><code>std::async</code> launches a function asynchronously (potentially in a new thread) and returns a <code>std::future</code> to retrieve the result.</p>
 <p><strong>Example: Parallel Execution with <code>std::async</code></strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;future&gt;
 
 // Function to perform a task
@@ -691,7 +691,7 @@ Result of second computation: 100
 </code></pre>
 <h3 id="Deferred-Execution"><a href="#Deferred-Execution" class="headerlink" title="Deferred Execution"></a>Deferred Execution</h3><p><code>std::async</code> can also launch tasks with deferred execution, meaning the task starts only when the result is requested via <code>get()</code> or <code>wait()</code>.</p>
 <p><strong>Example: Deferred Execution</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;future&gt;
 
 // Function to perform a task
@@ -756,7 +756,7 @@ Result: 7
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

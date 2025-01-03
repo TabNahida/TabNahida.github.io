@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
                     Zero to Hero
                 </a>
             </span>
@@ -233,7 +233,7 @@
 
 <h2 id="Function-Definition-and-Calls"><a href="#Function-Definition-and-Calls" class="headerlink" title="Function Definition and Calls"></a>Function Definition and Calls</h2><p>A function is a block of code that performs a specific task. In C++, you define a function once and can call it multiple times throughout your program.</p>
 <h3 id="Function-Syntax"><a href="#Function-Syntax" class="headerlink" title="Function Syntax"></a>Function Syntax</h3><p>The basic syntax for defining a function:</p>
-<pre><code class="cpp">return_type function_name(parameter_list) &#123;
+<pre><code class="language-cpp">return_type function_name(parameter_list) &#123;
     // Function body
 &#125;
 </code></pre>
@@ -243,13 +243,13 @@
 <li><strong>parameter_list</strong>: A comma-separated list of parameters (can be empty).</li>
 </ul>
 <h3 id="Example-Simple-Function"><a href="#Example-Simple-Function" class="headerlink" title="Example: Simple Function"></a>Example: Simple Function</h3><p><strong>Definition:</strong></p>
-<pre><code class="cpp">// Function that prints a greeting message
+<pre><code class="language-cpp">// Function that prints a greeting message
 void greet() &#123;
     std::cout &lt;&lt; &quot;Hello from the function!&quot; &lt;&lt; std::endl;
 &#125;
 </code></pre>
 <p><strong>Calling the Function:</strong></p>
-<pre><code class="cpp">int main() &#123;
+<pre><code class="language-cpp">int main() &#123;
     greet(); // Function call
     return 0;
 &#125;
@@ -259,7 +259,7 @@ void greet() &#123;
 <li><strong>Definition:</strong> Provides the actual body of the function.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">// Function declaration (prototype)
+<pre><code class="language-cpp">// Function declaration (prototype)
 int add(int a, int b);
 
 // Function definition
@@ -274,7 +274,7 @@ int add(int a, int b) &#123;
 <h2 id="Parameter-Passing"><a href="#Parameter-Passing" class="headerlink" title="Parameter Passing"></a>Parameter Passing</h2><p>Parameters allow functions to accept inputs, making them more flexible and reusable.</p>
 <h3 id="Pass-by-Value"><a href="#Pass-by-Value" class="headerlink" title="Pass by Value"></a>Pass by Value</h3><p>By default, arguments are passed by value, meaning a copy is made.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void increment(int num) &#123;
+<pre><code class="language-cpp">void increment(int num) &#123;
     num += 1; // This change won&#39;t affect the original variable
 &#125;
 
@@ -287,12 +287,12 @@ int main() &#123;
 </code></pre>
 <h3 id="Pass-by-Reference"><a href="#Pass-by-Reference" class="headerlink" title="Pass by Reference"></a>Pass by Reference</h3><p>Passing by reference allows the function to modify the original variable.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">void function_name(data_type&amp; parameter_name) &#123;
+<pre><code class="language-cpp">void function_name(data_type&amp; parameter_name) &#123;
     // Function body
 &#125;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void increment(int&amp; num) &#123;
+<pre><code class="language-cpp">void increment(int&amp; num) &#123;
     num += 1; // This change will affect the original variable
 &#125;
 
@@ -305,7 +305,7 @@ int main() &#123;
 </code></pre>
 <h3 id="Pass-by-Pointer"><a href="#Pass-by-Pointer" class="headerlink" title="Pass by Pointer"></a>Pass by Pointer</h3><p>You can also pass arguments by pointer.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void increment(int* num) &#123;
+<pre><code class="language-cpp">void increment(int* num) &#123;
     (*num) += 1;
 &#125;
 
@@ -323,7 +323,7 @@ int main() &#123;
 </ul>
 <h2 id="Return-Values"><a href="#Return-Values" class="headerlink" title="Return Values"></a>Return Values</h2><p>Functions can return values to the caller.</p>
 <h3 id="Returning-a-Single-Value"><a href="#Returning-a-Single-Value" class="headerlink" title="Returning a Single Value"></a>Returning a Single Value</h3><p><strong>Example:</strong></p>
-<pre><code class="cpp">int add(int a, int b) &#123;
+<pre><code class="language-cpp">int add(int a, int b) &#123;
     return a + b;
 &#125;
 
@@ -336,7 +336,7 @@ int main() &#123;
 <h3 id="Returning-Multiple-Values"><a href="#Returning-Multiple-Values" class="headerlink" title="Returning Multiple Values"></a>Returning Multiple Values</h3><p>C++ doesn’t support returning multiple values directly, but you can use several techniques:</p>
 <h4 id="Using-References-or-Pointers"><a href="#Using-References-or-Pointers" class="headerlink" title="Using References or Pointers"></a>Using References or Pointers</h4><p>Modify multiple output variables passed by reference or pointer.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void getMinMax(int a, int b, int&amp; min, int&amp; max) &#123;
+<pre><code class="language-cpp">void getMinMax(int a, int b, int&amp; min, int&amp; max) &#123;
     if (a &lt; b) &#123;
         min = a;
         max = b;
@@ -355,7 +355,7 @@ int main() &#123;
 </code></pre>
 <h4 id="Using-Structures-or-Classes"><a href="#Using-Structures-or-Classes" class="headerlink" title="Using Structures or Classes"></a>Using Structures or Classes</h4><p>Return a struct or class containing multiple values.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">struct MinMax &#123;
+<pre><code class="language-cpp">struct MinMax &#123;
     int min;
     int max;
 &#125;;
@@ -380,7 +380,7 @@ int main() &#123;
 </code></pre>
 <h4 id="Using-std-pair-or-std-tuple"><a href="#Using-std-pair-or-std-tuple" class="headerlink" title="Using std::pair or std::tuple"></a>Using <code>std::pair</code> or <code>std::tuple</code></h4><p>Standard library classes <code>std::pair</code> and <code>std::tuple</code> can be used to return multiple values.</p>
 <p><strong>Using <code>std::pair</code>:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;utility&gt; // For std::pair
 
 std::pair&lt;int, int&gt; getMinMax(int a, int b) &#123;
@@ -397,7 +397,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <p>Alternatively, with C++17 structured bindings:</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;utility&gt; // For std::pair
 
 std::pair&lt;int, int&gt; getMinMax(int a, int b) &#123;
@@ -414,7 +414,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <p><strong>Using <code>std::tuple</code>:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;tuple&gt; // For std::tuple
 
 std::tuple&lt;int, int, int&gt; getStats(int a, int b, int c) &#123;
@@ -432,7 +432,7 @@ int main() &#123;
 </code></pre>
 <p><strong>Note:</strong> Structured bindings require C++17 or newer. If you are using an older standard, you can access tuple elements using <code>std::get</code>.</p>
 <p>Example without structured bindings:</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;tuple&gt; // For std::tuple
 
 std::tuple&lt;int, int, int&gt; getStats(int a, int b, int c) &#123;
@@ -453,7 +453,7 @@ int main() &#123;
 </code></pre>
 <h2 id="Default-Arguments"><a href="#Default-Arguments" class="headerlink" title="Default Arguments"></a>Default Arguments</h2><p>Functions can have default parameter values, which are used if no argument is provided for that parameter.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void display(int a = 0, int b = 0) &#123;
+<pre><code class="language-cpp">void display(int a = 0, int b = 0) &#123;
     std::cout &lt;&lt; &quot;a: &quot; &lt;&lt; a &lt;&lt; &quot;, b: &quot; &lt;&lt; b &lt;&lt; std::endl;
 &#125;
 
@@ -471,7 +471,7 @@ int main() &#123;
 </ul>
 <h2 id="Function-Overloading"><a href="#Function-Overloading" class="headerlink" title="Function Overloading"></a>Function Overloading</h2><p>C++ allows multiple functions with the same name but different parameter lists (number or types of parameters). This is called function overloading.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void print(int i) &#123;
+<pre><code class="language-cpp">void print(int i) &#123;
     std::cout &lt;&lt; &quot;Integer: &quot; &lt;&lt; i &lt;&lt; std::endl;
 &#125;
 
@@ -492,7 +492,7 @@ int main() &#123;
 </code></pre>
 <h2 id="Recursive-Functions"><a href="#Recursive-Functions" class="headerlink" title="Recursive Functions"></a>Recursive Functions</h2><p>A function that calls itself is known as a recursive function. Recursion is a powerful tool but should be used with care to avoid infinite loops or stack overflows.</p>
 <p><strong>Example: Factorial Calculation</strong></p>
-<pre><code class="cpp">int factorial(int n) &#123;
+<pre><code class="language-cpp">int factorial(int n) &#123;
     if (n &lt;= 1)
         return 1; // Base case
     else
@@ -507,7 +507,7 @@ int main() &#123;
 </code></pre>
 <p><strong>Note:</strong> Always ensure that there is a base case to terminate recursion.</p>
 <h2 id="Lambda-Expressions"><a href="#Lambda-Expressions" class="headerlink" title="Lambda Expressions"></a>Lambda Expressions</h2><p>Lambda expressions (also known as closures) are anonymous functions that you can define in-place. They are useful for short snippets of code, especially when working with algorithms.</p>
-<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="cpp">[capture_list](parameter_list) -&gt; return_type &#123;
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="language-cpp">[capture_list](parameter_list) -&gt; return_type &#123;
     // Function body
 &#125;;
 </code></pre>
@@ -516,7 +516,7 @@ int main() &#123;
 <li><strong>parameter_list</strong>: Parameters passed to the lambda.</li>
 <li><strong>return_type</strong>: (Optional) The return type of the lambda (often deduced automatically).</li>
 </ul>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Basic-Lambda"><a href="#Basic-Lambda" class="headerlink" title="Basic Lambda"></a>Basic Lambda</h4><pre><code class="cpp">auto greet = []() &#123;
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Basic-Lambda"><a href="#Basic-Lambda" class="headerlink" title="Basic Lambda"></a>Basic Lambda</h4><pre><code class="language-cpp">auto greet = []() &#123;
     std::cout &lt;&lt; &quot;Hello from lambda!&quot; &lt;&lt; std::endl;
 &#125;;
 
@@ -525,7 +525,7 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<h4 id="Lambda-with-Parameters"><a href="#Lambda-with-Parameters" class="headerlink" title="Lambda with Parameters"></a>Lambda with Parameters</h4><pre><code class="cpp">auto add = [](int a, int b) &#123;
+<h4 id="Lambda-with-Parameters"><a href="#Lambda-with-Parameters" class="headerlink" title="Lambda with Parameters"></a>Lambda with Parameters</h4><pre><code class="language-cpp">auto add = [](int a, int b) &#123;
     return a + b;
 &#125;;
 
@@ -535,7 +535,7 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<h4 id="Capturing-Variables"><a href="#Capturing-Variables" class="headerlink" title="Capturing Variables"></a>Capturing Variables</h4><pre><code class="cpp">int main() &#123;
+<h4 id="Capturing-Variables"><a href="#Capturing-Variables" class="headerlink" title="Capturing Variables"></a>Capturing Variables</h4><pre><code class="language-cpp">int main() &#123;
     int factor = 2;
     auto multiply = [factor](int x) &#123;
         return x * factor;
@@ -553,7 +553,7 @@ int main() &#123;
 <li><strong>Capture All by Reference (<code>[&amp;]</code>)</strong>: Captures all automatic variables by reference.</li>
 </ul>
 <h4 id="Modifying-Captured-Variables"><a href="#Modifying-Captured-Variables" class="headerlink" title="Modifying Captured Variables"></a>Modifying Captured Variables</h4><p>To modify a captured variable in a lambda, you must capture it by reference.</p>
-<pre><code class="cpp">int main() &#123;
+<pre><code class="language-cpp">int main() &#123;
     int count = 0;
     auto increment = [&amp;count]() &#123;
         count++;
@@ -566,7 +566,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <h3 id="Lambdas-in-Algorithms"><a href="#Lambdas-in-Algorithms" class="headerlink" title="Lambdas in Algorithms"></a>Lambdas in Algorithms</h3><p>Lambdas are often used with Standard Template Library (STL) algorithms.</p>
-<pre><code class="cpp">#include &lt;algorithm&gt;
+<pre><code class="language-cpp">#include &lt;algorithm&gt;
 #include &lt;vector&gt;
 #include &lt;iostream&gt;
 
@@ -588,13 +588,13 @@ int main() &#123;
 </code></pre>
 <h2 id="Inline-Functions"><a href="#Inline-Functions" class="headerlink" title="Inline Functions"></a>Inline Functions</h2><p>The <code>inline</code> keyword suggests to the compiler to insert the function’s body where the function call is, potentially reducing the overhead of a function call.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">inline int add(int a, int b) &#123;
+<pre><code class="language-cpp">inline int add(int a, int b) &#123;
     return a + b;
 &#125;
 </code></pre>
 <p><strong>Note:</strong> Modern compilers optimize function calls efficiently, so the <code>inline</code> keyword is often unnecessary. It is generally used for very small, frequently called functions.</p>
 <h2 id="Practical-Example-Calculator-with-Functions"><a href="#Practical-Example-Calculator-with-Functions" class="headerlink" title="Practical Example: Calculator with Functions"></a>Practical Example: Calculator with Functions</h2><p>Let’s refactor the calculator example from the previous chapter using functions.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 double add(double a, double b) &#123;
     return a + b;
@@ -661,11 +661,11 @@ int main() &#123;
 <h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><ol>
 <li><p><strong>Temperature Conversion</strong></p>
 <p>Write functions that convert temperatures between Celsius and Fahrenheit.</p>
-<pre><code class="cpp">double toFahrenheit(double celsius);
+<pre><code class="language-cpp">double toFahrenheit(double celsius);
 double toCelsius(double fahrenheit);
 </code></pre>
 <p><strong>Example Implementation:</strong></p>
-<pre><code class="cpp">double toFahrenheit(double celsius) &#123;
+<pre><code class="language-cpp">double toFahrenheit(double celsius) &#123;
     return (celsius * 9.0 / 5.0) + 32.0;
 &#125;
 
@@ -676,13 +676,13 @@ double toCelsius(double fahrenheit) &#123;
 </li>
 <li><p><strong>Find Maximum</strong></p>
 <p>Create a function template <code>maxValue</code> that returns the maximum of two values.</p>
-<pre><code class="cpp">template &lt;typename T&gt;
+<pre><code class="language-cpp">template &lt;typename T&gt;
 T maxValue(T a, T b) &#123;
     return (a &gt; b) ? a : b;
 &#125;
 </code></pre>
 <p><strong>Example Usage:</strong></p>
-<pre><code class="cpp">int main() &#123;
+<pre><code class="language-cpp">int main() &#123;
     std::cout &lt;&lt; &quot;Max of 10 and 20 is &quot; &lt;&lt; maxValue(10, 20) &lt;&lt; std::endl; // Outputs: Max of 10 and 20 is 20
     std::cout &lt;&lt; &quot;Max of 3.14 and 2.72 is &quot; &lt;&lt; maxValue(3.14, 2.72) &lt;&lt; std::endl; // Outputs: Max of 3.14 and 2.72 is 3.14
     return 0;
@@ -691,7 +691,7 @@ T maxValue(T a, T b) &#123;
 </li>
 <li><p><strong>Palindrome Check</strong></p>
 <p>Write a function that checks if a given <code>std::string</code> is a palindrome.</p>
-<pre><code class="cpp">#include &lt;string&gt;
+<pre><code class="language-cpp">#include &lt;string&gt;
 #include &lt;algorithm&gt;
 
 bool isPalindrome(const std::string&amp; str) &#123;
@@ -745,7 +745,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

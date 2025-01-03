@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                <a href="/tags/modern-cpp/" style="color: #00bcd4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
                     Zero to Hero
                 </a>
             </span>
@@ -256,7 +256,7 @@
 
 <h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>An array is a collection of elements of the same data type stored in contiguous memory locations. Arrays provide a way to store multiple values under a single variable name.</p>
 <h3 id="C-Style-Arrays"><a href="#C-Style-Arrays" class="headerlink" title="C-Style Arrays"></a>C-Style Arrays</h3><h4 id="Declaration-and-Initialization"><a href="#Declaration-and-Initialization" class="headerlink" title="Declaration and Initialization"></a>Declaration and Initialization</h4><p><strong>Syntax:</strong></p>
-<pre><code class="cpp">data_type array_name[array_size];
+<pre><code class="language-cpp">data_type array_name[array_size];
 </code></pre>
 <ul>
 <li><strong>data_type</strong>: The type of elements the array will hold.</li>
@@ -265,26 +265,26 @@
 </ul>
 <p><strong>Examples:</strong></p>
 <p><strong>Declaration without Initialization:</strong></p>
-<pre><code class="cpp">int numbers[5]; // An array of 5 integers
+<pre><code class="language-cpp">int numbers[5]; // An array of 5 integers
 </code></pre>
 <p><strong>Declaration with Initialization:</strong></p>
-<pre><code class="cpp">int numbers[5] = &#123;1, 2, 3, 4, 5&#125;;
+<pre><code class="language-cpp">int numbers[5] = &#123;1, 2, 3, 4, 5&#125;;
 </code></pre>
 <p><strong>Omitting the Size:</strong></p>
-<pre><code class="cpp">int numbers[] = &#123;1, 2, 3, 4, 5&#125;; // Size deduced from the number of elements
+<pre><code class="language-cpp">int numbers[] = &#123;1, 2, 3, 4, 5&#125;; // Size deduced from the number of elements
 </code></pre>
 <p><strong>Partial Initialization:</strong></p>
-<pre><code class="cpp">int numbers[5] = &#123;1, 2&#125;; // Remaining elements initialized to 0
+<pre><code class="language-cpp">int numbers[5] = &#123;1, 2&#125;; // Remaining elements initialized to 0
 </code></pre>
 <h4 id="Accessing-Elements"><a href="#Accessing-Elements" class="headerlink" title="Accessing Elements"></a>Accessing Elements</h4><p>Array elements are accessed using zero-based indexing.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="cpp">array_name[index];
+<pre><code class="language-cpp">array_name[index];
 </code></pre>
 <ul>
 <li><strong>index</strong>: An integer representing the position of the element (starting from 0).</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     int numbers[] = &#123;10, 20, 30, 40, 50&#125;;
@@ -301,7 +301,7 @@ int main() &#123;
 </code></pre>
 <h4 id="Iterating-Over-Arrays"><a href="#Iterating-Over-Arrays" class="headerlink" title="Iterating Over Arrays"></a>Iterating Over Arrays</h4><p>You can use loops to iterate over array elements.</p>
 <p><strong>Using a <code>for</code> Loop:</strong></p>
-<pre><code class="cpp">int numbers[] = &#123;10, 20, 30, 40, 50&#125;;
+<pre><code class="language-cpp">int numbers[] = &#123;10, 20, 30, 40, 50&#125;;
 int size = sizeof(numbers) / sizeof(numbers[0]);
 
 for (int i = 0; i &lt; size; ++i) &#123;
@@ -310,24 +310,24 @@ for (int i = 0; i &lt; size; ++i) &#123;
 </code></pre>
 <p><strong>Using a Range-Based <code>for</code> Loop (C++11 and later):</strong></p>
 <p>C-style arrays can be iterated over using range-based for loops.</p>
-<pre><code class="cpp">for (int num : numbers) &#123;
+<pre><code class="language-cpp">for (int num : numbers) &#123;
     std::cout &lt;&lt; &quot;Element: &quot; &lt;&lt; num &lt;&lt; std::endl;
 &#125;
 </code></pre>
 <h4 id="Multidimensional-Arrays"><a href="#Multidimensional-Arrays" class="headerlink" title="Multidimensional Arrays"></a>Multidimensional Arrays</h4><p>Arrays can have more than one dimension, such as two-dimensional arrays (matrices).</p>
-<h5 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h5><pre><code class="cpp">data_type array_name[size1][size2];
+<h5 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h5><pre><code class="language-cpp">data_type array_name[size1][size2];
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">int matrix[3][4]; // 3 rows and 4 columns
+<pre><code class="language-cpp">int matrix[3][4]; // 3 rows and 4 columns
 </code></pre>
-<h5 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h5><pre><code class="cpp">int matrix[2][3] = &#123;
+<h5 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h5><pre><code class="language-cpp">int matrix[2][3] = &#123;
     &#123;1, 2, 3&#125;,
     &#123;4, 5, 6&#125;
 &#125;;
 </code></pre>
-<h5 id="Accessing-Elements-1"><a href="#Accessing-Elements-1" class="headerlink" title="Accessing Elements"></a>Accessing Elements</h5><pre><code class="cpp">int value = matrix[1][2]; // Accesses element in second row, third column
+<h5 id="Accessing-Elements-1"><a href="#Accessing-Elements-1" class="headerlink" title="Accessing Elements"></a>Accessing Elements</h5><pre><code class="language-cpp">int value = matrix[1][2]; // Accesses element in second row, third column
 </code></pre>
-<h5 id="Iterating-Over-Multidimensional-Arrays"><a href="#Iterating-Over-Multidimensional-Arrays" class="headerlink" title="Iterating Over Multidimensional Arrays"></a>Iterating Over Multidimensional Arrays</h5><pre><code class="cpp">for (int i = 0; i &lt; 2; ++i) &#123;
+<h5 id="Iterating-Over-Multidimensional-Arrays"><a href="#Iterating-Over-Multidimensional-Arrays" class="headerlink" title="Iterating Over Multidimensional Arrays"></a>Iterating Over Multidimensional Arrays</h5><pre><code class="language-cpp">for (int i = 0; i &lt; 2; ++i) &#123;
     for (int j = 0; j &lt; 3; ++j) &#123;
         std::cout &lt;&lt; &quot;Element at [&quot; &lt;&lt; i &lt;&lt; &quot;][&quot; &lt;&lt; j &lt;&lt; &quot;]: &quot; &lt;&lt; matrix[i][j] &lt;&lt; std::endl;
     &#125;
@@ -335,7 +335,7 @@ for (int i = 0; i &lt; size; ++i) &#123;
 </code></pre>
 <h4 id="Arrays-and-Functions"><a href="#Arrays-and-Functions" class="headerlink" title="Arrays and Functions"></a>Arrays and Functions</h4><h5 id="Passing-Arrays-to-Functions"><a href="#Passing-Arrays-to-Functions" class="headerlink" title="Passing Arrays to Functions"></a>Passing Arrays to Functions</h5><p>You can pass arrays to functions by specifying the array parameter.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void printArray(int arr[], int size) &#123;
+<pre><code class="language-cpp">void printArray(int arr[], int size) &#123;
     for (int i = 0; i &lt; size; ++i) &#123;
         std::cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
     &#125;
@@ -366,7 +366,7 @@ int main() &#123;
 <li><strong>Standard Library Integration:</strong> Works well with other Standard Library components.</li>
 </ul>
 <h4 id="Declaration-and-Initialization-1"><a href="#Declaration-and-Initialization-1" class="headerlink" title="Declaration and Initialization"></a>Declaration and Initialization</h4><p><strong>Syntax:</strong></p>
-<pre><code class="cpp">std::array&lt;data_type, array_size&gt; array_name;
+<pre><code class="language-cpp">std::array&lt;data_type, array_size&gt; array_name;
 </code></pre>
 <ul>
 <li><strong>data_type:</strong> The type of elements the array will hold.</li>
@@ -374,19 +374,19 @@ int main() &#123;
 </ul>
 <p><strong>Examples:</strong></p>
 <p><strong>Declaration without Initialization:</strong></p>
-<pre><code class="cpp">#include &lt;array&gt;
+<pre><code class="language-cpp">#include &lt;array&gt;
 
 std::array&lt;int, 5&gt; numbers;
 </code></pre>
 <p><strong>Declaration with Initialization:</strong></p>
-<pre><code class="cpp">std::array&lt;int, 5&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+<pre><code class="language-cpp">std::array&lt;int, 5&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
 </code></pre>
 <p><strong>Using Uniform Initialization (C++11 and later):</strong></p>
-<pre><code class="cpp">std::array&lt;int, 5&gt; numbers&#123;1, 2, 3, 4, 5&#125;;
+<pre><code class="language-cpp">std::array&lt;int, 5&gt; numbers&#123;1, 2, 3, 4, 5&#125;;
 </code></pre>
 <h4 id="Accessing-Elements-2"><a href="#Accessing-Elements-2" class="headerlink" title="Accessing Elements"></a>Accessing Elements</h4><p>Elements can be accessed similarly to C-style arrays using the subscript operator <code>[]</code>.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;array&gt;
 
 int main() &#123;
@@ -404,28 +404,28 @@ int main() &#123;
 </code></pre>
 <h4 id="Bounds-Checking-with-at"><a href="#Bounds-Checking-with-at" class="headerlink" title="Bounds Checking with at()"></a>Bounds Checking with <code>at()</code></h4><p>Unlike C-style arrays, <code>std::array</code> provides the <code>at()</code> member function that performs bounds checking and throws an exception if the index is out of range.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">try &#123;
+<pre><code class="language-cpp">try &#123;
     int value = numbers.at(10); // Throws std::out_of_range
 &#125; catch (const std::out_of_range&amp; e) &#123;
     std::cerr &lt;&lt; &quot;Out of range error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
 &#125;
 </code></pre>
 <h4 id="Accessing-Size"><a href="#Accessing-Size" class="headerlink" title="Accessing Size"></a>Accessing Size</h4><p>Use the <code>size()</code> member function to get the number of elements.</p>
-<pre><code class="cpp">size_t size = numbers.size(); // Returns 5
+<pre><code class="language-cpp">size_t size = numbers.size(); // Returns 5
 </code></pre>
 <h4 id="Iterating-Over-std-array"><a href="#Iterating-Over-std-array" class="headerlink" title="Iterating Over std::array"></a>Iterating Over <code>std::array</code></h4><p><strong>Using a Range-Based <code>for</code> Loop:</strong></p>
-<pre><code class="cpp">for (int num : numbers) &#123;
+<pre><code class="language-cpp">for (int num : numbers) &#123;
     std::cout &lt;&lt; &quot;Element: &quot; &lt;&lt; num &lt;&lt; std::endl;
 &#125;
 </code></pre>
 <p><strong>Using Iterators:</strong></p>
-<pre><code class="cpp">for (auto it = numbers.begin(); it != numbers.end(); ++it) &#123;
+<pre><code class="language-cpp">for (auto it = numbers.begin(); it != numbers.end(); ++it) &#123;
     std::cout &lt;&lt; &quot;Element: &quot; &lt;&lt; *it &lt;&lt; std::endl;
 &#125;
 </code></pre>
 <h4 id="Passing-std-array-to-Functions"><a href="#Passing-std-array-to-Functions" class="headerlink" title="Passing std::array to Functions"></a>Passing <code>std::array</code> to Functions</h4><p>When passing <code>std::array</code> to functions, you can pass it by reference or value.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">void printArray(const std::array&lt;int, 5&gt;&amp; arr) &#123;
+<pre><code class="language-cpp">void printArray(const std::array&lt;int, 5&gt;&amp; arr) &#123;
     for (int num : arr) &#123;
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
     &#125;
@@ -440,52 +440,52 @@ int main() &#123;
 </code></pre>
 <h4 id="Multidimensional-std-array"><a href="#Multidimensional-std-array" class="headerlink" title="Multidimensional std::array"></a>Multidimensional <code>std::array</code></h4><p>You can create multidimensional arrays by nesting <code>std::array</code>.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">std::array&lt;std::array&lt;int, 3&gt;, 2&gt; matrix = &#123;&#123;
+<pre><code class="language-cpp">std::array&lt;std::array&lt;int, 3&gt;, 2&gt; matrix = &#123;&#123;
     &#123;1, 2, 3&#125;,
     &#123;4, 5, 6&#125;
 &#125;&#125;;
 </code></pre>
 <p><strong>Accessing Elements:</strong></p>
-<pre><code class="cpp">int value = matrix[1][2]; // Accesses element in second row, third column
+<pre><code class="language-cpp">int value = matrix[1][2]; // Accesses element in second row, third column
 </code></pre>
 <h2 id="C-Style-Strings"><a href="#C-Style-Strings" class="headerlink" title="C-Style Strings"></a>C-Style Strings</h2><p>C-style strings are arrays of characters terminated by a null character <code>&#39;\0&#39;</code>.</p>
-<h3 id="Character-Arrays"><a href="#Character-Arrays" class="headerlink" title="Character Arrays"></a>Character Arrays</h3><h4 id="Declaration-and-Initialization-2"><a href="#Declaration-and-Initialization-2" class="headerlink" title="Declaration and Initialization"></a>Declaration and Initialization</h4><pre><code class="cpp">char greeting[] = &quot;Hello&quot;;
+<h3 id="Character-Arrays"><a href="#Character-Arrays" class="headerlink" title="Character Arrays"></a>Character Arrays</h3><h4 id="Declaration-and-Initialization-2"><a href="#Declaration-and-Initialization-2" class="headerlink" title="Declaration and Initialization"></a>Declaration and Initialization</h4><pre><code class="language-cpp">char greeting[] = &quot;Hello&quot;;
 </code></pre>
 <ul>
 <li>The array <code>greeting</code> has 6 elements: <code>&#39;H&#39;</code>, <code>&#39;e&#39;</code>, <code>&#39;l&#39;</code>, <code>&#39;l&#39;</code>, <code>&#39;o&#39;</code>, <code>&#39;\0&#39;</code>.</li>
 </ul>
-<h4 id="Accessing-Characters"><a href="#Accessing-Characters" class="headerlink" title="Accessing Characters"></a>Accessing Characters</h4><pre><code class="cpp">char firstChar = greeting[0]; // &#39;H&#39;
+<h4 id="Accessing-Characters"><a href="#Accessing-Characters" class="headerlink" title="Accessing Characters"></a>Accessing Characters</h4><pre><code class="language-cpp">char firstChar = greeting[0]; // &#39;H&#39;
 </code></pre>
 <h3 id="Common-Functions"><a href="#Common-Functions" class="headerlink" title="Common Functions"></a>Common Functions</h3><p>Functions for handling C-style strings are in the <code>&lt;cstring&gt;</code> header.</p>
 <h4 id="strlen"><a href="#strlen" class="headerlink" title="strlen"></a><code>strlen</code></h4><p>Returns the length of the string (excluding the null terminator).</p>
-<pre><code class="cpp">#include &lt;cstring&gt;
+<pre><code class="language-cpp">#include &lt;cstring&gt;
 
 size_t length = std::strlen(greeting); // Returns 5
 </code></pre>
 <h4 id="strcpy"><a href="#strcpy" class="headerlink" title="strcpy"></a><code>strcpy</code></h4><p>Copies one string to another.</p>
-<pre><code class="cpp">char source[] = &quot;World&quot;;
+<pre><code class="language-cpp">char source[] = &quot;World&quot;;
 char destination[10];
 
 std::strcpy(destination, source); // destination now contains &quot;World&quot;
 </code></pre>
 <h4 id="strcat"><a href="#strcat" class="headerlink" title="strcat"></a><code>strcat</code></h4><p>Concatenates two strings.</p>
-<pre><code class="cpp">char s1[20] = &quot;Hello &quot;;
+<pre><code class="language-cpp">char s1[20] = &quot;Hello &quot;;
 char s2[] = &quot;World&quot;;
 
 std::strcat(s1, s2); // s1 now contains &quot;Hello World&quot;
 </code></pre>
 <h4 id="strcmp"><a href="#strcmp" class="headerlink" title="strcmp"></a><code>strcmp</code></h4><p>Compares two strings.</p>
-<pre><code class="cpp">if (std::strcmp(s1, s2) == 0) &#123;
+<pre><code class="language-cpp">if (std::strcmp(s1, s2) == 0) &#123;
     std::cout &lt;&lt; &quot;Strings are equal.&quot; &lt;&lt; std::endl;
 &#125;
 </code></pre>
 <p><strong>Warning:</strong> Be cautious with buffer sizes to avoid overruns. Prefer using safer alternatives like <code>strncpy</code>, <code>strncat</code>, or better yet, <code>std::string</code>.</p>
 <h2 id="The-std-string-Class"><a href="#The-std-string-Class" class="headerlink" title="The std::string Class"></a>The <code>std::string</code> Class</h2><p>The <code>std::string</code> class (from the <code>&lt;string&gt;</code> header) provides a safer and more convenient way to work with strings.</p>
-<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><h4 id="Declaration-and-Initialization-3"><a href="#Declaration-and-Initialization-3" class="headerlink" title="Declaration and Initialization"></a>Declaration and Initialization</h4><pre><code class="cpp">#include &lt;string&gt;
+<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><h4 id="Declaration-and-Initialization-3"><a href="#Declaration-and-Initialization-3" class="headerlink" title="Declaration and Initialization"></a>Declaration and Initialization</h4><pre><code class="language-cpp">#include &lt;string&gt;
 
 std::string greeting = &quot;Hello&quot;;
 </code></pre>
-<h4 id="Input-and-Output"><a href="#Input-and-Output" class="headerlink" title="Input and Output"></a>Input and Output</h4><pre><code class="cpp">std::string name;
+<h4 id="Input-and-Output"><a href="#Input-and-Output" class="headerlink" title="Input and Output"></a>Input and Output</h4><pre><code class="language-cpp">std::string name;
 
 std::cout &lt;&lt; &quot;Enter your name: &quot;;
 std::cin &gt;&gt; name; // Reads input until the first whitespace
@@ -493,31 +493,31 @@ std::cin &gt;&gt; name; // Reads input until the first whitespace
 std::cout &lt;&lt; &quot;Hello, &quot; &lt;&lt; name &lt;&lt; &quot;!&quot; &lt;&lt; std::endl;
 </code></pre>
 <p><strong>Reading Full Lines:</strong></p>
-<pre><code class="cpp">std::string line;
+<pre><code class="language-cpp">std::string line;
 
 std::cout &lt;&lt; &quot;Enter a line: &quot;;
 std::getline(std::cin, line);
 
 std::cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; line &lt;&lt; std::endl;
 </code></pre>
-<h3 id="String-Operations"><a href="#String-Operations" class="headerlink" title="String Operations"></a>String Operations</h3><h4 id="Concatenation"><a href="#Concatenation" class="headerlink" title="Concatenation"></a>Concatenation</h4><pre><code class="cpp">std::string s1 = &quot;Hello&quot;;
+<h3 id="String-Operations"><a href="#String-Operations" class="headerlink" title="String Operations"></a>String Operations</h3><h4 id="Concatenation"><a href="#Concatenation" class="headerlink" title="Concatenation"></a>Concatenation</h4><pre><code class="language-cpp">std::string s1 = &quot;Hello&quot;;
 std::string s2 = &quot;World&quot;;
 std::string s3 = s1 + &quot; &quot; + s2; // &quot;Hello World&quot;
 </code></pre>
-<h4 id="Length"><a href="#Length" class="headerlink" title="Length"></a>Length</h4><pre><code class="cpp">size_t length = s1.length(); // or s1.size()
+<h4 id="Length"><a href="#Length" class="headerlink" title="Length"></a>Length</h4><pre><code class="language-cpp">size_t length = s1.length(); // or s1.size()
 </code></pre>
-<h4 id="Accessing-Characters-1"><a href="#Accessing-Characters-1" class="headerlink" title="Accessing Characters"></a>Accessing Characters</h4><pre><code class="cpp">char firstChar = s1[0]; // &#39;H&#39;
+<h4 id="Accessing-Characters-1"><a href="#Accessing-Characters-1" class="headerlink" title="Accessing Characters"></a>Accessing Characters</h4><pre><code class="language-cpp">char firstChar = s1[0]; // &#39;H&#39;
 s1[0] = &#39;h&#39;;            // s1 is now &quot;hello&quot;
 </code></pre>
-<h4 id="Substrings"><a href="#Substrings" class="headerlink" title="Substrings"></a>Substrings</h4><pre><code class="cpp">std::string s = &quot;Hello World&quot;;
+<h4 id="Substrings"><a href="#Substrings" class="headerlink" title="Substrings"></a>Substrings</h4><pre><code class="language-cpp">std::string s = &quot;Hello World&quot;;
 std::string sub = s.substr(6, 5); // &quot;World&quot;
 </code></pre>
-<h4 id="Insertion-and-Erasure"><a href="#Insertion-and-Erasure" class="headerlink" title="Insertion and Erasure"></a>Insertion and Erasure</h4><pre><code class="cpp">s.insert(5, &quot;,&quot;);      // &quot;Hello, World&quot;
+<h4 id="Insertion-and-Erasure"><a href="#Insertion-and-Erasure" class="headerlink" title="Insertion and Erasure"></a>Insertion and Erasure</h4><pre><code class="language-cpp">s.insert(5, &quot;,&quot;);      // &quot;Hello, World&quot;
 s.erase(5, 1);         // &quot;Hello World&quot;
 </code></pre>
-<h4 id="Finding-Substrings"><a href="#Finding-Substrings" class="headerlink" title="Finding Substrings"></a>Finding Substrings</h4><pre><code class="cpp">size_t pos = s.find(&quot;World&quot;); // Returns index where &quot;World&quot; starts
+<h4 id="Finding-Substrings"><a href="#Finding-Substrings" class="headerlink" title="Finding Substrings"></a>Finding Substrings</h4><pre><code class="language-cpp">size_t pos = s.find(&quot;World&quot;); // Returns index where &quot;World&quot; starts
 </code></pre>
-<h4 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h4><pre><code class="cpp">if (s1 == s2) &#123;
+<h4 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h4><pre><code class="language-cpp">if (s1 == s2) &#123;
     std::cout &lt;&lt; &quot;Strings are equal.&quot; &lt;&lt; std::endl;
 &#125;
 </code></pre>
@@ -525,7 +525,7 @@ s.erase(5, 1);         // &quot;Hello World&quot;
 <li><strong><code>std::stoi</code></strong>: Convert string to <code>int</code>.</li>
 <li><strong><code>std::stod</code></strong>: Convert string to <code>double</code>.</li>
 </ul>
-<pre><code class="cpp">#include &lt;string&gt;
+<pre><code class="language-cpp">#include &lt;string&gt;
 
 std::string s = &quot;123&quot;;
 int num = std::stoi(s); // num = 123
@@ -533,15 +533,15 @@ int num = std::stoi(s); // num = 123
 <h4 id="Number-to-String"><a href="#Number-to-String" class="headerlink" title="Number to String"></a>Number to String</h4><ul>
 <li><strong><code>std::to_string</code></strong>: Convert number to string.</li>
 </ul>
-<pre><code class="cpp">int num = 456;
+<pre><code class="language-cpp">int num = 456;
 std::string s = std::to_string(num); // s = &quot;456&quot;
 </code></pre>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">double pi = 3.14159;
+<pre><code class="language-cpp">double pi = 3.14159;
 std::string s = &quot;The value of pi is &quot; + std::to_string(pi);
 </code></pre>
 <h2 id="Practical-Example-Word-Counter"><a href="#Practical-Example-Word-Counter" class="headerlink" title="Practical Example: Word Counter"></a>Practical Example: Word Counter</h2><p>Let’s create a program that counts the number of words in a sentence entered by the user.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 #include &lt;sstream&gt;
 
@@ -574,7 +574,7 @@ int main() &#123;
 <li><p><strong>Array Sum with <code>std::array</code></strong></p>
 <p>Rewrite the array sum program using <code>std::array</code>.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;array&gt;
 
 int main() &#123;
@@ -597,7 +597,7 @@ int main() &#123;
 <li><p><strong>Matrix Addition with <code>std::array</code></strong></p>
 <p>Create a program that adds two 2x2 matrices using <code>std::array</code> and displays the result.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;array&gt;
 
 int main() &#123;
@@ -626,7 +626,7 @@ int main() &#123;
 <li><p><strong>String Reversal</strong></p>
 <p>Write a function that reverses a <code>std::string</code>.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 #include &lt;algorithm&gt;
 
@@ -650,7 +650,7 @@ int main() &#123;
 <li><p><strong>Palindromic Strings</strong></p>
 <p>Modify the palindrome check function from the previous chapter to ignore case and spaces.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 #include &lt;algorithm&gt;
 #include &lt;cctype&gt;
@@ -719,7 +719,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

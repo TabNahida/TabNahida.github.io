@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                <a href="/tags/c-cpp/" style="color: #00bcd4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
                     Zero to Hero
                 </a>
             </span>
@@ -223,7 +223,7 @@
 
 <h2 id="Creating-the-xmake-lua-File"><a href="#Creating-the-xmake-lua-File" class="headerlink" title="Creating the xmake.lua File"></a>Creating the <code>xmake.lua</code> File</h2><p>The configuration for your xmake project is defined in a file named <code>xmake.lua</code>. This file contains all the necessary information for building your application, including source files, target settings, and dependencies.</p>
 <h3 id="Basic-Structure-of-xmake-lua"><a href="#Basic-Structure-of-xmake-lua" class="headerlink" title="Basic Structure of xmake.lua"></a>Basic Structure of <code>xmake.lua</code></h3><p>Here’s a minimal example of a <code>xmake.lua</code> file for a console application:</p>
-<pre><code class="lua">-- Set the project name
+<pre><code class="language-lua">-- Set the project name
 set_project(&quot;MyApp&quot;)
 
 -- Set the version
@@ -252,18 +252,18 @@ target(&quot;myapp&quot;)
 <li><strong>add_links</strong>: Link against any external libraries.</li>
 </ul>
 <h2 id="Building-the-Project"><a href="#Building-the-Project" class="headerlink" title="Building the Project"></a>Building the Project</h2><p>Once your <code>xmake.lua</code> file is ready, building your project is straightforward. Open a terminal, navigate to your project directory, and run:</p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 </code></pre>
 <p>This command will compile your project according to the specifications defined in the <code>xmake.lua</code> file.</p>
 <h3 id="Building-in-Release-Mode"><a href="#Building-in-Release-Mode" class="headerlink" title="Building in Release Mode"></a>Building in Release Mode</h3><p>To compile your project in release mode, you can configure it with:</p>
-<pre><code class="bash">xmake f -m release
+<pre><code class="language-bash">xmake f -m release
 </code></pre>
 <p>Then run the build command again:</p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 </code></pre>
 <h2 id="Managing-Dependencies"><a href="#Managing-Dependencies" class="headerlink" title="Managing Dependencies"></a>Managing Dependencies</h2><p>xmake makes it easy to manage dependencies, allowing you to integrate third-party libraries seamlessly. You can specify required dependencies directly in your <code>xmake.lua</code> file.</p>
 <h3 id="Adding-Dependencies"><a href="#Adding-Dependencies" class="headerlink" title="Adding Dependencies"></a>Adding Dependencies</h3><p>For example, if you want to use the <code>boost</code> library, modify your <code>xmake.lua</code> as follows:</p>
-<pre><code class="lua">add_requires(&quot;boost&quot;)
+<pre><code class="language-lua">add_requires(&quot;boost&quot;)
 
 target(&quot;myapp&quot;)
     set_kind(&quot;binary&quot;)
@@ -271,11 +271,11 @@ target(&quot;myapp&quot;)
     add_packages(&quot;boost&quot;)
 </code></pre>
 <h3 id="Installing-Dependencies"><a href="#Installing-Dependencies" class="headerlink" title="Installing Dependencies"></a>Installing Dependencies</h3><p>Before building your project, ensure that all required dependencies are installed. Use the following command:</p>
-<pre><code class="bash">xmake install
+<pre><code class="language-bash">xmake install
 </code></pre>
 <p>This will automatically download and install the specified packages.</p>
 <h2 id="Running-the-Application"><a href="#Running-the-Application" class="headerlink" title="Running the Application"></a>Running the Application</h2><p>Once the build process is complete, you can run your application directly from the command line:</p>
-<pre><code class="bash">xmake run myapp
+<pre><code class="language-bash">xmake run myapp
 </code></pre>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, we have covered how to use <strong>xmake</strong> to build C++ projects efficiently. We discussed the creation of the <code>xmake.lua</code> configuration file, the process of building your project, and how to manage dependencies with ease. By using xmake, you can streamline your development workflow and focus more on coding.</p>
 <p>In the next chapter, we will dive into <strong>Practical Projects</strong>, where you’ll apply your newfound knowledge to real-world programming challenges and best practices.</p>
@@ -300,7 +300,7 @@ target(&quot;myapp&quot;)
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #03a9f4">
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #00a596">
+                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -253,7 +253,7 @@
 <li><strong>Flexibility</strong>: Generates specialized code tailored to specific types and conditions.</li>
 </ul>
 <h3 id="Example-Compile-Time-Factorial"><a href="#Example-Compile-Time-Factorial" class="headerlink" title="Example: Compile-Time Factorial"></a>Example: Compile-Time Factorial</h3><p>Let’s implement a factorial computation using template metaprogramming.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // Template to compute factorial at compile time
 template&lt;int N&gt;
@@ -297,7 +297,7 @@ Factorial of 0: 1
 <li><strong><code>std::remove_const&lt;T&gt;</code></strong>: Removes the <code>const</code> qualifier from <code>T</code>.</li>
 <li><strong><code>std::enable_if&lt;Condition, T&gt;</code></strong>: Enables a type or function based on a condition.</li>
 </ul>
-<h3 id="Example-Type-Traits-in-Action"><a href="#Example-Type-Traits-in-Action" class="headerlink" title="Example: Type Traits in Action"></a>Example: Type Traits in Action</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Type-Traits-in-Action"><a href="#Example-Type-Traits-in-Action" class="headerlink" title="Example: Type Traits in Action"></a>Example: Type Traits in Action</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;type_traits&gt;
 
 // Function enabled only for integral types
@@ -342,7 +342,7 @@ int main() &#123;
 <h2 id="SFINAE-and-std-enable-if"><a href="#SFINAE-and-std-enable-if" class="headerlink" title="SFINAE and std::enable_if"></a>SFINAE and <code>std::enable_if</code></h2><h3 id="What-Is-SFINAE"><a href="#What-Is-SFINAE" class="headerlink" title="What Is SFINAE?"></a>What Is SFINAE?</h3><p>SFINAE stands for “Substitution Failure Is Not An Error.” It’s a principle in C++ template metaprogramming where the compiler silently discards template specializations that fail to instantiate, without generating a compilation error. This allows for the creation of templates that are conditionally included based on type properties.</p>
 <h3 id="How-SFINAE-Works"><a href="#How-SFINAE-Works" class="headerlink" title="How SFINAE Works"></a>How SFINAE Works</h3><p>When the compiler substitutes template parameters with actual types, if a substitution leads to an invalid type or expression, the compiler ignores that specialization and continues searching for other viable candidates.</p>
 <h3 id="Using-std-enable-if-with-SFINAE"><a href="#Using-std-enable-if-with-SFINAE" class="headerlink" title="Using std::enable_if with SFINAE"></a>Using <code>std::enable_if</code> with SFINAE</h3><p><code>std::enable_if</code> is a utility that leverages SFINAE to conditionally enable or disable template functions or classes based on compile-time conditions.</p>
-<h3 id="Example-Function-Overloading-with-SFINAE"><a href="#Example-Function-Overloading-with-SFINAE" class="headerlink" title="Example: Function Overloading with SFINAE"></a>Example: Function Overloading with SFINAE</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Function-Overloading-with-SFINAE"><a href="#Example-Function-Overloading-with-SFINAE" class="headerlink" title="Example: Function Overloading with SFINAE"></a>Example: Function Overloading with SFINAE</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;type_traits&gt;
 
 // Function enabled only for integral types
@@ -382,7 +382,7 @@ int main() &#123;
 <h3 id="Advanced-SFINAE-Techniques"><a href="#Advanced-SFINAE-Techniques" class="headerlink" title="Advanced SFINAE Techniques"></a>Advanced SFINAE Techniques</h3><ul>
 <li><p><strong>Using <code>std::void_t</code></strong>: Simplifies SFINAE expressions by abstracting away the complexity of conditionally checking type properties.</p>
 <p><strong>Example: Checking for a Member Function</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;type_traits&gt;
 
 // Primary template: assumes T does not have a member function `foo`
@@ -422,7 +422,7 @@ WithoutFoo has foo(): false
 <li><strong>Code Reuse</strong>: Share common functionality across derived classes.</li>
 <li><strong>Compile-Time Checks</strong>: Enforce certain interfaces or behaviors at compile time.</li>
 </ul>
-<h3 id="Syntax-of-CRTP"><a href="#Syntax-of-CRTP" class="headerlink" title="Syntax of CRTP"></a>Syntax of CRTP</h3><pre><code class="cpp">template&lt;typename Derived&gt;
+<h3 id="Syntax-of-CRTP"><a href="#Syntax-of-CRTP" class="headerlink" title="Syntax of CRTP"></a>Syntax of CRTP</h3><pre><code class="language-cpp">template&lt;typename Derived&gt;
 class Base &#123;
 public:
     void interface() &#123;
@@ -443,7 +443,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h3 id="Example-Static-Polymorphism-with-CRTP"><a href="#Example-Static-Polymorphism-with-CRTP" class="headerlink" title="Example: Static Polymorphism with CRTP"></a>Example: Static Polymorphism with CRTP</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Static-Polymorphism-with-CRTP"><a href="#Example-Static-Polymorphism-with-CRTP" class="headerlink" title="Example: Static Polymorphism with CRTP"></a>Example: Static Polymorphism with CRTP</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // CRTP Base Class
 template&lt;typename Derived&gt;
@@ -502,7 +502,7 @@ Drawing a square.
 </ul>
 <hr>
 <h2 id="Variadic-Templates-and-Parameter-Packs"><a href="#Variadic-Templates-and-Parameter-Packs" class="headerlink" title="Variadic Templates and Parameter Packs"></a>Variadic Templates and Parameter Packs</h2><h3 id="What-Are-Variadic-Templates"><a href="#What-Are-Variadic-Templates" class="headerlink" title="What Are Variadic Templates?"></a>What Are Variadic Templates?</h3><p>Variadic templates allow functions and classes to accept an arbitrary number of template parameters. They enable the creation of flexible and generic code structures capable of handling varying input sizes and types.</p>
-<h3 id="Syntax-of-Variadic-Templates"><a href="#Syntax-of-Variadic-Templates" class="headerlink" title="Syntax of Variadic Templates"></a>Syntax of Variadic Templates</h3><pre><code class="cpp">// Function template with variadic parameters
+<h3 id="Syntax-of-Variadic-Templates"><a href="#Syntax-of-Variadic-Templates" class="headerlink" title="Syntax of Variadic Templates"></a>Syntax of Variadic Templates</h3><pre><code class="language-cpp">// Function template with variadic parameters
 template&lt;typename... Args&gt;
 void function(Args... args);
 
@@ -511,7 +511,7 @@ template&lt;typename... Args&gt;
 class ClassName &#123;&#125;;
 </code></pre>
 <h3 id="Understanding-Parameter-Packs"><a href="#Understanding-Parameter-Packs" class="headerlink" title="Understanding Parameter Packs"></a>Understanding Parameter Packs</h3><p>A parameter pack is a template parameter that represents zero or more template arguments. It can be expanded into individual types or values using pack expansion syntax.</p>
-<h3 id="Example-Variadic-Function-to-Print-Multiple-Arguments"><a href="#Example-Variadic-Function-to-Print-Multiple-Arguments" class="headerlink" title="Example: Variadic Function to Print Multiple Arguments"></a>Example: Variadic Function to Print Multiple Arguments</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example-Variadic-Function-to-Print-Multiple-Arguments"><a href="#Example-Variadic-Function-to-Print-Multiple-Arguments" class="headerlink" title="Example: Variadic Function to Print Multiple Arguments"></a>Example: Variadic Function to Print Multiple Arguments</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // Base case: no arguments
 void print() &#123;
@@ -534,7 +534,7 @@ int main() &#123;
 <pre><code>1 2.5 Hello A 
 </code></pre>
 <h3 id="Example-Variadic-Class-Template-for-Tuple-Implementation"><a href="#Example-Variadic-Class-Template-for-Tuple-Implementation" class="headerlink" title="Example: Variadic Class Template for Tuple Implementation"></a>Example: Variadic Class Template for Tuple Implementation</h3><p>Implementing a simple <code>MyTuple</code> class using variadic templates.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // Base case: empty tuple
 template&lt;typename...&gt;
@@ -571,7 +571,7 @@ int main() &#123;
 <h3 id="Variadic-Template-Utilities"><a href="#Variadic-Template-Utilities" class="headerlink" title="Variadic Template Utilities"></a>Variadic Template Utilities</h3><ul>
 <li><p><strong>Pack Expansion</strong>: Expands a parameter pack into individual arguments.</p>
 <p><strong>Example: Initializing a Container with Variadic Arguments</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 template&lt;typename T&gt;
@@ -602,7 +602,7 @@ int main() &#123;
 </li>
 <li><p><strong>Fold Expressions (C++17)</strong>: Simplify the expansion of parameter packs with concise syntax.</p>
 <p><strong>Example: Summing Multiple Numbers with Fold Expressions</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 template&lt;typename... Args&gt;
 auto sum(Args... args) -&gt; decltype((args + ...)) &#123;
@@ -637,7 +637,7 @@ int main() &#123;
 </ol>
 <hr>
 <h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><h3 id="Example-1-Compile-Time-Type-Checking-with-static-assert"><a href="#Example-1-Compile-Time-Type-Checking-with-static-assert" class="headerlink" title="Example 1: Compile-Time Type Checking with static_assert"></a>Example 1: Compile-Time Type Checking with <code>static_assert</code></h3><p>Using <code>static_assert</code> to enforce type constraints during compilation.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;type_traits&gt;
 
 // Function that only accepts integral types
@@ -662,7 +662,7 @@ int main() &#123;
 <li><strong>Compile-Time Safety</strong>: Prevents misuse by triggering a compilation error for invalid types.</li>
 </ul>
 <h3 id="Example-2-Implementing-a-Simple-Static-Logger-with-CRTP"><a href="#Example-2-Implementing-a-Simple-Static-Logger-with-CRTP" class="headerlink" title="Example 2: Implementing a Simple Static Logger with CRTP"></a>Example 2: Implementing a Simple Static Logger with CRTP</h3><p>Using CRTP to create a static logger that can be customized by derived classes.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // CRTP Base Class
@@ -712,7 +712,7 @@ int main() &#123;
 <li><strong>Customization</strong>: Different logging implementations (<code>ConsoleLogger</code>, <code>FileLogger</code>) provide their specific <code>logImplementation</code> methods.</li>
 </ul>
 <h3 id="Example-3-Variadic-Template-Function-to-Create-a-Tuple-like-Structure"><a href="#Example-3-Variadic-Template-Function-to-Create-a-Tuple-like-Structure" class="headerlink" title="Example 3: Variadic Template Function to Create a Tuple-like Structure"></a>Example 3: Variadic Template Function to Create a Tuple-like Structure</h3><p>Creating a simple <code>MyTuple</code> class that can hold an arbitrary number of elements of different types.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;utility&gt;
 
 // Base case: empty tuple
@@ -766,7 +766,7 @@ Third: Hello
 <li><strong>Accessing Elements</strong>: Accessors are provided to retrieve each element in the tuple.</li>
 </ul>
 <h3 id="Example-4-Implementing-a-Simple-Static-Assert-with-Type-Traits"><a href="#Example-4-Implementing-a-Simple-Static-Assert-with-Type-Traits" class="headerlink" title="Example 4: Implementing a Simple Static Assert with Type Traits"></a>Example 4: Implementing a Simple Static Assert with Type Traits</h3><p>Using type traits to enforce type constraints within a class template.</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;type_traits&gt;
 
 // Class template that only accepts floating-point types
@@ -831,7 +831,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

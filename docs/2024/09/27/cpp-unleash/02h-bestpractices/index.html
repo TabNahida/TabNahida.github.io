@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -282,7 +282,7 @@
 <li>Avoid using <code>auto</code> where it obscures the type, making the code harder to understand.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;string&gt;
 #include &lt;iostream&gt;
 
@@ -312,7 +312,7 @@ int main() &#123;
 <li>Reduces the likelihood of errors related to loop boundaries.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -345,7 +345,7 @@ int main() &#123;
 <li><strong><code>std::weak_ptr</code></strong>: Observes an object managed by <code>std::shared_ptr</code> without owning it.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;memory&gt;
+<pre><code class="language-cpp">#include &lt;memory&gt;
 #include &lt;iostream&gt;
 
 struct Resource &#123;
@@ -381,7 +381,7 @@ Resource Released
 <li>Enables efficient transfer of resources.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -421,7 +421,7 @@ MovedTo size: 5
 </ul>
 <h3 id="Implementing-RAII-in-Classes"><a href="#Implementing-RAII-in-Classes" class="headerlink" title="Implementing RAII in Classes"></a>Implementing RAII in Classes</h3><p>To implement RAII, encapsulate resource management within a class. The constructor acquires the resource, and the destructor releases it.</p>
 <p><strong>Example: RAII Wrapper for File Handling</strong></p>
-<pre><code class="cpp">#include &lt;fstream&gt;
+<pre><code class="language-cpp">#include &lt;fstream&gt;
 #include &lt;string&gt;
 #include &lt;iostream&gt;
 
@@ -473,7 +473,7 @@ File closed.
 </ul>
 <h3 id="RAII-with-Smart-Pointers"><a href="#RAII-with-Smart-Pointers" class="headerlink" title="RAII with Smart Pointers"></a>RAII with Smart Pointers</h3><p>Smart pointers inherently follow the RAII principle, managing dynamic memory automatically.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;memory&gt;
+<pre><code class="language-cpp">#include &lt;memory&gt;
 #include &lt;iostream&gt;
 
 struct Resource &#123;
@@ -508,7 +508,7 @@ Resource Released
 <li>Resource pools</li>
 </ul>
 <p><strong>Implementation:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;mutex&gt;
 
 class Singleton &#123;
@@ -561,7 +561,7 @@ Singleton instance doing something.
 <li>Managing and maintaining a collection of related objects.</li>
 </ul>
 <p><strong>Implementation:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
 // Base Product
@@ -630,7 +630,7 @@ Using Concrete Product B.
 <li>Real-time systems where state changes need to propagate</li>
 </ul>
 <p><strong>Implementation:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
@@ -720,7 +720,7 @@ Observer 2 received data: 30
 <li>Encapsulating behaviors that can be swapped out.</li>
 </ul>
 <p><strong>Implementation:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
 // Strategy Interface
@@ -795,7 +795,7 @@ Executing Strategy B.
 <li>Enhancing objects with multiple, interchangeable behaviors.</li>
 </ul>
 <p><strong>Implementation:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
 // Component Interface
@@ -896,7 +896,7 @@ Simple Coffee, Milk, Sugar $2.7
 <li><strong>Avoid Memory Leaks</strong>: Utilize smart pointers and RAII to manage dynamic memory.</li>
 </ul>
 <p><strong>Example: Reserving Space in <code>std::vector</code></strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -923,7 +923,7 @@ int main() &#123;
 <li><strong>Return by Value with Move Semantics</strong>: Allow the compiler to optimize return values.</li>
 </ul>
 <p><strong>Example: Using <code>const</code> References</strong></p>
-<pre><code class="cpp">#include &lt;string&gt;
+<pre><code class="language-cpp">#include &lt;string&gt;
 #include &lt;iostream&gt;
 
 // Function that takes a large string by value (inefficient)
@@ -956,7 +956,7 @@ int main() &#123;
 <li>Modern compilers make inlining decisions; manual hints may not always be necessary.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 class Math &#123;
 public:
@@ -990,7 +990,7 @@ int main() &#123;
 <li><strong>Use Efficient Iterators</strong>: Prefer index-based loops with <code>std::vector</code> for cache locality.</li>
 </ul>
 <p><strong>Example: Minimizing Work Inside Loops</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -1017,7 +1017,7 @@ int main() &#123;
 </ul>
 <h3 id="Utilizing-Move-Semantics"><a href="#Utilizing-Move-Semantics" class="headerlink" title="Utilizing Move Semantics"></a>Utilizing Move Semantics</h3><p>As discussed earlier, move semantics can significantly reduce copying overhead by transferring resources.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 std::vector&lt;int&gt; createVector() &#123;
@@ -1051,7 +1051,7 @@ int main() &#123;
 <li><strong>Code Documentation</strong>: Comment complex logic and provide documentation for public interfaces.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 // Naming convention: CamelCase for classes, snake_case for functions
@@ -1081,7 +1081,7 @@ int main() &#123;
 <li><strong>Loose Coupling</strong>: Minimize dependencies between modules to enhance flexibility.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">// Logger.h
+<pre><code class="language-cpp">// Logger.h
 #pragma once
 #include &lt;string&gt;
 
@@ -1140,7 +1140,7 @@ int main() &#123;
 <li><strong>Inheritance and Composition</strong>: Reuse code through class hierarchies or composition.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 
@@ -1179,7 +1179,7 @@ Hello World C++
 <li><strong>Leverage Concepts (C++20)</strong>: Constrain templates for better error messages and type safety.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;concepts&gt;
 
@@ -1207,7 +1207,7 @@ int main() &#123;
 <li><strong>Maintain Updated Documentation</strong>: Ensure that documentation stays in sync with code changes.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;algorithm&gt;
 #include &lt;iostream&gt;
 
@@ -1273,7 +1273,7 @@ int main() &#123;
 <h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><p>To solidify your understanding of best practices and design patterns in C++, let’s explore some practical examples demonstrating their application in real-world scenarios.</p>
 <h3 id="Example-1-Implementing-the-Singleton-Pattern"><a href="#Example-1-Implementing-the-Singleton-Pattern" class="headerlink" title="Example 1: Implementing the Singleton Pattern"></a>Example 1: Implementing the Singleton Pattern</h3><p><strong>Problem:</strong> Create a logger class that ensures only one instance exists throughout the application.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;mutex&gt;
 #include &lt;string&gt;
 
@@ -1329,7 +1329,7 @@ int main() &#123;
 </ul>
 <h3 id="Example-2-Using-RAII-with-File-Handling"><a href="#Example-2-Using-RAII-with-File-Handling" class="headerlink" title="Example 2: Using RAII with File Handling"></a>Example 2: Using RAII with File Handling</h3><p><strong>Problem:</strong> Manage file resources automatically to ensure files are closed properly, even in the event of exceptions.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;fstream&gt;
+<pre><code class="language-cpp">#include &lt;fstream&gt;
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
@@ -1382,7 +1382,7 @@ File closed.
 </ul>
 <h3 id="Example-3-Optimizing-a-Loop-with-Move-Semantics"><a href="#Example-3-Optimizing-a-Loop-with-Move-Semantics" class="headerlink" title="Example 3: Optimizing a Loop with Move Semantics"></a>Example 3: Optimizing a Loop with Move Semantics</h3><p><strong>Problem:</strong> Optimize a loop that processes and transfers ownership of large objects to avoid unnecessary copies.</p>
 <p><strong>Solution:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;string&gt;
 #include &lt;iostream&gt;
 
@@ -1480,7 +1480,7 @@ Processed: Delta
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

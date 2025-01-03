@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/lib/" style="color: #00a596">
+                <a href="/tags/lib/" style="color: #ffa2c4">
                     Library
                 </a>
             </span>
@@ -198,28 +198,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/setup/" style="color: #ffa2c4">
+                <a href="/tags/setup/" style="color: #00a596">
                     SetUp
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/prizm-sdk/" style="color: #00bcd4">
+                <a href="/tags/prizm-sdk/" style="color: #ff7d73">
                     PrizmSDK
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/embed/" style="color: #03a9f4">
+                <a href="/tags/embed/" style="color: #ffa2c4">
                     Embedded
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/toolchain/" style="color: #ff7d73">
+                <a href="/tags/toolchain/" style="color: #00a596">
                     Toolchain
                 </a>
             </span>
@@ -241,14 +241,14 @@
 </ul>
 <p>By combining these tools, PrizmSDK allows you to easily compile, package, and run programs on Casio calculators.</p>
 <h3 id="Installing-PrizmSDK"><a href="#Installing-PrizmSDK" class="headerlink" title="Installing PrizmSDK"></a>Installing PrizmSDK</h3><p>First, make sure you’ve cloned the <a target="_blank" rel="noopener" href="https://github.com/TabNahida/PrizmSDK">PrizmSDK repository</a>. You can do this by running the following commands:</p>
-<pre><code class="bash">git clone https://github.com/TabNahida/PrizmSDK.git
+<pre><code class="language-bash">git clone https://github.com/TabNahida/PrizmSDK.git
 cd PrizmSDK
 </code></pre>
 <p>Before proceeding, you need to install some dependencies like <code>gcc</code>, <code>make</code>, and <code>binutils</code>. On Linux or macOS, you can install them using the following command:</p>
-<pre><code class="bash">sudo apt-get install gcc make binutils
+<pre><code class="language-bash">sudo apt-get install gcc make binutils
 </code></pre>
 <p>Then you can run following commad to clone <code>gcc</code> <code>binutils</code> <code>libfxcg</code> and <code>mkg3a</code>:</p>
-<pre><code class="bash">git clone https://github.com/Jonimoose/libfxcg.git
+<pre><code class="language-bash">git clone https://github.com/Jonimoose/libfxcg.git
 git clone https://gitlab.com/taricorp/mkg3a.git
 git clone git://gcc.gnu.org/git/gcc.git
 git clone git://sourceware.org/git/binutils-gdb.git
@@ -258,11 +258,11 @@ chmod +x build.sh
 <p>If you’re using Windows, it’s recommended to use <a target="_blank" rel="noopener" href="https://github.com/Jonimoose/libfxcg/releases">PrizmSDK prebuild by libfxcg</a>.</p>
 <h3 id="Building-Your-First-Program"><a href="#Building-Your-First-Program" class="headerlink" title="Building Your First Program"></a>Building Your First Program</h3><p>Once the installation is complete, let’s create and build a simple “Hello, World!” program.</p>
 <h4 id="1-Writing-C-Source-Code"><a href="#1-Writing-C-Source-Code" class="headerlink" title="1. Writing C Source Code"></a>1. Writing C Source Code</h4><p>Create a new directory and navigate into it:</p>
-<pre><code class="bash">mkdir hello_world
+<pre><code class="language-bash">mkdir hello_world
 cd hello_world
 </code></pre>
 <p>Next, create a file called <code>main.c</code> and insert the following code:</p>
-<pre><code class="c">#include &lt;fxcg/display.h&gt;
+<pre><code class="language-c">#include &lt;fxcg/display.h&gt;
 
 int main(void) &#123;
     // Clear the screen and display &quot;Hello, World!&quot;
@@ -282,10 +282,10 @@ int main(void) &#123;
 &#125;
 </code></pre>
 <h4 id="2-Compiling-the-Program"><a href="#2-Compiling-the-Program" class="headerlink" title="2. Compiling the Program"></a>2. Compiling the Program</h4><p>Ensure you’ve set up your environment variables to include PrizmSDK’s toolchain in your <code>$PATH</code>. For example:</p>
-<pre><code class="bash">export PATH=/path/to/PrizmSDK/bin:$PATH
+<pre><code class="language-bash">export PATH=/path/to/PrizmSDK/bin:$PATH
 </code></pre>
 <p>Then, use <code>make</code> to compile the program. You can utilize the Makefile from PrizmSDK to simplify the process. Run the following command:</p>
-<pre><code class="bash">make
+<pre><code class="language-bash">make
 </code></pre>
 <p>After compiling, you will see a <code>.g3a</code> file, which is the executable format that you can run on the Casio calculator.</p>
 <h4 id="3-Uploading-the-Program-to-the-Calculator"><a href="#3-Uploading-the-Program-to-the-Calculator" class="headerlink" title="3. Uploading the Program to the Calculator"></a>3. Uploading the Program to the Calculator</h4><p>To upload the generated <code>.g3a</code> file to your calculator, connect your calculator via USB and transfer the file to the “Applications” folder on the calculator.</p>
@@ -315,7 +315,7 @@ int main(void) &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -184,28 +184,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
                     Zero to Hero
                 </a>
             </span>
@@ -329,14 +329,14 @@
 <ol>
 <li><p><strong>Install Google Test:</strong></p>
 <ul>
-<li>Clone the Google Test repository:<pre><code class="bash">git clone https://github.com/google/googletest.git
+<li>Clone the Google Test repository:<pre><code class="language-bash">git clone https://github.com/google/googletest.git
 </code></pre>
 </li>
 <li>Alternatively, you can use package managers or include it as a submodule.</li>
 </ul>
 </li>
 <li><p><strong>Configure <code>xmake.lua</code>:</strong></p>
-<pre><code class="lua">add_rules(&quot;mode.debug&quot;, &quot;mode.release&quot;)
+<pre><code class="language-lua">add_rules(&quot;mode.debug&quot;, &quot;mode.release&quot;)
 
 -- Add the Google Test project
 includes(&quot;googletest/xmake.lua&quot;)
@@ -354,11 +354,11 @@ target(&quot;my_tests&quot;)
 </code></pre>
 </li>
 <li><p><strong>Build the Project:</strong></p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 </code></pre>
 </li>
 <li><p><strong>Run Tests:</strong></p>
-<pre><code class="bash">xmake run my_tests
+<pre><code class="language-bash">xmake run my_tests
 </code></pre>
 </li>
 </ol>
@@ -368,7 +368,7 @@ target(&quot;my_tests&quot;)
 <li><strong>Test:</strong> An individual test that checks a specific aspect of the code.</li>
 </ul>
 <p><strong>Example: Testing a Simple <code>add</code> Function</strong></p>
-<pre><code class="cpp">// src/math.cpp
+<pre><code class="language-cpp">// src/math.cpp
 int add(int a, int b) &#123;
     return a + b;
 &#125;
@@ -378,7 +378,7 @@ int add(int a, int b) &#123;
 
 int add(int a, int b);
 </code></pre>
-<pre><code class="cpp">// tests/test_math.cpp
+<pre><code class="language-cpp">// tests/test_math.cpp
 #include &lt;gtest/gtest.h&gt;
 #include &quot;math.h&quot;
 
@@ -399,7 +399,7 @@ TEST(MathTest, AddMixedNumbers) &#123;
 &#125;
 </code></pre>
 <h3 id="Running-and-Interpreting-Tests"><a href="#Running-and-Interpreting-Tests" class="headerlink" title="Running and Interpreting Tests"></a>Running and Interpreting Tests</h3><p>After writing your tests, you can build and run them using <code>xmake</code>:</p>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 xmake run my_tests
 </code></pre>
 <p><strong>Sample Output:</strong></p>
@@ -452,7 +452,7 @@ xmake run my_tests
 <ol>
 <li><strong>Write a Failing Test:</strong></li>
 </ol>
-<pre><code class="cpp">// tests/test_calculator.cpp
+<pre><code class="language-cpp">// tests/test_calculator.cpp
 #include &lt;gtest/gtest.h&gt;
 #include &quot;Calculator.h&quot;
 
@@ -464,7 +464,7 @@ TEST(CalculatorTest, AddFunction) &#123;
 <ol start="2">
 <li><strong>Run the Test and See It Fail:</strong></li>
 </ol>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 xmake run my_tests
 </code></pre>
 <p><strong>Output:</strong></p>
@@ -482,7 +482,7 @@ Expected equality of these values:
 <ol start="3">
 <li><strong>Implement the Minimal Code to Pass the Test:</strong></li>
 </ol>
-<pre><code class="cpp">// src/Calculator.cpp
+<pre><code class="language-cpp">// src/Calculator.cpp
 #include &quot;Calculator.h&quot;
 
 int Calculator::add(int a, int b) &#123;
@@ -500,7 +500,7 @@ public:
 <ol start="4">
 <li><strong>Run the Test and See It Pass:</strong></li>
 </ol>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 xmake run my_tests
 </code></pre>
 <p><strong>Output:</strong></p>
@@ -524,12 +524,12 @@ xmake run my_tests
 <h3 id="GDB-GNU-Debugger"><a href="#GDB-GNU-Debugger" class="headerlink" title="GDB (GNU Debugger)"></a>GDB (GNU Debugger)</h3><p><strong>GDB</strong> is a powerful debugger for C++ (and other languages) that allows developers to inspect and control the execution of their programs. It provides features like setting breakpoints, stepping through code, examining variables, and more.</p>
 <h4 id="Installing-GDB"><a href="#Installing-GDB" class="headerlink" title="Installing GDB"></a>Installing GDB</h4><ul>
 <li><p><strong>Ubuntu&#x2F;Debian:</strong></p>
-<pre><code class="bash">sudo apt-get update
+<pre><code class="language-bash">sudo apt-get update
 sudo apt-get install gdb
 </code></pre>
 </li>
 <li><p><strong>macOS (using Homebrew):</strong></p>
-<pre><code class="bash">brew install gdb
+<pre><code class="language-bash">brew install gdb
 </code></pre>
 </li>
 <li><p><strong>Windows:</strong></p>
@@ -540,15 +540,15 @@ sudo apt-get install gdb
 </ul>
 <h4 id="Basic-GDB-Commands"><a href="#Basic-GDB-Commands" class="headerlink" title="Basic GDB Commands"></a>Basic GDB Commands</h4><ul>
 <li><p><strong>Starting GDB:</strong></p>
-<pre><code class="bash">gdb ./my_program
+<pre><code class="language-bash">gdb ./my_program
 </code></pre>
 </li>
 <li><p><strong>Running the Program:</strong></p>
-<pre><code class="gdb">(gdb) run
+<pre><code class="language-gdb">(gdb) run
 </code></pre>
 </li>
 <li><p><strong>Setting Breakpoints:</strong></p>
-<pre><code class="gdb">(gdb) break main
+<pre><code class="language-gdb">(gdb) break main
 (gdb) break src/math.cpp:10
 </code></pre>
 </li>
@@ -560,20 +560,20 @@ sudo apt-get install gdb
 </ul>
 </li>
 <li><p><strong>Inspecting Variables:</strong></p>
-<pre><code class="gdb">(gdb) print variable_name
+<pre><code class="language-gdb">(gdb) print variable_name
 </code></pre>
 </li>
 <li><p><strong>Continuing Execution:</strong></p>
-<pre><code class="gdb">(gdb) continue
+<pre><code class="language-gdb">(gdb) continue
 </code></pre>
 </li>
 <li><p><strong>Exiting GDB:</strong></p>
-<pre><code class="gdb">(gdb) quit
+<pre><code class="language-gdb">(gdb) quit
 </code></pre>
 </li>
 </ul>
 <h4 id="Debugging-a-C-Program-with-GDB"><a href="#Debugging-a-C-Program-with-GDB" class="headerlink" title="Debugging a C++ Program with GDB"></a>Debugging a C++ Program with GDB</h4><p><strong>Example: Debugging a Segmentation Fault</strong></p>
-<pre><code class="cpp">// src/main.cpp
+<pre><code class="language-cpp">// src/main.cpp
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -585,16 +585,16 @@ int main() &#123;
 <p><strong>Steps to Debug:</strong></p>
 <ol>
 <li><p><strong>Compile with Debug Symbols:</strong></p>
-<pre><code class="bash">xmake f -m debug
+<pre><code class="language-bash">xmake f -m debug
 xmake
 </code></pre>
 </li>
 <li><p><strong>Start GDB:</strong></p>
-<pre><code class="bash">gdb ./my_app
+<pre><code class="language-bash">gdb ./my_app
 </code></pre>
 </li>
 <li><p><strong>Run the Program:</strong></p>
-<pre><code class="gdb">(gdb) run
+<pre><code class="language-gdb">(gdb) run
 </code></pre>
 </li>
 <li><p><strong>GDB Stops at the Fault:</strong></p>
@@ -604,16 +604,16 @@ xmake
 </code></pre>
 </li>
 <li><p><strong>Inspect Variables:</strong></p>
-<pre><code class="gdb">(gdb) print ptr
+<pre><code class="language-gdb">(gdb) print ptr
 $1 = (int *) 0x0
 </code></pre>
 </li>
 <li><p><strong>Navigate to the Faulting Line:</strong></p>
-<pre><code class="gdb">(gdb) list
+<pre><code class="language-gdb">(gdb) list
 </code></pre>
 </li>
 <li><p><strong>Fix the Code:</strong></p>
-<pre><code class="cpp">// src/main.cpp
+<pre><code class="language-cpp">// src/main.cpp
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -625,7 +625,7 @@ int main() &#123;
 </code></pre>
 </li>
 <li><p><strong>Recompile and Run Tests:</strong></p>
-<pre><code class="bash">xmake clean
+<pre><code class="language-bash">xmake clean
 xmake f -m debug
 xmake
 gdb ./my_app
@@ -638,17 +638,17 @@ gdb ./my_app
 <h3 id="Valgrind"><a href="#Valgrind" class="headerlink" title="Valgrind"></a>Valgrind</h3><p><strong>Valgrind</strong> is a programming tool for memory debugging, memory leak detection, and profiling. It helps identify memory management issues that can lead to undefined behavior and crashes.</p>
 <h4 id="Installing-Valgrind"><a href="#Installing-Valgrind" class="headerlink" title="Installing Valgrind"></a>Installing Valgrind</h4><ul>
 <li><p><strong>Ubuntu&#x2F;Debian:</strong></p>
-<pre><code class="bash">sudo apt-get update
+<pre><code class="language-bash">sudo apt-get update
 sudo apt-get install valgrind
 </code></pre>
 </li>
 <li><p><strong>macOS (using Homebrew):</strong></p>
-<pre><code class="bash">brew install valgrind
+<pre><code class="language-bash">brew install valgrind
 </code></pre>
 </li>
 </ul>
 <h4 id="Detecting-Memory-Leaks-with-Valgrind"><a href="#Detecting-Memory-Leaks-with-Valgrind" class="headerlink" title="Detecting Memory Leaks with Valgrind"></a>Detecting Memory Leaks with Valgrind</h4><p><strong>Example: Memory Leak Detection</strong></p>
-<pre><code class="cpp">// src/leak.cpp
+<pre><code class="language-cpp">// src/leak.cpp
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -661,12 +661,12 @@ int main() &#123;
 <p><strong>Steps to Detect Memory Leaks:</strong></p>
 <ol>
 <li><p><strong>Compile with Debug Symbols:</strong></p>
-<pre><code class="bash">xmake f -m debug
+<pre><code class="language-bash">xmake f -m debug
 xmake
 </code></pre>
 </li>
 <li><p><strong>Run Valgrind:</strong></p>
-<pre><code class="bash">valgrind --leak-check=full ./my_app
+<pre><code class="language-bash">valgrind --leak-check=full ./my_app
 </code></pre>
 </li>
 </ol>
@@ -702,7 +702,7 @@ Value: 10
 <ol start="3">
 <li><strong>Fix the Memory Leak:</strong></li>
 </ol>
-<pre><code class="cpp">// src/leak.cpp
+<pre><code class="language-cpp">// src/leak.cpp
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -713,7 +713,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <ol start="4">
-<li><strong>Re-run Valgrind:</strong><pre><code class="bash">valgrind --leak-check=full ./my_app
+<li><strong>Re-run Valgrind:</strong><pre><code class="language-bash">valgrind --leak-check=full ./my_app
 </code></pre>
 </li>
 </ol>
@@ -762,22 +762,22 @@ int main() &#123;
 <h3 id="Using-gprof-for-Performance-Analysis"><a href="#Using-gprof-for-Performance-Analysis" class="headerlink" title="Using gprof for Performance Analysis"></a>Using gprof for Performance Analysis</h3><p><strong>gprof</strong> is a profiling tool that generates a call graph and provides function-level performance metrics.</p>
 <h4 id="Setting-Up-gprof"><a href="#Setting-Up-gprof" class="headerlink" title="Setting Up gprof"></a>Setting Up gprof</h4><ol>
 <li><p><strong>Compile with Profiling Flags:</strong></p>
-<pre><code class="bash">xmake f -m release
+<pre><code class="language-bash">xmake f -m release
 xmake set $(mode.debug) build -pg
 xmake
 </code></pre>
 </li>
 <li><p><strong>Run the Program to Generate Profiling Data:</strong></p>
-<pre><code class="bash">./my_app
+<pre><code class="language-bash">./my_app
 </code></pre>
 <p>This generates a <code>gmon.out</code> file containing profiling information.</p>
 </li>
 <li><p><strong>Analyze Profiling Data with gprof:</strong></p>
-<pre><code class="bash">gprof ./my_app gmon.out &gt; analysis.txt
+<pre><code class="language-bash">gprof ./my_app gmon.out &gt; analysis.txt
 </code></pre>
 </li>
 <li><p><strong>View the Analysis:</strong></p>
-<pre><code class="bash">cat analysis.txt
+<pre><code class="language-bash">cat analysis.txt
 </code></pre>
 </li>
 </ol>
@@ -827,7 +827,7 @@ Each sample counts as 0.01 seconds.
 </li>
 </ol>
 <p><strong>Example: Optimizing a Hotspot Function</strong></p>
-<pre><code class="cpp">// src/compute.cpp
+<pre><code class="language-cpp">// src/compute.cpp
 #include &lt;vector&gt;
 
 // A computationally intensive function
@@ -850,7 +850,7 @@ Each sample counts as 0.01 seconds.
 <p><strong>Optimization Steps:</strong></p>
 <ol>
 <li><p><strong>Optimize the Loop:</strong></p>
-<pre><code class="cpp">double compute_sum(const std::vector&lt;double&gt;&amp; data) &#123;
+<pre><code class="language-cpp">double compute_sum(const std::vector&lt;double&gt;&amp; data) &#123;
     double sum = 0.0;
     for(auto it = data.begin(); it != data.end(); ++it) &#123;
         sum += *it;
@@ -861,14 +861,14 @@ Each sample counts as 0.01 seconds.
 </li>
 <li><p><strong>Enable Compiler Optimizations:</strong></p>
 <ul>
-<li>Use optimization flags like <code>-O2</code> or <code>-O3</code> during compilation.<pre><code class="bash">xmake f -m release -c -O3
+<li>Use optimization flags like <code>-O2</code> or <code>-O3</code> during compilation.<pre><code class="language-bash">xmake f -m release -c -O3
 xmake
 </code></pre>
 </li>
 </ul>
 </li>
 <li><p><strong>Parallelize Computation (if applicable):</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;numeric&gt;
 #include &lt;execution&gt;
 
@@ -894,7 +894,7 @@ double compute_sum(const std::vector&lt;double&gt;&amp; data) &#123;
 </ul>
 <h3 id="Advanced-Build-Configurations"><a href="#Advanced-Build-Configurations" class="headerlink" title="Advanced Build Configurations"></a>Advanced Build Configurations</h3><p>Customize build configurations to cater to different environments, optimization levels, and feature sets.</p>
 <p><strong>Example: Defining Multiple Build Modes</strong></p>
-<pre><code class="lua">-- xmake.lua
+<pre><code class="language-lua">-- xmake.lua
 add_rules(&quot;mode.debug&quot;, &quot;mode.release&quot;)
 
 target(&quot;my_app&quot;)
@@ -909,7 +909,7 @@ target(&quot;my_app&quot;)
 </ul>
 <h3 id="Managing-Dependencies-with-xmake"><a href="#Managing-Dependencies-with-xmake" class="headerlink" title="Managing Dependencies with xmake"></a>Managing Dependencies with xmake</h3><p>Efficient dependency management ensures that your project remains modular and scalable. <code>xmake</code> offers integrated support for handling dependencies, including fetching, building, and linking external libraries.</p>
 <p><strong>Example: Adding Google Test as a Dependency</strong></p>
-<pre><code class="lua">-- xmake.lua
+<pre><code class="language-lua">-- xmake.lua
 add_requires(&quot;googletest&quot;)
 
 target(&quot;my_tests&quot;)
@@ -926,7 +926,7 @@ target(&quot;my_tests&quot;)
 </ul>
 <h3 id="Custom-Build-Rules-and-Targets"><a href="#Custom-Build-Rules-and-Targets" class="headerlink" title="Custom Build Rules and Targets"></a>Custom Build Rules and Targets</h3><p>Define custom build rules and targets to handle specialized build tasks, such as generating code, processing resources, or integrating tools.</p>
 <p><strong>Example: Adding a Custom Code Generation Target</strong></p>
-<pre><code class="lua">-- xmake.lua
+<pre><code class="language-lua">-- xmake.lua
 target(&quot;codegen&quot;)
     set_kind(&quot;phony&quot;) -- Phony target doesn&#39;t produce a binary
     on_build(function(target)
@@ -946,7 +946,7 @@ target(&quot;my_app&quot;)
 </ul>
 <h3 id="Integrating-Testing-with-xmake"><a href="#Integrating-Testing-with-xmake" class="headerlink" title="Integrating Testing with xmake"></a>Integrating Testing with xmake</h3><p>Automate the testing process by integrating test targets within your <code>xmake</code> build configuration.</p>
 <p><strong>Example: Defining a Test Target</strong></p>
-<pre><code class="lua">-- xmake.lua
+<pre><code class="language-lua">-- xmake.lua
 add_requires(&quot;googletest&quot;)
 
 target(&quot;my_tests&quot;)
@@ -957,7 +957,7 @@ target(&quot;my_tests&quot;)
     set_runenvs(&quot;RUN_ENV&quot;) -- Set environment variables if needed
 </code></pre>
 <p><strong>Running Tests:</strong></p>
-<pre><code class="bash">xmake run my_tests
+<pre><code class="language-bash">xmake run my_tests
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -1002,7 +1002,7 @@ target(&quot;my_tests&quot;)
 <ul>
 <li>Location: <code>.github/workflows/ci.yml</code></li>
 </ul>
-<pre><code class="yaml">name: C++ CI
+<pre><code class="language-yaml">name: C++ CI
 
 on:
   push:
@@ -1053,7 +1053,7 @@ jobs:
 <li><strong>Deployment Steps:</strong> Automate the deployment of successful builds to staging or production environments.</li>
 </ul>
 <p><strong>Example: Adding Static Code Analysis to GitHub Actions</strong></p>
-<pre><code class="yaml">- name: Run Cppcheck
+<pre><code class="language-yaml">- name: Run Cppcheck
   run: sudo apt-get install -y cppcheck &amp;&amp; cppcheck src/ tests/
 </code></pre>
 <h3 id="Automating-Builds-and-Tests"><a href="#Automating-Builds-and-Tests" class="headerlink" title="Automating Builds and Tests"></a>Automating Builds and Tests</h3><p>Automation ensures that every code change is built and tested consistently, reducing the risk of human errors.</p>
@@ -1061,7 +1061,7 @@ jobs:
 <p>As previously discussed, integrate Google Test with <code>xmake</code> and include test execution in your CI pipeline to automatically run tests on each commit.</p>
 <h3 id="Deploying-Applications"><a href="#Deploying-Applications" class="headerlink" title="Deploying Applications"></a>Deploying Applications</h3><p>Automate the deployment process to ensure that applications are released reliably and consistently.</p>
 <p><strong>Example: Deploying to GitHub Pages</strong></p>
-<pre><code class="yaml">- name: Deploy to GitHub Pages
+<pre><code class="language-yaml">- name: Deploy to GitHub Pages
   uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;
@@ -1107,7 +1107,7 @@ jobs:
 <ol>
 <li><strong>Define the Calculator Class:</strong></li>
 </ol>
-<pre><code class="cpp">// src/Calculator.h
+<pre><code class="language-cpp">// src/Calculator.h
 #pragma once
 
 class Calculator &#123;
@@ -1116,7 +1116,7 @@ public:
     int subtract(int a, int b);
 &#125;;
 </code></pre>
-<pre><code class="cpp">// src/Calculator.cpp
+<pre><code class="language-cpp">// src/Calculator.cpp
 #include &quot;Calculator.h&quot;
 
 int Calculator::add(int a, int b) &#123;
@@ -1130,7 +1130,7 @@ int Calculator::subtract(int a, int b) &#123;
 <ol start="2">
 <li><strong>Write Unit Tests:</strong></li>
 </ol>
-<pre><code class="cpp">// tests/test_calculator.cpp
+<pre><code class="language-cpp">// tests/test_calculator.cpp
 #include &lt;gtest/gtest.h&gt;
 #include &quot;Calculator.h&quot;
 
@@ -1151,7 +1151,7 @@ TEST(CalculatorTest, SubtractFunction) &#123;
 <ol start="3">
 <li><strong>Configure <code>xmake.lua</code>:</strong></li>
 </ol>
-<pre><code class="lua">-- xmake.lua
+<pre><code class="language-lua">-- xmake.lua
 add_rules(&quot;mode.debug&quot;, &quot;mode.release&quot;)
 add_requires(&quot;googletest&quot;)
 
@@ -1169,7 +1169,7 @@ target(&quot;my_tests&quot;)
 <ol start="4">
 <li><strong>Build and Run Tests:</strong></li>
 </ol>
-<pre><code class="bash">xmake
+<pre><code class="language-bash">xmake
 xmake run my_tests
 </code></pre>
 <p><strong>Expected Output:</strong></p>
@@ -1193,7 +1193,7 @@ xmake run my_tests
 </ul>
 <h3 id="Example-2-Debugging-with-GDB"><a href="#Example-2-Debugging-with-GDB" class="headerlink" title="Example 2: Debugging with GDB"></a>Example 2: Debugging with GDB</h3><p><strong>Objective:</strong> Debug a segmentation fault in a C++ program using GDB.</p>
 <p><strong>Code with a Bug:</strong></p>
-<pre><code class="cpp">// src/main.cpp
+<pre><code class="language-cpp">// src/main.cpp
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -1205,35 +1205,35 @@ int main() &#123;
 <p><strong>Steps to Debug:</strong></p>
 <ol>
 <li><p><strong>Compile with Debug Symbols:</strong></p>
-<pre><code class="bash">xmake f -m debug
+<pre><code class="language-bash">xmake f -m debug
 xmake
 </code></pre>
 </li>
 <li><p><strong>Start GDB:</strong></p>
-<pre><code class="bash">gdb ./my_app
+<pre><code class="language-bash">gdb ./my_app
 </code></pre>
 </li>
 <li><p><strong>Set a Breakpoint at <code>main</code>:</strong></p>
-<pre><code class="gdb">(gdb) break main
+<pre><code class="language-gdb">(gdb) break main
 </code></pre>
 </li>
 <li><p><strong>Run the Program:</strong></p>
-<pre><code class="gdb">(gdb) run
+<pre><code class="language-gdb">(gdb) run
 </code></pre>
 </li>
 <li><p><strong>Step Through the Code:</strong></p>
-<pre><code class="gdb">(gdb) step
+<pre><code class="language-gdb">(gdb) step
 </code></pre>
 </li>
 <li><p><strong>Inspect Variables:</strong></p>
-<pre><code class="gdb">(gdb) print ptr
+<pre><code class="language-gdb">(gdb) print ptr
 $1 = (int *) 0x0
 </code></pre>
 </li>
 <li><p><strong>Identify the Faulting Line and Fix the Bug:</strong></p>
 </li>
 </ol>
-<pre><code class="cpp">// src/main.cpp
+<pre><code class="language-cpp">// src/main.cpp
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -1244,7 +1244,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <ol start="8">
-<li><strong>Recompile and Run:</strong><pre><code class="bash">xmake clean
+<li><strong>Recompile and Run:</strong><pre><code class="language-bash">xmake clean
 xmake f -m debug
 xmake
 ./my_app
@@ -1262,7 +1262,7 @@ xmake
 </ul>
 <h3 id="Example-3-Profiling-a-C-Application-with-gprof"><a href="#Example-3-Profiling-a-C-Application-with-gprof" class="headerlink" title="Example 3: Profiling a C++ Application with gprof"></a>Example 3: Profiling a C++ Application with gprof</h3><p><strong>Objective:</strong> Profile a C++ application to identify performance bottlenecks using <code>gprof</code>.</p>
 <p><strong>Code to Profile:</strong></p>
-<pre><code class="cpp">// src/main.cpp
+<pre><code class="language-cpp">// src/main.cpp
 #include &lt;vector&gt;
 #include &lt;numeric&gt;
 #include &lt;iostream&gt;
@@ -1281,23 +1281,23 @@ int main() &#123;
 <p><strong>Steps to Profile:</strong></p>
 <ol>
 <li><p><strong>Compile with Profiling Flags:</strong></p>
-<pre><code class="bash">xmake f -m release -c -pg
+<pre><code class="language-bash">xmake f -m release -c -pg
 xmake
 </code></pre>
 </li>
 <li><p><strong>Run the Program to Generate Profiling Data:</strong></p>
-<pre><code class="bash">./my_app
+<pre><code class="language-bash">./my_app
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Sum: 1000000
 </code></pre>
 </li>
 <li><p><strong>Generate the Profiling Report:</strong></p>
-<pre><code class="bash">gprof ./my_app gmon.out &gt; analysis.txt
+<pre><code class="language-bash">gprof ./my_app gmon.out &gt; analysis.txt
 </code></pre>
 </li>
 <li><p><strong>View the Analysis:</strong></p>
-<pre><code class="bash">cat analysis.txt
+<pre><code class="language-bash">cat analysis.txt
 </code></pre>
 </li>
 </ol>
@@ -1324,12 +1324,12 @@ index % time    self              calls   self  children    called
 <li><strong>Optimize the Hotspot (<code>compute_sum</code>):</strong></li>
 </ol>
 <p><strong>Original <code>compute_sum</code>:</strong></p>
-<pre><code class="cpp">int compute_sum(const std::vector&lt;int&gt;&amp; data) &#123;
+<pre><code class="language-cpp">int compute_sum(const std::vector&lt;int&gt;&amp; data) &#123;
     return std::accumulate(data.begin(), data.end(), 0);
 &#125;
 </code></pre>
 <p><strong>Optimized <code>compute_sum</code>:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;numeric&gt;
 #include &lt;execution&gt; // C++17 parallel algorithms
 
@@ -1342,7 +1342,7 @@ int compute_sum(const std::vector&lt;int&gt;&amp; data) &#123;
 <li><strong>Parallel Reduction:</strong> Uses <code>std::reduce</code> with the <code>std::execution::par</code> policy to perform parallel accumulation, leveraging multiple CPU cores for faster computation.</li>
 </ul>
 <ol start="6">
-<li><strong>Re-Profile After Optimization:</strong><pre><code class="bash">xmake clean
+<li><strong>Re-Profile After Optimization:</strong><pre><code class="language-bash">xmake clean
 xmake f -m release -c -pg
 xmake
 ./my_app
@@ -1441,7 +1441,7 @@ index % time    self              calls   self  children    called
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

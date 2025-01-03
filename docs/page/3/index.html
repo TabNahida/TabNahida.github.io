@@ -228,7 +228,7 @@
 <hr>
 <h2 id="Type-Inference-with-auto"><a href="#Type-Inference-with-auto" class="headerlink" title="Type Inference with auto"></a>Type Inference with <code>auto</code></h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>The <code>auto</code> keyword allows the compiler to automatically deduce the type of a variable at compile time. This feature simplifies code and improves readability, especially when dealing with complex types.</p>
 <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p><strong>Basic Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 int main() &#123;
@@ -249,29 +249,29 @@ int main() &#123;
 </code></pre>
 <h3 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h3><ul>
 <li><p><strong>Use <code>auto</code> When Type is Obvious:</strong></p>
-<pre><code class="cpp">auto count = 10; // Clearly an int
+<pre><code class="language-cpp">auto count = 10; // Clearly an int
 </code></pre>
 </li>
 <li><p><strong>Avoid Obscuring Types:</strong></p>
-<pre><code class="cpp">auto result = someFunction(); // If the return type of someFunction is unclear
+<pre><code class="language-cpp">auto result = someFunction(); // If the return type of someFunction is unclear
 </code></pre>
 </li>
 <li><p><strong>Combine with <code>decltype</code> for Complex Deductions:</strong></p>
-<pre><code class="cpp">decltype(auto) ref = someFunctionReturningReference();
+<pre><code class="language-cpp">decltype(auto) ref = someFunctionReturningReference();
 </code></pre>
 </li>
 <li><p><strong>Prefer Explicit Types for Function Return Types and Parameters:</strong></p>
-<pre><code class="cpp">int add(int a, int b); // Clear return type
+<pre><code class="language-cpp">int add(int a, int b); // Clear return type
 </code></pre>
 </li>
 </ul>
 <hr>
 <h2 id="Range-Based-For-Loops"><a href="#Range-Based-For-Loops" class="headerlink" title="Range-Based For Loops"></a>Range-Based For Loops</h2><h3 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h3><p>Range-based for loops provide a more readable and concise way to iterate through containers, eliminating the need for explicit iterators or index-based loops. Introduced in C++11, they enhance code clarity and reduce the likelihood of errors associated with traditional loop constructs.</p>
-<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="cpp">for (auto&amp; element : container) &#123;
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="language-cpp">for (auto&amp; element : container) &#123;
     // Use element
 &#125;
 </code></pre>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 int main() &#123;
@@ -290,31 +290,31 @@ int main() &#123;
 </code></pre>
 <h3 id="Best-Practices-1"><a href="#Best-Practices-1" class="headerlink" title="Best Practices"></a>Best Practices</h3><ul>
 <li><p><strong>Use <code>const auto&amp;</code> When Not Modifying Elements:</strong></p>
-<pre><code class="cpp">for (const auto&amp; num : numbers) &#123;
+<pre><code class="language-cpp">for (const auto&amp; num : numbers) &#123;
     // Read-only access
 &#125;
 </code></pre>
 </li>
 <li><p><strong>Use <code>auto&amp;</code> When Modifying Elements:</strong></p>
-<pre><code class="cpp">for (auto&amp; num : numbers) &#123;
+<pre><code class="language-cpp">for (auto&amp; num : numbers) &#123;
     num *= 2; // Modify elements
 &#125;
 </code></pre>
 </li>
 <li><p><strong>Avoid Unnecessary Copies:</strong></p>
-<pre><code class="cpp">for (const auto&amp; str : stringList) &#123; /* ... */ &#125; // Avoid copying strings
+<pre><code class="language-cpp">for (const auto&amp; str : stringList) &#123; /* ... */ &#125; // Avoid copying strings
 </code></pre>
 </li>
 <li><p><strong>Use <code>auto&amp;&amp;</code> for Perfect Forwarding:</strong></p>
-<pre><code class="cpp">for (auto&amp;&amp; element : container) &#123; /* ... */ &#125;
+<pre><code class="language-cpp">for (auto&amp;&amp; element : container) &#123; /* ... */ &#125;
 </code></pre>
 </li>
 </ul>
 <hr>
 <h2 id="Type-Aliases-using"><a href="#Type-Aliases-using" class="headerlink" title="Type Aliases (using)"></a>Type Aliases (<code>using</code>)</h2><h3 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction"></a>Introduction</h3><p>Type aliases allow you to create alternative names for existing types, enhancing code readability and maintainability. The <code>using</code> keyword is preferred over <code>typedef</code> in modern C++ due to its clearer syntax and enhanced capabilities, especially with templates.</p>
-<h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="cpp">using AliasName = ExistingType;
+<h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="language-cpp">using AliasName = ExistingType;
 </code></pre>
-<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><pre><code class="cpp">#include &lt;vector&gt;
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;string&gt;
 
 using StringList = std::vector&lt;std::string&gt;;
@@ -326,19 +326,19 @@ int main() &#123;
 </code></pre>
 <h3 id="Best-Practices-2"><a href="#Best-Practices-2" class="headerlink" title="Best Practices"></a>Best Practices</h3><ul>
 <li><p><strong>Simplify Complex Type Declarations:</strong></p>
-<pre><code class="cpp">using IntPair = std::pair&lt;int, int&gt;;
+<pre><code class="language-cpp">using IntPair = std::pair&lt;int, int&gt;;
 </code></pre>
 </li>
 <li><p><strong>Enhance Code Readability:</strong></p>
-<pre><code class="cpp">using Byte = unsigned char;
+<pre><code class="language-cpp">using Byte = unsigned char;
 </code></pre>
 </li>
 <li><p><strong>Use Descriptive Alias Names:</strong></p>
-<pre><code class="cpp">using Matrix = std::vector&lt;std::vector&lt;double&gt;&gt;;
+<pre><code class="language-cpp">using Matrix = std::vector&lt;std::vector&lt;double&gt;&gt;;
 </code></pre>
 </li>
 <li><p><strong>Leverage with Templates:</strong></p>
-<pre><code class="cpp">template &lt;typename T&gt;
+<pre><code class="language-cpp">template &lt;typename T&gt;
 using Vec = std::vector&lt;T&gt;;
 
 Vec&lt;int&gt; intVec;
@@ -349,7 +349,7 @@ Vec&lt;int&gt; intVec;
 <h2 id="constexpr-consteval-and-constinit"><a href="#constexpr-consteval-and-constinit" class="headerlink" title="constexpr, consteval, and constinit"></a><code>constexpr</code>, <code>consteval</code>, and <code>constinit</code></h2><p>Modern C++ introduces several keywords that enhance compile-time programming, enabling more efficient and safer code. Understanding the distinctions and appropriate usage of <code>constexpr</code>, <code>consteval</code>, and <code>constinit</code> is crucial for leveraging these features effectively.</p>
 <h3 id="Understanding-constexpr"><a href="#Understanding-constexpr" class="headerlink" title="Understanding constexpr"></a>Understanding <code>constexpr</code></h3><p><strong><code>constexpr</code></strong> specifies that the value of a variable or the return value of a function can be evaluated at compile time. It allows for optimizations and ensures that certain computations are performed during compilation rather than at runtime.</p>
 <p><strong>Usage:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 constexpr int square(int x) &#123;
     return x * x;
@@ -375,7 +375,7 @@ Square of 6 is: 36
 </ul>
 <h3 id="Introducing-consteval"><a href="#Introducing-consteval" class="headerlink" title="Introducing consteval"></a>Introducing <code>consteval</code></h3><p><strong><code>consteval</code></strong> is a keyword introduced in C++20 that declares an <strong>immediate function</strong>. These functions are guaranteed to produce a compile-time constant and must be evaluated at compile time. Unlike <code>constexpr</code>, which allows both compile-time and runtime evaluations, <code>consteval</code> enforces compile-time evaluation.</p>
 <p><strong>Usage:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 consteval int square(int x) &#123;
     return x * x;
@@ -399,7 +399,7 @@ int main() &#123;
 </ul>
 <h3 id="Exploring-constinit"><a href="#Exploring-constinit" class="headerlink" title="Exploring constinit"></a>Exploring <code>constinit</code></h3><p><strong><code>constinit</code></strong> is another keyword introduced in C++20 that ensures a variable is <strong>constantly initialized</strong> at compile time without making it immutable. Unlike <code>constexpr</code>, which makes a variable a compile-time constant, <code>constinit</code> only guarantees that the variable is initialized at compile time, allowing it to remain mutable during runtime.</p>
 <p><strong>Usage:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 constinit int global_counter = 0;
 
@@ -430,7 +430,7 @@ int main() &#123;
 <hr>
 <h2 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a><code>decltype</code></h2><h3 id="Introduction-3"><a href="#Introduction-3" class="headerlink" title="Introduction"></a>Introduction</h3><p>The <code>decltype</code> keyword in C++ deduces the type of an expression at compile time. It is particularly useful in templates and when the type of an expression is complex or not easily determined. <code>decltype</code> enhances type safety and flexibility, allowing for more generic and adaptable code.</p>
 <h3 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h3><p><strong>Basic Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 int main() &#123;
     int x = 5;
@@ -443,7 +443,7 @@ int main() &#123;
 <pre><code>y: 10
 </code></pre>
 <p><strong>With Complex Expressions:</strong></p>
-<pre><code class="cpp">#include &lt;vector&gt;
+<pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
 int main() &#123;
@@ -461,7 +461,7 @@ int main() &#123;
 <li><p><strong>Use in Templates:</strong> Facilitate generic programming by deducing return types or variable types based on template parameters.</p>
 </li>
 <li><p><strong>Combine with <code>auto</code>:</strong> Create concise type declarations without sacrificing clarity.</p>
-<pre><code class="cpp">auto x = someFunction();
+<pre><code class="language-cpp">auto x = someFunction();
 decltype(x) y = anotherFunction();
 </code></pre>
 </li>
@@ -473,7 +473,7 @@ decltype(x) y = anotherFunction();
 <h3 id="std-variant"><a href="#std-variant" class="headerlink" title="std::variant"></a><code>std::variant</code></h3><p><strong>Description:</strong></p>
 <p><code>std::variant</code> is a type-safe union that can hold one value from a specified set of types. It provides a way to store and manage multiple types in a single variable, ensuring that only one type is active at any given time.</p>
 <p><strong>Usage:</strong></p>
-<pre><code class="cpp">#include &lt;variant&gt;
+<pre><code class="language-cpp">#include &lt;variant&gt;
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
@@ -490,7 +490,7 @@ int main() &#123;
 &#125;
 </code></pre>
 <p><strong>Handling Multiple Types with <code>std::visit</code>:</strong></p>
-<pre><code class="cpp">#include &lt;variant&gt;
+<pre><code class="language-cpp">#include &lt;variant&gt;
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
@@ -526,7 +526,7 @@ int: 42
 <h3 id="std-optional"><a href="#std-optional" class="headerlink" title="std::optional"></a><code>std::optional</code></h3><p><strong>Description:</strong></p>
 <p><code>std::optional</code> represents an object that may or may not contain a value, eliminating the need for sentinel values like <code>nullptr</code> or special error codes. It enhances code clarity by explicitly indicating the presence or absence of a value.</p>
 <p><strong>Usage:</strong></p>
-<pre><code class="cpp">#include &lt;optional&gt;
+<pre><code class="language-cpp">#include &lt;optional&gt;
 #include &lt;iostream&gt;
 
 std::optional&lt;int&gt; findValue(bool shouldFind) &#123;
@@ -551,7 +551,7 @@ int main() &#123;
 <pre><code>Found value: 42
 </code></pre>
 <p><strong>Simplified Access with <code>operator*</code> and <code>operator-&gt;</code>:</strong></p>
-<pre><code class="cpp">#include &lt;optional&gt;
+<pre><code class="language-cpp">#include &lt;optional&gt;
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
@@ -582,14 +582,14 @@ int main() &#123;
 <li><p><strong>Prefer Checking <code>has_value()</code> or Using <code>if (opt)</code>:</strong> Ensure that the presence of a value is checked before accessing it to prevent exceptions.</p>
 </li>
 <li><p><strong>Leverage <code>value_or</code> for Default Values:</strong> Provide a fallback value when the optional is empty.</p>
-<pre><code class="cpp">int value = opt.value_or(0);
+<pre><code class="language-cpp">int value = opt.value_or(0);
 </code></pre>
 </li>
 </ul>
 <hr>
 <h2 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a><code>nullptr</code></h2><h3 id="Introduction-5"><a href="#Introduction-5" class="headerlink" title="Introduction"></a>Introduction</h3><p>Introduced in C++11, <code>nullptr</code> is a type-safe pointer literal representing a null pointer. It replaces the traditional <code>NULL</code> macro and integer literal <code>0</code>, providing better type safety and clarity in your code.</p>
 <h3 id="Usage-2"><a href="#Usage-2" class="headerlink" title="Usage"></a>Usage</h3><p><strong>Basic Example:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 void func(int* ptr) &#123;
     if (ptr == nullptr) &#123;
@@ -608,7 +608,7 @@ int main() &#123;
 <pre><code>Pointer is null.
 </code></pre>
 <p><strong>Function Overloading Ambiguity Resolution:</strong></p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 
 void func(int) &#123;
     std::cout &lt;&lt; &quot;Function with int parameter.&quot; &lt;&lt; std::endl;
@@ -636,7 +636,7 @@ int main() &#123;
 </ul>
 <h3 id="Best-Practices-7"><a href="#Best-Practices-7" class="headerlink" title="Best Practices"></a>Best Practices</h3><ul>
 <li><p><strong>Use <code>nullptr</code> Instead of <code>NULL</code> or <code>0</code>:</strong></p>
-<pre><code class="cpp">int* ptr = nullptr;
+<pre><code class="language-cpp">int* ptr = nullptr;
 </code></pre>
 </li>
 <li><p><strong>Consistently Use <code>nullptr</code> Across Codebase:</strong> Ensure uniformity to leverage its type safety benefits fully.</p>
@@ -676,17 +676,17 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00bcd4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #00a596">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #00bcd4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #00a596">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
         </span>
         
     </div>
@@ -745,22 +745,22 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #03a9f4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #ffa2c4">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ff7d73">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">Zero to Hero</a>
         </span>
         
     </div>
@@ -811,22 +811,22 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #03a9f4">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #ffa2c4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #03a9f4">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #03a9f4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #00bcd4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #00a596">Zero to Hero</a>
         </span>
         
     </div>
@@ -907,22 +907,22 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #03a9f4">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #ffa2c4">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00bcd4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #ff7d73">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #ff7d73">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #03a9f4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">Zero to Hero</a>
         </span>
         
     </div>
@@ -1006,7 +1006,7 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #00bcd4">C/C++</a>
         </span>
         
         <span class="tag">
@@ -1016,7 +1016,7 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00bcd4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
@@ -1082,17 +1082,17 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #ffa2c4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #03a9f4">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00bcd4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
@@ -1148,22 +1148,22 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ffa2c4">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #00bcd4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #03a9f4">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #03a9f4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">Zero to Hero</a>
         </span>
         
     </div>
@@ -1214,7 +1214,7 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
         </span>
         
         <span class="tag">
@@ -1224,12 +1224,12 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #00bcd4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ff7d73">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">Zero to Hero</a>
         </span>
         
     </div>
@@ -1280,22 +1280,22 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #00bcd4">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #ff7d73">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #03a9f4">Modern C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cpp-unleash/" style="color: #03a9f4">C++ Unleashed</a>
+            <a href="/tags/cpp-unleash/" style="color: #ffa2c4">C++ Unleashed</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">Zero to Hero</a>
         </span>
         
     </div>
@@ -1344,12 +1344,12 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ff7d73">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #ffa2c4">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/modern-cpp/" style="color: #03a9f4">Modern C++</a>
+            <a href="/tags/modern-cpp/" style="color: #00a596">Modern C++</a>
         </span>
         
         <span class="tag">
@@ -1359,7 +1359,7 @@ int main() &#123;
         
         <span class="tag">
             
-            <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">Zero to Hero</a>
+            <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">Zero to Hero</a>
         </span>
         
     </div>
@@ -1452,7 +1452,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Tab&#39;s Blog
+            2024 - 2025 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
