@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ffa2c4">
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ff7d73">
+                <a href="/tags/modern-cpp/" style="color: #03a9f4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
                     Zero to Hero
                 </a>
             </span>
@@ -257,21 +262,21 @@
 
 // Template to compute factorial at compile time
 template&lt;int N&gt;
-struct Factorial &#123;
+struct Factorial {
     static const int value = N * Factorial&lt;N - 1&gt;::value;
-&#125;;
+};
 
 // Specialization for N = 0
 template&lt;&gt;
-struct Factorial&lt;0&gt; &#123;
+struct Factorial&lt;0&gt; {
     static const int value = 1;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; &quot;Factorial of 5: &quot; &lt;&lt; Factorial&lt;5&gt;::value &lt;&lt; std::endl; // Outputs: 120
     std::cout &lt;&lt; &quot;Factorial of 0: &quot; &lt;&lt; Factorial&lt;0&gt;::value &lt;&lt; std::endl; // Outputs: 1
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Factorial of 5: 120
@@ -303,18 +308,18 @@ Factorial of 0: 1
 // Function enabled only for integral types
 template&lt;typename T&gt;
 typename std::enable_if&lt;std::is_integral&lt;T&gt;::value, void&gt;::type
-printType(const T&amp; value) &#123;
+printType(const T&amp; value) {
     std::cout &lt;&lt; value &lt;&lt; &quot; is an integral type.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
 // Function enabled only for floating-point types
 template&lt;typename T&gt;
 typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, void&gt;::type
-printType(const T&amp; value) &#123;
+printType(const T&amp; value) {
     std::cout &lt;&lt; value &lt;&lt; &quot; is a floating-point type.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int a = 10;
     double b = 3.14;
     
@@ -322,7 +327,7 @@ int main() &#123;
     printType(b); // Outputs: 3.14 is a floating-point type.
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>10 is an integral type.
@@ -348,18 +353,18 @@ int main() &#123;
 // Function enabled only for integral types
 template&lt;typename T&gt;
 typename std::enable_if&lt;std::is_integral&lt;T&gt;::value, void&gt;::type
-process(const T&amp; value) &#123;
+process(const T&amp; value) {
     std::cout &lt;&lt; value &lt;&lt; &quot; is an integral type.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
 // Function enabled only for floating-point types
 template&lt;typename T&gt;
 typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, void&gt;::type
-process(const T&amp; value) &#123;
+process(const T&amp; value) {
     std::cout &lt;&lt; value &lt;&lt; &quot; is a floating-point type.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int a = 5;
     double b = 2.718;
     
@@ -368,7 +373,7 @@ int main() &#123;
     
     // process(&quot;Hello&quot;); // Compilation error: no matching function
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>5 is an integral type.
@@ -387,25 +392,25 @@ int main() &#123;
 
 // Primary template: assumes T does not have a member function `foo`
 template&lt;typename, typename = std::void_t&lt;&gt;&gt;
-struct has_foo : std::false_type &#123;&#125;;
+struct has_foo : std::false_type {};
 
 // Specialization: T has a member function `foo`
 template&lt;typename T&gt;
-struct has_foo&lt;T, std::void_t&lt;decltype(std::declval&lt;T&gt;().foo())&gt;&gt; : std::true_type &#123;&#125;;
+struct has_foo&lt;T, std::void_t&lt;decltype(std::declval&lt;T&gt;().foo())&gt;&gt; : std::true_type {};
 
-class WithFoo &#123;
+class WithFoo {
 public:
-    void foo() &#123;&#125;
-&#125;;
+    void foo() {}
+};
 
-class WithoutFoo &#123;&#125;;
+class WithoutFoo {};
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; std::boolalpha;
     std::cout &lt;&lt; &quot;WithFoo has foo(): &quot; &lt;&lt; has_foo&lt;WithFoo&gt;::value &lt;&lt; std::endl;       // true
     std::cout &lt;&lt; &quot;WithoutFoo has foo(): &quot; &lt;&lt; has_foo&lt;WithoutFoo&gt;::value &lt;&lt; std::endl; // false
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>WithFoo has foo(): true
@@ -423,60 +428,60 @@ WithoutFoo has foo(): false
 <li><strong>Compile-Time Checks</strong>: Enforce certain interfaces or behaviors at compile time.</li>
 </ul>
 <h3 id="Syntax-of-CRTP"><a href="#Syntax-of-CRTP" class="headerlink" title="Syntax of CRTP"></a>Syntax of CRTP</h3><pre><code class="language-cpp">template&lt;typename Derived&gt;
-class Base &#123;
+class Base {
 public:
-    void interface() &#123;
+    void interface() {
         // Calls implementation provided by Derived
         static_cast&lt;Derived*&gt;(this)-&gt;implementation();
-    &#125;
+    }
     
     // Optionally provide a default implementation
-    void implementation() &#123;
+    void implementation() {
         // Default behavior
-    &#125;
-&#125;;
+    }
+};
 
-class Derived : public Base&lt;Derived&gt; &#123;
+class Derived : public Base&lt;Derived&gt; {
 public:
-    void implementation() &#123;
+    void implementation() {
         // Derived-specific behavior
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <h3 id="Example-Static-Polymorphism-with-CRTP"><a href="#Example-Static-Polymorphism-with-CRTP" class="headerlink" title="Example: Static Polymorphism with CRTP"></a>Example: Static Polymorphism with CRTP</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // CRTP Base Class
 template&lt;typename Derived&gt;
-class Shape &#123;
+class Shape {
 public:
-    void draw() const &#123;
+    void draw() const {
         // Calls the derived class&#39;s drawImpl method
         static_cast&lt;const Derived*&gt;(this)-&gt;drawImpl();
-    &#125;
+    }
     
     // Optional default implementation
-    void drawImpl() const &#123;
+    void drawImpl() const {
         std::cout &lt;&lt; &quot;Drawing a generic shape.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Derived Class: Circle
-class Circle : public Shape&lt;Circle&gt; &#123;
+class Circle : public Shape&lt;Circle&gt; {
 public:
-    void drawImpl() const &#123;
+    void drawImpl() const {
         std::cout &lt;&lt; &quot;Drawing a circle.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Derived Class: Square
-class Square : public Shape&lt;Square&gt; &#123;
+class Square : public Shape&lt;Square&gt; {
 public:
-    void drawImpl() const &#123;
+    void drawImpl() const {
         std::cout &lt;&lt; &quot;Drawing a square.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     Circle c;
     Square s;
     
@@ -484,7 +489,7 @@ int main() &#123;
     s.draw(); // Outputs: Drawing a square.
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Drawing a circle.
@@ -508,27 +513,27 @@ void function(Args... args);
 
 // Class template with variadic parameters
 template&lt;typename... Args&gt;
-class ClassName &#123;&#125;;
+class ClassName {};
 </code></pre>
 <h3 id="Understanding-Parameter-Packs"><a href="#Understanding-Parameter-Packs" class="headerlink" title="Understanding Parameter Packs"></a>Understanding Parameter Packs</h3><p>A parameter pack is a template parameter that represents zero or more template arguments. It can be expanded into individual types or values using pack expansion syntax.</p>
 <h3 id="Example-Variadic-Function-to-Print-Multiple-Arguments"><a href="#Example-Variadic-Function-to-Print-Multiple-Arguments" class="headerlink" title="Example: Variadic Function to Print Multiple Arguments"></a>Example: Variadic Function to Print Multiple Arguments</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // Base case: no arguments
-void print() &#123;
+void print() {
     std::cout &lt;&lt; std::endl;
-&#125;
+}
 
 // Recursive variadic template function
 template&lt;typename T, typename... Args&gt;
-void print(const T&amp; first, const Args&amp;... rest) &#123;
+void print(const T&amp; first, const Args&amp;... rest) {
     std::cout &lt;&lt; first &lt;&lt; &quot; &quot;;
     print(rest...); // Recursive call with the remaining arguments
-&#125;
+}
 
-int main() &#123;
+int main() {
     print(1, 2.5, &quot;Hello&quot;, &#39;A&#39;); // Outputs: 1 2.5 Hello A 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2.5 Hello A 
@@ -538,32 +543,32 @@ int main() &#123;
 
 // Base case: empty tuple
 template&lt;typename...&gt;
-class MyTuple &#123;&#125;;
+class MyTuple {};
 
 // Recursive case: tuple with at least one element
 template&lt;typename T, typename... Rest&gt;
-class MyTuple&lt;T, Rest...&gt; : private MyTuple&lt;Rest...&gt; &#123;
+class MyTuple&lt;T, Rest...&gt; : private MyTuple&lt;Rest...&gt; {
 public:
-    MyTuple() &#123;&#125;
+    MyTuple() {}
     
     MyTuple(const T&amp; first, const Rest&amp;... rest)
-        : MyTuple&lt;Rest...&gt;(rest...), first_(first) &#123;&#125;
+        : MyTuple&lt;Rest...&gt;(rest...), first_(first) {}
     
-    T&amp; getFirst() &#123; return first_; &#125;
-    const T&amp; getFirst() const &#123; return first_; &#125;
+    T&amp; getFirst() { return first_; }
+    const T&amp; getFirst() const { return first_; }
     
 private:
     T first_;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     MyTuple&lt;int, double, std::string&gt; tuple(42, 3.14, &quot;World&quot;);
     
     std::cout &lt;&lt; &quot;First: &quot; &lt;&lt; tuple.getFirst() &lt;&lt; std::endl; // Outputs: 42
     // To access other elements, further get functions would be needed
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>First: 42
@@ -575,26 +580,26 @@ int main() &#123;
 #include &lt;vector&gt;
 
 template&lt;typename T&gt;
-std::vector&lt;T&gt; makeVector(T first) &#123;
-    return &#123; first &#125;;
-&#125;
+std::vector&lt;T&gt; makeVector(T first) {
+    return { first };
+}
 
 template&lt;typename T, typename... Args&gt;
-std::vector&lt;T&gt; makeVector(T first, Args... args) &#123;
+std::vector&lt;T&gt; makeVector(T first, Args... args) {
     std::vector&lt;T&gt; vec = makeVector(args...);
     vec.insert(vec.begin(), first);
     return vec;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::vector&lt;int&gt; vec = makeVector(1, 2, 3, 4, 5);
     
-    for(auto num : vec) &#123;
+    for(auto num : vec) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5 
-    &#125;
+    }
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -605,14 +610,14 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
 template&lt;typename... Args&gt;
-auto sum(Args... args) -&gt; decltype((args + ...)) &#123;
+auto sum(Args... args) -&gt; decltype((args + ...)) {
     return (args + ...);
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum(1, 2, 3, 4, 5) &lt;&lt; std::endl; // Outputs: 15
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Sum: 15
@@ -642,16 +647,16 @@ int main() &#123;
 
 // Function that only accepts integral types
 template&lt;typename T&gt;
-void processIntegral(T value) &#123;
+void processIntegral(T value) {
     static_assert(std::is_integral&lt;T&gt;::value, &quot;T must be an integral type.&quot;);
     std::cout &lt;&lt; &quot;Processing integral value: &quot; &lt;&lt; value &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     processIntegral(10);     // Valid
     // processIntegral(3.14); // Compilation error: T must be an integral type.
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Processing integral value: 10
@@ -667,32 +672,32 @@ int main() &#123;
 
 // CRTP Base Class
 template&lt;typename Derived&gt;
-class Logger &#123;
+class Logger {
 public:
-    void log(const std::string&amp; message) const &#123;
+    void log(const std::string&amp; message) const {
         // Call the derived class&#39;s logImplementation method
         static_cast&lt;const Derived*&gt;(this)-&gt;logImplementation(message);
-    &#125;
-&#125;;
+    }
+};
 
 // Derived Class: ConsoleLogger
-class ConsoleLogger : public Logger&lt;ConsoleLogger&gt; &#123;
+class ConsoleLogger : public Logger&lt;ConsoleLogger&gt; {
 public:
-    void logImplementation(const std::string&amp; message) const &#123;
+    void logImplementation(const std::string&amp; message) const {
         std::cout &lt;&lt; &quot;[Console] &quot; &lt;&lt; message &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Derived Class: FileLogger (Simulation)
-class FileLogger : public Logger&lt;FileLogger&gt; &#123;
+class FileLogger : public Logger&lt;FileLogger&gt; {
 public:
-    void logImplementation(const std::string&amp; message) const &#123;
+    void logImplementation(const std::string&amp; message) const {
         // Simulate logging to a file
         std::cout &lt;&lt; &quot;[File] &quot; &lt;&lt; message &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     ConsoleLogger console;
     FileLogger file;
     
@@ -700,7 +705,7 @@ int main() &#123;
     file.log(&quot;Hello, File!&quot;);
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>[Console] Hello, Console!
@@ -717,35 +722,35 @@ int main() &#123;
 
 // Base case: empty tuple
 template&lt;typename...&gt;
-class MyTuple &#123;&#125;;
+class MyTuple {};
 
 // Recursive case: tuple with at least one element
 template&lt;typename T, typename... Rest&gt;
-class MyTuple&lt;T, Rest...&gt; : private MyTuple&lt;Rest...&gt; &#123;
+class MyTuple&lt;T, Rest...&gt; : private MyTuple&lt;Rest...&gt; {
 public:
-    MyTuple() &#123;&#125;
+    MyTuple() {}
     
     MyTuple(const T&amp; first, const Rest&amp;... rest)
-        : MyTuple&lt;Rest...&gt;(rest...), first_(first) &#123;&#125;
+        : MyTuple&lt;Rest...&gt;(rest...), first_(first) {}
     
-    T&amp; getFirst() &#123; return first_; &#125;
-    const T&amp; getFirst() const &#123; return first_; &#125;
+    T&amp; getFirst() { return first_; }
+    const T&amp; getFirst() const { return first_; }
     
     // Access to the rest of the tuple
-    MyTuple&lt;Rest...&gt;&amp; getRest() &#123; return *this; &#125;
-    const MyTuple&lt;Rest...&gt;&amp; getRest() const &#123; return *this; &#125;
+    MyTuple&lt;Rest...&gt;&amp; getRest() { return *this; }
+    const MyTuple&lt;Rest...&gt;&amp; getRest() const { return *this; }
     
 private:
     T first_;
-&#125;;
+};
 
 // Helper function to create a MyTuple
 template&lt;typename... Args&gt;
-MyTuple&lt;Args...&gt; makeMyTuple(Args... args) &#123;
+MyTuple&lt;Args...&gt; makeMyTuple(Args... args) {
     return MyTuple&lt;Args...&gt;(args...);
-&#125;
+}
 
-int main() &#123;
+int main() {
     auto tuple = makeMyTuple(42, 3.14, std::string(&quot;Hello&quot;));
     
     std::cout &lt;&lt; &quot;First: &quot; &lt;&lt; tuple.getFirst() &lt;&lt; std::endl; // Outputs: 42
@@ -753,7 +758,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Third: &quot; &lt;&lt; tuple.getRest().getRest().getFirst() &lt;&lt; std::endl; // Outputs: Hello
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>First: 42
@@ -771,25 +776,25 @@ Third: Hello
 
 // Class template that only accepts floating-point types
 template&lt;typename T&gt;
-class Calculator &#123;
+class Calculator {
 public:
-    Calculator() &#123;
+    Calculator() {
         static_assert(std::is_floating_point&lt;T&gt;::value, &quot;Calculator requires a floating-point type.&quot;);
-    &#125;
+    }
     
-    T add(T a, T b) const &#123;
+    T add(T a, T b) const {
         return a + b;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     Calculator&lt;double&gt; calc1;
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; calc1.add(1.5, 2.5) &lt;&lt; std::endl; // Outputs: 4.0
     
     // Calculator&lt;int&gt; calc2; // Compilation error: Calculator requires a floating-point type.
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Sum: 4
@@ -831,7 +836,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

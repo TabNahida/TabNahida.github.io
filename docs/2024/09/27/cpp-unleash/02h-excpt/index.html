@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,21 +189,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00a596">
+                <a href="/tags/c-cpp/" style="color: #00bcd4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                <a href="/tags/modern-cpp/" style="color: #00a596">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
                     C++ Unleashed
                 </a>
             </span>
@@ -232,62 +237,62 @@
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;stdexcept&gt;
 
-void divide(int a, int b) &#123;
-    if (b == 0) &#123;
+void divide(int a, int b) {
+    if (b == 0) {
         throw std::invalid_argument(&quot;Division by zero is not allowed.&quot;);
-    &#125;
+    }
     std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; a / b &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
-    try &#123;
+int main() {
+    try {
         divide(10, 0);
-    &#125; catch (const std::invalid_argument&amp; e) &#123;
+    } catch (const std::invalid_argument&amp; e) {
         std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl; // Outputs: Error: Division by zero is not allowed.
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Catching-Exceptions"><a href="#Catching-Exceptions" class="headerlink" title="Catching Exceptions"></a>Catching Exceptions</h3><p>The <code>try</code> block contains code that might throw an exception, while the <code>catch</code> block defines how to handle it. You can catch specific exceptions or use a general catch-all.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;stdexcept&gt;
 
-void mightGoWrong() &#123;
+void mightGoWrong() {
     throw std::runtime_error(&quot;Something went wrong!&quot;);
-&#125;
+}
 
-int main() &#123;
-    try &#123;
+int main() {
+    try {
         mightGoWrong();
-    &#125; catch (const std::runtime_error&amp; e) &#123;
+    } catch (const std::runtime_error&amp; e) {
         std::cerr &lt;&lt; &quot;Caught an exception: &quot; &lt;&lt; e.what() &lt;&lt; std::endl; // Outputs: Caught an exception: Something went wrong!
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Multiple-Catch-Blocks"><a href="#Multiple-Catch-Blocks" class="headerlink" title="Multiple Catch Blocks"></a>Multiple Catch Blocks</h3><p>You can have multiple <code>catch</code> blocks to handle different types of exceptions.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;stdexcept&gt;
 
-void testFunction() &#123;
+void testFunction() {
     throw std::out_of_range(&quot;Out of range error!&quot;);
-&#125;
+}
 
-int main() &#123;
-    try &#123;
+int main() {
+    try {
         testFunction();
-    &#125; catch (const std::out_of_range&amp; e) &#123;
+    } catch (const std::out_of_range&amp; e) {
         std::cerr &lt;&lt; &quot;Out of range: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125; catch (const std::exception&amp; e) &#123;
+    } catch (const std::exception&amp; e) {
         std::cerr &lt;&lt; &quot;Standard exception: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Best-Practices-for-Error-Handling"><a href="#Best-Practices-for-Error-Handling" class="headerlink" title="Best Practices for Error Handling"></a>Best Practices for Error Handling</h2><ol>
 <li><strong>Use Exceptions for Exceptional Cases</strong>: Only use exceptions for situations that are truly exceptional. Avoid using them for regular control flow.</li>
@@ -318,7 +323,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

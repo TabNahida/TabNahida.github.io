@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                <a href="/tags/c-cpp/" style="color: #00bcd4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00a596">
+                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
                     Zero to Hero
                 </a>
             </span>
@@ -246,57 +251,57 @@
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
 
     numbers.push_back(6); // Adding an element
     numbers.pop_back();   // Removing the last element
 
-    for (const auto&amp; num : numbers) &#123;
+    for (const auto&amp; num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-deque"><a href="#std-deque" class="headerlink" title="std::deque"></a><code>std::deque</code></h4><p>A double-ended queue that allows fast insertion and deletion at both ends.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;deque&gt;
 
-int main() &#123;
-    std::deque&lt;int&gt; d = &#123;1, 2, 3&#125;;
+int main() {
+    std::deque&lt;int&gt; d = {1, 2, 3};
 
     d.push_front(0); // Add to the front
     d.push_back(4);  // Add to the back
 
-    for (const auto&amp; num : d) &#123;
+    for (const auto&amp; num : d) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 0 1 2 3 4
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-list"><a href="#std-list" class="headerlink" title="std::list"></a><code>std::list</code></h4><p>A doubly linked list that allows fast insertion and deletion from any position.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;list&gt;
 
-int main() &#123;
-    std::list&lt;int&gt; l = &#123;1, 2, 3&#125;;
+int main() {
+    std::list&lt;int&gt; l = {1, 2, 3};
 
     l.push_back(4); // Add to the back
     l.push_front(0); // Add to the front
 
-    for (const auto&amp; num : l) &#123;
+    for (const auto&amp; num : l) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 0 1 2 3 4
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Associative-Containers"><a href="#Associative-Containers" class="headerlink" title="Associative Containers"></a>Associative Containers</h3><p>Associative containers store elements in a way that allows for fast retrieval based on keys. The primary associative containers are:</p>
 <ul>
@@ -310,36 +315,36 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;set&gt;
 
-int main() &#123;
-    std::set&lt;int&gt; s = &#123;3, 1, 4, 2&#125;;
+int main() {
+    std::set&lt;int&gt; s = {3, 1, 4, 2};
 
     s.insert(5); // Adding an element
     s.erase(2);  // Removing an element
 
-    for (const auto&amp; num : s) &#123;
+    for (const auto&amp; num : s) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 3 4 5
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-map"><a href="#std-map" class="headerlink" title="std::map"></a><code>std::map</code></h4><p>A collection of key-value pairs, where keys are unique and stored in a specific order.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;map&gt;
 
-int main() &#123;
+int main() {
     std::map&lt;std::string, int&gt; age;
     age[&quot;Alice&quot;] = 30;
     age[&quot;Bob&quot;] = 25;
 
-    for (const auto&amp; [name, ageValue] : age) &#123;
+    for (const auto&amp; [name, ageValue] : age) {
         std::cout &lt;&lt; name &lt;&lt; &quot;: &quot; &lt;&lt; ageValue &lt;&lt; std::endl; // Outputs: Alice: 30, Bob: 25
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Unordered-Containers"><a href="#Unordered-Containers" class="headerlink" title="Unordered Containers"></a>Unordered Containers</h3><p>Unordered containers allow for fast retrieval but do not maintain any particular order. The primary unordered containers are:</p>
 <ul>
@@ -351,36 +356,36 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;unordered_set&gt;
 
-int main() &#123;
-    std::unordered_set&lt;int&gt; us = &#123;1, 2, 3&#125;;
+int main() {
+    std::unordered_set&lt;int&gt; us = {1, 2, 3};
 
     us.insert(4); // Adding an element
     us.erase(1);  // Removing an element
 
-    for (const auto&amp; num : us) &#123;
+    for (const auto&amp; num : us) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 2 3 4 (order may vary)
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-unordered-map"><a href="#std-unordered-map" class="headerlink" title="std::unordered_map"></a><code>std::unordered_map</code></h4><p>A collection of key-value pairs with no specific order.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;unordered_map&gt;
 
-int main() &#123;
+int main() {
     std::unordered_map&lt;std::string, int&gt; um;
     um[&quot;Alice&quot;] = 30;
     um[&quot;Bob&quot;] = 25;
 
-    for (const auto&amp; [name, ageValue] : um) &#123;
+    for (const auto&amp; [name, ageValue] : um) {
         std::cout &lt;&lt; name &lt;&lt; &quot;: &quot; &lt;&lt; ageValue &lt;&lt; std::endl; // Outputs: Alice: 30, Bob: 25 (order may vary)
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Container-Adaptors"><a href="#Container-Adaptors" class="headerlink" title="Container Adaptors"></a>Container Adaptors</h3><p>Container adaptors provide a different interface for existing containers. The primary adaptors are:</p>
 <ul>
@@ -393,63 +398,63 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;stack&gt;
 
-int main() &#123;
+int main() {
     std::stack&lt;int&gt; s;
 
     s.push(1);
     s.push(2);
     s.push(3);
 
-    while (!s.empty()) &#123;
+    while (!s.empty()) {
         std::cout &lt;&lt; s.top() &lt;&lt; &quot; &quot;; // Outputs: 3 2 1
         s.pop();
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-queue"><a href="#std-queue" class="headerlink" title="std::queue"></a><code>std::queue</code></h4><p>A first-in-first-out (FIFO) data structure.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;queue&gt;
 
-int main() &#123;
+int main() {
     std::queue&lt;int&gt; q;
 
     q.push(1);
     q.push(2);
     q.push(3);
 
-    while (!q.empty()) &#123;
+    while (!q.empty()) {
         std::cout &lt;&lt; q.front() &lt;&lt; &quot; &quot;; // Outputs: 1 2 3
         q.pop();
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-priority-queue"><a href="#std-priority-queue" class="headerlink" title="std::priority_queue"></a><code>std::priority_queue</code></h4><p>A queue where the highest priority elements are served before others.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;queue&gt;
 
-int main() &#123;
+int main() {
     std::priority_queue&lt;int&gt; pq;
 
     pq.push(3);
     pq.push(5);
     pq.push(1);
 
-    while (!pq.empty()) &#123;
+    while (!pq.empty()) {
         std::cout &lt;&lt; pq.top() &lt;&lt; &quot; &quot;; // Outputs: 5 3 1 (highest priority first)
         pq.pop();
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h2><p>Iterators are used to traverse the elements of a container. They provide a uniform interface to access the elements in different types of containers.</p>
 <h3 id="Types-of-Iterators"><a href="#Types-of-Iterators" class="headerlink" title="Types of Iterators"></a>Types of Iterators</h3><ul>
@@ -462,17 +467,17 @@ int main() &#123;
 <h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
 
     // Using an iterator to traverse the vector
-    for (auto it = numbers.begin(); it != numbers.end(); ++it) &#123;
+    for (auto it = numbers.begin(); it != numbers.end(); ++it) {
         std::cout &lt;&lt; *it &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><p>STL provides a rich set of algorithms for operations like searching, sorting, and manipulating data. Common algorithms include:</p>
 <ul>
@@ -485,52 +490,52 @@ int main() &#123;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;5, 3, 1, 4, 2&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {5, 3, 1, 4, 2};
 
     // Sorting the vector
     std::sort(numbers.begin(), numbers.end());
 
     // Searching for an element
-    if (std::find(numbers.begin(), numbers.end(), 3) != numbers.end()) &#123;
+    if (std::find(numbers.begin(), numbers.end(), 3) != numbers.end()) {
         std::cout &lt;&lt; &quot;3 is found in the vector.&quot; &lt;&lt; std::endl
 
 ;
-    &#125;
+    }
 
-    for (const auto&amp; num : numbers) &#123;
+    for (const auto&amp; num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Function-Objects-Functors"><a href="#Function-Objects-Functors" class="headerlink" title="Function Objects (Functors)"></a>Function Objects (Functors)</h2><p>Function objects, or functors, are objects that can be called as if they were functions. They can store state and be passed to algorithms as parameters.</p>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example:"></a>Example:</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
-class GreaterThan &#123;
+class GreaterThan {
 public:
-    GreaterThan(int value) : value_(value) &#123;&#125;
+    GreaterThan(int value) : value_(value) {}
 
-    bool operator()(int num) const &#123;
+    bool operator()(int num) const {
         return num &gt; value_;
-    &#125;
+    }
 
 private:
     int value_;
-&#125;;
+};
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
 
     int count = std::count_if(numbers.begin(), numbers.end(), GreaterThan(2));
     std::cout &lt;&lt; &quot;Count of numbers greater than 2: &quot; &lt;&lt; count &lt;&lt; std::endl; // Outputs: 3
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you learned about the Standard Template Library (STL), which provides a wealth of powerful tools for managing data in C++. We covered:</p>
 <ul>
@@ -560,7 +565,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

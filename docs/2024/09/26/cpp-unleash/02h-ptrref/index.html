@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                <a href="/tags/modern-cpp/" style="color: #03a9f4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
                     Zero to Hero
                 </a>
             </span>
@@ -283,12 +288,12 @@ std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::end
 </code></pre>
 <h3 id="Pointer-Arithmetic"><a href="#Pointer-Arithmetic" class="headerlink" title="Pointer Arithmetic"></a>Pointer Arithmetic</h3><p>Pointers can be incremented or decremented to traverse arrays.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="language-cpp">int arr[] = &#123;10, 20, 30, 40, 50&#125;;
+<pre><code class="language-cpp">int arr[] = {10, 20, 30, 40, 50};
 int* ptr = arr; // Points to the first element
 
-for (int i = 0; i &lt; 5; ++i) &#123;
+for (int i = 0; i &lt; 5; ++i) {
     std::cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; *(ptr + i) &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <ul>
 <li>When you add <code>i</code> to a pointer, it moves <code>i</code> elements forward, considering the size of the data type it points to.</li>
@@ -304,9 +309,9 @@ for (int i = 0; i &lt; 5; ++i) &#123;
 int* ptr = NULL; // Requires including &lt;cstddef&gt;
 </code></pre>
 <h4 id="Checking-for-Null-Pointers"><a href="#Checking-for-Null-Pointers" class="headerlink" title="Checking for Null Pointers"></a>Checking for Null Pointers</h4><p>Always check if a pointer is null before dereferencing to avoid undefined behavior.</p>
-<pre><code class="language-cpp">if (ptr != nullptr) &#123;
+<pre><code class="language-cpp">if (ptr != nullptr) {
     // Safe to dereference ptr
-&#125;
+}
 </code></pre>
 <h2 id="References-and-Their-Uses"><a href="#References-and-Their-Uses" class="headerlink" title="References and Their Uses"></a>References and Their Uses</h2><p>A <strong>reference</strong> is an alias for another variable. Once a reference is initialized to a variable, it cannot be changed to refer to another variable.</p>
 <h3 id="Reference-Declaration-and-Initialization"><a href="#Reference-Declaration-and-Initialization" class="headerlink" title="Reference Declaration and Initialization"></a>Reference Declaration and Initialization</h3><h4 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h4><pre><code class="language-cpp">data_type&amp; reference_name = variable_name;
@@ -328,16 +333,16 @@ std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::end
 </code></pre>
 <h3 id="References-as-Function-Parameters"><a href="#References-as-Function-Parameters" class="headerlink" title="References as Function Parameters"></a>References as Function Parameters</h3><p>References are commonly used to pass variables to functions without copying.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="language-cpp">void increment(int&amp; num) &#123;
+<pre><code class="language-cpp">void increment(int&amp; num) {
     num += 1;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int number = 5;
     increment(number);
     std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; number &lt;&lt; std::endl; // Outputs 6
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Differences-Between-Pointers-and-References"><a href="#Differences-Between-Pointers-and-References" class="headerlink" title="Differences Between Pointers and References"></a>Differences Between Pointers and References</h3><ul>
 <li><strong>Nullability:</strong><ul>
@@ -393,27 +398,27 @@ int* ptrWithValue = new int(42); // Allocates and initializes an integer
 <ul>
 <li><strong>Important:</strong> Use <code>delete[]</code> when deallocating memory allocated with <code>new[]</code>.</li>
 </ul>
-<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><pre><code class="language-cpp">int main() &#123;
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><pre><code class="language-cpp">int main() {
     int* numbers = new int[5];
-    for (int i = 0; i &lt; 5; ++i) &#123;
+    for (int i = 0; i &lt; 5; ++i) {
         numbers[i] = i * 10;
-    &#125;
+    }
 
-    for (int i = 0; i &lt; 5; ++i) &#123;
+    for (int i = 0; i &lt; 5; ++i) {
         std::cout &lt;&lt; numbers[i] &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     delete[] numbers; // Free the allocated memory
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Memory-Leaks"><a href="#Memory-Leaks" class="headerlink" title="Memory Leaks"></a>Memory Leaks</h3><p>Failing to deallocate memory with <code>delete</code> or <code>delete[]</code> leads to memory leaks, which can exhaust system memory over time.</p>
 <p><strong>Example of Memory Leak:</strong></p>
-<pre><code class="language-cpp">void leakMemory() &#123;
+<pre><code class="language-cpp">void leakMemory() {
     int* ptr = new int(42);
     // Forgot to delete ptr
-&#125;
+}
 </code></pre>
 <h2 id="Smart-Pointers"><a href="#Smart-Pointers" class="headerlink" title="Smart Pointers"></a>Smart Pointers</h2><p>Manual memory management with <code>new</code> and <code>delete</code> is error-prone. C++ provides smart pointers in the <code>&lt;memory&gt;</code> header to automate memory management.</p>
 <h3 id="Introduction-to-Smart-Pointers"><a href="#Introduction-to-Smart-Pointers" class="headerlink" title="Introduction to Smart Pointers"></a>Introduction to Smart Pointers</h3><p>Smart pointers are classes that behave like pointers but manage the memory automatically.</p>
@@ -433,13 +438,13 @@ int* ptrWithValue = new int(42); // Allocates and initializes an integer
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
-int main() &#123;
+int main() {
     std::unique_ptr&lt;int&gt; ptr(new int(42));
     std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; *ptr &lt;&lt; std::endl;
 
     // No need to delete; ptr will automatically clean up
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Prefer <code>make_unique</code> (C++14 and later):</strong></p>
 <pre><code class="language-cpp">auto ptr = std::make_unique&lt;int&gt;(42);
@@ -455,17 +460,17 @@ std::unique_ptr&lt;int&gt; ptr2 = std::move(ptr1); // ptr1 is now null
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
-int main() &#123;
+int main() {
     std::shared_ptr&lt;int&gt; ptr1 = std::make_shared&lt;int&gt;(42);
-    &#123;
+    {
         std::shared_ptr&lt;int&gt; ptr2 = ptr1;
         std::cout &lt;&lt; &quot;Use count inside block: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; std::endl; // Outputs 2
-    &#125;
+    }
     std::cout &lt;&lt; &quot;Use count after block: &quot; &lt;&lt; ptr1.use_count() &lt;&lt; std::endl; // Outputs 1
 
     // Object is deleted when use_count reaches zero
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="std-weak-ptr"><a href="#std-weak-ptr" class="headerlink" title="std::weak_ptr"></a><code>std::weak_ptr</code></h4><ul>
 <li>Provides a weak reference to an object managed by <code>std::shared_ptr</code>.</li>
@@ -476,92 +481,92 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
-int main() &#123;
+int main() {
     std::shared_ptr&lt;int&gt; sharedPtr = std::make_shared&lt;int&gt;(42);
     std::weak_ptr&lt;int&gt; weakPtr = sharedPtr;
 
-    if (auto lockedPtr = weakPtr.lock()) &#123;
+    if (auto lockedPtr = weakPtr.lock()) {
         std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; *lockedPtr &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;Object has been destroyed.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Use Case:</strong> Avoiding cyclic references in data structures.</p>
-<h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><h3 id="Swapping-Variables-Using-Pointers-and-References"><a href="#Swapping-Variables-Using-Pointers-and-References" class="headerlink" title="Swapping Variables Using Pointers and References"></a>Swapping Variables Using Pointers and References</h3><h4 id="Using-Pointers"><a href="#Using-Pointers" class="headerlink" title="Using Pointers"></a>Using Pointers</h4><pre><code class="language-cpp">void swap(int* a, int* b) &#123;
-    if (a &amp;&amp; b) &#123; // Check for null pointers
+<h2 id="Practical-Examples"><a href="#Practical-Examples" class="headerlink" title="Practical Examples"></a>Practical Examples</h2><h3 id="Swapping-Variables-Using-Pointers-and-References"><a href="#Swapping-Variables-Using-Pointers-and-References" class="headerlink" title="Swapping Variables Using Pointers and References"></a>Swapping Variables Using Pointers and References</h3><h4 id="Using-Pointers"><a href="#Using-Pointers" class="headerlink" title="Using Pointers"></a>Using Pointers</h4><pre><code class="language-cpp">void swap(int* a, int* b) {
+    if (a &amp;&amp; b) { // Check for null pointers
         int temp = *a;
         *a = *b;
         *b = temp;
-    &#125;
-&#125;
+    }
+}
 
-int main() &#123;
+int main() {
     int x = 10;
     int y = 20;
     swap(&amp;x, &amp;y);
     std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; &quot;, y: &quot; &lt;&lt; y &lt;&lt; std::endl; // Outputs x: 20, y: 10
     return 0;
-&#125;
+}
 </code></pre>
-<h4 id="Using-References"><a href="#Using-References" class="headerlink" title="Using References"></a>Using References</h4><pre><code class="language-cpp">void swap(int&amp; a, int&amp; b) &#123;
+<h4 id="Using-References"><a href="#Using-References" class="headerlink" title="Using References"></a>Using References</h4><pre><code class="language-cpp">void swap(int&amp; a, int&amp; b) {
     int temp = a;
     a = b;
     b = temp;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int x = 10;
     int y = 20;
     swap(x, y);
     std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; &quot;, y: &quot; &lt;&lt; y &lt;&lt; std::endl; // Outputs x: 20, y: 10
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Implementing-a-Simple-Dynamic-Array"><a href="#Implementing-a-Simple-Dynamic-Array" class="headerlink" title="Implementing a Simple Dynamic Array"></a>Implementing a Simple Dynamic Array</h3><p>Let’s create a simple dynamic array class that manages its own memory.</p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class DynamicArray &#123;
+class DynamicArray {
 private:
     int* data;
     size_t size;
 
 public:
-    DynamicArray(size_t size) : size(size) &#123;
+    DynamicArray(size_t size) : size(size) {
         data = new int[size];
-    &#125;
+    }
 
-    ~DynamicArray() &#123;
+    ~DynamicArray() {
         delete[] data;
-    &#125;
+    }
 
-    int&amp; operator[](size_t index) &#123;
-        if (index &gt;= size) &#123;
+    int&amp; operator[](size_t index) {
+        if (index &gt;= size) {
             throw std::out_of_range(&quot;Index out of range&quot;);
-        &#125;
+        }
         return data[index];
-    &#125;
+    }
 
-    size_t getSize() const &#123;
+    size_t getSize() const {
         return size;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     DynamicArray arr(5);
 
-    for (size_t i = 0; i &lt; arr.getSize(); ++i) &#123;
+    for (size_t i = 0; i &lt; arr.getSize(); ++i) {
         arr[i] = static_cast&lt;int&gt;(i * 10);
-    &#125;
+    }
 
-    for (size_t i = 0; i &lt; arr.getSize(); ++i) &#123;
+    for (size_t i = 0; i &lt; arr.getSize(); ++i) {
         std::cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; arr[i] &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -576,7 +581,7 @@ int main() &#123;
 <p><strong>Solution:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int value = 10;
     int* ptr = &amp;value;
 
@@ -587,7 +592,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Dynamic Memory Allocation</strong></p>
@@ -595,7 +600,7 @@ int main() &#123;
 <p><strong>Solution:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     size_t size;
 
     std::cout &lt;&lt; &quot;Enter the size of the array: &quot;;
@@ -603,20 +608,20 @@ int main() &#123;
 
     int* arr = new int[size];
 
-    for (size_t i = 0; i &lt; size; ++i) &#123;
+    for (size_t i = 0; i &lt; size; ++i) {
         arr[i] = static_cast&lt;int&gt;(i * i);
-    &#125;
+    }
 
     std::cout &lt;&lt; &quot;Array Elements:&quot; &lt;&lt; std::endl;
-    for (size_t i = 0; i &lt; size; ++i) &#123;
+    for (size_t i = 0; i &lt; size; ++i) {
         std::cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     delete[] arr;
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Using Smart Pointers</strong></p>
@@ -625,7 +630,7 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;memory&gt;
 
-int main() &#123;
+int main() {
     size_t size;
 
     std::cout &lt;&lt; &quot;Enter the size of the array: &quot;;
@@ -633,20 +638,20 @@ int main() &#123;
 
     std::unique_ptr&lt;int[]&gt; arr(new int[size]);
 
-    for (size_t i = 0; i &lt; size; ++i) &#123;
+    for (size_t i = 0; i &lt; size; ++i) {
         arr[i] = static_cast&lt;int&gt;(i * i);
-    &#125;
+    }
 
     std::cout &lt;&lt; &quot;Array Elements:&quot; &lt;&lt; std::endl;
-    for (size_t i = 0; i &lt; size; ++i) &#123;
+    for (size_t i = 0; i &lt; size; ++i) {
         std::cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     // Memory is automatically deallocated
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Reference Parameters</strong></p>
@@ -654,12 +659,12 @@ int main() &#123;
 <p><strong>Solution:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-void calculateRectangle(double width, double height, double&amp; area, double&amp; perimeter) &#123;
+void calculateRectangle(double width, double height, double&amp; area, double&amp; perimeter) {
     area = width * height;
     perimeter = 2 * (width + height);
-&#125;
+}
 
-int main() &#123;
+int main() {
     double width = 5.0;
     double height = 3.0;
     double area, perimeter;
@@ -670,7 +675,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Perimeter: &quot; &lt;&lt; perimeter &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 </ol>
@@ -727,7 +732,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

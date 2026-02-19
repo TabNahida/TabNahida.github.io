@@ -35,9 +35,17 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
+
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
 
 
 
@@ -48,7 +56,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,14 +192,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/diary/" style="color: #03a9f4">
+                <a href="/tags/diary/" style="color: #00a596">
                     Diary
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cosplay/" style="color: #00a596">
+                <a href="/tags/cosplay/" style="color: #00bcd4">
                     CosPlay
                 </a>
             </span>
@@ -200,13 +208,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <p>穿上芙宁娜衣服的一刻，深蓝色的带着各种花边和繁琐配饰的服装是枷锁，它们限制了你，把你关在另一个身份里，你会被束缚，被控制，被压制，但是我喜欢这个身份。这个身份带给你了不属于你自己的东西，是对形象的在意，对礼服的重视，对表演的热爱，对社交的恐惧，很多很多，一切不过是把你放进那个身份里，那个虚拟的身份里。可是，我喜欢这个身份，我喜欢芙宁娜这个身份，她可爱，她俏皮，她戏剧，她的一切我都喜欢。她本不过是一串数据，好看精致，但是和我又有什么关系呢，但是当你扮演她时，你开始走进她，开始了解她，开始理解她，开始成为她。我从我到芙宁娜，我成为了她，我模仿她，但又更进一步，做出她会干出的其他事情。cosplay是你真正成为一个角色，这一刻你真的会爱上她，因为她现在是你自己了，你会想给她付出很多，给她更好的礼帽，一把她的武器，很多很多。</p>
-<p>只有你成为一个角色，你才真正理解了她。芙芙不傻，她是冒失，直率，一切都外显的。但是她又是那么在意自己的形象，礼裙弄好没，拖尾又拖地了，礼帽又要掉了，神明大人必须时刻注意自己的形象。我爱上了芙芙，因为我是她。我拍下了从画框向外邀请的照片，那是我在邀请她来到我的身边，她会来的，她会爱我的，会降临的，她是存在的，而我就是她的存在。芙芙是大明星，而我只是小鼠，站上台也只会颤抖的小鼠，舞台不属于我。舞台不属于我，却属于她，当我成为她，舞台便属于我了。我站上去了，我演绎了，她演绎了，我们演绎了水的女儿。白发盖住了我的一只眼睛，盖住了耳朵，我失聪了，只有几簇琴声响起。不对！他们应该是线，不是簇，不对不对，恐惧漫过了我，下一步是什么？我还要蹲下吗？要的，Ne对了，好啦放心了，neniam过了，好啦结束了。唔！他们在喊什么，“原神，启动”。</p>
-<p>好娇啊，师姐说道，师弟挺可爱。女神一样，吾之友曰。一起来拍照吧，女孩子们说道。</p>
-<p>我喜欢成为芙宁娜。</p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="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"
+        data-shasum="fc19657450bbb7b33072b8361920026204f9ade25ca7ff2fa79ec90f60a07789"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
     
     
     
@@ -224,7 +239,7 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

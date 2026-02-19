@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                <a href="/tags/c-cpp/" style="color: #ffa2c4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                <a href="/tags/modern-cpp/" style="color: #00bcd4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
                     Zero to Hero
                 </a>
             </span>
@@ -239,18 +244,18 @@
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
+int main() {
     auto x = 42; // x is int
     auto y = 3.14; // y is double
     auto str = &quot;Hello, World!&quot;; // str is const char*
 
-    std::vector&lt;int&gt; vec = &#123;1, 2, 3, 4, 5&#125;;
+    std::vector&lt;int&gt; vec = {1, 2, 3, 4, 5};
     auto it = vec.begin(); // it is std::vector&lt;int&gt;::iterator
 
     std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; &quot;, y: &quot; &lt;&lt; y &lt;&lt; &quot;, str: &quot; &lt;&lt; str &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>x: 42, y: 3.14, str: Hello, World!
@@ -275,46 +280,46 @@ int main() &#123;
 </ul>
 <hr>
 <h2 id="Range-Based-For-Loops"><a href="#Range-Based-For-Loops" class="headerlink" title="Range-Based For Loops"></a>Range-Based For Loops</h2><h3 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h3><p>Range-based for loops provide a more readable and concise way to iterate through containers, eliminating the need for explicit iterators or index-based loops. Introduced in C++11, they enhance code clarity and reduce the likelihood of errors associated with traditional loop constructs.</p>
-<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="language-cpp">for (auto&amp; element : container) &#123;
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><pre><code class="language-cpp">for (auto&amp; element : container) {
     // Use element
-&#125;
+}
 </code></pre>
 <h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
 
-    for (const auto&amp; num : numbers) &#123;
+    for (const auto&amp; num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5
 </code></pre>
 <h3 id="Best-Practices-1"><a href="#Best-Practices-1" class="headerlink" title="Best Practices"></a>Best Practices</h3><ul>
 <li><p><strong>Use <code>const auto&amp;</code> When Not Modifying Elements:</strong></p>
-<pre><code class="language-cpp">for (const auto&amp; num : numbers) &#123;
+<pre><code class="language-cpp">for (const auto&amp; num : numbers) {
     // Read-only access
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Use <code>auto&amp;</code> When Modifying Elements:</strong></p>
-<pre><code class="language-cpp">for (auto&amp; num : numbers) &#123;
+<pre><code class="language-cpp">for (auto&amp; num : numbers) {
     num *= 2; // Modify elements
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Avoid Unnecessary Copies:</strong></p>
-<pre><code class="language-cpp">for (const auto&amp; str : stringList) &#123; /* ... */ &#125; // Avoid copying strings
+<pre><code class="language-cpp">for (const auto&amp; str : stringList) { /* ... */ } // Avoid copying strings
 </code></pre>
 </li>
 <li><p><strong>Use <code>auto&amp;&amp;</code> for Perfect Forwarding:</strong></p>
-<pre><code class="language-cpp">for (auto&amp;&amp; element : container) &#123; /* ... */ &#125;
+<pre><code class="language-cpp">for (auto&amp;&amp; element : container) { /* ... */ }
 </code></pre>
 </li>
 </ul>
@@ -327,10 +332,10 @@ int main() &#123;
 
 using StringList = std::vector&lt;std::string&gt;;
 
-int main() &#123;
-    StringList names = &#123;&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;&#125;;
+int main() {
+    StringList names = {&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;};
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Best-Practices-2"><a href="#Best-Practices-2" class="headerlink" title="Best Practices"></a>Best Practices</h3><ul>
 <li><p><strong>Simplify Complex Type Declarations:</strong></p>
@@ -359,17 +364,17 @@ Vec&lt;int&gt; intVec;
 <p><strong>Usage:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-constexpr int square(int x) &#123;
+constexpr int square(int x) {
     return x * x;
-&#125;
+}
 
-int main() &#123;
+int main() {
     constexpr int result = square(5); // Computed at compile time
     int runtime_result = square(6);   // Also allowed, computed at runtime
     std::cout &lt;&lt; &quot;Square of 5 is: &quot; &lt;&lt; result &lt;&lt; std::endl;
     std::cout &lt;&lt; &quot;Square of 6 is: &quot; &lt;&lt; runtime_result &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Square of 5 is: 25
@@ -385,16 +390,16 @@ Square of 6 is: 36
 <p><strong>Usage:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-consteval int square(int x) &#123;
+consteval int square(int x) {
     return x * x;
-&#125;
+}
 
-int main() &#123;
+int main() {
     constexpr int sq = square(5); // Valid
     // int runtime_sq = square(5); // Error: requires compile-time evaluation
     std::cout &lt;&lt; &quot;Square of 5 is: &quot; &lt;&lt; sq &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Square of 5 is: 25
@@ -411,11 +416,11 @@ int main() &#123;
 
 constinit int global_counter = 0;
 
-int main() &#123;
+int main() {
     global_counter += 5; // Allowed, since constinit doesn&#39;t make it immutable
     std::cout &lt;&lt; &quot;Global Counter: &quot; &lt;&lt; global_counter &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Global Counter: 5
@@ -440,12 +445,12 @@ int main() &#123;
 <h3 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h3><p><strong>Basic Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int x = 5;
     decltype(x) y = 10; // y is of type int
     std::cout &lt;&lt; &quot;y: &quot; &lt;&lt; y &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>y: 10
@@ -454,13 +459,13 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; vec = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; vec = {1, 2, 3, 4, 5};
     decltype(vec.begin()) it = vec.begin(); // it is std::vector&lt;int&gt;::iterator
 
     std::cout &lt;&lt; &quot;First element: &quot; &lt;&lt; *it &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>First element: 1
@@ -485,7 +490,7 @@ decltype(x) y = anotherFunction();
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
-int main() &#123;
+int main() {
     std::variant&lt;int, std::string&gt; data;
     
     data = 10;
@@ -495,27 +500,27 @@ int main() &#123;
     std::cout &lt;&lt; std::get&lt;std::string&gt;(data) &lt;&lt; std::endl; // Outputs: Hello, Variant!
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Handling Multiple Types with <code>std::visit</code>:</strong></p>
 <pre><code class="language-cpp">#include &lt;variant&gt;
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
-struct Visitor &#123;
-    void operator()(int i) const &#123; std::cout &lt;&lt; &quot;int: &quot; &lt;&lt; i &lt;&lt; std::endl; &#125;
-    void operator()(const std::string&amp; str) const &#123; std::cout &lt;&lt; &quot;string: &quot; &lt;&lt; str &lt;&lt; std::endl; &#125;
-&#125;;
+struct Visitor {
+    void operator()(int i) const { std::cout &lt;&lt; &quot;int: &quot; &lt;&lt; i &lt;&lt; std::endl; }
+    void operator()(const std::string&amp; str) const { std::cout &lt;&lt; &quot;string: &quot; &lt;&lt; str &lt;&lt; std::endl; }
+};
 
-int main() &#123;
+int main() {
     std::variant&lt;int, std::string&gt; data = &quot;Hello&quot;;
-    std::visit(Visitor&#123;&#125;, data); // Outputs: string: Hello
+    std::visit(Visitor{}, data); // Outputs: string: Hello
     
     data = 42;
-    std::visit(Visitor&#123;&#125;, data); // Outputs: int: 42
+    std::visit(Visitor{}, data); // Outputs: int: 42
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>string: Hello
@@ -537,23 +542,23 @@ int: 42
 <pre><code class="language-cpp">#include &lt;optional&gt;
 #include &lt;iostream&gt;
 
-std::optional&lt;int&gt; findValue(bool shouldFind) &#123;
-    if (shouldFind) &#123;
+std::optional&lt;int&gt; findValue(bool shouldFind) {
+    if (shouldFind) {
         return 42; // Optional value is present
-    &#125;
+    }
     return std::nullopt; // No value present
-&#125;
+}
 
-int main() &#123;
+int main() {
     auto value = findValue(true);
-    if (value) &#123;
+    if (value) {
         std::cout &lt;&lt; &quot;Found value: &quot; &lt;&lt; *value &lt;&lt; std::endl; // Dereference
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;No value found.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Found value: 42
@@ -563,21 +568,21 @@ int main() &#123;
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 
-std::optional&lt;std::string&gt; getName(bool valid) &#123;
+std::optional&lt;std::string&gt; getName(bool valid) {
     if (valid)
         return &quot;Alice&quot;;
     else
         return std::nullopt;
-&#125;
+}
 
-int main() &#123;
+int main() {
     auto nameOpt = getName(true);
-    if (nameOpt) &#123;
+    if (nameOpt) {
         std::cout &lt;&lt; &quot;Name: &quot; &lt;&lt; *nameOpt &lt;&lt; std::endl; // Outputs: Name: Alice
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Name: Alice
@@ -599,18 +604,18 @@ int main() &#123;
 <h3 id="Usage-2"><a href="#Usage-2" class="headerlink" title="Usage"></a>Usage</h3><p><strong>Basic Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-void func(int* ptr) &#123;
-    if (ptr == nullptr) &#123;
+void func(int* ptr) {
+    if (ptr == nullptr) {
         std::cout &lt;&lt; &quot;Pointer is null.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;
+    }
+}
 
-int main() &#123;
+int main() {
     int* p = nullptr; // Safe null pointer
     func(p);
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Pointer is null.
@@ -618,18 +623,18 @@ int main() &#123;
 <p><strong>Function Overloading Ambiguity Resolution:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-void func(int) &#123;
+void func(int) {
     std::cout &lt;&lt; &quot;Function with int parameter.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-void func(char*) &#123;
+void func(char*) {
     std::cout &lt;&lt; &quot;Function with char* parameter.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     func(nullptr); // Calls func(char*) due to type safety
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Function with char* parameter.
@@ -684,7 +689,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

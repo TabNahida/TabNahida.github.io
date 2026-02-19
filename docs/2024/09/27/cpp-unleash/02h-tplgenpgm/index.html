@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,14 +189,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #03a9f4">
+                <a href="/tags/c-cpp/" style="color: #ffa2c4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00a596">
+                <a href="/tags/modern-cpp/" style="color: #00bcd4">
                     Modern C++
                 </a>
             </span>
@@ -205,7 +210,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -231,23 +236,23 @@
 
 <h2 id="Function-Templates"><a href="#Function-Templates" class="headerlink" title="Function Templates"></a>Function Templates</h2><p>Function templates allow you to write a single function that works with any data type.</p>
 <h3 id="Basic-Syntax"><a href="#Basic-Syntax" class="headerlink" title="Basic Syntax"></a>Basic Syntax</h3><pre><code class="language-cpp">template &lt;typename T&gt;
-ReturnType FunctionName(T parameter) &#123;
+ReturnType FunctionName(T parameter) {
     // Function body
-&#125;
+}
 </code></pre>
 <ul>
 <li><strong><code>template &lt;typename T&gt;</code></strong>: Introduces a template parameter <code>T</code>.</li>
 <li><strong><code>T</code></strong>: Represents a generic data type.</li>
 </ul>
 <h3 id="Example-Generic-Swap-Function"><a href="#Example-Generic-Swap-Function" class="headerlink" title="Example: Generic Swap Function"></a>Example: Generic Swap Function</h3><pre><code class="language-cpp">template &lt;typename T&gt;
-void swapValues(T&amp; a, T&amp; b) &#123;
+void swapValues(T&amp; a, T&amp; b) {
     T temp = a;
     a = b;
     b = temp;
-&#125;
+}
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     int x = 10, y = 20;
     swapValues(x, y);
 
@@ -255,19 +260,19 @@ void swapValues(T&amp; a, T&amp; b) &#123;
     swapValues(a, b);
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Function-Templates-with-Multiple-Parameters"><a href="#Function-Templates-with-Multiple-Parameters" class="headerlink" title="Function Templates with Multiple Parameters"></a>Function Templates with Multiple Parameters</h3><p>You can have multiple template parameters.</p>
 <pre><code class="language-cpp">template &lt;typename T1, typename T2&gt;
-auto add(T1 a, T2 b) -&gt; decltype(a + b) &#123;
+auto add(T1 a, T2 b) -&gt; decltype(a + b) {
     return a + b;
-&#125;
+}
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     auto result = add(5, 3.2); // result is of type double
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Template-Argument-Deduction"><a href="#Template-Argument-Deduction" class="headerlink" title="Template Argument Deduction"></a>Template Argument Deduction</h3><p>The compiler automatically deduces the template arguments based on the function arguments.</p>
 <p><strong>Explicit Template Arguments:</strong></p>
@@ -278,37 +283,37 @@ auto add(T1 a, T2 b) -&gt; decltype(a + b) &#123;
 </ul>
 <h2 id="Class-Templates"><a href="#Class-Templates" class="headerlink" title="Class Templates"></a>Class Templates</h2><p>Class templates allow you to define a class with generic types.</p>
 <h3 id="Basic-Syntax-1"><a href="#Basic-Syntax-1" class="headerlink" title="Basic Syntax"></a>Basic Syntax</h3><pre><code class="language-cpp">template &lt;typename T&gt;
-class ClassName &#123;
+class ClassName {
 public:
     // Member functions and variables using T
-&#125;;
+};
 </code></pre>
 <h3 id="Example-Generic-Array-Class"><a href="#Example-Generic-Array-Class" class="headerlink" title="Example: Generic Array Class"></a>Example: Generic Array Class</h3><pre><code class="language-cpp">template &lt;typename T, size_t N&gt;
-class Array &#123;
+class Array {
 private:
     T data[N];
 
 public:
-    void set(size_t index, const T&amp; value) &#123;
-        if (index &lt; N) &#123;
+    void set(size_t index, const T&amp; value) {
+        if (index &lt; N) {
             data[index] = value;
-        &#125;
-    &#125;
+        }
+    }
 
-    T&amp; get(size_t index) &#123;
-        if (index &lt; N) &#123;
+    T&amp; get(size_t index) {
+        if (index &lt; N) {
             return data[index];
-        &#125;
+        }
         throw std::out_of_range(&quot;Index out of range&quot;);
-    &#125;
+    }
 
-    size_t size() const &#123;
+    size_t size() const {
         return N;
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     Array&lt;int, 5&gt; intArray;
     intArray.set(0, 10);
     intArray.set(1, 20);
@@ -317,100 +322,100 @@ public:
     std::cout &lt;&lt; intArray.get(1) &lt;&lt; std::endl; // Outputs 20
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Member-Function-Definitions-Outside-the-Class"><a href="#Member-Function-Definitions-Outside-the-Class" class="headerlink" title="Member Function Definitions Outside the Class"></a>Member Function Definitions Outside the Class</h3><p>When defining member functions outside the class, include the template parameters.</p>
 <pre><code class="language-cpp">template &lt;typename T, size_t N&gt;
-void Array&lt;T, N&gt;::set(size_t index, const T&amp; value) &#123;
+void Array&lt;T, N&gt;::set(size_t index, const T&amp; value) {
     // Function body
-&#125;
+}
 </code></pre>
 <h2 id="Template-Specialization"><a href="#Template-Specialization" class="headerlink" title="Template Specialization"></a>Template Specialization</h2><p>Template specialization allows you to define a custom implementation of a template for a specific type.</p>
 <h3 id="Full-Specialization"><a href="#Full-Specialization" class="headerlink" title="Full Specialization"></a>Full Specialization</h3><p>Providing a completely different implementation for a specific type.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
-class TypeInfo &#123;
+class TypeInfo {
 public:
-    static std::string name() &#123;
+    static std::string name() {
         return &quot;Unknown&quot;;
-    &#125;
-&#125;;
+    }
+};
 
 // Specialization for int
 template &lt;&gt;
-class TypeInfo&lt;int&gt; &#123;
+class TypeInfo&lt;int&gt; {
 public:
-    static std::string name() &#123;
+    static std::string name() {
         return &quot;Integer&quot;;
-    &#125;
-&#125;;
+    }
+};
 
 // Specialization for double
 template &lt;&gt;
-class TypeInfo&lt;double&gt; &#123;
+class TypeInfo&lt;double&gt; {
 public:
-    static std::string name() &#123;
+    static std::string name() {
         return &quot;Double&quot;;
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     std::cout &lt;&lt; TypeInfo&lt;char&gt;::name() &lt;&lt; std::endl;    // Outputs &quot;Unknown&quot;
     std::cout &lt;&lt; TypeInfo&lt;int&gt;::name() &lt;&lt; std::endl;     // Outputs &quot;Integer&quot;
     std::cout &lt;&lt; TypeInfo&lt;double&gt;::name() &lt;&lt; std::endl;  // Outputs &quot;Double&quot;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Partial-Specialization"><a href="#Partial-Specialization" class="headerlink" title="Partial Specialization"></a>Partial Specialization</h3><p>Specializing a template for a subset of types.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">template &lt;typename T, typename U&gt;
-class Pair &#123;
+class Pair {
 public:
     T first;
     U second;
-&#125;;
+};
 
 // Partial specialization when both types are the same
 template &lt;typename T&gt;
-class Pair&lt;T, T&gt; &#123;
+class Pair&lt;T, T&gt; {
 public:
     T first;
     T second;
 
-    void display() &#123;
+    void display() {
         std::cout &lt;&lt; &quot;Pair of &quot; &lt;&lt; typeid(T).name() &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     Pair&lt;int, double&gt; p1;
     Pair&lt;int, int&gt; p2;
     p2.display(); // Uses the specialized version
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Variadic-Templates"><a href="#Variadic-Templates" class="headerlink" title="Variadic Templates"></a>Variadic Templates</h2><p>Variadic templates allow functions and classes to accept an arbitrary number of template parameters.</p>
 <h3 id="Function-Variadic-Templates"><a href="#Function-Variadic-Templates" class="headerlink" title="Function Variadic Templates"></a>Function Variadic Templates</h3><p><strong>Example: Print Function</strong></p>
-<pre><code class="language-cpp">void print() &#123;
+<pre><code class="language-cpp">void print() {
     std::cout &lt;&lt; std::endl;
-&#125;
+}
 
 template &lt;typename T, typename... Args&gt;
-void print(T first, Args... args) &#123;
+void print(T first, Args... args) {
     std::cout &lt;&lt; first &lt;&lt; &quot; &quot;;
     print(args...);
-&#125;
+}
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     print(1, 2.5, &quot;Hello&quot;, &#39;A&#39;); // Outputs: 1 2.5 Hello A
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -419,15 +424,15 @@ void print(T first, Args... args) &#123;
 </ul>
 <h3 id="Class-Variadic-Templates"><a href="#Class-Variadic-Templates" class="headerlink" title="Class Variadic Templates"></a>Class Variadic Templates</h3><p><strong>Example: Tuple Class</strong></p>
 <pre><code class="language-cpp">template &lt;typename... Types&gt;
-class Tuple &#123;
+class Tuple {
     // Implementation
-&#125;;
+};
 </code></pre>
 <p><strong>Using <code>std::tuple</code></strong></p>
 <p>The Standard Library provides <code>std::tuple</code>, a variadic template class.</p>
 <pre><code class="language-cpp">#include &lt;tuple&gt;
 
-int main() &#123;
+int main() {
     std::tuple&lt;int, double, std::string&gt; t(1, 2.5, &quot;Hello&quot;);
 
     int i = std::get&lt;0&gt;(t);
@@ -435,13 +440,13 @@ int main() &#123;
     std::string s = std::get&lt;2&gt;(t);
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Concepts-C-20"><a href="#Concepts-C-20" class="headerlink" title="Concepts (C++20)"></a>Concepts (C++20)</h2><p>Concepts provide a way to specify template requirements, improving readability and error messages.</p>
 <h3 id="Basic-Syntax-2"><a href="#Basic-Syntax-2" class="headerlink" title="Basic Syntax"></a>Basic Syntax</h3><pre><code class="language-cpp">template &lt;typename T&gt;
-concept ConceptName = requires(T a) &#123;
+concept ConceptName = requires(T a) {
     // Expressions and requirements
-&#125;;
+};
 </code></pre>
 <h3 id="Example-Numeric-Concept"><a href="#Example-Numeric-Concept" class="headerlink" title="Example: Numeric Concept"></a>Example: Numeric Concept</h3><pre><code class="language-cpp">#include &lt;concepts&gt;
 
@@ -449,23 +454,23 @@ template &lt;typename T&gt;
 concept Numeric = std::is_arithmetic_v&lt;T&gt;;
 
 template &lt;Numeric T&gt;
-T add(T a, T b) &#123;
+T add(T a, T b) {
     return a + b;
-&#125;
+}
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     int result = add(5, 10);       // OK
     // std::string s = add(&quot;a&quot;, &quot;b&quot;); // Error: std::string is not Numeric
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Using-requires-Clauses"><a href="#Using-requires-Clauses" class="headerlink" title="Using requires Clauses"></a>Using <code>requires</code> Clauses</h3><pre><code class="language-cpp">template &lt;typename T&gt;
 requires std::is_integral_v&lt;T&gt;
-T factorial(T n) &#123;
+T factorial(T n) {
     return (n &lt;= 1) ? 1 : n * factorial(n - 1);
-&#125;
+}
 </code></pre>
 <h3 id="Standard-Library-Concepts"><a href="#Standard-Library-Concepts" class="headerlink" title="Standard Library Concepts"></a>Standard Library Concepts</h3><ul>
 <li><strong><code>std::integral</code></strong></li>
@@ -478,14 +483,14 @@ T factorial(T n) &#123;
 <pre><code class="language-cpp">#include &lt;concepts&gt;
 
 template &lt;std::integral T&gt;
-T gcd(T a, T b) &#123;
-    while (b != 0) &#123;
+T gcd(T a, T b) {
+    while (b != 0) {
         T temp = b;
         b = a % b;
         a = temp;
-    &#125;
+    }
     return a;
-&#125;
+}
 </code></pre>
 <h2 id="Practical-Example-Generic-Sorting-Function"><a href="#Practical-Example-Generic-Sorting-Function" class="headerlink" title="Practical Example: Generic Sorting Function"></a>Practical Example: Generic Sorting Function</h2><p>Let’s create a generic sorting function using templates.</p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
@@ -493,103 +498,103 @@ T gcd(T a, T b) &#123;
 #include &lt;algorithm&gt;
 
 template &lt;typename T&gt;
-void sortVector(std::vector&lt;T&gt;&amp; vec) &#123;
+void sortVector(std::vector&lt;T&gt;&amp; vec) {
     std::sort(vec.begin(), vec.end());
-&#125;
+}
 
-int main() &#123;
-    std::vector&lt;int&gt; intVec = &#123;5, 2, 9, 1, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; intVec = {5, 2, 9, 1, 5};
     sortVector(intVec);
 
-    for (const auto&amp; val : intVec) &#123;
+    for (const auto&amp; val : intVec) {
         std::cout &lt;&lt; val &lt;&lt; &quot; &quot;; // Outputs: 1 2 5 5 9
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
-    std::vector&lt;std::string&gt; strVec = &#123;&quot;apple&quot;, &quot;orange&quot;, &quot;banana&quot;&#125;;
+    std::vector&lt;std::string&gt; strVec = {&quot;apple&quot;, &quot;orange&quot;, &quot;banana&quot;};
     sortVector(strVec);
 
-    for (const auto&amp; val : strVec) &#123;
+    for (const auto&amp; val : strVec) {
         std::cout &lt;&lt; val &lt;&lt; &quot; &quot;; // Outputs: apple banana orange
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><ol>
 <li><p><strong>Generic Max Function</strong></p>
 <p>Write a function template <code>maxValue</code> that returns the maximum of two values.</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
-T maxValue(const T&amp; a, const T&amp; b) &#123;
+T maxValue(const T&amp; a, const T&amp; b) {
     return (a &gt; b) ? a : b;
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Stack Class Template</strong></p>
 <p>Implement a simple stack class template.</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
-class Stack &#123;
+class Stack {
 private:
     std::vector&lt;T&gt; elements;
 
 public:
-    void push(const T&amp; item) &#123;
+    void push(const T&amp; item) {
         elements.push_back(item);
-    &#125;
+    }
 
-    void pop() &#123;
-        if (!elements.empty()) &#123;
+    void pop() {
+        if (!elements.empty()) {
             elements.pop_back();
-        &#125;
-    &#125;
+        }
+    }
 
-    T&amp; top() &#123;
+    T&amp; top() {
         return elements.back();
-    &#125;
+    }
 
-    bool isEmpty() const &#123;
+    bool isEmpty() const {
         return elements.empty();
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     Stack&lt;int&gt; intStack;
     intStack.push(1);
     intStack.push(2);
     intStack.push(3);
 
-    while (!intStack.isEmpty()) &#123;
+    while (!intStack.isEmpty()) {
         std::cout &lt;&lt; intStack.top() &lt;&lt; &quot; &quot;;
         intStack.pop();
-    &#125;
+    }
     // Outputs: 3 2 1
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Function Variadic Template</strong></p>
 <p>Create a variadic template function <code>sum</code> that calculates the sum of all its arguments.</p>
 <pre><code class="language-cpp">template &lt;typename T&gt;
-T sum(T value) &#123;
+T sum(T value) {
     return value;
-&#125;
+}
 
 template &lt;typename T, typename... Args&gt;
-T sum(T first, Args... args) &#123;
+T sum(T first, Args... args) {
     return first + sum(args...);
-&#125;
+}
 </code></pre>
 <p><strong>Usage:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     auto result = sum(1, 2, 3, 4, 5); // result = 15
 
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; result &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 </ol>
@@ -648,7 +653,7 @@ T sum(T first, Args... args) &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

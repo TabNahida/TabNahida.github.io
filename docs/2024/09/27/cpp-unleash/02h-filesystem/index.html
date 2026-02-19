@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -191,21 +196,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00a596">
+                <a href="/tags/modern-cpp/" style="color: #03a9f4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -259,33 +264,33 @@ namespace fs = std::filesystem;
 
 namespace fs = std::filesystem;
 
-int main() &#123;
+int main() {
     fs::path dir = &quot;example_dir&quot;;
 
     // Create a directory
-    try &#123;
-        if(fs::create_directory(dir)) &#123;
+    try {
+        if(fs::create_directory(dir)) {
             std::cout &lt;&lt; &quot;Directory created: &quot; &lt;&lt; dir &lt;&lt; std::endl;
-        &#125; else &#123;
+        } else {
             std::cout &lt;&lt; &quot;Directory already exists: &quot; &lt;&lt; dir &lt;&lt; std::endl;
-        &#125;
-    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        }
+    } catch(const fs::filesystem_error&amp; e) {
         std::cerr &lt;&lt; &quot;Error creating directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Remove the directory
-    try &#123;
-        if(fs::remove(dir)) &#123;
+    try {
+        if(fs::remove(dir)) {
             std::cout &lt;&lt; &quot;Directory removed: &quot; &lt;&lt; dir &lt;&lt; std::endl;
-        &#125; else &#123;
+        } else {
             std::cout &lt;&lt; &quot;Directory does not exist: &quot; &lt;&lt; dir &lt;&lt; std::endl;
-        &#125;
-    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+        }
+    } catch(const fs::filesystem_error&amp; e) {
         std::cerr &lt;&lt; &quot;Error removing directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Directory created: &quot;example_dir&quot;
@@ -332,12 +337,12 @@ Extension: &quot;.txt&quot;
 </code></pre>
 <h3 id="Normalizing-Paths"><a href="#Normalizing-Paths" class="headerlink" title="Normalizing Paths"></a>Normalizing Paths</h3><p>Use <code>fs::canonical</code> to resolve a path to its absolute, normalized form, eliminating redundant elements like <code>.</code> and <code>..</code>.</p>
 <pre><code class="language-cpp">fs::path relativePath = &quot;./folder/../file.txt&quot;;
-try &#123;
+try {
     fs::path absolutePath = fs::canonical(relativePath);
     std::cout &lt;&lt; &quot;Absolute Path: &quot; &lt;&lt; absolutePath &lt;&lt; std::endl;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Absolute Path: &quot;/current/working/directory/file.txt&quot;
@@ -352,7 +357,7 @@ try &#123;
 
 namespace fs = std::filesystem;
 
-int main() &#123;
+int main() {
     fs::path filePath = &quot;example_dir/sample.txt&quot;;
 
     // Ensure the directory exists
@@ -360,16 +365,16 @@ int main() &#123;
 
     // Create and write to the file
     std::ofstream ofs(filePath);
-    if(ofs) &#123;
+    if(ofs) {
         ofs &lt;&lt; &quot;Hello, Filesystem!&quot;;
         ofs.close();
         std::cout &lt;&lt; &quot;File created: &quot; &lt;&lt; filePath &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cerr &lt;&lt; &quot;Failed to create file: &quot; &lt;&lt; filePath &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File created: &quot;example_dir&quot;/sample.txt
@@ -378,12 +383,12 @@ int main() &#123;
 <pre><code class="language-cpp">fs::path source = &quot;example_dir/sample.txt&quot;;
 fs::path destination = &quot;example_dir/sample_copy.txt&quot;;
 
-try &#123;
+try {
     fs::copy(source, destination, fs::copy_options::overwrite_existing);
     std::cout &lt;&lt; &quot;File copied to: &quot; &lt;&lt; destination &lt;&lt; std::endl;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error copying file: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File copied to: &quot;example_dir&quot;/sample_copy.txt
@@ -392,12 +397,12 @@ try &#123;
 <pre><code class="language-cpp">fs::path oldPath = &quot;example_dir/sample_copy.txt&quot;;
 fs::path newPath = &quot;example_dir/renamed_sample.txt&quot;;
 
-try &#123;
+try {
     fs::rename(oldPath, newPath);
     std::cout &lt;&lt; &quot;File moved/renamed to: &quot; &lt;&lt; newPath &lt;&lt; std::endl;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error moving/renaming file: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File moved/renamed to: &quot;example_dir&quot;/renamed_sample.txt
@@ -405,15 +410,15 @@ try &#123;
 <h3 id="Deleting-Files"><a href="#Deleting-Files" class="headerlink" title="Deleting Files"></a>Deleting Files</h3><p>Use <code>fs::remove</code> to delete files.</p>
 <pre><code class="language-cpp">fs::path fileToDelete = &quot;example_dir/renamed_sample.txt&quot;;
 
-try &#123;
-    if(fs::remove(fileToDelete)) &#123;
+try {
+    if(fs::remove(fileToDelete)) {
         std::cout &lt;&lt; &quot;File deleted: &quot; &lt;&lt; fileToDelete &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;File not found: &quot; &lt;&lt; fileToDelete &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error deleting file: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File deleted: &quot;example_dir&quot;/renamed_sample.txt
@@ -423,15 +428,15 @@ try &#123;
 <h3 id="Creating-Directories"><a href="#Creating-Directories" class="headerlink" title="Creating Directories"></a>Creating Directories</h3><p>Use <code>fs::create_directory</code> to create a single directory or <code>fs::create_directories</code> to create nested directories.</p>
 <pre><code class="language-cpp">fs::path dirPath = &quot;parent_dir/child_dir&quot;;
 
-try &#123;
-    if(fs::create_directories(dirPath)) &#123;
+try {
+    if(fs::create_directories(dirPath)) {
         std::cout &lt;&lt; &quot;Directories created: &quot; &lt;&lt; dirPath &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;Directories already exist: &quot; &lt;&lt; dirPath &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error creating directories: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Directories created: &quot;parent_dir&quot;/child_dir
@@ -444,23 +449,23 @@ try &#123;
 fs::path nonEmptyDir = &quot;parent_dir&quot;;
 
 // Remove empty directory
-try &#123;
-    if(fs::remove(emptyDir)) &#123;
+try {
+    if(fs::remove(emptyDir)) {
         std::cout &lt;&lt; &quot;Empty directory removed: &quot; &lt;&lt; emptyDir &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;Empty directory not found: &quot; &lt;&lt; emptyDir &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error removing directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 
 // Recursively remove non-empty directory
-try &#123;
+try {
     size_t removed = fs::remove_all(nonEmptyDir);
     std::cout &lt;&lt; &quot;Removed &quot; &lt;&lt; removed &lt;&lt; &quot; files/directories from: &quot; &lt;&lt; nonEmptyDir &lt;&lt; std::endl;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error removing directories recursively: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Empty directory removed: &quot;parent_dir&quot;/child_dir
@@ -470,12 +475,12 @@ Removed 1 files/directories from: &quot;parent_dir&quot;
 <pre><code class="language-cpp">fs::path oldDir = &quot;old_directory&quot;;
 fs::path newDir = &quot;new_directory&quot;;
 
-try &#123;
+try {
     fs::rename(oldDir, newDir);
     std::cout &lt;&lt; &quot;Directory renamed to: &quot; &lt;&lt; newDir &lt;&lt; std::endl;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error renaming directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Directory renamed to: &quot;new_directory&quot;
@@ -485,13 +490,13 @@ try &#123;
 <h3 id="Non-Recursive-Iteration"><a href="#Non-Recursive-Iteration" class="headerlink" title="Non-Recursive Iteration"></a>Non-Recursive Iteration</h3><p>Use <code>fs::directory_iterator</code> to iterate through the immediate contents of a directory without descending into subdirectories.</p>
 <pre><code class="language-cpp">fs::path dir = &quot;example_dir&quot;;
 
-try &#123;
-    for(const auto&amp; entry : fs::directory_iterator(dir)) &#123;
+try {
+    for(const auto&amp; entry : fs::directory_iterator(dir)) {
         std::cout &lt;&lt; entry.path() &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error iterating directory: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>&quot;example_dir&quot;/file1.txt
@@ -501,13 +506,13 @@ try &#123;
 <h3 id="Recursive-Iteration"><a href="#Recursive-Iteration" class="headerlink" title="Recursive Iteration"></a>Recursive Iteration</h3><p>Use <code>fs::recursive_directory_iterator</code> to iterate through a directory and all its subdirectories.</p>
 <pre><code class="language-cpp">fs::path dir = &quot;example_dir&quot;;
 
-try &#123;
-    for(const auto&amp; entry : fs::recursive_directory_iterator(dir)) &#123;
+try {
+    for(const auto&amp; entry : fs::recursive_directory_iterator(dir)) {
         std::cout &lt;&lt; entry.path() &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error iterating directories recursively: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>&quot;example_dir&quot;/file1.txt
@@ -518,17 +523,17 @@ try &#123;
 <h3 id="Filtering-Entries"><a href="#Filtering-Entries" class="headerlink" title="Filtering Entries"></a>Filtering Entries</h3><p>Combine iterators with conditional checks to filter specific types of entries (e.g., regular files, directories).</p>
 <pre><code class="language-cpp">fs::path dir = &quot;example_dir&quot;;
 
-try &#123;
-    for(const auto&amp; entry : fs::directory_iterator(dir)) &#123;
-        if(fs::is_regular_file(entry.status())) &#123;
+try {
+    for(const auto&amp; entry : fs::directory_iterator(dir)) {
+        if(fs::is_regular_file(entry.status())) {
             std::cout &lt;&lt; &quot;File: &quot; &lt;&lt; entry.path() &lt;&lt; std::endl;
-        &#125; else if(fs::is_directory(entry.status())) &#123;
+        } else if(fs::is_directory(entry.status())) {
             std::cout &lt;&lt; &quot;Directory: &quot; &lt;&lt; entry.path() &lt;&lt; std::endl;
-        &#125;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+        }
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error iterating directory with filters: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File: &quot;example_dir&quot;/file1.txt
@@ -545,36 +550,36 @@ Directory: &quot;example_dir&quot;/subfolder
 </ol>
 <h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Getting-File-Size"><a href="#Getting-File-Size" class="headerlink" title="Getting File Size"></a>Getting File Size</h4><pre><code class="language-cpp">fs::path filePath = &quot;example_dir/file1.txt&quot;;
 
-try &#123;
+try {
     auto size = fs::file_size(filePath);
     std::cout &lt;&lt; &quot;Size of &quot; &lt;&lt; filePath &lt;&lt; &quot;: &quot; &lt;&lt; size &lt;&lt; &quot; bytes&quot; &lt;&lt; std::endl;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error getting file size: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Size of &quot;example_dir&quot;/file1.txt: 1024 bytes
 </code></pre>
 <h4 id="Checking-File-Status"><a href="#Checking-File-Status" class="headerlink" title="Checking File Status"></a>Checking File Status</h4><pre><code class="language-cpp">fs::path filePath = &quot;example_dir/file1.txt&quot;;
 
-try &#123;
+try {
     fs::file_status status = fs::status(filePath);
 
-    if(fs::is_regular_file(status)) &#123;
+    if(fs::is_regular_file(status)) {
         std::cout &lt;&lt; filePath &lt;&lt; &quot; is a regular file.&quot; &lt;&lt; std::endl;
-    &#125; else if(fs::is_directory(status)) &#123;
+    } else if(fs::is_directory(status)) {
         std::cout &lt;&lt; filePath &lt;&lt; &quot; is a directory.&quot; &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; filePath &lt;&lt; &quot; is neither a regular file nor a directory.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Checking permissions
-    if(fs::status_known(status)) &#123;
+    if(fs::status_known(status)) {
         std::cout &lt;&lt; &quot;Permissions: &quot; &lt;&lt; fs::status(status).permissions() &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error checking file status: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>&quot;example_dir&quot;/file1.txt is a regular file.
@@ -583,14 +588,14 @@ Permissions: 0o644
 <p><strong>Note:</strong> The permissions output format may vary based on the operating system.</p>
 <h4 id="Retrieving-Last-Write-Time"><a href="#Retrieving-Last-Write-Time" class="headerlink" title="Retrieving Last Write Time"></a>Retrieving Last Write Time</h4><pre><code class="language-cpp">fs::path filePath = &quot;example_dir/file1.txt&quot;;
 
-try &#123;
+try {
     auto ftime = fs::last_write_time(filePath);
     auto sctp = decltype(ftime)::clock::to_sys(ftime);
     std::time_t cftime = system_clock::to_time_t(sctp);
     std::cout &lt;&lt; &quot;Last write time: &quot; &lt;&lt; std::ctime(&amp;cftime);
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Error retrieving last write time: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Last write time: Wed Oct 11 14:23:45 2023
@@ -609,15 +614,15 @@ try &#123;
 <h3 id="Using-Try-Catch-Blocks"><a href="#Using-Try-Catch-Blocks" class="headerlink" title="Using Try-Catch Blocks"></a>Using Try-Catch Blocks</h3><p>Encapsulate filesystem operations within try-catch blocks to handle exceptions.</p>
 <pre><code class="language-cpp">fs::path filePath = &quot;example_dir/nonexistent.txt&quot;;
 
-try &#123;
-    if(fs::exists(filePath)) &#123;
+try {
+    if(fs::exists(filePath)) {
         std::cout &lt;&lt; filePath &lt;&lt; &quot; exists.&quot; &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; filePath &lt;&lt; &quot; does not exist.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125; catch(const fs::filesystem_error&amp; e) &#123;
+    }
+} catch(const fs::filesystem_error&amp; e) {
     std::cerr &lt;&lt; &quot;Filesystem error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>&quot;example_dir&quot;/nonexistent.txt does not exist.
@@ -627,11 +632,11 @@ try &#123;
 std::error_code ec;
 
 bool exists = fs::exists(filePath, ec);
-if(ec) &#123;
+if(ec) {
     std::cerr &lt;&lt; &quot;Error checking existence: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
-&#125; else &#123;
+} else {
     std::cout &lt;&lt; filePath &lt;&lt; (exists ? &quot; exists.&quot; : &quot; does not exist.&quot;) &lt;&lt; std::endl;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>&quot;example_dir&quot;/sample.txt exists.
@@ -675,7 +680,7 @@ if(ec) &#123;
 <li>Use non-throwing overloads in performance-critical sections or where exceptions are undesirable.</li>
 <li><strong>Example</strong>:<pre><code class="language-cpp">std::error_code ec;
 fs::remove(filePath, ec);
-if(ec) &#123; /* handle error */ &#125;
+if(ec) { /* handle error */ }
 </code></pre>
 </li>
 </ul>
@@ -683,9 +688,9 @@ if(ec) &#123; /* handle error */ &#125;
 <li><p><strong>Check for Path Existence Before Operations</strong></p>
 <ul>
 <li>Prevent unnecessary errors by verifying that paths exist before attempting operations.</li>
-<li><strong>Example</strong>:<pre><code class="language-cpp">if(fs::exists(filePath)) &#123;
+<li><strong>Example</strong>:<pre><code class="language-cpp">if(fs::exists(filePath)) {
     // Proceed with operation
-&#125;
+}
 </code></pre>
 </li>
 </ul>
@@ -701,9 +706,9 @@ if(ec) &#123; /* handle error */ &#125;
 <li><p><strong>Use Iterators for Efficient Directory Traversal</strong></p>
 <ul>
 <li>Utilize <code>directory_iterator</code> and <code>recursive_directory_iterator</code> for efficient and readable directory traversal.</li>
-<li><strong>Example</strong>:<pre><code class="language-cpp">for(auto&amp; entry : fs::directory_iterator(dirPath)) &#123;
+<li><strong>Example</strong>:<pre><code class="language-cpp">for(auto&amp; entry : fs::directory_iterator(dirPath)) {
     // Process entry
-&#125;
+}
 </code></pre>
 </li>
 </ul>
@@ -741,27 +746,27 @@ if(ec) &#123; /* handle error */ &#125;
 
 namespace fs = std::filesystem;
 
-int main() &#123;
+int main() {
     fs::path dirPath = &quot;example_dir&quot;;
 
-    try &#123;
-        if(!fs::exists(dirPath) || !fs::is_directory(dirPath)) &#123;
+    try {
+        if(!fs::exists(dirPath) || !fs::is_directory(dirPath)) {
             std::cerr &lt;&lt; dirPath &lt;&lt; &quot; is not a valid directory.&quot; &lt;&lt; std::endl;
             return 1;
-        &#125;
+        }
 
         std::cout &lt;&lt; &quot;Files in &quot; &lt;&lt; dirPath &lt;&lt; &quot;:&quot; &lt;&lt; std::endl;
-        for(const auto&amp; entry : fs::directory_iterator(dirPath)) &#123;
-            if(fs::is_regular_file(entry.status())) &#123;
+        for(const auto&amp; entry : fs::directory_iterator(dirPath)) {
+            if(fs::is_regular_file(entry.status())) {
                 std::cout &lt;&lt; &quot; - &quot; &lt;&lt; entry.path().filename() &lt;&lt; std::endl;
-            &#125;
-        &#125;
-    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+            }
+        }
+    } catch(const fs::filesystem_error&amp; e) {
         std::cerr &lt;&lt; &quot;Filesystem error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Files in &quot;example_dir&quot;:
@@ -784,33 +789,33 @@ int main() &#123;
 namespace fs = std::filesystem;
 
 // Function to search for a file recursively
-fs::path findFile(const fs::path&amp; directory, const std::string&amp; filename) &#123;
-    try &#123;
-        for(const auto&amp; entry : fs::recursive_directory_iterator(directory)) &#123;
-            if(fs::is_regular_file(entry.status()) &amp;&amp; entry.path().filename() == filename) &#123;
+fs::path findFile(const fs::path&amp; directory, const std::string&amp; filename) {
+    try {
+        for(const auto&amp; entry : fs::recursive_directory_iterator(directory)) {
+            if(fs::is_regular_file(entry.status()) &amp;&amp; entry.path().filename() == filename) {
                 return entry.path();
-            &#125;
-        &#125;
-    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+            }
+        }
+    } catch(const fs::filesystem_error&amp; e) {
         std::cerr &lt;&lt; &quot;Error during search: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
     return fs::path(); // Return empty path if not found
-&#125;
+}
 
-int main() &#123;
+int main() {
     fs::path searchDir = &quot;example_dir&quot;;
     std::string targetFile = &quot;document.pdf&quot;;
 
     fs::path result = findFile(searchDir, targetFile);
 
-    if(!result.empty()) &#123;
+    if(!result.empty()) {
         std::cout &lt;&lt; &quot;File found at: &quot; &lt;&lt; result &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;File &quot; &lt;&lt; targetFile &lt;&lt; &quot; not found in &quot; &lt;&lt; searchDir &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File found at: &quot;example_dir&quot;/subfolder/documents/document.pdf
@@ -828,44 +833,44 @@ int main() &#123;
 
 namespace fs = std::filesystem;
 
-int main() &#123;
+int main() {
     fs::path sourceDir = &quot;source_directory&quot;;
     fs::path destinationDir = &quot;destination_directory&quot;;
 
-    try &#123;
+    try {
         // Check if source directory exists
-        if(!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) &#123;
+        if(!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) {
             std::cerr &lt;&lt; &quot;Source directory does not exist or is not a directory.&quot; &lt;&lt; std::endl;
             return 1;
-        &#125;
+        }
 
         // Create destination directory if it doesn&#39;t exist
-        if(!fs::exists(destinationDir)) &#123;
+        if(!fs::exists(destinationDir)) {
             fs::create_directories(destinationDir);
             std::cout &lt;&lt; &quot;Created destination directory: &quot; &lt;&lt; destinationDir &lt;&lt; std::endl;
-        &#125;
+        }
 
         // Iterate through source directory recursively
-        for(auto&amp; entry : fs::recursive_directory_iterator(sourceDir)) &#123;
+        for(auto&amp; entry : fs::recursive_directory_iterator(sourceDir)) {
             const auto&amp; path = entry.path();
             auto relativePath = fs::relative(path, sourceDir);
             fs::path destPath = destinationDir / relativePath;
 
-            if(fs::is_directory(entry.status())) &#123;
+            if(fs::is_directory(entry.status())) {
                 fs::create_directories(destPath);
-            &#125; else if(fs::is_regular_file(entry.status())) &#123;
+            } else if(fs::is_regular_file(entry.status())) {
                 fs::copy_file(path, destPath, fs::copy_options::overwrite_existing);
                 std::cout &lt;&lt; &quot;Copied file: &quot; &lt;&lt; path &lt;&lt; &quot; to &quot; &lt;&lt; destPath &lt;&lt; std::endl;
-            &#125;
-        &#125;
+            }
+        }
 
         std::cout &lt;&lt; &quot;Directory copy completed successfully.&quot; &lt;&lt; std::endl;
-    &#125; catch(const fs::filesystem_error&amp; e) &#123;
+    } catch(const fs::filesystem_error&amp; e) {
         std::cerr &lt;&lt; &quot;Filesystem error during copy: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Created destination directory: &quot;destination_directory&quot;
@@ -913,7 +918,7 @@ Directory copy completed successfully.
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

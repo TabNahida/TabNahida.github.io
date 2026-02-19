@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #03a9f4">
+                <a href="/tags/modern-cpp/" style="color: #00bcd4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
+                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
+                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
                     Zero to Hero
                 </a>
             </span>
@@ -224,36 +229,36 @@
 <h2 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h2><p>Conditional statements allow your program to execute different sections of code based on whether a condition is true or false. The primary conditional statements in C++ are <code>if</code> and <code>switch</code>.</p>
 <h3 id="if-Statement"><a href="#if-Statement" class="headerlink" title="if Statement"></a><code>if</code> Statement</h3><p>The <code>if</code> statement executes a block of code if a specified condition is true. You can also include <code>else if</code> and <code>else</code> clauses to handle additional conditions.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">if (condition) &#123;
+<pre><code class="language-cpp">if (condition) {
     // Code to execute if condition is true
-&#125; else if (another_condition) &#123;
+} else if (another_condition) {
     // Code to execute if another_condition is true
-&#125; else &#123;
+} else {
     // Code to execute if none of the above conditions are true
-&#125;
+}
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int number;
     std::cout &lt;&lt; &quot;Enter a number: &quot;;
     std::cin &gt;&gt; number;
 
-    if (number &gt; 0) &#123;
+    if (number &gt; 0) {
         std::cout &lt;&lt; &quot;Positive number.&quot; &lt;&lt; std::endl;
-    &#125; else if (number &lt; 0) &#123;
+    } else if (number &lt; 0) {
         std::cout &lt;&lt; &quot;Negative number.&quot; &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;Zero.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="switch-Statement"><a href="#switch-Statement" class="headerlink" title="switch Statement"></a><code>switch</code> Statement</h3><p>The <code>switch</code> statement allows multi-way branching based on the value of an integral or enumeration type.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">switch (expression) &#123;
+<pre><code class="language-cpp">switch (expression) {
     case value1:
         // Code to execute if expression == value1
         break;
@@ -263,17 +268,17 @@ int main() &#123;
     // More cases...
     default:
         // Code to execute if none of the cases match
-&#125;
+}
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     char grade;
     std::cout &lt;&lt; &quot;Enter your grade (A, B, C, D, F): &quot;;
     std::cin &gt;&gt; grade;
 
-    switch (grade) &#123;
+    switch (grade) {
         case &#39;A&#39;:
             std::cout &lt;&lt; &quot;Excellent!&quot; &lt;&lt; std::endl;
             break;
@@ -291,112 +296,112 @@ int main() &#123;
             break;
         default:
             std::cout &lt;&lt; &quot;Invalid grade.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><p>Loops allow you to execute a block of code multiple times. C++ provides several types of loops: <code>for</code>, <code>while</code>, and <code>do-while</code>.</p>
 <h3 id="for-Loop"><a href="#for-Loop" class="headerlink" title="for Loop"></a><code>for</code> Loop</h3><p>The <code>for</code> loop is typically used when the number of iterations is known beforehand.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">for (initialization; condition; increment) &#123;
+<pre><code class="language-cpp">for (initialization; condition; increment) {
     // Code to execute each iteration
-&#125;
+}
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
-    for (int i = 1; i &lt;= 5; ++i) &#123;
+int main() {
+    for (int i = 1; i &lt;= 5; ++i) {
         std::cout &lt;&lt; &quot;Iteration &quot; &lt;&lt; i &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="while-Loop"><a href="#while-Loop" class="headerlink" title="while Loop"></a><code>while</code> Loop</h3><p>The <code>while</code> loop continues to execute as long as the specified condition remains true. It’s useful when the number of iterations is not known in advance.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">while (condition) &#123;
+<pre><code class="language-cpp">while (condition) {
     // Code to execute each iteration
-&#125;
+}
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int count = 1;
-    while (count &lt;= 5) &#123;
+    while (count &lt;= 5) {
         std::cout &lt;&lt; &quot;Count: &quot; &lt;&lt; count &lt;&lt; std::endl;
         ++count;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="do-while-Loop"><a href="#do-while-Loop" class="headerlink" title="do-while Loop"></a><code>do-while</code> Loop</h3><p>The <code>do-while</code> loop is similar to the <code>while</code> loop, but it guarantees that the loop body is executed at least once, as the condition is checked after the execution of the loop body.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">do &#123;
+<pre><code class="language-cpp">do {
     // Code to execute each iteration
-&#125; while (condition);
+} while (condition);
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int number;
-    do &#123;
+    do {
         std::cout &lt;&lt; &quot;Enter a positive number (0 to exit): &quot;;
         std::cin &gt;&gt; number;
         std::cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; number &lt;&lt; std::endl;
-    &#125; while (number != 0);
+    } while (number != 0);
 
     return 0;
-&#125;
+}
 </code></pre>
 <h2 id="Jump-Statements"><a href="#Jump-Statements" class="headerlink" title="Jump Statements"></a>Jump Statements</h2><p>Jump statements allow you to alter the flow of control by jumping to a different part of the program. The primary jump statements in C++ are <code>break</code>, <code>continue</code>, <code>return</code>, and <code>goto</code>.</p>
 <h3 id="break"><a href="#break" class="headerlink" title="break"></a><code>break</code></h3><p>The <code>break</code> statement exits the nearest enclosing loop or <code>switch</code> statement.</p>
 <p><strong>Example: Exiting a Loop Early</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
-    for (int i = 1; i &lt;= 10; ++i) &#123;
-        if (i == 5) &#123;
+int main() {
+    for (int i = 1; i &lt;= 10; ++i) {
+        if (i == 5) {
             break; // Exit the loop when i is 5
-        &#125;
+        }
         std::cout &lt;&lt; i &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     // Output: 1 2 3 4
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a><code>continue</code></h3><p>The <code>continue</code> statement skips the rest of the current loop iteration and proceeds to the next iteration.</p>
 <p><strong>Example: Skipping Odd Numbers</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
-    for (int i = 1; i &lt;= 5; ++i) &#123;
-        if (i % 2 != 0) &#123;
+int main() {
+    for (int i = 1; i &lt;= 5; ++i) {
+        if (i % 2 != 0) {
             continue; // Skip odd numbers
-        &#125;
+        }
         std::cout &lt;&lt; i &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     // Output: 2 4
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="return"><a href="#return" class="headerlink" title="return"></a><code>return</code></h3><p>The <code>return</code> statement exits a function and optionally returns a value to the caller.</p>
 <p><strong>Example: Exiting a Function Early</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int divide(int a, int b) &#123;
-    if (b == 0) &#123;
+int divide(int a, int b) {
+    if (b == 0) {
         std::cerr &lt;&lt; &quot;Error: Division by zero!&quot; &lt;&lt; std::endl;
         return 0; // Exit the function early
-    &#125;
+    }
     return a / b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int result = divide(10, 2);
     std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; result &lt;&lt; std::endl; // Output: Result: 5
 
@@ -404,7 +409,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; result &lt;&lt; std::endl; // Output: Result: 0
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h3><p>The <code>goto</code> statement allows you to jump to a labeled statement within the same function. While <code>goto</code> can be used for error handling or breaking out of deeply nested loops, its use is generally discouraged as it can lead to spaghetti code, making programs harder to read and maintain.</p>
 <p><strong>Syntax:</strong></p>
@@ -418,22 +423,22 @@ label:
 <p><strong>Example: Using <code>goto</code> for Error Handling</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int num;
     std::cout &lt;&lt; &quot;Enter a positive number: &quot;;
     std::cin &gt;&gt; num;
 
-    if (num &lt;= 0) &#123;
+    if (num &lt;= 0) {
         std::cerr &lt;&lt; &quot;Invalid input. Number must be positive.&quot; &lt;&lt; std::endl;
         goto end; // Jump to the end label
-    &#125;
+    }
 
     std::cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; num &lt;&lt; std::endl;
 
     end:
         std::cout &lt;&lt; &quot;Program ended.&quot; &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Best Practices:</strong></p>
 <ul>
@@ -469,7 +474,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

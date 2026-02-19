@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00a596">
+                <a href="/tags/c-cpp/" style="color: #ff7d73">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                <a href="/tags/modern-cpp/" style="color: #00a596">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
+                <a href="/tags/Zero-to-Hero/" style="color: #ffa2c4">
                     Zero to Hero
                 </a>
             </span>
@@ -237,39 +242,39 @@
 <li><strong>Class</strong>: A blueprint for creating objects. It encapsulates data for the object and methods to manipulate that data.</li>
 <li><strong>Object</strong>: An instance of a class. It represents a specific entity with its own state and behavior as defined by the class.</li>
 </ul>
-<h3 id="Defining-a-Class"><a href="#Defining-a-Class" class="headerlink" title="Defining a Class"></a>Defining a Class</h3><p>To define a class in C++, use the <code>class</code> keyword followed by the class name and a pair of curly braces <code>&#123;&#125;</code> enclosing its members.</p>
+<h3 id="Defining-a-Class"><a href="#Defining-a-Class" class="headerlink" title="Defining a Class"></a>Defining a Class</h3><p>To define a class in C++, use the <code>class</code> keyword followed by the class name and a pair of curly braces <code>{}</code> enclosing its members.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">class ClassName &#123;
+<pre><code class="language-cpp">class ClassName {
 public:
     // Public members
 private:
     // Private members
 protected:
     // Protected members
-&#125;;
+};
 </code></pre>
 <h3 id="Example-Defining-and-Using-a-Class"><a href="#Example-Defining-and-Using-a-Class" class="headerlink" title="Example: Defining and Using a Class"></a>Example: Defining and Using a Class</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Definition of the Person class
-class Person &#123;
+class Person {
 public:
     // Public member variables
     std::string name;
     int age;
 
     // Public member function
-    void introduce() const &#123;
+    void introduce() const {
         std::cout &lt;&lt; &quot;Hello, my name is &quot; &lt;&lt; name 
                   &lt;&lt; &quot; and I am &quot; &lt;&lt; age &lt;&lt; &quot; years old.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     // Private member variable
     std::string secret;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     // Creating an object of the Person class
     Person person1;
     person1.name = &quot;Alice&quot;;
@@ -279,7 +284,7 @@ int main() &#123;
     person1.introduce();
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Hello, my name is Alice and I am 30 years old.
@@ -290,7 +295,7 @@ int main() &#123;
 <li><strong>protected</strong>: Members are accessible within the class and by derived classes.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code class="language-cpp">class Example &#123;
+<pre><code class="language-cpp">class Example {
 public:
     int publicVar; // Accessible from anywhere
 
@@ -299,7 +304,7 @@ private:
 
 protected:
     int protectedVar; // Accessible within the class and derived classes
-&#125;;
+};
 </code></pre>
 <hr>
 <h2 id="Constructors-and-Destructors"><a href="#Constructors-and-Destructors" class="headerlink" title="Constructors and Destructors"></a>Constructors and Destructors</h2><h3 id="Constructors"><a href="#Constructors" class="headerlink" title="Constructors"></a>Constructors</h3><p>Constructors are special member functions that are called when an object is created. They initialize the object’s data members and allocate resources if necessary.</p>
@@ -314,42 +319,42 @@ protected:
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-class Person &#123;
+class Person {
 public:
     // Default constructor
-    Person() : name(&quot;Unknown&quot;), age(0) &#123;
+    Person() : name(&quot;Unknown&quot;), age(0) {
         std::cout &lt;&lt; &quot;Default constructor called.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Parameterized constructor
     Person(const std::string&amp; personName, int personAge) 
-        : name(personName), age(personAge) &#123;
+        : name(personName), age(personAge) {
         std::cout &lt;&lt; &quot;Parameterized constructor called.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Copy constructor
     Person(const Person&amp; other) 
-        : name(other.name), age(other.age) &#123;
+        : name(other.name), age(other.age) {
         std::cout &lt;&lt; &quot;Copy constructor called.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Move constructor
     Person(Person&amp;&amp; other) noexcept 
-        : name(std::move(other.name)), age(other.age) &#123;
+        : name(std::move(other.name)), age(other.age) {
         std::cout &lt;&lt; &quot;Move constructor called.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Display information
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Name: &quot; &lt;&lt; name &lt;&lt; &quot;, Age: &quot; &lt;&lt; age &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     std::string name;
     int age;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Person p1; // Default constructor
     p1.display();
 
@@ -363,7 +368,7 @@ int main() &#123;
     p4.display();
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Default constructor called.
@@ -377,38 +382,38 @@ Name: Alice, Age: 30
 </code></pre>
 <h3 id="Destructors"><a href="#Destructors" class="headerlink" title="Destructors"></a>Destructors</h3><p>Destructors are special member functions that are called when an object is destroyed. They are used to release resources allocated to the object and perform any necessary cleanup.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">~ClassName() &#123;
+<pre><code class="language-cpp">~ClassName() {
     // Cleanup code
-&#125;
+}
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-class Resource &#123;
+class Resource {
 public:
     // Constructor
-    Resource(const std::string&amp; resourceName) : name(resourceName) &#123;
+    Resource(const std::string&amp; resourceName) : name(resourceName) {
         std::cout &lt;&lt; &quot;Resource &quot; &lt;&lt; name &lt;&lt; &quot; acquired.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Destructor
-    ~Resource() &#123;
+    ~Resource() {
         std::cout &lt;&lt; &quot;Resource &quot; &lt;&lt; name &lt;&lt; &quot; released.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     std::string name;
-&#125;;
+};
 
-int main() &#123;
-    &#123;
+int main() {
+    {
         Resource res1(&quot;FileHandle&quot;);
         Resource res2(&quot;NetworkSocket&quot;);
-    &#125; // res1 and res2 go out of scope here
+    } // res1 and res2 go out of scope here
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Resource FileHandle acquired.
@@ -428,30 +433,30 @@ Resource FileHandle released.
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-class Box &#123;
+class Box {
 public:
     // Parameterized constructor
-    Box(double w, double h, double d) : width(w), height(h), depth(d) &#123;&#125;
+    Box(double w, double h, double d) : width(w), height(h), depth(d) {}
 
     // Copy constructor
     Box(const Box&amp; other) 
-        : width(other.width), height(other.height), depth(other.depth) &#123;
+        : width(other.width), height(other.height), depth(other.depth) {
         std::cout &lt;&lt; &quot;Copy constructor called.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Display dimensions
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Box(&quot; &lt;&lt; width &lt;&lt; &quot; x &quot; 
                   &lt;&lt; height &lt;&lt; &quot; x &quot; &lt;&lt; depth &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     double width;
     double height;
     double depth;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Box box1(3.0, 4.0, 5.0);
     box1.display();
 
@@ -459,7 +464,7 @@ int main() &#123;
     box2.display();
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Box(3 x 4 x 5)
@@ -477,51 +482,51 @@ Box(3 x 4 x 5)
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-class Buffer &#123;
+class Buffer {
 public:
     // Default constructor
-    Buffer() : data(nullptr), size(0) &#123;&#125;
+    Buffer() : data(nullptr), size(0) {}
 
     // Parameterized constructor
-    Buffer(size_t sz) : size(sz) &#123;
+    Buffer(size_t sz) : size(sz) {
         data = new int[size];
         std::cout &lt;&lt; &quot;Buffer of size &quot; &lt;&lt; size &lt;&lt; &quot; created.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Copy constructor
-    Buffer(const Buffer&amp; other) : size(other.size) &#123;
+    Buffer(const Buffer&amp; other) : size(other.size) {
         data = new int[size];
         std::copy(other.data, other.data + size, data);
         std::cout &lt;&lt; &quot;Buffer copied.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Move constructor
-    Buffer(Buffer&amp;&amp; other) noexcept : data(other.data), size(other.size) &#123;
+    Buffer(Buffer&amp;&amp; other) noexcept : data(other.data), size(other.size) {
         other.data = nullptr;
         other.size = 0;
         std::cout &lt;&lt; &quot;Buffer moved.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     // Destructor
-    ~Buffer() &#123;
+    ~Buffer() {
         delete[] data;
-        if (size &gt; 0) &#123;
+        if (size &gt; 0) {
             std::cout &lt;&lt; &quot;Buffer of size &quot; &lt;&lt; size &lt;&lt; &quot; destroyed.&quot; &lt;&lt; std::endl;
-        &#125;
-    &#125;
+        }
+    }
 
     // Display buffer info
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Buffer size: &quot; &lt;&lt; size &lt;&lt; &quot;, Data pointer: &quot; 
                   &lt;&lt; data &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     int* data;
     size_t size;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Buffer buf1(10);
     buf1.display();
 
@@ -530,7 +535,7 @@ int main() &#123;
     buf1.display(); // buf1 is now in a valid but unspecified state
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Buffer of size 10 created.
@@ -548,47 +553,47 @@ Buffer of size 10 destroyed.
 <hr>
 <h2 id="Inheritance-and-Polymorphism"><a href="#Inheritance-and-Polymorphism" class="headerlink" title="Inheritance and Polymorphism"></a>Inheritance and Polymorphism</h2><h3 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h3><p>Inheritance allows a class (derived class) to inherit properties and behaviors from another class (base class). This promotes code reuse and establishes a hierarchical relationship between classes.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">class BaseClass &#123;
+<pre><code class="language-cpp">class BaseClass {
 public:
-    void baseFunction() &#123;
+    void baseFunction() {
         // Base class function
-    &#125;
-&#125;;
+    }
+};
 
-class DerivedClass : public BaseClass &#123;
+class DerivedClass : public BaseClass {
 public:
-    void derivedFunction() &#123;
+    void derivedFunction() {
         // Derived class function
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Base class
-class Animal &#123;
+class Animal {
 public:
-    void eat() const &#123;
+    void eat() const {
         std::cout &lt;&lt; &quot;This animal eats food.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Derived class
-class Dog : public Animal &#123;
+class Dog : public Animal {
 public:
-    void bark() const &#123;
+    void bark() const {
         std::cout &lt;&lt; &quot;The dog barks.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     Dog myDog;
     myDog.eat();   // Inherited from Animal
     myDog.bark();  // Defined in Dog
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>This animal eats food.
@@ -606,30 +611,30 @@ The dog barks.
 #include &lt;string&gt;
 
 // Base class
-class Shape &#123;
+class Shape {
 public:
-    virtual void draw() const &#123; // Virtual function
+    virtual void draw() const { // Virtual function
         std::cout &lt;&lt; &quot;Drawing a generic shape.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Derived class
-class Circle : public Shape &#123;
+class Circle : public Shape {
 public:
-    void draw() const override &#123; // Override keyword for clarity
+    void draw() const override { // Override keyword for clarity
         std::cout &lt;&lt; &quot;Drawing a circle.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Another derived class
-class Square : public Shape &#123;
+class Square : public Shape {
 public:
-    void draw() const override &#123;
+    void draw() const override {
         std::cout &lt;&lt; &quot;Drawing a square.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     Shape* shape1 = new Circle();
     Shape* shape2 = new Square();
 
@@ -640,7 +645,7 @@ int main() &#123;
     delete shape2;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Drawing a circle.
@@ -648,38 +653,38 @@ Drawing a square.
 </code></pre>
 <h4 id="Abstract-Classes"><a href="#Abstract-Classes" class="headerlink" title="Abstract Classes"></a>Abstract Classes</h4><p>An abstract class is a class that cannot be instantiated and is designed to be subclassed. It typically contains at least one pure virtual function, which must be overridden by derived classes.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">class AbstractClass &#123;
+<pre><code class="language-cpp">class AbstractClass {
 public:
     virtual void pureVirtualFunction() = 0; // Pure virtual function
-&#125;;
+};
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 // Abstract base class
-class Vehicle &#123;
+class Vehicle {
 public:
     virtual void move() const = 0; // Pure virtual function
-&#125;;
+};
 
 // Derived class
-class Car : public Vehicle &#123;
+class Car : public Vehicle {
 public:
-    void move() const override &#123;
+    void move() const override {
         std::cout &lt;&lt; &quot;The car drives on the road.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
 // Another derived class
-class Boat : public Vehicle &#123;
+class Boat : public Vehicle {
 public:
-    void move() const override &#123;
+    void move() const override {
         std::cout &lt;&lt; &quot;The boat sails on the water.&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     // Vehicle v; // Error: Cannot instantiate abstract class
 
     Vehicle* car = new Car();
@@ -692,7 +697,7 @@ int main() &#123;
     delete boat;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>The car drives on the road.
@@ -714,37 +719,37 @@ The boat sails on the water.
 <h3 id="How-to-Overload-Operators"><a href="#How-to-Overload-Operators" class="headerlink" title="How to Overload Operators"></a>How to Overload Operators</h3><p>Operators can be overloaded as member functions or as friend functions. Not all operators can be overloaded, and care must be taken to maintain code clarity.</p>
 <p><strong>Syntax:</strong></p>
 <pre><code class="language-cpp">// Member function
-ReturnType operatorOp(Parameters) &#123;
+ReturnType operatorOp(Parameters) {
     // Implementation
-&#125;
+}
 
 // Friend function
-friend ReturnType operatorOp(const ClassName&amp; lhs, const ClassName&amp; rhs) &#123;
+friend ReturnType operatorOp(const ClassName&amp; lhs, const ClassName&amp; rhs) {
     // Implementation
-&#125;
+}
 </code></pre>
 <h3 id="Example-Overloading-the-Operator"><a href="#Example-Overloading-the-Operator" class="headerlink" title="Example: Overloading the + Operator"></a>Example: Overloading the <code>+</code> Operator</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Vector &#123;
+class Vector {
 public:
-    Vector(int x, int y) : x_(x), y_(y) &#123;&#125;
+    Vector(int x, int y) : x_(x), y_(y) {}
 
     // Overload the + operator as a member function
-    Vector operator+(const Vector&amp; other) const &#123;
+    Vector operator+(const Vector&amp; other) const {
         return Vector(x_ + other.x_, y_ + other.y_);
-    &#125;
+    }
 
     // Display vector components
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;(&quot; &lt;&lt; x_ &lt;&lt; &quot;, &quot; &lt;&lt; y_ &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     int x_;
     int y_;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Vector v1(1, 2);
     Vector v2(3, 4);
     Vector v3 = v1 + v2; // Uses overloaded + operator
@@ -752,33 +757,33 @@ int main() &#123;
     v3.display(); // Outputs: (4, 6)
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>(4, 6)
 </code></pre>
 <h3 id="Example-Overloading-the"><a href="#Example-Overloading-the" class="headerlink" title="Example: Overloading the &lt;&lt; Operator for Output"></a>Example: Overloading the <code>&lt;&lt;</code> Operator for Output</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Point &#123;
+class Point {
 public:
-    Point(int x, int y) : x_(x), y_(y) &#123;&#125;
+    Point(int x, int y) : x_(x), y_(y) {}
 
     // Overload the &lt;&lt; operator as a friend function
-    friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Point&amp; pt) &#123;
+    friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Point&amp; pt) {
         os &lt;&lt; &quot;(&quot; &lt;&lt; pt.x_ &lt;&lt; &quot;, &quot; &lt;&lt; pt.y_ &lt;&lt; &quot;)&quot;;
         return os;
-    &#125;
+    }
 
 private:
     int x_;
     int y_;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Point p(5, 10);
     std::cout &lt;&lt; &quot;Point p: &quot; &lt;&lt; p &lt;&lt; std::endl; // Uses overloaded &lt;&lt; operator
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Point p: (5, 10)
@@ -794,54 +799,54 @@ int main() &#123;
 <h2 id="Union-and-Struct-as-Special-Classes"><a href="#Union-and-Struct-as-Special-Classes" class="headerlink" title="Union and Struct as Special Classes"></a>Union and Struct as Special Classes</h2><p>In C++, <code>struct</code> and <code>union</code> are special types of classes with unique characteristics and use cases.</p>
 <h3 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h3><p>A <code>struct</code> is similar to a <code>class</code> but has default public access specifiers. It is primarily used for passive objects that carry data.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">struct StructName &#123;
+<pre><code class="language-cpp">struct StructName {
     // Public members by default
     int member1;
     double member2;
 
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Member1: &quot; &lt;&lt; member1 
                   &lt;&lt; &quot;, Member2: &quot; &lt;&lt; member2 &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-struct Point &#123;
+struct Point {
     int x;
     int y;
 
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Point(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
-    Point p = &#123;10, 20&#125;;
+int main() {
+    Point p = {10, 20};
     p.display(); // Outputs: Point(10, 20)
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Unions"><a href="#Unions" class="headerlink" title="Unions"></a>Unions</h3><p>A <code>union</code> allows storing different data types in the same memory location. Only one member can hold a value at any given time.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">union UnionName &#123;
+<pre><code class="language-cpp">union UnionName {
     int intVal;
     float floatVal;
     char charVal;
-&#125;;
+};
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
-union Data &#123;
+union Data {
     int intVal;
     float floatVal;
     char charVal;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Data data;
     data.intVal = 100;
     std::cout &lt;&lt; &quot;data.intVal: &quot; &lt;&lt; data.intVal &lt;&lt; std::endl;
@@ -853,7 +858,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;data.charVal: &quot; &lt;&lt; data.charVal &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>data.intVal: 100
@@ -867,12 +872,12 @@ data.charVal: A
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int a = 10;
     double b = a; // Implicitly converts int to double
     std::cout &lt;&lt; &quot;b = &quot; &lt;&lt; b &lt;&lt; std::endl; // Outputs: b = 10.0
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Key Points:</strong></p>
 <ul>
@@ -891,67 +896,67 @@ int main() &#123;
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     double pi = 3.14159;
     int intPi = static_cast&lt;int&gt;(pi); // Explicitly converts double to int
     std::cout &lt;&lt; &quot;intPi = &quot; &lt;&lt; intPi &lt;&lt; std::endl; // Outputs: intPi = 3
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a><code>dynamic_cast</code></h4><p>Used primarily for downcasting in inheritance hierarchies, ensuring that the cast is safe at runtime. Requires the base class to have at least one virtual function.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Base &#123;
+class Base {
 public:
-    virtual void speak() const &#123; std::cout &lt;&lt; &quot;Base speaking.&quot; &lt;&lt; std::endl; &#125;
-&#125;;
+    virtual void speak() const { std::cout &lt;&lt; &quot;Base speaking.&quot; &lt;&lt; std::endl; }
+};
 
-class Derived : public Base &#123;
+class Derived : public Base {
 public:
-    void speak() const override &#123; std::cout &lt;&lt; &quot;Derived speaking.&quot; &lt;&lt; std::endl; &#125;
-&#125;;
+    void speak() const override { std::cout &lt;&lt; &quot;Derived speaking.&quot; &lt;&lt; std::endl; }
+};
 
-int main() &#123;
+int main() {
     Base* basePtr = new Derived();
     Derived* derivedPtr = dynamic_cast&lt;Derived*&gt;(basePtr);
     
-    if (derivedPtr) &#123;
+    if (derivedPtr) {
         derivedPtr-&gt;speak(); // Outputs: Derived speaking.
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;Cast failed.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     delete basePtr;
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a><code>const_cast</code></h4><p>Used to add or remove the <code>const</code> qualifier from a variable. It should be used cautiously, as modifying a <code>const</code> variable after removing <code>const</code> can lead to undefined behavior.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-void printNumber(const int* num) &#123;
+void printNumber(const int* num) {
     int* modifiableNum = const_cast&lt;int*&gt;(num);
     *modifiableNum = 20; // Undefined behavior if num was originally const
     std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; *modifiableNum &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int value = 10;
     printNumber(&amp;value); // Outputs: Number: 20
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a><code>reinterpret_cast</code></h4><p>Used for low-level, unsafe conversions, such as converting between pointer types or between pointers and integers. It should be used sparingly and only when absolutely necessary.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int a = 65;
     char* charPtr = reinterpret_cast&lt;char*&gt;(&amp;a);
     std::cout &lt;&lt; &quot;Character: &quot; &lt;&lt; *charPtr &lt;&lt; std::endl; // May output: &#39;A&#39;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Caution:</strong> <code>reinterpret_cast</code> can lead to platform-dependent behavior and should be avoided unless you have a clear understanding of the implications.</p>
 <h3 id="Best-Practices-for-Type-Conversion"><a href="#Best-Practices-for-Type-Conversion" class="headerlink" title="Best Practices for Type Conversion"></a>Best Practices for Type Conversion</h3><ol>
@@ -991,7 +996,7 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-int main() &#123;
+int main() {
     // Implicit Type Conversion
     int integer = 42;
     double floating = integer; // Implicitly converts int to double
@@ -1014,7 +1019,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::endl; // Outputs: Modified Value: 200
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="Step-2-Build-and-Run-the-Program"><a href="#Step-2-Build-and-Run-the-Program" class="headerlink" title="Step 2: Build and Run the Program"></a>Step 2: Build and Run the Program</h4><p>In the terminal, build the project:</p>
 <pre><code class="language-bash">xmake
@@ -1060,37 +1065,37 @@ Modified Value: 200
 <h3 id="How-to-Overload-Operators-1"><a href="#How-to-Overload-Operators-1" class="headerlink" title="How to Overload Operators"></a>How to Overload Operators</h3><p>Operators can be overloaded as member functions or as friend functions. Not all operators can be overloaded, and care must be taken to maintain code clarity.</p>
 <p><strong>Syntax:</strong></p>
 <pre><code class="language-cpp">// Member function
-ReturnType operatorOp(Parameters) &#123;
+ReturnType operatorOp(Parameters) {
     // Implementation
-&#125;
+}
 
 // Friend function
-friend ReturnType operatorOp(const ClassName&amp; lhs, const ClassName&amp; rhs) &#123;
+friend ReturnType operatorOp(const ClassName&amp; lhs, const ClassName&amp; rhs) {
     // Implementation
-&#125;
+}
 </code></pre>
 <h3 id="Example-Overloading-the-Operator-1"><a href="#Example-Overloading-the-Operator-1" class="headerlink" title="Example: Overloading the + Operator"></a>Example: Overloading the <code>+</code> Operator</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Vector &#123;
+class Vector {
 public:
-    Vector(int x, int y) : x_(x), y_(y) &#123;&#125;
+    Vector(int x, int y) : x_(x), y_(y) {}
 
     // Overload the + operator as a member function
-    Vector operator+(const Vector&amp; other) const &#123;
+    Vector operator+(const Vector&amp; other) const {
         return Vector(x_ + other.x_, y_ + other.y_);
-    &#125;
+    }
 
     // Display vector components
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;(&quot; &lt;&lt; x_ &lt;&lt; &quot;, &quot; &lt;&lt; y_ &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     int x_;
     int y_;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Vector v1(1, 2);
     Vector v2(3, 4);
     Vector v3 = v1 + v2; // Uses overloaded + operator
@@ -1098,33 +1103,33 @@ int main() &#123;
     v3.display(); // Outputs: (4, 6)
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>(4, 6)
 </code></pre>
 <h3 id="Example-Overloading-the-1"><a href="#Example-Overloading-the-1" class="headerlink" title="Example: Overloading the &lt;&lt; Operator for Output"></a>Example: Overloading the <code>&lt;&lt;</code> Operator for Output</h3><pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Point &#123;
+class Point {
 public:
-    Point(int x, int y) : x_(x), y_(y) &#123;&#125;
+    Point(int x, int y) : x_(x), y_(y) {}
 
     // Overload the &lt;&lt; operator as a friend function
-    friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Point&amp; pt) &#123;
+    friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Point&amp; pt) {
         os &lt;&lt; &quot;(&quot; &lt;&lt; pt.x_ &lt;&lt; &quot;, &quot; &lt;&lt; pt.y_ &lt;&lt; &quot;)&quot;;
         return os;
-    &#125;
+    }
 
 private:
     int x_;
     int y_;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Point p(5, 10);
     std::cout &lt;&lt; &quot;Point p: &quot; &lt;&lt; p &lt;&lt; std::endl; // Uses overloaded &lt;&lt; operator
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Point p: (5, 10)
@@ -1140,54 +1145,54 @@ int main() &#123;
 <h2 id="Union-and-Struct-as-Special-Classes-1"><a href="#Union-and-Struct-as-Special-Classes-1" class="headerlink" title="Union and Struct as Special Classes"></a>Union and Struct as Special Classes</h2><p>In C++, <code>struct</code> and <code>union</code> are special types of classes with unique characteristics and use cases.</p>
 <h3 id="Structs-1"><a href="#Structs-1" class="headerlink" title="Structs"></a>Structs</h3><p>A <code>struct</code> is similar to a <code>class</code> but has default public access specifiers. It is primarily used for passive objects that carry data.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">struct StructName &#123;
+<pre><code class="language-cpp">struct StructName {
     // Public members by default
     int member1;
     double member2;
 
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Member1: &quot; &lt;&lt; member1 
                   &lt;&lt; &quot;, Member2: &quot; &lt;&lt; member2 &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-struct Point &#123;
+struct Point {
     int x;
     int y;
 
-    void display() const &#123;
+    void display() const {
         std::cout &lt;&lt; &quot;Point(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
-    Point p = &#123;10, 20&#125;;
+int main() {
+    Point p = {10, 20};
     p.display(); // Outputs: Point(10, 20)
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Unions-1"><a href="#Unions-1" class="headerlink" title="Unions"></a>Unions</h3><p>A <code>union</code> allows storing different data types in the same memory location. Only one member can hold a value at any given time.</p>
 <p><strong>Syntax:</strong></p>
-<pre><code class="language-cpp">union UnionName &#123;
+<pre><code class="language-cpp">union UnionName {
     int intVal;
     float floatVal;
     char charVal;
-&#125;;
+};
 </code></pre>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
-union Data &#123;
+union Data {
     int intVal;
     float floatVal;
     char charVal;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Data data;
     data.intVal = 100;
     std::cout &lt;&lt; &quot;data.intVal: &quot; &lt;&lt; data.intVal &lt;&lt; std::endl;
@@ -1199,7 +1204,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;data.charVal: &quot; &lt;&lt; data.charVal &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>data.intVal: 100
@@ -1213,12 +1218,12 @@ data.charVal: A
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int a = 10;
     double b = a; // Implicitly converts int to double
     std::cout &lt;&lt; &quot;b = &quot; &lt;&lt; b &lt;&lt; std::endl; // Outputs: b = 10.0
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Key Points:</strong></p>
 <ul>
@@ -1237,67 +1242,67 @@ int main() &#123;
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     double pi = 3.14159;
     int intPi = static_cast&lt;int&gt;(pi); // Explicitly converts double to int
     std::cout &lt;&lt; &quot;intPi = &quot; &lt;&lt; intPi &lt;&lt; std::endl; // Outputs: intPi = 3
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="dynamic-cast-1"><a href="#dynamic-cast-1" class="headerlink" title="dynamic_cast"></a><code>dynamic_cast</code></h4><p>Used primarily for downcasting in inheritance hierarchies, ensuring that the cast is safe at runtime. Requires the base class to have at least one virtual function.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Base &#123;
+class Base {
 public:
-    virtual void speak() const &#123; std::cout &lt;&lt; &quot;Base speaking.&quot; &lt;&lt; std::endl; &#125;
-&#125;;
+    virtual void speak() const { std::cout &lt;&lt; &quot;Base speaking.&quot; &lt;&lt; std::endl; }
+};
 
-class Derived : public Base &#123;
+class Derived : public Base {
 public:
-    void speak() const override &#123; std::cout &lt;&lt; &quot;Derived speaking.&quot; &lt;&lt; std::endl; &#125;
-&#125;;
+    void speak() const override { std::cout &lt;&lt; &quot;Derived speaking.&quot; &lt;&lt; std::endl; }
+};
 
-int main() &#123;
+int main() {
     Base* basePtr = new Derived();
     Derived* derivedPtr = dynamic_cast&lt;Derived*&gt;(basePtr);
     
-    if (derivedPtr) &#123;
+    if (derivedPtr) {
         derivedPtr-&gt;speak(); // Outputs: Derived speaking.
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;Cast failed.&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     delete basePtr;
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="const-cast-1"><a href="#const-cast-1" class="headerlink" title="const_cast"></a><code>const_cast</code></h4><p>Used to add or remove the <code>const</code> qualifier from a variable. It should be used cautiously, as modifying a <code>const</code> variable after removing <code>const</code> can lead to undefined behavior.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-void printNumber(const int* num) &#123;
+void printNumber(const int* num) {
     int* modifiableNum = const_cast&lt;int*&gt;(num);
     *modifiableNum = 20; // Undefined behavior if num was originally const
     std::cout &lt;&lt; &quot;Number: &quot; &lt;&lt; *modifiableNum &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     int value = 10;
     printNumber(&amp;value); // Outputs: Number: 20
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="reinterpret-cast-1"><a href="#reinterpret-cast-1" class="headerlink" title="reinterpret_cast"></a><code>reinterpret_cast</code></h4><p>Used for low-level, unsafe conversions, such as converting between pointer types or between pointers and integers. It should be used sparingly and only when absolutely necessary.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int a = 65;
     char* charPtr = reinterpret_cast&lt;char*&gt;(&amp;a);
     std::cout &lt;&lt; &quot;Character: &quot; &lt;&lt; *charPtr &lt;&lt; std::endl; // May output: &#39;A&#39;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Caution:</strong> <code>reinterpret_cast</code> can lead to platform-dependent behavior and should be avoided unless you have a clear understanding of the implications.</p>
 <h3 id="Best-Practices-for-Type-Conversion-1"><a href="#Best-Practices-for-Type-Conversion-1" class="headerlink" title="Best Practices for Type Conversion"></a>Best Practices for Type Conversion</h3><ol>
@@ -1337,7 +1342,7 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-int main() &#123;
+int main() {
     // Implicit Type Conversion
     int integer = 42;
     double floating = integer; // Implicitly converts int to double
@@ -1360,7 +1365,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Modified Value: &quot; &lt;&lt; value &lt;&lt; std::endl; // Outputs: Modified Value: 200
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="Step-2-Build-and-Run-the-Program-1"><a href="#Step-2-Build-and-Run-the-Program-1" class="headerlink" title="Step 2: Build and Run the Program"></a>Step 2: Build and Run the Program</h4><p>In the terminal, build the project:</p>
 <pre><code class="language-bash">xmake
@@ -1402,70 +1407,70 @@ Modified Value: 200
 <p><strong>Usage in Classes:</strong></p>
 <ul>
 <li><p><strong>Constant Member Functions</strong>: Functions that do not modify the state of the object.</p>
-<pre><code class="language-cpp">class Rectangle &#123;
+<pre><code class="language-cpp">class Rectangle {
 public:
-    Rectangle(double w, double h) : width(w), height(h) &#123;&#125;
+    Rectangle(double w, double h) : width(w), height(h) {}
 
-    double area() const &#123; // const member function
+    double area() const { // const member function
         return width * height;
-    &#125;
+    }
 
 private:
     double width;
     double height;
-&#125;;
+};
 </code></pre>
 </li>
 <li><p><strong>Constant Data Members</strong>: Data members that cannot be modified after initialization.</p>
-<pre><code class="language-cpp">class Circle &#123;
+<pre><code class="language-cpp">class Circle {
 public:
-    Circle(double r) : radius(r) &#123;&#125;
+    Circle(double r) : radius(r) {}
 
-    double getRadius() const &#123;
+    double getRadius() const {
         return radius;
-    &#125;
+    }
 
 private:
     const double radius; // Constant data member
-&#125;;
+};
 </code></pre>
 </li>
 </ul>
 <h3 id="static"><a href="#static" class="headerlink" title="static"></a><code>static</code></h3><p>The <code>static</code> keyword has different meanings depending on the context within a class:</p>
 <ul>
 <li><p><strong>Static Data Members</strong>: Shared among all instances of the class. They are not tied to any specific object.</p>
-<pre><code class="language-cpp">class Counter &#123;
+<pre><code class="language-cpp">class Counter {
 public:
-    Counter() &#123; ++count; &#125;
-    static int getCount() &#123; return count; &#125;
+    Counter() { ++count; }
+    static int getCount() { return count; }
 
 private:
     static int count; // Declaration
-&#125;;
+};
 
 // Definition and initialization
 int Counter::count = 0;
 
-int main() &#123;
+int main() {
     Counter c1;
     Counter c2;
     std::cout &lt;&lt; &quot;Number of Counter instances: &quot; &lt;&lt; Counter::getCount() &lt;&lt; std::endl; // Outputs: 2
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Static Member Functions</strong>: Can be called without creating an instance of the class. They can only access static data members.</p>
-<pre><code class="language-cpp">class MathUtils &#123;
+<pre><code class="language-cpp">class MathUtils {
 public:
-    static double pi() &#123;
+    static double pi() {
         return 3.14159;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; &quot;Pi: &quot; &lt;&lt; MathUtils::pi() &lt;&lt; std::endl; // Outputs: Pi: 3.14159
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 </ul>
@@ -1474,27 +1479,27 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-class Logger &#123;
+class Logger {
 public:
-    Logger(const std::string&amp; msg) : message(msg), logCount(0) &#123;&#125;
+    Logger(const std::string&amp; msg) : message(msg), logCount(0) {}
 
-    void log() const &#123;
+    void log() const {
         ++logCount; // Allowed because logCount is mutable
         std::cout &lt;&lt; &quot;Log: &quot; &lt;&lt; message &lt;&lt; &quot; (Log Count: &quot; &lt;&lt; logCount &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     std::string message;
     mutable int logCount; // Mutable member
-&#125;;
+};
 
-int main() &#123;
+int main() {
     const Logger logger(&quot;Starting application&quot;);
     logger.log(); // Log Count: 1
     logger.log(); // Log Count: 2
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Log: Starting application (Log Count: 1)
@@ -1504,30 +1509,30 @@ Log: Starting application (Log Count: 2)
 <p><strong>Usage in Classes:</strong></p>
 <ul>
 <li><p><strong>Volatile Member Variables</strong>: Useful in scenarios where variables can be modified by external factors, such as memory-mapped hardware registers or signal handlers.</p>
-<pre><code class="language-cpp">class HardwareRegister &#123;
+<pre><code class="language-cpp">class HardwareRegister {
 public:
     volatile int status; // Status register that can change unexpectedly
 
-    HardwareRegister() : status(0) &#123;&#125;
+    HardwareRegister() : status(0) {}
 
-    void updateStatus(int newStatus) &#123;
+    void updateStatus(int newStatus) {
         status = newStatus;
-    &#125;
+    }
 
-    void checkStatus() const &#123;
-        if (status &amp; 0x1) &#123;
+    void checkStatus() const {
+        if (status &amp; 0x1) {
             std::cout &lt;&lt; &quot;Status bit 0 is set.&quot; &lt;&lt; std::endl;
-        &#125;
-    &#125;
-&#125;;
+        }
+    }
+};
 
-int main() &#123;
+int main() {
     HardwareRegister reg;
     reg.updateStatus(1);
     reg.checkStatus(); // Outputs: Status bit 0 is set.
 
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 </ul>
@@ -1541,35 +1546,35 @@ int main() &#123;
 #include &lt;thread&gt;
 #include &lt;atomic&gt;
 
-class SharedCounter &#123;
+class SharedCounter {
 public:
-    SharedCounter() : count(0) &#123;&#125;
+    SharedCounter() : count(0) {}
 
-    void increment() &#123;
+    void increment() {
         ++count; // Atomic operation
-    &#125;
+    }
 
-    int getCount() const &#123;
+    int getCount() const {
         return count.load();
-    &#125;
+    }
 
 private:
     std::atomic&lt;int&gt; count; // Atomic variable for thread-safe operations
-&#125;;
+};
 
-int main() &#123;
+int main() {
     SharedCounter counter;
-    std::thread t1([&amp;counter]() &#123;
-        for(int i = 0; i &lt; 1000; ++i) &#123;
+    std::thread t1([&amp;counter]() {
+        for(int i = 0; i &lt; 1000; ++i) {
             counter.increment();
-        &#125;
-    &#125;);
+        }
+    });
 
-    std::thread t2([&amp;counter]() &#123;
-        for(int i = 0; i &lt; 1000; ++i) &#123;
+    std::thread t2([&amp;counter]() {
+        for(int i = 0; i &lt; 1000; ++i) {
             counter.increment();
-        &#125;
-    &#125;);
+        }
+    });
 
     t1.join();
     t2.join();
@@ -1577,7 +1582,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Final count: &quot; &lt;&lt; counter.getCount() &lt;&lt; std::endl; // Outputs: Final count: 2000
 
     return 0;
-&#125;
+}
 </code></pre>
 <p>In this example, using <code>std::atomic&lt;int&gt;</code> ensures that increments are thread-safe without needing the <code>volatile</code> keyword.</p>
 <hr>
@@ -1616,7 +1621,7 @@ int main() &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

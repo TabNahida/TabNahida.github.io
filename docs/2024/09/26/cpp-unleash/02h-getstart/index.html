@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -191,21 +196,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00bcd4">
+                <a href="/tags/modern-cpp/" style="color: #00a596">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #00a596">
+                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #03a9f4">
+                <a href="/tags/Zero-to-Hero/" style="color: #00a596">
                     Zero to Hero
                 </a>
             </span>
@@ -387,7 +392,7 @@ std::string name = &quot;Alice&quot;;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
-int main() &#123;
+int main() {
     // Declare and initialize variables
     std::string name = &quot;Alice&quot;;
     int age = 30;
@@ -403,7 +408,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Employed: &quot; &lt;&lt; std::boolalpha &lt;&lt; isEmployed &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="Step-2-Build-and-Run-the-Program"><a href="#Step-2-Build-and-Run-the-Program" class="headerlink" title="Step 2: Build and Run the Program"></a>Step 2: Build and Run the Program</h4><p>In the terminal, build the project:</p>
 <pre><code class="language-bash">xmake
@@ -445,11 +450,11 @@ Employed: true
 </ol>
 <h4 id="Single-line-Comments"><a href="#Single-line-Comments" class="headerlink" title="Single-line Comments"></a>Single-line Comments</h4><p>Single-line comments are useful for brief explanations or notes.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     // Output a greeting message
     std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl; // End of line comment
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="Multi-line-Comments"><a href="#Multi-line-Comments" class="headerlink" title="Multi-line Comments"></a>Multi-line Comments</h4><p>Multi-line comments are useful for longer explanations or commenting out blocks of code.</p>
 <p><strong>Example:</strong></p>
@@ -458,9 +463,9 @@ Employed: true
     Author: Your Name
     Date: Today&#39;s Date
 */
-int main() &#123;
+int main() {
     // Code goes here
-&#125;
+}
 </code></pre>
 <h3 id="Using-Comments-Effectively"><a href="#Using-Comments-Effectively" class="headerlink" title="Using Comments Effectively"></a>Using Comments Effectively</h3><ul>
 <li><p><strong>Explain the Why, Not the What</strong>: Comments should provide insight into why certain decisions were made, not just describe what the code is doing.</p>
@@ -486,14 +491,14 @@ int main() &#123;
 </ul>
 <h3 id="Commenting-Out-Code"><a href="#Commenting-Out-Code" class="headerlink" title="Commenting Out Code"></a>Commenting Out Code</h3><p>During debugging or testing, you might want to disable certain parts of your code.</p>
 <p><strong>Example:</strong></p>
-<pre><code class="language-cpp">int main() &#123;
+<pre><code class="language-cpp">int main() {
     std::cout &lt;&lt; &quot;This line will execute.&quot; &lt;&lt; std::endl;
 
     // Temporarily disable the following line
     // std::cout &lt;&lt; &quot;This line is commented out and won&#39;t execute.&quot; &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Practical-Example-with-Comments"><a href="#Practical-Example-with-Comments" class="headerlink" title="Practical Example with Comments"></a>Practical Example with Comments</h3><p>Let’s revisit our previous program and add comments to enhance understanding.</p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
@@ -503,7 +508,7 @@ int main() &#123;
     This program demonstrates variables, data types, and comments in C++.
 */
 
-int main() &#123;
+int main() {
     // Declare and initialize variables
     std::string name = &quot;Alice&quot;;    // User&#39;s name
     int age = 30;                  // User&#39;s age
@@ -519,7 +524,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Employed: &quot; &lt;&lt; std::boolalpha &lt;&lt; isEmployed &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Generating-Documentation-from-Comments"><a href="#Generating-Documentation-from-Comments" class="headerlink" title="Generating Documentation from Comments"></a>Generating Documentation from Comments</h3><p>For larger projects, consider using tools like <strong>Doxygen</strong> to generate documentation from specially formatted comments.</p>
 <p><strong>Doxygen Comment Example:</strong></p>
@@ -529,9 +534,9 @@ int main() &#123;
  * @param n The number to calculate the factorial for.
  * @return The factorial of n.
  */
-int factorial(int n) &#123;
+int factorial(int n) {
     // Implementation
-&#125;
+}
 </code></pre>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, you’ve:</p>
 <ul>
@@ -563,7 +568,7 @@ int factorial(int n) &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #03a9f4">
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #00bcd4">
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
+                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
                     Zero to Hero
                 </a>
             </span>
@@ -250,11 +255,11 @@
 #include &lt;thread&gt;
 
 // Function to be executed by the thread
-void greet() &#123;
+void greet() {
     std::cout &lt;&lt; &quot;Hello from thread!&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     // Create a thread that runs the greet function
     std::thread t(greet);
     
@@ -263,7 +268,7 @@ int main() &#123;
     
     std::cout &lt;&lt; &quot;Thread has finished execution.&quot; &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Hello from thread!
@@ -275,11 +280,11 @@ Thread has finished execution.
 #include &lt;thread&gt;
 
 // Function that takes two integers and prints their sum
-void add(int a, int b) &#123;
+void add(int a, int b) {
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; (a + b) &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     // Create a thread that runs the add function with arguments 5 and 10
     std::thread t(add, 5, 10);
     
@@ -287,7 +292,7 @@ int main() &#123;
     t.join();
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Sum: 15
@@ -298,12 +303,12 @@ int main() &#123;
 #include &lt;thread&gt;
 #include &lt;chrono&gt;
 
-void backgroundTask() &#123;
+void backgroundTask() {
     std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout &lt;&lt; &quot;Background task completed.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     // Create and detach the thread
     std::thread t(backgroundTask);
     t.detach();
@@ -313,7 +318,7 @@ int main() &#123;
     // Wait to observe the detached thread&#39;s output
     std::this_thread::sleep_for(std::chrono::seconds(3));
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Main thread continues execution.
@@ -325,23 +330,23 @@ Background task completed.
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;thread&gt;
 
-int main() &#123;
+int main() {
     int count = 0;
     
     // Create a thread using a lambda expression
-    std::thread t([&amp;count]() &#123;
-        for(int i = 0; i &lt; 5; ++i) &#123;
+    std::thread t([&amp;count]() {
+        for(int i = 0; i &lt; 5; ++i) {
             ++count;
             std::cout &lt;&lt; &quot;Thread count: &quot; &lt;&lt; count &lt;&lt; std::endl;
-        &#125;
-    &#125;);
+        }
+    });
     
     // Wait for the thread to finish execution
     t.join();
     
     std::cout &lt;&lt; &quot;Final count: &quot; &lt;&lt; count &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Thread count: 1
@@ -362,14 +367,14 @@ Final count: 5
 std::mutex mtx; // Mutex to protect shared data
 int sharedCounter = 0;
 
-void increment() &#123;
+void increment() {
     mtx.lock(); // Lock the mutex
     ++sharedCounter;
     std::cout &lt;&lt; &quot;Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
     mtx.unlock(); // Unlock the mutex
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::thread t1(increment);
     std::thread t2(increment);
     
@@ -378,7 +383,7 @@ int main() &#123;
     
     std::cout &lt;&lt; &quot;Final Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Shared Counter: 1
@@ -394,14 +399,14 @@ Final Shared Counter: 2
 std::mutex mtx; // Mutex to protect shared data
 int sharedCounter = 0;
 
-void increment() &#123;
+void increment() {
     std::lock_guard&lt;std::mutex&gt; lock(mtx); // Lock the mutex automatically
     ++sharedCounter;
     std::cout &lt;&lt; &quot;Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
     // Mutex is automatically unlocked when lock goes out of scope
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::thread t1(increment);
     std::thread t2(increment);
     
@@ -410,7 +415,7 @@ int main() &#123;
     
     std::cout &lt;&lt; &quot;Final Shared Counter: &quot; &lt;&lt; sharedCounter &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Shared Counter: 1
@@ -439,43 +444,43 @@ std::queue&lt;int&gt; dataQueue;
 bool finished = false;
 
 // Producer thread function
-void producer(int items) &#123;
-    for(int i = 1; i &lt;= items; ++i) &#123;
-        &#123;
+void producer(int items) {
+    for(int i = 1; i &lt;= items; ++i) {
+        {
             std::lock_guard&lt;std::mutex&gt; lock(mtx);
             dataQueue.push(i);
             std::cout &lt;&lt; &quot;Produced: &quot; &lt;&lt; i &lt;&lt; std::endl;
-        &#125;
+        }
         cv.notify_one(); // Notify consumer
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    &#125;
-    &#123;
+    }
+    {
         std::lock_guard&lt;std::mutex&gt; lock(mtx);
         finished = true;
-    &#125;
+    }
     cv.notify_all(); // Notify all consumers that production is finished
-&#125;
+}
 
 // Consumer thread function
-void consumer(int id) &#123;
-    while(true) &#123;
+void consumer(int id) {
+    while(true) {
         std::unique_lock&lt;std::mutex&gt; lock(mtx);
-        cv.wait(lock, []&#123; return !dataQueue.empty() || finished; &#125;); // Wait for data or finish
+        cv.wait(lock, []{ return !dataQueue.empty() || finished; }); // Wait for data or finish
         
-        while(!dataQueue.empty()) &#123;
+        while(!dataQueue.empty()) {
             int value = dataQueue.front();
             dataQueue.pop();
             lock.unlock(); // Unlock before processing
             std::cout &lt;&lt; &quot;Consumer &quot; &lt;&lt; id &lt;&lt; &quot; consumed: &quot; &lt;&lt; value &lt;&lt; std::endl;
             lock.lock(); // Lock again to check the queue
-        &#125;
+        }
         
         if(finished) break;
-    &#125;
+    }
     std::cout &lt;&lt; &quot;Consumer &quot; &lt;&lt; id &lt;&lt; &quot; finished.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::thread prod(producer, 5);
     std::thread cons1(consumer, 1);
     std::thread cons2(consumer, 2);
@@ -486,7 +491,7 @@ int main() &#123;
     
     std::cout &lt;&lt; &quot;All threads have finished.&quot; &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Produced: 1
@@ -523,13 +528,13 @@ All threads have finished.
 
 std::atomic&lt;int&gt; atomicCounter(0);
 
-void increment() &#123;
-    for(int i = 0; i &lt; 1000; ++i) &#123;
+void increment() {
+    for(int i = 0; i &lt; 1000; ++i) {
         ++atomicCounter; // Atomic increment
-    &#125;
-&#125;
+    }
+}
 
-int main() &#123;
+int main() {
     std::thread t1(increment);
     std::thread t2(increment);
     
@@ -538,7 +543,7 @@ int main() &#123;
     
     std::cout &lt;&lt; &quot;Final Atomic Counter: &quot; &lt;&lt; atomicCounter.load() &lt;&lt; std::endl; // Outputs: 2000
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Final Atomic Counter: 2000
@@ -551,24 +556,24 @@ int main() &#123;
 
 std::atomic&lt;bool&gt; flag(false);
 
-void setFlag() &#123;
+void setFlag() {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     flag.store(true);
     std::cout &lt;&lt; &quot;Flag set to true.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::thread t(setFlag);
     
-    while(!flag.load()) &#123;
+    while(!flag.load()) {
         std::cout &lt;&lt; &quot;Waiting for flag...&quot; &lt;&lt; std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
-    &#125;
+    }
     
     t.join();
     std::cout &lt;&lt; &quot;Flag detected as true.&quot; &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Waiting for flag...
@@ -590,13 +595,13 @@ Flag detected as true.
 #include &lt;future&gt;
 
 // Function that sets a value after some processing
-void compute(std::promise&lt;int&gt; prom) &#123;
+void compute(std::promise&lt;int&gt; prom) {
     std::this_thread::sleep_for(std::chrono::seconds(2));
     prom.set_value(42);
     std::cout &lt;&lt; &quot;Value set to promise.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::promise&lt;int&gt; prom; // Create a promise
     std::future&lt;int&gt; fut = prom.get_future(); // Get the future associated with the promise
     
@@ -608,7 +613,7 @@ int main() &#123;
     
     t.join();
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Waiting for value...
@@ -621,12 +626,12 @@ Received value: 42
 #include &lt;future&gt;
 
 // Function to perform a computation
-int computeSum(int a, int b) &#123;
+int computeSum(int a, int b) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     return a + b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     // Launch computeSum asynchronously
     std::future&lt;int&gt; fut = std::async(std::launch::async, computeSum, 10, 20);
     
@@ -637,7 +642,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; sum &lt;&lt; std::endl;
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Doing other work...
@@ -656,14 +661,14 @@ Sum: 30
 #include &lt;future&gt;
 
 // Function to perform a task
-int heavyComputation(int n) &#123;
+int heavyComputation(int n) {
     std::cout &lt;&lt; &quot;Starting heavy computation for n = &quot; &lt;&lt; n &lt;&lt; std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(3)); // Simulate heavy work
     std::cout &lt;&lt; &quot;Finished heavy computation for n = &quot; &lt;&lt; n &lt;&lt; std::endl;
     return n * n;
-&#125;
+}
 
-int main() &#123;
+int main() {
     // Launch two asynchronous tasks
     std::future&lt;int&gt; fut1 = std::async(std::launch::async, heavyComputation, 5);
     std::future&lt;int&gt; fut2 = std::async(std::launch::async, heavyComputation, 10);
@@ -678,7 +683,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Result of second computation: &quot; &lt;&lt; result2 &lt;&lt; std::endl;
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Starting heavy computation for n = 5
@@ -695,12 +700,12 @@ Result of second computation: 100
 #include &lt;future&gt;
 
 // Function to perform a task
-int compute(int a, int b) &#123;
+int compute(int a, int b) {
     std::cout &lt;&lt; &quot;Computing &quot; &lt;&lt; a &lt;&lt; &quot; + &quot; &lt;&lt; b &lt;&lt; std::endl;
     return a + b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     // Launch asynchronously with deferred execution
     std::future&lt;int&gt; fut = std::async(std::launch::deferred, compute, 3, 4);
     
@@ -710,7 +715,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Result: &quot; &lt;&lt; fut.get() &lt;&lt; std::endl; // Task is executed here
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Before calling get()
@@ -756,7 +761,7 @@ Result: 7
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

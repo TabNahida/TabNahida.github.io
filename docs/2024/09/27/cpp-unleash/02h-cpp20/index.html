@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,28 +189,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                <a href="/tags/c-cpp/" style="color: #00a596">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #00a596">
+                <a href="/tags/modern-cpp/" style="color: #03a9f4">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #03a9f4">
+                <a href="/tags/cpp-unleash/" style="color: #ffa2c4">
                     C++ Unleashed
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Zero-to-Hero/" style="color: #00bcd4">
+                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
                     Zero to Hero
                 </a>
             </span>
@@ -291,16 +296,16 @@ template&lt;typename T&gt;
 concept Arithmetic = std::is_integral_v&lt;T&gt; || std::is_floating_point_v&lt;T&gt;;
 
 // Function that adds two arithmetic types
-Arithmetic auto add(Arithmetic auto a, Arithmetic auto b) &#123;
+Arithmetic auto add(Arithmetic auto a, Arithmetic auto b) {
     return a + b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; add(5, 10) &lt;&lt; std::endl;       // Outputs: 15
     std::cout &lt;&lt; add(3.14, 2.71) &lt;&lt; std::endl; // Outputs: 5.85
     // std::cout &lt;&lt; add(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // Compilation error
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>15
@@ -318,22 +323,22 @@ int main() &#123;
 
 // Define a concept that checks if a type supports equality comparison
 template&lt;typename T&gt;
-concept EqualityComparable = requires(T a, T b) &#123;
-    &#123; a == b &#125; -&gt; std::convertible_to&lt;bool&gt;;
-&#125;;
+concept EqualityComparable = requires(T a, T b) {
+    { a == b } -&gt; std::convertible_to&lt;bool&gt;;
+};
 
 // Function that checks if two objects are equal
-bool areEqual(EqualityComparable auto a, EqualityComparable auto b) &#123;
+bool areEqual(EqualityComparable auto a, EqualityComparable auto b) {
     return a == b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; std::boolalpha;
     std::cout &lt;&lt; areEqual(5, 5) &lt;&lt; std::endl;       // true
     std::cout &lt;&lt; areEqual(5, 10) &lt;&lt; std::endl;      // false
     std::cout &lt;&lt; areEqual(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // false
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>true
@@ -357,23 +362,23 @@ false
 #include &lt;iostream&gt;
 
 // Function that only accepts types derived from Base
-struct Base &#123;&#125;;
-struct Derived : Base &#123;&#125;;
-struct Unrelated &#123;&#125;;
+struct Base {};
+struct Derived : Base {};
+struct Unrelated {};
 
 template&lt;typename T&gt;
 requires std::derived_from&lt;T, Base&gt;
-void process(const T&amp; obj) &#123;
+void process(const T&amp; obj) {
     std::cout &lt;&lt; &quot;Processing object derived from Base.&quot; &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     Derived d;
     process(d); // Valid
     // Unrelated u;
     // process(u); // Compilation error
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Processing object derived from Base.
@@ -396,17 +401,17 @@ int main() &#123;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
 
     // Apply a lambda function to each element using ranges
-    std::ranges::for_each(numbers, [](int n) &#123;
+    std::ranges::for_each(numbers, [](int n) {
         std::cout &lt;&lt; n * n &lt;&lt; &quot; &quot;;
-    &#125;);
+    });
 
     std::cout &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 4 9 16 25 
@@ -418,22 +423,22 @@ int main() &#123;
 #include &lt;ranges&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5, 6&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5, 6};
 
     // Create a view that filters even numbers and then squares them
     auto processed = numbers 
-                   | std::views::filter([](int n) &#123; return n % 2 == 0; &#125;)
-                   | std::views::transform([](int n) &#123; return n * n; &#125;);
+                   | std::views::filter([](int n) { return n % 2 == 0; })
+                   | std::views::transform([](int n) { return n * n; });
 
     // Iterate over the processed view
-    for(auto n : processed) &#123;
+    for(auto n : processed) {
         std::cout &lt;&lt; n &lt;&lt; &quot; &quot;; // Outputs: 4 16 36 
-    &#125;
+    }
 
     std::cout &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>4 16 36 
@@ -451,27 +456,27 @@ int main() &#123;
 #include &lt;ranges&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;std::string&gt; words = &#123;&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;, &quot;elderberry&quot;&#125;;
+int main() {
+    std::vector&lt;std::string&gt; words = {&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;, &quot;elderberry&quot;};
 
     // Find all words that start with the letter &#39;b&#39; or &#39;c&#39; and convert them to uppercase
     auto processed = words 
-                   | std::views::filter([](const std::string&amp; s) &#123;
+                   | std::views::filter([](const std::string&amp; s) {
                        return !s.empty() &amp;&amp; (s[0] == &#39;b&#39; || s[0] == &#39;c&#39;);
-                   &#125;)
-                   | std::views::transform([](std::string s) &#123;
+                   })
+                   | std::views::transform([](std::string s) {
                        for(auto&amp; ch : s) ch = std::toupper(ch);
                        return s;
-                   &#125;);
+                   });
 
     // Display the processed words
-    for(auto&amp; word : processed) &#123;
+    for(auto&amp; word : processed) {
         std::cout &lt;&lt; word &lt;&lt; &quot; &quot;; // Outputs: BANANA CHERRY 
-    &#125;
+    }
 
     std::cout &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>BANANA CHERRY 
@@ -483,8 +488,8 @@ int main() &#123;
 #include &lt;ranges&gt;
 #include &lt;vector&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;5, 3, 1, 4, 2&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {5, 3, 1, 4, 2};
 
     // Create a view that excludes the first element
     auto view = numbers | std::views::drop(1);
@@ -495,13 +500,13 @@ int main() &#123;
     std::ranges::sort(sorted_view);
 
     // Display the sorted view
-    for(auto n : sorted_view) &#123;
+    for(auto n : sorted_view) {
         std::cout &lt;&lt; n &lt;&lt; &quot; &quot;; // Outputs: 2 3 4 5 
-    &#125;
+    }
 
     std::cout &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>2 3 4 5 
@@ -526,54 +531,54 @@ int main() &#123;
 
 // Define a generator class
 template&lt;typename T&gt;
-struct Generator &#123;
-    struct promise_type &#123;
+struct Generator {
+    struct promise_type {
         std::optional&lt;T&gt; current_value;
 
-        Generator get_return_object() &#123;
-            return Generator&#123; std::coroutine_handle&lt;promise_type&gt;::from_promise(*this) &#125;;
-        &#125;
+        Generator get_return_object() {
+            return Generator{ std::coroutine_handle&lt;promise_type&gt;::from_promise(*this) };
+        }
 
-        std::suspend_always initial_suspend() &#123; return &#123;&#125;; &#125;
-        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
 
-        std::suspend_always yield_value(T value) &#123;
+        std::suspend_always yield_value(T value) {
             current_value = value;
-            return &#123;&#125;;
-        &#125;
+            return {};
+        }
 
-        void return_void() &#123;&#125;
-        void unhandled_exception() &#123; std::terminate(); &#125;
-    &#125;;
+        void return_void() {}
+        void unhandled_exception() { std::terminate(); }
+    };
 
     std::coroutine_handle&lt;promise_type&gt; handle;
 
-    Generator(std::coroutine_handle&lt;promise_type&gt; h) : handle(h) &#123;&#125;
-    ~Generator() &#123; if(handle) handle.destroy(); &#125;
+    Generator(std::coroutine_handle&lt;promise_type&gt; h) : handle(h) {}
+    ~Generator() { if(handle) handle.destroy(); }
 
-    std::optional&lt;T&gt; next() &#123;
-        if(!handle.done()) &#123;
+    std::optional&lt;T&gt; next() {
+        if(!handle.done()) {
             handle.resume();
             return handle.promise().current_value;
-        &#125;
+        }
         return std::nullopt;
-    &#125;
-&#125;;
+    }
+};
 
 // Coroutine function that generates numbers from 1 to 5
-Generator&lt;int&gt; generateNumbers() &#123;
-    for(int i = 1; i &lt;= 5; ++i) &#123;
+Generator&lt;int&gt; generateNumbers() {
+    for(int i = 1; i &lt;= 5; ++i) {
         co_yield i;
-    &#125;
-&#125;
+    }
+}
 
-int main() &#123;
+int main() {
     auto gen = generateNumbers();
-    while(auto val = gen.next()) &#123;
+    while(auto val = gen.next()) {
         std::cout &lt;&lt; &quot;Generated: &quot; &lt;&lt; *val &lt;&lt; std::endl;
-    &#125;
+    }
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Generated: 1
@@ -595,24 +600,24 @@ Generated: 5
 #include &lt;iostream&gt;
 
 // Awaitable type that represents a ready future
-struct ReadyFuture &#123;
+struct ReadyFuture {
     std::future&lt;int&gt; fut;
 
-    bool await_ready() const noexcept &#123; return true; &#125;
-    void await_suspend(std::coroutine_handle&lt;&gt;) noexcept &#123;&#125;
-    int await_resume() &#123; return fut.get(); &#125;
-&#125;;
+    bool await_ready() const noexcept { return true; }
+    void await_suspend(std::coroutine_handle&lt;&gt;) noexcept {}
+    int await_resume() { return fut.get(); }
+};
 
 // Coroutine function that returns a future
-std::future&lt;int&gt; asyncAdd(int a, int b) &#123;
+std::future&lt;int&gt; asyncAdd(int a, int b) {
     co_return a + b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     auto fut = asyncAdd(10, 20);
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; fut.get() &lt;&lt; std::endl; // Outputs: Sum: 30
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Sum: 30
@@ -642,13 +647,13 @@ int main() &#123;
 
 export module math;
 
-export int add(int a, int b) &#123;
+export int add(int a, int b) {
     return a + b;
-&#125;
+}
 
-export int multiply(int a, int b) &#123;
+export int multiply(int a, int b) {
     return a * b;
-&#125;
+}
 </code></pre>
 <h4 id="Importing-a-Module"><a href="#Importing-a-Module" class="headerlink" title="Importing a Module"></a>Importing a Module</h4><p>To use a module in your code, use the <code>import</code> keyword followed by the module name.</p>
 <p><strong>Example: Using the <code>math</code> Module (<code>main.cpp</code>)</strong></p>
@@ -657,7 +662,7 @@ export int multiply(int a, int b) &#123;
 import math;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int sum = add(5, 3);
     int product = multiply(5, 3);
 
@@ -665,7 +670,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Product: &quot; &lt;&lt; product &lt;&lt; std::endl; // Outputs: Product: 15
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Compilation Steps:</strong></p>
 <ol>
@@ -702,13 +707,13 @@ export import graphics.details; // Importing partition
 
 module graphics.details;
 
-void drawCircle() &#123;
+void drawCircle() {
     // Implementation of drawing a circle
-&#125;
+}
 
-void drawSquare() &#123;
+void drawSquare() {
     // Implementation of drawing a square
-&#125;
+}
 </code></pre>
 </li>
 <li><p><strong>Using the Module (<code>main.cpp</code>)</strong></p>
@@ -717,12 +722,12 @@ void drawSquare() &#123;
 import graphics;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     drawCircle();
     drawSquare();
     std::cout &lt;&lt; &quot;Shapes drawn successfully.&quot; &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 </li>
 </ol>
@@ -780,28 +785,28 @@ g++ -std=c++20 -fmodules-ts -c graphics_details.ixx -o graphics_details.o
 <pre><code class="language-cpp">#include &lt;compare&gt;
 #include &lt;iostream&gt;
 
-struct Point &#123;
+struct Point {
     int x;
     int y;
 
     // Implement the three-way comparison operator
     auto operator&lt;=&gt;(const Point&amp;) const = default;
-&#125;;
+};
 
-int main() &#123;
-    Point p1&#123;1, 2&#125;;
-    Point p2&#123;1, 3&#125;;
+int main() {
+    Point p1{1, 2};
+    Point p2{1, 3};
 
-    if(p1 &lt; p2) &#123;
+    if(p1 &lt; p2) {
         std::cout &lt;&lt; &quot;p1 is less than p2&quot; &lt;&lt; std::endl;
-    &#125; else if(p1 &gt; p2) &#123;
+    } else if(p1 &gt; p2) {
         std::cout &lt;&lt; &quot;p1 is greater than p2&quot; &lt;&lt; std::endl;
-    &#125; else &#123;
+    } else {
         std::cout &lt;&lt; &quot;p1 is equal to p2&quot; &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>p1 is less than p2
@@ -816,25 +821,25 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;compare&gt;
 #include &lt;iostream&gt;
 
-struct Person &#123;
+struct Person {
     std::string name;
     int age;
 
     // Custom three-way comparison operator
-    std::partial_ordering operator&lt;=&gt;(const Person&amp; other) const &#123;
-        if(auto cmp = name &lt;=&gt; other.name; cmp != 0) &#123;
+    std::partial_ordering operator&lt;=&gt;(const Person&amp; other) const {
+        if(auto cmp = name &lt;=&gt; other.name; cmp != 0) {
             return cmp;
-        &#125;
+        }
         return age &lt;=&gt; other.age;
-    &#125;
+    }
 
     bool operator==(const Person&amp; other) const = default;
-&#125;;
+};
 
-int main() &#123;
-    Person alice&#123;&quot;Alice&quot;, 30&#125;;
-    Person bob&#123;&quot;Bob&quot;, 25&#125;;
-    Person anotherAlice&#123;&quot;Alice&quot;, 30&#125;;
+int main() {
+    Person alice{&quot;Alice&quot;, 30};
+    Person bob{&quot;Bob&quot;, 25};
+    Person anotherAlice{&quot;Alice&quot;, 30};
 
     std::cout &lt;&lt; std::boolalpha;
     std::cout &lt;&lt; &quot;alice == bob: &quot; &lt;&lt; (alice == bob) &lt;&lt; std::endl;               // false
@@ -842,7 +847,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;alice == anotherAlice: &quot; &lt;&lt; (alice == anotherAlice) &lt;&lt; std::endl; // true
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>alice == bob: false
@@ -872,16 +877,16 @@ alice == anotherAlice: true
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-void printSpan(std::span&lt;int&gt; s) &#123;
-    for(auto num : s) &#123;
+void printSpan(std::span&lt;int&gt; s) {
+    for(auto num : s) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
-    int arr[] = &#123;1, 2, 3, 4, 5&#125;;
-    std::vector&lt;int&gt; vec = &#123;6, 7, 8, 9, 10&#125;;
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    std::vector&lt;int&gt; vec = {6, 7, 8, 9, 10};
 
     // Create spans from array and vector
     std::span&lt;int&gt; spanArr(arr);
@@ -895,7 +900,7 @@ int main() &#123;
     printSpan(subSpan); // Outputs: 2 3 4 
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -913,25 +918,25 @@ int main() &#123;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-void incrementElements(std::span&lt;int&gt; s) &#123;
-    for(auto&amp; num : s) &#123;
+void incrementElements(std::span&lt;int&gt; s) {
+    for(auto&amp; num : s) {
         ++num;
-    &#125;
-&#125;
+    }
+}
 
-int main() &#123;
-    std::vector&lt;int&gt; vec = &#123;10, 20, 30, 40, 50&#125;;
+int main() {
+    std::vector&lt;int&gt; vec = {10, 20, 30, 40, 50};
     std::span&lt;int&gt; spanVec(vec);
 
     incrementElements(spanVec);
 
-    for(auto num : vec) &#123;
+    for(auto num : vec) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 11 21 31 41 51 
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>11 21 31 41 51 
@@ -947,21 +952,21 @@ int main() &#123;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 
-void printConstSpan(std::span&lt;const int&gt; s) &#123;
-    for(auto num : s) &#123;
+void printConstSpan(std::span&lt;const int&gt; s) {
+    for(auto num : s) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
-    std::vector&lt;int&gt; vec = &#123;100, 200, 300, 400, 500&#125;;
+int main() {
+    std::vector&lt;int&gt; vec = {100, 200, 300, 400, 500};
     std::span&lt;const int&gt; spanVec(vec);
 
     printConstSpan(spanVec); // Outputs: 100 200 300 400 500 
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>100 200 300 400 500 
@@ -985,16 +990,16 @@ int main() &#123;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
-int main() &#123;
-    auto print = []&lt;typename T&gt;(const T&amp; value) &#123;
+int main() {
+    auto print = []&lt;typename T&gt;(const T&amp; value) {
         std::cout &lt;&lt; value &lt;&lt; &quot; &quot;;
-    &#125;;
+    };
 
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
     std::ranges::for_each(numbers, print); // Outputs: 1 2 3 4 5 
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -1004,25 +1009,25 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;functional&gt;
 
-struct Counter &#123;
+struct Counter {
     int count = 0;
 
-    void incrementAfterDelay() &#123;
-        auto lambda = [copy = *this]() mutable &#123;
+    void incrementAfterDelay() {
+        auto lambda = [copy = *this]() mutable {
             copy.count++;
             std::cout &lt;&lt; &quot;Count after delay: &quot; &lt;&lt; copy.count &lt;&lt; std::endl;
-        &#125;;
+        };
         // Simulate asynchronous execution
         lambda();
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     Counter c;
     c.incrementAfterDelay(); // Outputs: Count after delay: 1
     std::cout &lt;&lt; &quot;Original count: &quot; &lt;&lt; c.count &lt;&lt; std::endl; // Outputs: Original count: 0
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Count after delay: 1
@@ -1037,17 +1042,17 @@ Original count: 0
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
 // Immediate function that computes factorial at compile time
-consteval int factorial(int n) &#123;
+consteval int factorial(int n) {
     return (n &lt;= 1) ? 1 : (n * factorial(n - 1));
-&#125;
+}
 
-int main() &#123;
+int main() {
     constexpr int fact5 = factorial(5);
     std::cout &lt;&lt; &quot;Factorial of 5: &quot; &lt;&lt; fact5 &lt;&lt; std::endl; // Outputs: 120
 
     // int fact6 = factorial(6); // Error: factorial must be evaluated at compile time
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Factorial of 5: 120
@@ -1060,19 +1065,19 @@ int main() &#123;
 <p><strong>Example: Using <code>constinit</code></strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-struct Config &#123;
+struct Config {
     int value;
-&#125;;
+};
 
 // Compile-time initialization
-constinit Config config = &#123;42&#125;;
+constinit Config config = {42};
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; &quot;Config value: &quot; &lt;&lt; config.value &lt;&lt; std::endl; // Outputs: 42
     config.value = 100; // Allowed: not const
     std::cout &lt;&lt; &quot;Updated Config value: &quot; &lt;&lt; config.value &lt;&lt; std::endl; // Outputs: 100
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Config value: 42
@@ -1089,18 +1094,18 @@ Updated Config value: 100
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 
-int main() &#123;
+int main() {
     // Template lambda with auto parameters
-    auto add = []&lt;typename T&gt;(T a, T b) -&gt; T &#123;
+    auto add = []&lt;typename T&gt;(T a, T b) -&gt; T {
         return a + b;
-    &#125;;
+    };
 
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; add(10, 20) &lt;&lt; std::endl;       // Outputs: 30
     std::cout &lt;&lt; &quot;Sum: &quot; &lt;&lt; add(3.5, 2.5) &lt;&lt; std::endl;    // Outputs: 6
     // std::cout &lt;&lt; add(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl;    // Compilation error
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Sum: 30
@@ -1115,38 +1120,38 @@ Sum: 6
 <pre><code class="language-cpp">#include &lt;format&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     int age = 30;
     std::string name = &quot;Alice&quot;;
 
-    std::string message = std::format(&quot;Name: &#123;&#125;, Age: &#123;&#125;&quot;, name, age);
+    std::string message = std::format(&quot;Name: {}, Age: {}&quot;, name, age);
     std::cout &lt;&lt; message &lt;&lt; std::endl; // Outputs: Name: Alice, Age: 30
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Name: Alice, Age: 30
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
-<li><strong><code>std::format</code> Syntax</strong>: Uses <code>&#123;&#125;</code> as placeholders for arguments, providing a clear and readable way to construct formatted strings.</li>
+<li><strong><code>std::format</code> Syntax</strong>: Uses <code>{}</code> as placeholders for arguments, providing a clear and readable way to construct formatted strings.</li>
 </ul>
 <h4 id="Advanced-Formatting"><a href="#Advanced-Formatting" class="headerlink" title="Advanced Formatting"></a>Advanced Formatting</h4><p><code>std::format</code> supports various formatting options, including alignment, width, precision, and more.</p>
 <p><strong>Example: Advanced Formatting</strong></p>
 <pre><code class="language-cpp">#include &lt;format&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     double pi = 3.14159265358979323846;
-    std::string hexValue = std::format(&quot;&#123;:#x&#125;&quot;, 255); // Hexadecimal with prefix
+    std::string hexValue = std::format(&quot;{:#x}&quot;, 255); // Hexadecimal with prefix
 
-    std::string message = std::format(&quot;Pi rounded to 2 decimal places: &#123;:.2f&#125;&quot;, pi);
+    std::string message = std::format(&quot;Pi rounded to 2 decimal places: {:.2f}&quot;, pi);
     std::cout &lt;&lt; message &lt;&lt; std::endl;            // Outputs: Pi rounded to 2 decimal places: 3.14
     std::cout &lt;&lt; &quot;Hex value: &quot; &lt;&lt; hexValue &lt;&lt; std::endl; // Outputs: Hex value: 0xff
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Pi rounded to 2 decimal places: 3.14
@@ -1162,7 +1167,7 @@ Hex value: 0xff
 <pre><code class="language-cpp">#include &lt;chrono&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     using namespace std::chrono;
 
     // Current system time as a time_point
@@ -1178,7 +1183,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;Future time (5 days later): &quot; &lt;&lt; std::ctime(&amp;future_time) &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Current time: Wed Oct 11 14:23:45 2023
@@ -1195,18 +1200,18 @@ Future time (5 days later): Mon Oct 16 14:23:45 2023
 #include &lt;format&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     using namespace std::chrono;
 
     // Define a specific date
-    year_month_day ymd&#123;year&#123;2023&#125;, month&#123;10&#125;, day&#123;27&#125;&#125;;
+    year_month_day ymd{year{2023}, month{10}, day{27}};
 
     // Format the date
-    std::string dateStr = std::format(&quot;&#123;:%B %d, %Y&#125;&quot;, ymd);
+    std::string dateStr = std::format(&quot;{:%B %d, %Y}&quot;, ymd);
     std::cout &lt;&lt; &quot;Formatted Date: &quot; &lt;&lt; dateStr &lt;&lt; std::endl; // Outputs: October 27, 2023
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Formatted Date: October 27, 2023
@@ -1247,16 +1252,16 @@ template&lt;typename T&gt;
 concept Arithmetic = std::is_arithmetic_v&lt;T&gt;;
 
 // Generic multiply function constrained by the &#39;Arithmetic&#39; concept
-Arithmetic auto multiply(Arithmetic auto a, Arithmetic auto b) &#123;
+Arithmetic auto multiply(Arithmetic auto a, Arithmetic auto b) {
     return a * b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; multiply(3, 4) &lt;&lt; std::endl;       // Outputs: 12
     std::cout &lt;&lt; multiply(2.5, 4.2) &lt;&lt; std::endl;   // Outputs: 10.5
     // std::cout &lt;&lt; multiply(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // Compilation error
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>12
@@ -1273,61 +1278,61 @@ int main() &#123;
 #include &lt;optional&gt;
 
 // Generator class for Fibonacci numbers
-struct FibonacciGenerator &#123;
-    struct promise_type &#123;
+struct FibonacciGenerator {
+    struct promise_type {
         std::optional&lt;long long&gt; current_value;
 
-        FibonacciGenerator get_return_object() &#123;
-            return FibonacciGenerator&#123; std::coroutine_handle&lt;promise_type&gt;::from_promise(*this) &#125;;
-        &#125;
+        FibonacciGenerator get_return_object() {
+            return FibonacciGenerator{ std::coroutine_handle&lt;promise_type&gt;::from_promise(*this) };
+        }
 
-        std::suspend_always initial_suspend() &#123; return &#123;&#125;; &#125;
-        std::suspend_always final_suspend() noexcept &#123; return &#123;&#125;; &#125;
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
 
-        std::suspend_always yield_value(long long value) &#123;
+        std::suspend_always yield_value(long long value) {
             current_value = value;
-            return &#123;&#125;;
-        &#125;
+            return {};
+        }
 
-        void return_void() &#123;&#125;
-        void unhandled_exception() &#123; std::terminate(); &#125;
-    &#125;;
+        void return_void() {}
+        void unhandled_exception() { std::terminate(); }
+    };
 
     std::coroutine_handle&lt;promise_type&gt; handle;
 
-    FibonacciGenerator(std::coroutine_handle&lt;promise_type&gt; h) : handle(h) &#123;&#125;
-    ~FibonacciGenerator() &#123; if(handle) handle.destroy(); &#125;
+    FibonacciGenerator(std::coroutine_handle&lt;promise_type&gt; h) : handle(h) {}
+    ~FibonacciGenerator() { if(handle) handle.destroy(); }
 
-    std::optional&lt;long long&gt; next() &#123;
-        if(!handle.done()) &#123;
+    std::optional&lt;long long&gt; next() {
+        if(!handle.done()) {
             handle.resume();
             return handle.promise().current_value;
-        &#125;
+        }
         return std::nullopt;
-    &#125;
-&#125;;
+    }
+};
 
 // Coroutine function to generate Fibonacci numbers
-FibonacciGenerator generateFibonacci() &#123;
+FibonacciGenerator generateFibonacci() {
     long long a = 0, b = 1;
-    while(true) &#123;
+    while(true) {
         co_yield a;
         auto temp = a;
         a = b;
         b = temp + b;
-    &#125;
-&#125;
+    }
+}
 
-int main() &#123;
+int main() {
     auto fibGen = generateFibonacci();
-    for(int i = 0; i &lt; 10; ++i) &#123;
-        if(auto val = fibGen.next()) &#123;
+    for(int i = 0; i &lt; 10; ++i) {
+        if(auto val = fibGen.next()) {
             std::cout &lt;&lt; *val &lt;&lt; &quot; &quot;; // Outputs: 0 1 1 2 3 5 8 13 21 34 
-        &#125;
-    &#125;
+        }
+    }
     std::cout &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>0 1 1 2 3 5 8 13 21 34 
@@ -1345,31 +1350,31 @@ int main() &#123;
 #include &lt;array&gt;
 
 // Function to reverse a subarray using std::span
-void reverseSubarray(std::span&lt;int&gt; s, size_t start, size_t length) &#123;
-    if(start + length &gt; s.size()) &#123;
+void reverseSubarray(std::span&lt;int&gt; s, size_t start, size_t length) {
+    if(start + length &gt; s.size()) {
         throw std::out_of_range(&quot;Subarray exceeds span bounds.&quot;);
-    &#125;
+    }
     std::span&lt;int&gt; sub = s.subspan(start, length);
     std::reverse(sub.begin(), sub.end());
-&#125;
+}
 
-int main() &#123;
-    std::array&lt;int, 8&gt; data = &#123;1, 2, 3, 4, 5, 6, 7, 8&#125;;
+int main() {
+    std::array&lt;int, 8&gt; data = {1, 2, 3, 4, 5, 6, 7, 8};
     
-    try &#123;
+    try {
         // Reverse elements from index 2 to index 5 (elements 3,4,5,6)
         reverseSubarray(data, 2, 4);
         
-        for(auto num : data) &#123;
+        for(auto num : data) {
             std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 6 5 4 3 7 8 
-        &#125;
+        }
         std::cout &lt;&lt; std::endl;
-    &#125; catch(const std::exception&amp; e) &#123;
+    } catch(const std::exception&amp; e) {
         std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
     
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 6 5 4 3 7 8 
@@ -1384,18 +1389,18 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;compare&gt;
 #include &lt;iostream&gt;
 
-struct Rectangle &#123;
+struct Rectangle {
     int width;
     int height;
 
     // Default the three-way comparison operator
     auto operator&lt;=&gt;(const Rectangle&amp;) const = default;
-&#125;;
+};
 
-int main() &#123;
-    Rectangle r1&#123;10, 20&#125;;
-    Rectangle r2&#123;10, 20&#125;;
-    Rectangle r3&#123;15, 25&#125;;
+int main() {
+    Rectangle r1{10, 20};
+    Rectangle r2{10, 20};
+    Rectangle r3{15, 25};
 
     std::cout &lt;&lt; std::boolalpha;
     std::cout &lt;&lt; &quot;r1 == r2: &quot; &lt;&lt; (r1 == r2) &lt;&lt; std::endl; // true
@@ -1403,7 +1408,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;r3 &gt; r2: &quot; &lt;&lt; (r3 &gt; r2) &lt;&lt; std::endl;   // true
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>r1 == r2: true
@@ -1449,7 +1454,7 @@ r3 &gt; r2: true
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

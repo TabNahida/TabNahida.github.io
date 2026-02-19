@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -191,14 +196,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/modern-cpp/" style="color: #ffa2c4">
+                <a href="/tags/modern-cpp/" style="color: #ff7d73">
                     Modern C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/cpp-unleash/" style="color: #ff7d73">
+                <a href="/tags/cpp-unleash/" style="color: #00a596">
                     C++ Unleashed
                 </a>
             </span>
@@ -286,21 +291,21 @@
 #include &lt;string&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     // Clear use of &#39;auto&#39; where the type is obvious
-    auto numbers = std::vector&lt;int&gt;&#123;1, 2, 3, 4, 5&#125;;
+    auto numbers = std::vector&lt;int&gt;{1, 2, 3, 4, 5};
     auto name = std::string(&quot;Alice&quot;);
 
     // Potentially unclear use of &#39;auto&#39;
     auto it = numbers.begin(); // What is &#39;it&#39;?
 
-    for(auto num : numbers) &#123;
+    for(auto num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -315,23 +320,23 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
 
     // Traditional for loop
-    for(size_t i = 0; i &lt; numbers.size(); ++i) &#123;
+    for(size_t i = 0; i &lt; numbers.size(); ++i) {
         std::cout &lt;&lt; numbers[i] &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     // Range-based for loop
-    for(auto num : numbers) &#123;
+    for(auto num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -348,25 +353,25 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;memory&gt;
 #include &lt;iostream&gt;
 
-struct Resource &#123;
-    Resource() &#123; std::cout &lt;&lt; &quot;Resource Acquired\n&quot;; &#125;
-    ~Resource() &#123; std::cout &lt;&lt; &quot;Resource Released\n&quot;; &#125;
-&#125;;
+struct Resource {
+    Resource() { std::cout &lt;&lt; &quot;Resource Acquired\n&quot;; }
+    ~Resource() { std::cout &lt;&lt; &quot;Resource Released\n&quot;; }
+};
 
-int main() &#123;
-    &#123;
+int main() {
+    {
         std::unique_ptr&lt;Resource&gt; ptr1 = std::make_unique&lt;Resource&gt;();
         // std::unique_ptr&lt;Resource&gt; ptr2 = ptr1; // Error: cannot copy
         std::unique_ptr&lt;Resource&gt; ptr2 = std::move(ptr1); // Transfer ownership
-    &#125; // Resource is automatically released here
+    } // Resource is automatically released here
 
-    &#123;
+    {
         std::shared_ptr&lt;Resource&gt; ptr3 = std::make_shared&lt;Resource&gt;();
         std::shared_ptr&lt;Resource&gt; ptr4 = ptr3; // Shared ownership
-    &#125; // Resource is released when the last `shared_ptr` goes out of scope
+    } // Resource is released when the last `shared_ptr` goes out of scope
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Resource Acquired
@@ -384,8 +389,8 @@ Resource Released
 <pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; original = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; original = {1, 2, 3, 4, 5};
 
     // Move constructor
     std::vector&lt;int&gt; movedTo = std::move(original);
@@ -394,7 +399,7 @@ int main() &#123;
     std::cout &lt;&lt; &quot;MovedTo size: &quot; &lt;&lt; movedTo.size() &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Original size after move: 0
@@ -425,41 +430,41 @@ MovedTo size: 5
 #include &lt;string&gt;
 #include &lt;iostream&gt;
 
-class FileHandler &#123;
+class FileHandler {
 public:
-    FileHandler(const std::string&amp; filename) : file(filename) &#123;
-        if(!file.is_open()) &#123;
+    FileHandler(const std::string&amp; filename) : file(filename) {
+        if(!file.is_open()) {
             throw std::runtime_error(&quot;Failed to open file: &quot; + filename);
-        &#125;
+        }
         std::cout &lt;&lt; &quot;File opened: &quot; &lt;&lt; filename &lt;&lt; std::endl;
-    &#125;
+    }
 
-    ~FileHandler() &#123;
-        if(file.is_open()) &#123;
+    ~FileHandler() {
+        if(file.is_open()) {
             file.close();
             std::cout &lt;&lt; &quot;File closed.\n&quot;;
-        &#125;
-    &#125;
+        }
+    }
 
-    std::ofstream&amp; getStream() &#123;
+    std::ofstream&amp; getStream() {
         return file;
-    &#125;
+    }
 
 private:
     std::ofstream file;
-&#125;;
+};
 
-int main() &#123;
-    try &#123;
+int main() {
+    try {
         FileHandler fh(&quot;example.txt&quot;);
         fh.getStream() &lt;&lt; &quot;Hello, RAII!&quot; &lt;&lt; std::endl;
         // No need to manually close the file
-    &#125; catch(const std::exception&amp; e) &#123;
+    } catch(const std::exception&amp; e) {
         std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File opened: example.txt
@@ -476,18 +481,18 @@ File closed.
 <pre><code class="language-cpp">#include &lt;memory&gt;
 #include &lt;iostream&gt;
 
-struct Resource &#123;
-    Resource() &#123; std::cout &lt;&lt; &quot;Resource Acquired\n&quot;; &#125;
-    ~Resource() &#123; std::cout &lt;&lt; &quot;Resource Released\n&quot;; &#125;
-&#125;;
+struct Resource {
+    Resource() { std::cout &lt;&lt; &quot;Resource Acquired\n&quot;; }
+    ~Resource() { std::cout &lt;&lt; &quot;Resource Released\n&quot;; }
+};
 
-int main() &#123;
-    &#123;
+int main() {
+    {
         std::unique_ptr&lt;Resource&gt; ptr = std::make_unique&lt;Resource&gt;();
         // Resource is automatically released when &#39;ptr&#39; goes out of scope
-    &#125;
+    }
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Resource Acquired
@@ -511,30 +516,30 @@ Resource Released
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;mutex&gt;
 
-class Singleton &#123;
+class Singleton {
 public:
     // Delete copy constructor and assignment operator
     Singleton(const Singleton&amp;) = delete;
     Singleton&amp; operator=(const Singleton&amp;) = delete;
 
     // Static method to get the instance
-    static Singleton&amp; getInstance() &#123;
+    static Singleton&amp; getInstance() {
         static Singleton instance;
         return instance;
-    &#125;
+    }
 
-    void doSomething() &#123;
+    void doSomething() {
         std::cout &lt;&lt; &quot;Singleton instance doing something.\n&quot;;
-    &#125;
+    }
 
 private:
     // Private constructor
-    Singleton() &#123;
+    Singleton() {
         std::cout &lt;&lt; &quot;Singleton instance created.\n&quot;;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     // Access the singleton instance
     Singleton::getInstance().doSomething();
 
@@ -542,7 +547,7 @@ int main() &#123;
     // Singleton s; // Error: constructor is private
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Singleton instance created.
@@ -565,45 +570,45 @@ Singleton instance doing something.
 #include &lt;memory&gt;
 
 // Base Product
-class Product &#123;
+class Product {
 public:
     virtual void use() = 0;
     virtual ~Product() = default;
-&#125;;
+};
 
 // Concrete Products
-class ConcreteProductA : public Product &#123;
+class ConcreteProductA : public Product {
 public:
-    void use() override &#123;
+    void use() override {
         std::cout &lt;&lt; &quot;Using Concrete Product A.\n&quot;;
-    &#125;
-&#125;;
+    }
+};
 
-class ConcreteProductB : public Product &#123;
+class ConcreteProductB : public Product {
 public:
-    void use() override &#123;
+    void use() override {
         std::cout &lt;&lt; &quot;Using Concrete Product B.\n&quot;;
-    &#125;
-&#125;;
+    }
+};
 
 // Factory
-class Factory &#123;
+class Factory {
 public:
-    enum class ProductType &#123; A, B &#125;;
+    enum class ProductType { A, B };
 
-    static std::unique_ptr&lt;Product&gt; createProduct(ProductType type) &#123;
-        switch(type) &#123;
+    static std::unique_ptr&lt;Product&gt; createProduct(ProductType type) {
+        switch(type) {
             case ProductType::A:
                 return std::make_unique&lt;ConcreteProductA&gt;();
             case ProductType::B:
                 return std::make_unique&lt;ConcreteProductB&gt;();
             default:
                 return nullptr;
-        &#125;
-    &#125;
-&#125;;
+        }
+    }
+};
 
-int main() &#123;
+int main() {
     auto productA = Factory::createProduct(Factory::ProductType::A);
     productA-&gt;use();
 
@@ -611,7 +616,7 @@ int main() &#123;
     productB-&gt;use();
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Using Concrete Product A.
@@ -635,53 +640,53 @@ Using Concrete Product B.
 #include &lt;algorithm&gt;
 
 // Observer Interface
-class Observer &#123;
+class Observer {
 public:
     virtual void update(int data) = 0;
     virtual ~Observer() = default;
-&#125;;
+};
 
 // Subject Class
-class Subject &#123;
+class Subject {
 public:
-    void attach(Observer* obs) &#123;
+    void attach(Observer* obs) {
         observers.push_back(obs);
-    &#125;
+    }
 
-    void detach(Observer* obs) &#123;
+    void detach(Observer* obs) {
         observers.erase(std::remove(observers.begin(), observers.end(), obs), observers.end());
-    &#125;
+    }
 
-    void notify(int data) &#123;
-        for(auto&amp; obs : observers) &#123;
+    void notify(int data) {
+        for(auto&amp; obs : observers) {
             obs-&gt;update(data);
-        &#125;
-    &#125;
+        }
+    }
 
-    void setData(int newData) &#123;
+    void setData(int newData) {
         data = newData;
         notify(data);
-    &#125;
+    }
 
 private:
     std::vector&lt;Observer*&gt; observers;
     int data;
-&#125;;
+};
 
 // Concrete Observer
-class ConcreteObserver : public Observer &#123;
+class ConcreteObserver : public Observer {
 public:
-    ConcreteObserver(const std::string&amp; name) : observerName(name) &#123;&#125;
+    ConcreteObserver(const std::string&amp; name) : observerName(name) {}
 
-    void update(int data) override &#123;
+    void update(int data) override {
         std::cout &lt;&lt; observerName &lt;&lt; &quot; received data: &quot; &lt;&lt; data &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     std::string observerName;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Subject subject;
 
     ConcreteObserver obs1(&quot;Observer 1&quot;);
@@ -698,7 +703,7 @@ int main() &#123;
     subject.setData(30);
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Observer 1 received data: 10
@@ -724,47 +729,47 @@ Observer 2 received data: 30
 #include &lt;memory&gt;
 
 // Strategy Interface
-class Strategy &#123;
+class Strategy {
 public:
     virtual void execute() = 0;
     virtual ~Strategy() = default;
-&#125;;
+};
 
 // Concrete Strategies
-class ConcreteStrategyA : public Strategy &#123;
+class ConcreteStrategyA : public Strategy {
 public:
-    void execute() override &#123;
+    void execute() override {
         std::cout &lt;&lt; &quot;Executing Strategy A.\n&quot;;
-    &#125;
-&#125;;
+    }
+};
 
-class ConcreteStrategyB : public Strategy &#123;
+class ConcreteStrategyB : public Strategy {
 public:
-    void execute() override &#123;
+    void execute() override {
         std::cout &lt;&lt; &quot;Executing Strategy B.\n&quot;;
-    &#125;
-&#125;;
+    }
+};
 
 // Context
-class Context &#123;
+class Context {
 public:
-    void setStrategy(std::unique_ptr&lt;Strategy&gt; strat) &#123;
+    void setStrategy(std::unique_ptr&lt;Strategy&gt; strat) {
         strategy = std::move(strat);
-    &#125;
+    }
 
-    void performAction() &#123;
-        if(strategy) &#123;
+    void performAction() {
+        if(strategy) {
             strategy-&gt;execute();
-        &#125; else &#123;
+        } else {
             std::cout &lt;&lt; &quot;No strategy set.\n&quot;;
-        &#125;
-    &#125;
+        }
+    }
 
 private:
     std::unique_ptr&lt;Strategy&gt; strategy;
-&#125;;
+};
 
-int main() &#123;
+int main() {
     Context context;
 
     context.performAction(); // No strategy set.
@@ -776,7 +781,7 @@ int main() &#123;
     context.performAction(); // Executing Strategy B.
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>No strategy set.
@@ -799,70 +804,70 @@ Executing Strategy B.
 #include &lt;memory&gt;
 
 // Component Interface
-class Coffee &#123;
+class Coffee {
 public:
     virtual double cost() const = 0;
     virtual std::string description() const = 0;
     virtual ~Coffee() = default;
-&#125;;
+};
 
 // Concrete Component
-class SimpleCoffee : public Coffee &#123;
+class SimpleCoffee : public Coffee {
 public:
-    double cost() const override &#123;
+    double cost() const override {
         return 2.0;
-    &#125;
+    }
 
-    std::string description() const override &#123;
+    std::string description() const override {
         return &quot;Simple Coffee&quot;;
-    &#125;
-&#125;;
+    }
+};
 
 // Decorator Base
-class CoffeeDecorator : public Coffee &#123;
+class CoffeeDecorator : public Coffee {
 public:
-    CoffeeDecorator(std::unique_ptr&lt;Coffee&gt; base) : baseCoffee(std::move(base)) &#123;&#125;
+    CoffeeDecorator(std::unique_ptr&lt;Coffee&gt; base) : baseCoffee(std::move(base)) {}
 
-    double cost() const override &#123;
+    double cost() const override {
         return baseCoffee-&gt;cost();
-    &#125;
+    }
 
-    std::string description() const override &#123;
+    std::string description() const override {
         return baseCoffee-&gt;description();
-    &#125;
+    }
 
 protected:
     std::unique_ptr&lt;Coffee&gt; baseCoffee;
-&#125;;
+};
 
 // Concrete Decorators
-class Milk : public CoffeeDecorator &#123;
+class Milk : public CoffeeDecorator {
 public:
-    Milk(std::unique_ptr&lt;Coffee&gt; base) : CoffeeDecorator(std::move(base)) &#123;&#125;
+    Milk(std::unique_ptr&lt;Coffee&gt; base) : CoffeeDecorator(std::move(base)) {}
 
-    double cost() const override &#123;
+    double cost() const override {
         return baseCoffee-&gt;cost() + 0.5;
-    &#125;
+    }
 
-    std::string description() const override &#123;
+    std::string description() const override {
         return baseCoffee-&gt;description() + &quot;, Milk&quot;;
-    &#125;
-&#125;;
+    }
+};
 
-class Sugar : public CoffeeDecorator &#123;
+class Sugar : public CoffeeDecorator {
 public:
-    Sugar(std::unique_ptr&lt;Coffee&gt; base) : CoffeeDecorator(std::move(base)) &#123;&#125;
+    Sugar(std::unique_ptr&lt;Coffee&gt; base) : CoffeeDecorator(std::move(base)) {}
 
-    double cost() const override &#123;
+    double cost() const override {
         return baseCoffee-&gt;cost() + 0.2;
-    &#125;
+    }
 
-    std::string description() const override &#123;
+    std::string description() const override {
         return baseCoffee-&gt;description() + &quot;, Sugar&quot;;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     std::unique_ptr&lt;Coffee&gt; myCoffee = std::make_unique&lt;SimpleCoffee&gt;();
     std::cout &lt;&lt; myCoffee-&gt;description() &lt;&lt; &quot; $&quot; &lt;&lt; myCoffee-&gt;cost() &lt;&lt; std::endl;
 
@@ -873,7 +878,7 @@ int main() &#123;
     std::cout &lt;&lt; myCoffee-&gt;description() &lt;&lt; &quot; $&quot; &lt;&lt; myCoffee-&gt;cost() &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Simple Coffee $2
@@ -899,17 +904,17 @@ Simple Coffee, Milk, Sugar $2.7
 <pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
+int main() {
     std::vector&lt;int&gt; numbers;
     numbers.reserve(1000); // Preallocate space for 1000 elements
 
-    for(int i = 0; i &lt; 1000; ++i) &#123;
+    for(int i = 0; i &lt; 1000; ++i) {
         numbers.push_back(i);
-    &#125;
+    }
 
     std::cout &lt;&lt; &quot;Vector size: &quot; &lt;&lt; numbers.size() &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -927,23 +932,23 @@ int main() &#123;
 #include &lt;iostream&gt;
 
 // Function that takes a large string by value (inefficient)
-void printStringValue(std::string s) &#123;
+void printStringValue(std::string s) {
     std::cout &lt;&lt; s &lt;&lt; std::endl;
-&#125;
+}
 
 // Function that takes a large string by const reference (efficient)
-void printStringRef(const std::string&amp; s) &#123;
+void printStringRef(const std::string&amp; s) {
     std::cout &lt;&lt; s &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::string largeString = &quot;This is a very large string...&quot;;
 
     printStringValue(largeString); // Involves copying
     printStringRef(largeString);   // No copying
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -958,25 +963,25 @@ int main() &#123;
 <p><strong>Example:</strong></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 
-class Math &#123;
+class Math {
 public:
     // Inline function
-    inline int add(int a, int b) &#123;
+    inline int add(int a, int b) {
         return a + b;
-    &#125;
+    }
 
     // Alternatively, define within the class
-    int subtract(int a, int b) &#123;
+    int subtract(int a, int b) {
         return a - b;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     Math math;
     std::cout &lt;&lt; &quot;Add: &quot; &lt;&lt; math.add(5, 3) &lt;&lt; std::endl;
     std::cout &lt;&lt; &quot;Subtract: &quot; &lt;&lt; math.subtract(5, 3) &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -993,23 +998,23 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
     int factor = 2;
 
     // Inefficient: Factor is computed inside the loop (trivial here, but impactful with complex operations)
-    for(auto&amp; num : numbers) &#123;
+    for(auto&amp; num : numbers) {
         num *= factor;
-    &#125;
+    }
 
     std::cout &lt;&lt; &quot;Numbers multiplied by &quot; &lt;&lt; factor &lt;&lt; &quot;: &quot;;
-    for(auto num : numbers) &#123;
+    for(auto num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -1020,19 +1025,19 @@ int main() &#123;
 <pre><code class="language-cpp">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 
-std::vector&lt;int&gt; createVector() &#123;
-    std::vector&lt;int&gt; temp = &#123;1, 2, 3, 4, 5&#125;;
+std::vector&lt;int&gt; createVector() {
+    std::vector&lt;int&gt; temp = {1, 2, 3, 4, 5};
     return temp; // Move semantics optimize this return
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::vector&lt;int&gt; numbers = createVector();
-    for(auto num : numbers) &#123;
+    for(auto num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -1055,23 +1060,23 @@ int main() &#123;
 #include &lt;iostream&gt;
 
 // Naming convention: CamelCase for classes, snake_case for functions
-class DataProcessor &#123;
+class DataProcessor {
 public:
-    void process_data(const std::vector&lt;int&gt;&amp; data) &#123;
+    void process_data(const std::vector&lt;int&gt;&amp; data) {
         // Process data
-        for(auto num : data) &#123;
+        for(auto num : data) {
             std::cout &lt;&lt; num &lt;&lt; &quot; &quot;;
-        &#125;
+        }
         std::cout &lt;&lt; std::endl;
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     DataProcessor processor;
-    std::vector&lt;int&gt; data = &#123;10, 20, 30, 40, 50&#125;;
+    std::vector&lt;int&gt; data = {10, 20, 30, 40, 50};
     processor.process_data(data);
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Modular-Design"><a href="#Modular-Design" class="headerlink" title="Modular Design"></a>Modular Design</h3><p>Designing your code in a modular fashion promotes reusability and easier maintenance. Break down your application into smaller, independent components or modules.</p>
 <p><strong>Best Practices:</strong></p>
@@ -1085,47 +1090,47 @@ int main() &#123;
 #pragma once
 #include &lt;string&gt;
 
-class Logger &#123;
+class Logger {
 public:
     void log(const std::string&amp; message);
-&#125;;
+};
 
 // Logger.cpp
 #include &quot;Logger.h&quot;
 #include &lt;iostream&gt;
 
-void Logger::log(const std::string&amp; message) &#123;
+void Logger::log(const std::string&amp; message) {
     std::cout &lt;&lt; &quot;[LOG]: &quot; &lt;&lt; message &lt;&lt; std::endl;
-&#125;
+}
 
 // Application.h
 #pragma once
 #include &quot;Logger.h&quot;
 
-class Application &#123;
+class Application {
 public:
     void run();
 private:
     Logger logger;
-&#125;;
+};
 
 // Application.cpp
 #include &quot;Application.h&quot;
 
-void Application::run() &#123;
+void Application::run() {
     logger.log(&quot;Application started.&quot;);
     // Application logic
     logger.log(&quot;Application finished.&quot;);
-&#125;
+}
 
 // main.cpp
 #include &quot;Application.h&quot;
 
-int main() &#123;
+int main() {
     Application app;
     app.run();
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -1146,22 +1151,22 @@ int main() &#123;
 
 // Function to print elements
 template &lt;typename T&gt;
-void print_elements(const std::vector&lt;T&gt;&amp; vec) &#123;
-    for(auto elem : vec) &#123;
+void print_elements(const std::vector&lt;T&gt;&amp; vec) {
+    for(auto elem : vec) {
         std::cout &lt;&lt; elem &lt;&lt; &quot; &quot;;
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
-&#125;
+}
 
-int main() &#123;
-    std::vector&lt;int&gt; numbers = &#123;1, 2, 3, 4, 5&#125;;
-    std::vector&lt;std::string&gt; words = &#123;&quot;Hello&quot;, &quot;World&quot;, &quot;C++&quot;&#125;;
+int main() {
+    std::vector&lt;int&gt; numbers = {1, 2, 3, 4, 5};
+    std::vector&lt;std::string&gt; words = {&quot;Hello&quot;, &quot;World&quot;, &quot;C++&quot;};
 
     print_elements(numbers);
     print_elements(words);
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>1 2 3 4 5 
@@ -1188,16 +1193,16 @@ template&lt;typename T&gt;
 concept Arithmetic = std::is_arithmetic_v&lt;T&gt;;
 
 // Template function constrained by Arithmetic concept
-Arithmetic auto multiply(Arithmetic auto a, Arithmetic auto b) &#123;
+Arithmetic auto multiply(Arithmetic auto a, Arithmetic auto b) {
     return a * b;
-&#125;
+}
 
-int main() &#123;
+int main() {
     std::cout &lt;&lt; multiply(3, 4) &lt;&lt; std::endl;       // Outputs: 12
     std::cout &lt;&lt; multiply(2.5, 4.2) &lt;&lt; std::endl;   // Outputs: 10.5
     // std::cout &lt;&lt; multiply(&quot;Hello&quot;, &quot;World&quot;) &lt;&lt; std::endl; // Compilation error
     return 0;
-&#125;
+}
 </code></pre>
 <h3 id="Comprehensive-Documentation"><a href="#Comprehensive-Documentation" class="headerlink" title="Comprehensive Documentation"></a>Comprehensive Documentation</h3><p>Documenting your code enhances its understandability and maintainability. Good documentation helps others (and your future self) grasp the purpose and functionality of your code.</p>
 <p><strong>Best Practices:</strong></p>
@@ -1214,36 +1219,36 @@ int main() &#123;
 /**
  * @brief Class responsible for processing numerical data.
  */
-class DataProcessor &#123;
+class DataProcessor {
 public:
     /**
      * @brief Processes the data by sorting and removing duplicates.
      * 
      * @param data The vector of integers to process.
      */
-    void process(std::vector&lt;int&gt;&amp; data) &#123;
+    void process(std::vector&lt;int&gt;&amp; data) {
         // Sort the data
         std::sort(data.begin(), data.end());
 
         // Remove duplicates
         auto last = std::unique(data.begin(), data.end());
         data.erase(last, data.end());
-    &#125;
-&#125;;
+    }
+};
 
-int main() &#123;
+int main() {
     DataProcessor processor;
-    std::vector&lt;int&gt; numbers = &#123;5, 3, 1, 2, 5, 3, 4&#125;;
+    std::vector&lt;int&gt; numbers = {5, 3, 1, 2, 5, 3, 4};
 
     processor.process(numbers);
 
-    for(auto num : numbers) &#123;
+    for(auto num : numbers) {
         std::cout &lt;&lt; num &lt;&lt; &quot; &quot;; // Outputs: 1 2 3 4 5 
-    &#125;
+    }
     std::cout &lt;&lt; std::endl;
 
     return 0;
-&#125;
+}
 </code></pre>
 <hr>
 <h2 id="Best-Practices-Summary"><a href="#Best-Practices-Summary" class="headerlink" title="Best Practices Summary"></a>Best Practices Summary</h2><p>Adopting best practices in C++ development ensures that your code is not only efficient but also maintainable and scalable. Here’s a recap of the key practices covered in this chapter:</p>
@@ -1278,42 +1283,42 @@ int main() &#123;
 #include &lt;string&gt;
 
 // Singleton Logger Class
-class Logger &#123;
+class Logger {
 public:
     // Delete copy constructor and assignment operator
     Logger(const Logger&amp;) = delete;
     Logger&amp; operator=(const Logger&amp;) = delete;
 
     // Static method to access the singleton instance
-    static Logger&amp; getInstance() &#123;
+    static Logger&amp; getInstance() {
         // Guaranteed to be thread-safe in C++11 and later
         static Logger instance;
         return instance;
-    &#125;
+    }
 
     // Method to log messages
-    void log(const std::string&amp; message) &#123;
+    void log(const std::string&amp; message) {
         std::lock_guard&lt;std::mutex&gt; lock(logMutex);
         std::cout &lt;&lt; &quot;[LOG]: &quot; &lt;&lt; message &lt;&lt; std::endl;
-    &#125;
+    }
 
 private:
     // Private constructor
-    Logger() &#123;
+    Logger() {
         std::cout &lt;&lt; &quot;Logger initialized.\n&quot;;
-    &#125;
+    }
 
     std::mutex logMutex; // To make Logger thread-safe
-&#125;;
+};
 
-int main() &#123;
+int main() {
     // Accessing the singleton instance
     Logger::getInstance().log(&quot;Application started.&quot;);
     Logger::getInstance().log(&quot;Performing some operations.&quot;);
     Logger::getInstance().log(&quot;Application finished.&quot;);
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Logger initialized.
@@ -1334,42 +1339,42 @@ int main() &#123;
 #include &lt;string&gt;
 
 // RAII Wrapper for File Handling
-class FileHandler &#123;
+class FileHandler {
 public:
     FileHandler(const std::string&amp; filename, std::ios::openmode mode) 
-        : fileStream(filename, mode) &#123;
-        if(!fileStream.is_open()) &#123;
+        : fileStream(filename, mode) {
+        if(!fileStream.is_open()) {
             throw std::runtime_error(&quot;Failed to open file: &quot; + filename);
-        &#125;
+        }
         std::cout &lt;&lt; &quot;File opened: &quot; &lt;&lt; filename &lt;&lt; std::endl;
-    &#125;
+    }
 
-    ~FileHandler() &#123;
-        if(fileStream.is_open()) &#123;
+    ~FileHandler() {
+        if(fileStream.is_open()) {
             fileStream.close();
             std::cout &lt;&lt; &quot;File closed.\n&quot;;
-        &#125;
-    &#125;
+        }
+    }
 
-    std::ofstream&amp; getStream() &#123;
+    std::ofstream&amp; getStream() {
         return fileStream;
-    &#125;
+    }
 
 private:
     std::ofstream fileStream;
-&#125;;
+};
 
-int main() &#123;
-    try &#123;
+int main() {
+    try {
         FileHandler fh(&quot;log.txt&quot;, std::ios::out);
         fh.getStream() &lt;&lt; &quot;Logging some information.\n&quot;;
         // File is automatically closed when &#39;fh&#39; goes out of scope
-    &#125; catch(const std::exception&amp; e) &#123;
+    } catch(const std::exception&amp; e) {
         std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>File opened: log.txt
@@ -1387,30 +1392,30 @@ File closed.
 #include &lt;iostream&gt;
 
 // Function to process data and return modified strings
-std::vector&lt;std::string&gt; processData(const std::vector&lt;std::string&gt;&amp; data) &#123;
+std::vector&lt;std::string&gt; processData(const std::vector&lt;std::string&gt;&amp; data) {
     std::vector&lt;std::string&gt; processed;
     processed.reserve(data.size());
 
-    for(auto&amp; item : data) &#123;
+    for(auto&amp; item : data) {
         std::string modified = &quot;Processed: &quot; + item;
         processed.emplace_back(std::move(modified)); // Move semantics
-    &#125;
+    }
 
     return processed;
-&#125;
+}
 
-int main() &#123;
-    std::vector&lt;std::string&gt; originalData = &#123;&quot;Alpha&quot;, &quot;Beta&quot;, &quot;Gamma&quot;, &quot;Delta&quot;&#125;;
+int main() {
+    std::vector&lt;std::string&gt; originalData = {&quot;Alpha&quot;, &quot;Beta&quot;, &quot;Gamma&quot;, &quot;Delta&quot;};
 
     // Process data with move semantics
     std::vector&lt;std::string&gt; newData = processData(originalData);
 
-    for(auto&amp; item : newData) &#123;
+    for(auto&amp; item : newData) {
         std::cout &lt;&lt; item &lt;&lt; std::endl;
-    &#125;
+    }
 
     return 0;
-&#125;
+}
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code>Processed: Alpha
@@ -1480,7 +1485,7 @@ Processed: Delta
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

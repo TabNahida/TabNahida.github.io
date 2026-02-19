@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/preview.js"></script>
 
@@ -48,7 +53,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -184,42 +189,42 @@
             
             <span class="tag">
                 
-                <a href="/tags/lib/" style="color: #00bcd4">
+                <a href="/tags/lib/" style="color: #03a9f4">
                     Library
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/compiler/" style="color: #ff7d73">
+                <a href="/tags/compiler/" style="color: #00a596">
                     Compiler
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/prizm-sdk/" style="color: #00bcd4">
+                <a href="/tags/prizm-sdk/" style="color: #ffa2c4">
                     PrizmSDK
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/embed/" style="color: #00a596">
+                <a href="/tags/embed/" style="color: #ff7d73">
                     Embedded
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/toolchain/" style="color: #ff7d73">
+                <a href="/tags/toolchain/" style="color: #00a596">
                     Toolchain
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/setup/" style="color: #00bcd4">
+                <a href="/tags/setup/" style="color: #ffa2c4">
                     SetUp
                 </a>
             </span>
@@ -264,22 +269,22 @@ cd hello_world
 <p>Next, create a file called <code>main.c</code> and insert the following code:</p>
 <pre><code class="language-c">#include &lt;fxcg/display.h&gt;
 
-int main(void) &#123;
+int main(void) {
     // Clear the screen and display &quot;Hello, World!&quot;
     Bdisp_AllClr_VRAM();
     PrintXY(5, 5, &quot;Hello, World!&quot;, 0);
     
     // Wait for user input
-    while (1) &#123;
+    while (1) {
         int key;
         GetKey(&amp;key);
-        if (key == KEY_CTRL_EXIT) &#123;
+        if (key == KEY_CTRL_EXIT) {
             break;
-        &#125;
-    &#125;
+        }
+    }
     
     return 0;
-&#125;
+}
 </code></pre>
 <h4 id="2-Compiling-the-Program"><a href="#2-Compiling-the-Program" class="headerlink" title="2. Compiling the Program"></a>2. Compiling the Program</h4><p>Ensure you’ve set up your environment variables to include PrizmSDK’s toolchain in your <code>$PATH</code>. For example:</p>
 <pre><code class="language-bash">export PATH=/path/to/PrizmSDK/bin:$PATH
@@ -315,7 +320,7 @@ int main(void) &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2025 Tab&#39;s Blog
+            2024 - 2026 Tab&#39;s Blog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
