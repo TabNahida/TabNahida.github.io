@@ -44,6 +44,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -196,14 +199,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/phy/" style="color: #00bcd4">
+                <a href="/tags/phy/" style="color: #00a596">
                     Physics
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/study/" style="color: #ff7d73">
+                <a href="/tags/study/" style="color: #00bcd4">
                     Study
                 </a>
             </span>
@@ -212,11 +215,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <p>Overall, I get my interview invitation from st catz. It must be the happist thing in my life that I still feel happy after five days. Looking back this journey, I have struggled so much that I feel sad after I am a little bit clam down. This is truly a special experience like my mom said. Yet that is my very first time that I feel so close to success. This kind of experience are like taking drug even more that drug. You will feel a pure thought of happiness at the begining. And then you will be filled with excited. You will not be able to clam down for days. But after that you will set down and think what about the interview. Interview invitation is just a begining. I have to get the offer. It is just like taking drug, you cannot stop to seek this success. You will feel stressed. You want more. You want the offer. This experience is so magical. By the way, good luck for the interview.</p>
-<p>Maybe I should write a noval for my special experience.</p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX1+ovf7u71gdsP4wHxJqGCpP+ppjwxalKT83SyfQv8uUVOeheWbAzrZENgunPZmUbKAzVhxPPJkOQKoZRC1Ce3kDRmZl2oymOneVXAMfQTNb6Qrtkg13jBez7jzNhx+SWtTkXer0p1oKni+e//HeRPbTgg9kLKpXK1SdvWdfMrYNfWUo4FBGbPT9D6X+W9ZFWCgaDEP8Z3WnslIu49ZDZtQ2czc6MJdU0PQvnmYWZZgVa3Ec2FwdmBtVwucLxLjPD+9ZkmWXW6v7YvmpyV6ecw9YwiHi5k9U8Xs1a5I6N0ZG4SRo63kXRbo8NsxFCjFTD04cw5jI1YH2KGBHTCYXC3vhmKUWIFnluaNnwoBrtDwX+9IIxsnsmg7bQcupJfHMFCvxZtFtwWbISIzjt3MFfBQcWdgzF+tZezmwqJbKJ16MBTXvHP2Rw+l4bPi7/+Bw/lKlOgp1dmFma3QzlAftEWxgjI/XjoUQC38G0fQg716ruKgcgbEfdOgoH6yiNnhaIHrP11PyhxTzcTx9Ylgs7d72P4jjTCguGwfyj99UtzqnkpaMEsfBra93+8lX1kDMX/MfdJoSnmVPTpOBCb1z0jvnhTlV/isrDfI7oUwnSlXPY7wKdOgiywXwCl2Pi3zjBb861JRu4WbWPxur3xTYYVA75StrwNeTfHnUTUXMG3SJIpcdVydFRexjf9JI8qdXZQN9dVIbpUZnaFaEpDgdXBRygs8mbtLYifLb2PkB/DUQsgkMT4gp9lahG0Q8JtPWSwC5X8y4nB/Zy77ZnsWC4zt3iPtLGmbHxnCcQJzHNQlQRu0wx8/RDDdPDGAQQBwvT+f8EPmlSaTQRBjyphkAxTN4PQsEJ3Ca79pLLZ7HyFwnXsMlrbz+5Q60Js89M9g6DlUG6s61XI9ao6bCwO8z1Bv9J68Bf7z9a7lNJWsmG95fTVTe1egsML27dbDHg2OK3epUOH4KcDfZhZ2tS3DvZay9GSTSIeAeS20qTAnwwHQ0EvBucltApCNCrpFVsQF80blQIbeGbN05YuY1pWoixxPS+AM5f22xPHoA9eMh4LtFphVeLS7lLrmy6vyWDjY8SFbr6vK6SMKTis+NAfx+heDKaf82M/1GXPjCGJ1pnaJdXYHAqNIYmB6rS5awA6Td4vXsQSAyxe4AusB+lxQEHajP+YXYvYQmXSjwALApUXYRAK4cDeO+sjG/0TJeok3dUih4Lf+llNzR3oX4F6AmxR1wpKJe5Mua2mZa1DCCE8B9UYRrkO4h2fV+/zoMS2UG3tsX7GnMsshi8jLi6bsF2TYjViijToYZ/iDs/xy/sAZAc3TqTp04NwgOaSxZGO85B8SsWcQuL7sg6g=="
+        data-shasum="089c4698bbe5b057293eb0842fd4d32f01767de479ea37e82666df55d36aeacb"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
     
     
     
