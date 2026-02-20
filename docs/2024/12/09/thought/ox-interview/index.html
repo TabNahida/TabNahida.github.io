@@ -41,6 +41,10 @@
 <script src="/js/lib/math.js"></script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script src="/js/lib/mermaid.js"></script>
+
+
 <script src="/js/lib/preview.js"></script>
 
 
@@ -192,21 +196,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/diary/" style="color: #03a9f4">
+                <a href="/tags/diary/" style="color: #ffa2c4">
                     Diary
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/phy/" style="color: #ff7d73">
+                <a href="/tags/phy/" style="color: #03a9f4">
                     Physics
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/study/" style="color: #03a9f4">
+                <a href="/tags/study/" style="color: #ff7d73">
                     Study
                 </a>
             </span>
@@ -222,7 +226,7 @@
         :disabled="cryptoStatus === 'success'"
         ref="crypto"
         placeholder="文章被加密，请输入密码"
-        data-encrypted="U2FsdGVkX1/WV1gxwDbvVzmjTrGSbTeock6YoDJh8vgLhesXf4Qd+oWCYFkxyQLd+sMzGjoQwhbvNihce+JkQy8Hf+cclKrSNe+Wmn2qHYwEu9Yy1f+5YD1Ny1MxqZ27xHKSCt5MGnFB3UV88gW4OYxzkt+PryXuiu1TePycyEHvg6Gf7BA394AWE9nFDvwWNNR8RM1hVjPhKzU0VGOh48rcx2O90Ah+LTSC6rbds6g21BLRvHqKe5fCVFaE+ZnZv5+x+pjkSL8Zq0hGtoeJXF2wD+kSPWC88+Q+DJKelMFDxBuwdGftsRgfyw51KxQu3TxkIiI85qfM94r5RSGxGZ2NlJvce1WA5fsSo2XbJrQxQELbtQICcbWBuyR0QTXMYAVJq821xj9qrgFhyX6afik0AtVQ0QE/sLDK15etUWW1moq0l/KeWE7d2vsdQRXpGf2HEDqMBY0f5g4ErgT/+vsyhrdokVH4sNYtilYdiGCcj0h2Tdi7P5oC5hGFi8F3uPa7J4j5nMfoqsyFRi9KG/4CgPtL+kPTn9tYN60/hzdfDeNPi7Y/u9+7VzOsjTvFSKPCvBwnbSzHTfrf/dmcqAgD+vDAtIG8oXG485i2use6IvEvaGd5JmERDMa38K97WQ6vN0EmbNR1dr8CG2nMrliHNYoVHJOzMY3tEMsZ9r1e2TcUgNMcXnNUQpcKdIH1E71sABL/CdKkDYMiZydXbdqvVLA/OctVvhpai+B+iP1z9SXz1oCkKuZv8zF9l8IWC1zR/PVPBqVqnBeXfyJEtao/5D1d+nQclfcWOW9jR9+YlfY3ND29bpgkX3HLywBHSIkEZHiy7vL50gHLbY1rcppZsXo+PZrDERzdouaJEFYNuNnTqs5Mvj75+b/fGQ1CrWTeV0wtLOgxmTwR4J+0KGHqdTnBvBnPrWAr9zFKbRZgw/ASnVYoKUzvq7Pw+AYmT1K2LHXwv9+Xd7SIgY0yCwxhOFmjzYOc9hOqBXABV3KMVFibnxFPB6Sd9H9hxKlveFU3LFuyy6CtN4jeE6WrwCdqqogWFMNF7XQyA8UG7We3827kQcvxDLsYktJFChRIdDypGCt+IMOcX+GCrw4GcoyDDUyDUZY0uaKIHOAguj6t9POtZJgXIWYO6pLXMeVi658XSjJFG1KPhhcs+iKX28JfR6G36HfrmqGf64lqCM6/6yNmF/zm4xUGJztlFBl/Cw7M6XNvEKytjUOY9+K7a5ZhzVrlACeOmPVZtx5cXburcH5yaHS23J7SLbP1japHpemyjeRP/fwtBM9Nt20nAJz12L8MJrQ4rNuDebBajw+Za4AaeuT6Y1ttdpni6mogxI+JKbc2nfT7s5RyFo00LUOz+MI4GOZc6nCvneVMaJcjpGgUDZ99ziwYTTpAsTKbAb8pW1mlg0OZjYb8qLALS1o9gi5heB8t5lxeRFL/PpafLpA5lX/ArXudNlZ4SNnKkXw9Imr3sI/dRZcT4PAopXhqrA3SNWOCCETvBFo3OUrOP+6bwZOv6n6Rn9u29OSVloBT8dEYxvajvlPeTFoUnREkqZ8IuI5m3EVZ9pTpsio98ZVdwc7n2ZnpdrG7aFY7AeQuEf7+/iZsBdjs0FT3MAUYhCREF5camG61dvRe5sVoktoJbkrVRtMXABc2PazX"
+        data-encrypted="U2FsdGVkX18GIESK+t4O3a6caDHtQgQ9tLIa11WPFrnxgQmQnUoaeJ3wRA0Uzzl+9C/NicRKdLY+CEK4OPOu3ZQzqscnX3XPqQPnNWTuDURHZ7c3nqAutdc8pB+AMZ+X82R8QFsCUkbXZwHxPsNNm7fPpVhLLn2ZGtQVm7oHZNUJshbsLdfjBQQmB3Iecj/Vx9yfGPb7ssNqdr/981mxOyCr/z7pfyr2lNx/nkJQQOqwKkgbv+P0e7lW1HFE/ckPzpHDKfr8Erm0Udlm+bxPFk4W1t3sx4pK6x/S35tujzpYPXGvPF7KLW4EW94hZG/PANaVgrJiCpGg/OR+2h79bZ4yUjKR6McuArtd/FGD8QvP0m/UdOQCTLcJ+OoqmHhr8845eJEfP1ORz62LhfR4nkwNqwUS4IMvva60dQvyoPcSeocuvYvhN2u1OiWcdQJiLFRgQCzLQHTlg1LXWsEpdoJiQqXuvmiurteZWeW91RQ57o6iqfoAy+uWREPF/H2feJTAtnFgEv3nVEjT5hCaLgJhp0hdElVQfu4rwiJOLJAlsPb+P/Uxg+bU5bKlyJ495+z94l/p1iEFWzYBmLT9qWil4B/ObQt4ejX2ABqjyuTB1/tKBSpiMCGpmRGr4I+sqMxaC8/e8bG6INwBlDk0cOT8DcDTP5osL0ZI1ekqLg6cTMeqM1lCKpJxOXW+46SShbvwxcQIH+vsckpuhy3ZNGUfPNLs4VP+gGNIF9TT9y8qJUiNb+2KhA7Ap7DMDlK+VmN0G+d7aWedEbS345a57suzRhGrRGzPQxX9g7FzXggVUiOCD2WmPZLnE8ZuyJi2A1ESjw/4nxNBFS01X9qLP4Mg03enKVgvamFsujRZM/t2p8jxTtEtEC3ZLAwQDRX2F0tuHJcNyLas9gCgCNKDJqUY+mtXnAxFA95P/eO88JJuVUiWuyxwWYSxhR9sGP/8D8/WRsfhS2Mj6jmG2bIQdyYqrrnZNJuo4fDO4NUdj1mcSZc7MC9/ag/aCTUIa8tt6GMEia0hto+zz4wPF3XBkD+R0jL/5lt9b2aigZaghhOwjHDxVyovzFLvqISAJOrrCC9365m781EozEN4hbxcMqf00Ggiq84Flurg4Sr2VPokZzyh4dOqKMmlWyjmQCiIpnE02MafbJgx8k3OFHNOP0zIvdvUnYOzUXNeeFSJ35VvWkLlQQnK5C7uvxoGUUB6XI9oxFC2z+Zb95G1/aZDZqeZNVtUriyuXIiD2gIiWXPi6jm7hRPubMO4L8m3eb1Q8mkBgUJHap0Cjwdx794Ppiu4BHAKE8eiTbsOh+xTZDQbm5Wz9j658ll41x/XHe/O+j2QFQc3N004QL8mWVRmO19hTMtWSGZEbZzfKG+ISW6Ssnts5YFMyrwYbpPumU2SAH2dW/43hSj51m3IFl5mjR8K3VGT+Vb85H9aTQBl/iDu7j+OWsFeR39Ke5D3piSWt6Lo0bLS6OqbkYMVDDV+pJ/SYgzHJ+lsWFpAe67OQfVb/1JwElNN98yWlUX/X+xgPPuJE/91HFZCywZ3IQr4YqMnRXDn2+EfE5jYjv6D6wR70gQDxwxCz1CpAn++aLqDrE/WU0oSXLeJuQgPgwfXtNmmOBi7r/cgKLOEEx1kR8YefJwv9myWCKiRh82nuW68"
         data-shasum="18b057ccad45d5248575786fa3de01ca9dea560541b28dd99832e0f178742a12"
         v-model="crypto"
     />
