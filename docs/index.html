@@ -186,6 +186,88 @@
         
 
 <div class="post">
+    <a href="/2026/02/19/dev-journal/nanozhgpt-dev/">
+        <h2 class="post-title">nanozhgpt-dev</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/dev-journal/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Dev Journal
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>看了篇知乎文章，讲他自己训练了一个3M左右参数的中文大模型，效果还可以，我就想自己也训练一个。我最开始订下的是10M左右，后续把标准定到100M，数据集是C4的ZH部分，数据总量在67GB的样子。</p>
+<p>最开始的是确定的词表，我选择了Byte level BPE，大小定在50K，算大词表。训练词表的时候就踩了坑，本来是准备用HF的Datasets配合Tokenizer的Trainer，结果跑很久都无法完成对如此海量数据的预处理，折腾了很久，最后还是下定决心自己写了一个面对这种情况的C++ trainer，很快就把问题解决了。</p>
+<p>然后就是训练部分，因为开始做这个项目的时候还不知道lightning之类的框架，只能自己写一套训练框架，有很多细节处理的不是很好。第一波训练的loss还可以，但是不知道为什么我把token处理换成C++的版本后就不太行了，最后17000反而是几次训练里loss最低的，但是实际效果其实一般。后续我还训练了v2和10M的版本，还租用GPU训练了一个300M的上下文长度更长的。</p>
+<p>现在只做了Pretrain就踩了不少坑，后需Post Train应该是不用做了，但是大概知道该怎么训练了，我在想后面再来一个项目做更好的只针对英文文本的模型，然后改进一下结构。</p>
+<h1 id="Training-NanoZhGPT-My-Journey-Building-a-100M-Parameter-Chinese-Language-Model"><a href="#Training-NanoZhGPT-My-Journey-Building-a-100M-Parameter-Chinese-Language-Model" class="headerlink" title="Training NanoZhGPT: My Journey Building a 100M Parameter Chinese Language Model"></a>Training NanoZhGPT: My Journey Building a 100M Parameter Chinese Language Model</h1><p>A few weeks ago, I came across a Zhihu article where someone trained a 3M parameter Chinese LLM with decent results. That sparked an idea: why not try training my own? What started as a modest 10M parameter goal eventually evolved into a 100M parameter model.</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/c-cpp/" style="color: #03a9f4">C/C++</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/python/" style="color: #ffa2c4">Python</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/ai/" style="color: #ff7d73">AI</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/llm/" style="color: #00a596">LLM</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/nlp/" style="color: #00bcd4">NLP</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/model-training/" style="color: #ff7d73">Model Training</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/pytorch/" style="color: #00a596">PyTorch</a>
+        </span>
+        
+    </div>
+    <a href="/2026/02/19/dev-journal/nanozhgpt-dev/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2025/01/22/research/exomoon-init/">
         <h2 class="post-title">Exomoon Search Project</h2>
     </a>
@@ -226,17 +308,17 @@
         
         <span class="tag">
             
-            <a href="/tags/astro/" style="color: #03a9f4">Astronomy</a>
+            <a href="/tags/ai/" style="color: #03a9f4">AI</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/ai/" style="color: #ffa2c4">AI</a>
+            <a href="/tags/astro/" style="color: #ff7d73">Astronomy</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/exoplanet/" style="color: #ff7d73">Exoplanet</a>
+            <a href="/tags/exoplanet/" style="color: #03a9f4">Exoplanet</a>
         </span>
         
     </div>
@@ -288,12 +370,12 @@
         
         <span class="tag">
             
-            <a href="/tags/diary/" style="color: #ffa2c4">Diary</a>
+            <a href="/tags/diary/" style="color: #ff7d73">Diary</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/cosplay/" style="color: #00a596">CosPlay</a>
+            <a href="/tags/cosplay/" style="color: #03a9f4">CosPlay</a>
         </span>
         
     </div>
@@ -345,7 +427,7 @@
         
         <span class="tag">
             
-            <a href="/tags/diary/" style="color: #00bcd4">Diary</a>
+            <a href="/tags/diary/" style="color: #03a9f4">Diary</a>
         </span>
         
         <span class="tag">
@@ -355,7 +437,7 @@
         
         <span class="tag">
             
-            <a href="/tags/study/" style="color: #00bcd4">Study</a>
+            <a href="/tags/study/" style="color: #00a596">Study</a>
         </span>
         
     </div>
@@ -409,22 +491,22 @@
         
         <span class="tag">
             
-            <a href="/tags/cpp/" style="color: #ffa2c4">C++</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/compiler/" style="color: #00a596">Compiler</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/cbuer/" style="color: #03a9f4">CBuer</a>
-        </span>
-        
-        <span class="tag">
-            
             <a href="/tags/diary/" style="color: #ffa2c4">Diary</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/cpp/" style="color: #00bcd4">C++</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/compiler/" style="color: #ff7d73">Compiler</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/cbuer/" style="color: #00bcd4">CBuer</a>
         </span>
         
     </div>
@@ -472,17 +554,17 @@
         
         <span class="tag">
             
-            <a href="/tags/diary/" style="color: #ffa2c4">Diary</a>
+            <a href="/tags/diary/" style="color: #00a596">Diary</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/novel/" style="color: #00a596">Novel</a>
+            <a href="/tags/novel/" style="color: #ff7d73">Novel</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/literature/" style="color: #ff7d73">Literature</a>
+            <a href="/tags/literature/" style="color: #00a596">Literature</a>
         </span>
         
     </div>
@@ -537,17 +619,17 @@
         
         <span class="tag">
             
-            <a href="/tags/diary/" style="color: #ffa2c4">Diary</a>
+            <a href="/tags/diary/" style="color: #00bcd4">Diary</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/novel/" style="color: #03a9f4">Novel</a>
+            <a href="/tags/novel/" style="color: #ffa2c4">Novel</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/literature/" style="color: #00bcd4">Literature</a>
+            <a href="/tags/literature/" style="color: #03a9f4">Literature</a>
         </span>
         
     </div>
@@ -595,27 +677,27 @@
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #ffa2c4">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/opensumeru/" style="color: #03a9f4">OpenSumeru</a>
+            <a href="/tags/opensumeru/" style="color: #00bcd4">OpenSumeru</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/network/" style="color: #ff7d73">NetWork</a>
+            <a href="/tags/network/" style="color: #ffa2c4">NetWork</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/tool/" style="color: #ffa2c4">Tool</a>
+            <a href="/tags/tool/" style="color: #03a9f4">Tool</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/release/" style="color: #03a9f4">Release</a>
+            <a href="/tags/release/" style="color: #ffa2c4">Release</a>
         </span>
         
     </div>
@@ -663,17 +745,17 @@
         
         <span class="tag">
             
-            <a href="/tags/c-cpp/" style="color: #00a596">C/C++</a>
+            <a href="/tags/c-cpp/" style="color: #00bcd4">C/C++</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/lib/" style="color: #ff7d73">Library</a>
+            <a href="/tags/lib/" style="color: #00a596">Library</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/algo/" style="color: #00bcd4">Algorithm</a>
+            <a href="/tags/algo/" style="color: #ff7d73">Algorithm</a>
         </span>
         
     </div>
@@ -726,22 +808,17 @@
         
         <span class="tag">
             
-            <a href="/tags/compiler/" style="color: #00a596">Compiler</a>
+            <a href="/tags/compiler/" style="color: #00bcd4">Compiler</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/setup/" style="color: #00bcd4">SetUp</a>
+            <a href="/tags/setup/" style="color: #00a596">SetUp</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/prizm-sdk/" style="color: #ffa2c4">PrizmSDK</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/embed/" style="color: #00a596">Embedded</a>
+            <a href="/tags/embed/" style="color: #ff7d73">Embedded</a>
         </span>
         
         <span class="tag">
@@ -751,75 +828,6 @@
         
     </div>
     <a href="/2024/09/29/tutorial/prizmsdk-github/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/09/29/data/billion-math-constant/">
-        <h2 class="post-title">Various Mathematical Constants to 1 Billion Digits</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/data-collect/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Data Collection
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/9/29
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p><a target="_blank" rel="noopener" href="https://archive.org/details/Math_Constants">Various Mathematical Constants to 1 Billion Digits</a></p>
-<p>This website collected mathematical constants including:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Sqrt%282%29.zip">Square root of 2 (Sqrt(2))</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Sqrt%283%29.zip">Square root of 3 (Sqrt(3))</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Golden%20Ratio.zip">Golden ratio</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/e.zip">e</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Pi.zip">Pi</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Log%282%29.zip">Natural logarithm of 2 (Log(2))</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Log%283%29.zip">Natural logarithm of 3 (Log(3))</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Log%2810%29.zip">Natural logarithm of 10 (Log(10))</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Zeta%283%29.zip">Apéry’s constant (Zeta(3))</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Lemniscate.zip">Lemniscate constant (Lemniscate)</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Catalan.zip">Catalan’s constant (Catalan)</a></li>
-<li><a target="_blank" rel="noopener" href="https://archive.org/download/Math_Constants/Euler%27s%20Constant.zip">Euler-Mascheroni constant (Euler’s Constant)</a></li>
-</ul>
-<p>up to 1 billion digits.</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/data/" style="color: #ffa2c4">Data</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/math/" style="color: #00a596">Math</a>
-        </span>
-        
-    </div>
-    <a href="/2024/09/29/data/billion-math-constant/" class="go-post">阅读全文</a>
 </div>
 
 
