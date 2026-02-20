@@ -193,28 +193,28 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #00bcd4">
+                <a href="/tags/c-cpp/" style="color: #03a9f4">
                     C/C++
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/ai/" style="color: #ff7d73">
-                    AI
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/python/" style="color: #00bcd4">
+                <a href="/tags/python/" style="color: #ff7d73">
                     Python
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/llm/" style="color: #00a596">
+                <a href="/tags/ai/" style="color: #ffa2c4">
+                    AI
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/llm/" style="color: #03a9f4">
                     LLM
                 </a>
             </span>
@@ -235,7 +235,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/pytorch/" style="color: #03a9f4">
+                <a href="/tags/pytorch/" style="color: #00bcd4">
                     PyTorch
                 </a>
             </span>
@@ -245,11 +245,7 @@
     </div>
     
     <div class="content" v-pre>
-        <p>看了篇知乎文章，讲他自己训练了一个3M左右参数的中文大模型，效果还可以，我就想自己也训练一个。我最开始订下的是10M左右，后续把标准定到100M，数据集是C4的ZH部分，数据总量在67GB的样子。</p>
-<p>最开始的是确定的词表，我选择了Byte level BPE，大小定在50K，算大词表。训练词表的时候就踩了坑，本来是准备用HF的Datasets配合Tokenizer的Trainer，结果跑很久都无法完成对如此海量数据的预处理，折腾了很久，最后还是下定决心自己写了一个面对这种情况的C++ trainer，很快就把问题解决了。</p>
-<p>然后就是训练部分，因为开始做这个项目的时候还不知道lightning之类的框架，只能自己写一套训练框架，有很多细节处理的不是很好。第一波训练的loss还可以，但是不知道为什么我把token处理换成C++的版本后就不太行了，最后17000反而是几次训练里loss最低的，但是实际效果其实一般。后续我还训练了v2和10M的版本，还租用GPU训练了一个300M的上下文长度更长的。</p>
-<p>现在只做了Pretrain就踩了不少坑，后需Post Train应该是不用做了，但是大概知道该怎么训练了，我在想后面再来一个项目做更好的只针对英文文本的模型，然后改进一下结构。</p>
-<h1 id="Training-NanoZhGPT-My-Journey-Building-a-100M-Parameter-Chinese-Language-Model"><a href="#Training-NanoZhGPT-My-Journey-Building-a-100M-Parameter-Chinese-Language-Model" class="headerlink" title="Training NanoZhGPT: My Journey Building a 100M Parameter Chinese Language Model"></a>Training NanoZhGPT: My Journey Building a 100M Parameter Chinese Language Model</h1><p>A few weeks ago, I came across a Zhihu article where someone trained a 3M parameter Chinese LLM with decent results. That sparked an idea: why not try training my own? What started as a modest 10M parameter goal eventually evolved into a 100M parameter model.</p>
+        <h1 id="Training-NanoZhGPT-My-Journey-Building-a-100M-Parameter-Chinese-Language-Model"><a href="#Training-NanoZhGPT-My-Journey-Building-a-100M-Parameter-Chinese-Language-Model" class="headerlink" title="Training NanoZhGPT: My Journey Building a 100M Parameter Chinese Language Model"></a>Training NanoZhGPT: My Journey Building a 100M Parameter Chinese Language Model</h1><p>A few weeks ago, I came across a Zhihu article where someone trained a 3M parameter Chinese LLM with decent results. That sparked an idea: why not try training my own? What started as a modest 10M parameter goal eventually evolved into a 100M parameter model.</p>
 <span id="more"></span>
 
 <h2 id="Dataset-and-Tokenizer"><a href="#Dataset-and-Tokenizer" class="headerlink" title="Dataset and Tokenizer"></a>Dataset and Tokenizer</h2><p><strong>Dataset</strong>: C4 Chinese portion, ~67GB<br><strong>Tokenizer</strong>: Byte-level BPE, 50K vocabulary</p>
@@ -328,7 +324,7 @@ python train/train_xpu.py \
 <td>AutoDL GPU</td>
 </tr>
 </tbody></table>
-<p>*Still in progress</p>
+<p><em>300M Still in progress</em></p>
 <p>The 300M model features extended context length and is my largest training experiment so far.</p>
 <h2 id="Training-Results"><a href="#Training-Results" class="headerlink" title="Training Results"></a>Training Results</h2><h3 id="100M-Model-seq-len-1024"><a href="#100M-Model-seq-len-1024" class="headerlink" title="100M Model (seq_len&#x3D;1024)"></a>100M Model (seq_len&#x3D;1024)</h3><pre><code class="language-mermaid">xychart-beta
     title &quot;100M Model: Validation Loss vs Iterations&quot;
