@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c-cpp/" style="color: #ff7d73">
+                <a href="/tags/c-cpp/" style="color: #00bcd4">
                     C/C++
                 </a>
             </span>
@@ -207,7 +207,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/ai/" style="color: #ff7d73">
+                <a href="/tags/ai/" style="color: #00a596">
                     AI
                 </a>
             </span>
@@ -221,14 +221,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/nlp/" style="color: #00a596">
+                <a href="/tags/nlp/" style="color: #00bcd4">
                     NLP
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/model-training/" style="color: #03a9f4">
+                <a href="/tags/model-training/" style="color: #00a596">
                     Model Training
                 </a>
             </span>
@@ -326,6 +326,9 @@ python train/train_xpu.py \
 </tbody></table>
 <p><em>300M Still in progress</em></p>
 <p>The 300M model features extended context length and is my largest training experiment so far.</p>
+<p>Here is GPT300M train code</p>
+<pre><code class="language-bash">python train/train_xpu.py --data-dir data/tokens --out-dir checkpoints/gpt300m --device cuda --dtype bf16 --gradient-checkpointing --min-batch-size 1 --seq-len 8192 --n-layer 20 --n-head 16 --n-embd 1024 --batch-size 4 --grad-accum 16 --prefetch-batches 32 --shards-per-batch 1 --ram-cache-gb 32 --max-iters 20000 --compile
+</code></pre>
 <h2 id="Training-Results"><a href="#Training-Results" class="headerlink" title="Training Results"></a>Training Results</h2><h3 id="100M-Model-seq-len-1024"><a href="#100M-Model-seq-len-1024" class="headerlink" title="100M Model (seq_len&#x3D;1024)"></a>100M Model (seq_len&#x3D;1024)</h3><pre><code class="language-mermaid">xychart-beta
     title &quot;100M Model: Validation Loss vs Iterations&quot;
     x-axis [500, 2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 17000]
