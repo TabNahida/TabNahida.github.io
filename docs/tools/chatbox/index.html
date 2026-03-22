@@ -55,9 +55,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-<script src="/js/lib/chatbox.js?v=1774183020119"></script>
+<script src="/js/lib/chatbox.js?v=1774183765049"></script>
 
-<link rel="stylesheet" href="/css/main.css?v=1774183020119" />
+<link rel="stylesheet" href="/css/main.css?v=1774183765049" />
 
 <meta name="generator" content="Hexo 8.1.1"></head>
 <body>
@@ -229,7 +229,7 @@
                 />
             </label>
 
-            <div class="chatbox-session-list">
+            <div class="chatbox-session-list" ref="chatboxSessionList">
                 <div
                     v-for="conversation in chatboxFilteredConversations"
                     :key="conversation.id"
@@ -788,7 +788,7 @@
         </transition>
         
     </div>
-    <script src="/js/main.js?v=1774183020119"></script>
+    <script src="/js/main.js?v=1774183765049"></script>
     
 </body>
 </html>
