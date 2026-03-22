@@ -55,9 +55,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-<script src="/js/lib/chatbox.js?v=1774187284636"></script>
+<script src="/js/lib/chatbox.js?v=1774195050374"></script>
 
-<link rel="stylesheet" href="/css/main.css?v=1774187284636" />
+<link rel="stylesheet" href="/css/main.css?v=1774195050374" />
 
 <meta name="generator" content="Hexo 8.1.1"></head>
 <body>
@@ -639,6 +639,14 @@
                                     <span>Show reasoning / think blocks when the endpoint returns them.</span>
                                 </label>
                                 <label class="tool-check">
+                                    <input type="checkbox" v-model="chatbox.settings.renderUserMarkdown" />
+                                    <span>Render user messages as markdown, including math formulas and fenced code blocks.</span>
+                                </label>
+                                <label class="tool-check">
+                                    <input type="checkbox" v-model="chatbox.settings.renderThinkingMarkdown" />
+                                    <span>Render think / reasoning content as markdown instead of plain text.</span>
+                                </label>
+                                <label class="tool-check">
                                     <input type="checkbox" v-model="chatbox.settings.excludeThinkingFromContext" />
                                     <span>Strip thinking blocks from follow-up context to keep prompts leaner.</span>
                                 </label>
@@ -788,7 +796,7 @@
         </transition>
         
     </div>
-    <script src="/js/main.js?v=1774187284636"></script>
+    <script src="/js/main.js?v=1774195050374"></script>
     
 </body>
 </html>
