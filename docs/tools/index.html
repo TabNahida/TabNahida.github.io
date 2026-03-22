@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>C++ Unleashed: Introduction | Tab&#39;s Blog</title>
+    <title>Tools | Tab&#39;s Blog</title>
     <meta name="author" content="TabNahida" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -46,10 +46,6 @@
 
 
 <script src="/js/lib/preview.js"></script>
-
-
-
-
 
 
 
@@ -178,104 +174,60 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>C++ Unleashed: Introduction</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/9/26
-        </span>
-        
-        <span class="category">
-            <a href="/categories/tutor/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Tutorial
+            <div class="tool-page">
+    <section class="tool-hero">
+        <div class="tool-hero-copy">
+            <p class="tool-eyebrow">TOOLBOX</p>
+            <h1>Tools</h1>
+            <p>
+                Pick a tool first, then jump into its own dedicated workspace. This index page stays lightweight,
+                and every tool gets its own route, layout and interaction logic.
+            </p>
+        </div>
+        <div class="tool-hero-meta">
+            <div class="tool-meta-card">
+                <span class="tool-meta-label">Mode</span>
+                <strong>Tool Directory</strong>
+                <p>Start here, then open each tool on its own page.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tool-grid">
+        <aside class="tool-catalog">
+            <a class="tool-panel tool-card tool-link-card" href="/tools/chatbox">
+                <div class="tool-card-header">
+                    <span class="tool-card-icon">
+                        <i class="fa-solid fa-comments"></i>
+                    </span>
+                    <span class="tool-card-tag">Ready</span>
+                </div>
+                <div class="tool-card-body">
+                    <h2>chatbox</h2>
+                    <p>
+                        OpenAI-compatible chat workspace with endpoint-first setup, model discovery, reasoning
+                        controls and speed metrics.
+                    </p>
+                </div>
             </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/c-cpp/" style="color: #ff7d73">
-                    C/C++
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/modern-cpp/" style="color: #03a9f4">
-                    Modern C++
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/cpp-unleash/" style="color: #00a596">
-                    C++ Unleashed
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/Zero-to-Hero/" style="color: #ff7d73">
-                    Zero to Hero
-                </a>
-            </span>
-            
-        </span>
-        
-    </div>
-    
-    <div class="content" v-pre>
-        <p><em><strong>C++ Unleashed: From Zero to Hero</strong></em></p>
-<p>Previous chapter: <a href="/2024/09/26/cpp-unleash/02h-menu">Table of Contents</a></p>
-<p><a href="/2024/09/26/cpp-unleash/02h-menu">Go to Table of Contents</a></p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Welcome to the journey of learning C++! This tutorial is designed for anyone eager to dive into programming with one of the most versatile languages available. Whether you’re a complete beginner or looking to sharpen your skills, this guide will lead you step-by-step.</p>
-<span id="more"></span>
-
-<h2 id="What-is-C"><a href="#What-is-C" class="headerlink" title="What is C++?"></a>What is C++?</h2><p>C++ is a powerful, high-performance programming language that supports both procedural and object-oriented programming paradigms. Developed by Bjarne Stroustrup in the early 1980s, C++ is an extension of the C programming language, incorporating features like classes, inheritance, and polymorphism.</p>
-<p>C++ is widely used in system&#x2F;software development, game development, embedded systems, and high-performance applications due to its efficiency and control over system resources. Its versatility allows developers to write code that can run on various platforms, making it an essential language for many programmers.</p>
-<h2 id="Why-Choose-C"><a href="#Why-Choose-C" class="headerlink" title="Why Choose C++?"></a>Why Choose C++?</h2><p>Choosing C++ offers several advantages:</p>
-<ol>
-<li><strong>Performance</strong>: C++ is known for its speed and efficiency, making it ideal for performance-critical applications.</li>
-<li><strong>Control</strong>: It provides low-level memory manipulation capabilities, giving developers fine-grained control over system resources.</li>
-<li><strong>Versatility</strong>: C++ can be used for a wide range of applications, from operating systems to high-level applications.</li>
-<li><strong>Community and Resources</strong>: With a large community and extensive libraries, finding resources and support is easier than ever.</li>
-</ol>
-<h2 id="What-is-xmake"><a href="#What-is-xmake" class="headerlink" title="What is xmake?"></a>What is xmake?</h2><p>xmake is a modern, lightweight, and cross-platform build tool designed to simplify the build process for C and C++ projects. It is highly customizable and offers a simple syntax for configuration, making it an excellent choice for both beginners and experienced developers.</p>
-<p>Key features of xmake include:</p>
-<ul>
-<li><strong>Easy Configuration</strong>: Using a single <code>xmake.lua</code> file, you can define your project structure and dependencies with minimal effort.</li>
-<li><strong>Cross-Platform Support</strong>: xmake works seamlessly across different operating systems, allowing you to build your projects on Windows, macOS, and Linux.</li>
-<li><strong>Dependency Management</strong>: It handles library dependencies efficiently, streamlining the build process.</li>
-</ul>
-<h2 id="What-You’ll-Learn"><a href="#What-You’ll-Learn" class="headerlink" title="What You’ll Learn"></a>What You’ll Learn</h2><p>This tutorial will guide you from the basics of C++ to advanced modern features, enabling you to master the language and apply it effectively in real-world projects. We will also explore how to use xmake to manage your C++ projects efficiently. By the end of this journey, you’ll have a strong foundation in C++ and be well-prepared to tackle more complex programming challenges.</p>
-<p>Next chapter: <a href="/2024/09/26/cpp-unleash/02h-getstart">Getting Start</a></p>
-
-    </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
-    </div>
-    
-    
-    
-    
+            <div class="tool-panel tool-catalog-note">
+                <p>
+                    More tools can be added as sibling pages under <code>/tools/...</code> without turning this
+                    index page into a giant single-file app.
+                </p>
+            </div>
+        </aside>
+        <div class="tool-directory-panel">
+            <div class="tool-panel tool-directory-copy">
+                <p class="tool-panel-kicker">Flow</p>
+                <h2>Select a tool, then enter its page</h2>
+                <p>
+                    <code>chatbox</code> now lives on its own route so the full workspace can be shaped around one tool,
+                    instead of being squeezed into the catalog page.
+                </p>
+            </div>
+        </div>
+    </section>
 </div>
 
             <footer id="footer">
@@ -319,29 +271,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-<script
-    src="https://giscus.app/client.js"
-    data-repo="TabNahida/TabNahida.github.io"
-    data-repo-id="R_kgDOJtk4Ag"
-    data-category="General"
-    data-category-id="DIC_kwDOJtk4As4Ci3B7"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="light_protanopia"
-    data-lang="en"
-    crossorigin
-    async
-></script>
-
-
-
-
-
     
 </body>
 </html>
